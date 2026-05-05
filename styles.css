@@ -1,0 +1,473 @@
+/* ═══════════════════════════════════════════════
+   cristianbresadola.com — stylesheet condiviso
+═══════════════════════════════════════════════ */
+
+:root {
+  --ivory: #EEF3F6;
+  --ivory-warm: #C9DCE5;
+  --frost: #DBE7EC;
+  --twilight: #6B8AA8;
+  --petrol: #1B3A3E;
+  --petrol-dark: #12282B;
+  --chrome-blue: #2A3166;
+  --chrome-blue-soft: #454B85;
+  --forest: #2D5139;
+  --forest-soft: #3F6B4D;
+  --salt-glow: #E59856;
+  --charcoal: #2A2A2A;
+  --charcoal-soft: #4A4A4A;
+  --sage: #8A9B86;
+
+  /* Palette "acqua" per pagina Idroterapia */
+  --water-mist: #D9E8E6;
+  --water-light: #A8CFC9;
+  --water-turquoise: #3F8B87;
+  --water-deep: #1D5954;
+  --water-abyss: #0F3A37;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.font-display { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+.display-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.display-italic {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Paper background texture */
+.paper-bg {
+  background: var(--ivory);
+  background-image: radial-gradient(circle at 1px 1px, rgba(42, 42, 42, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Colour utilities */
+.bg-petrol { background: var(--petrol); }
+.bg-petrol-dark { background: var(--petrol-dark); }
+.bg-chrome { background: var(--chrome-blue); }
+.bg-forest { background: var(--forest); }
+.bg-frost { background: var(--frost); }
+.bg-twilight { background: var(--twilight); }
+.bg-ivory { background: var(--ivory); }
+.bg-ivory-warm { background: var(--ivory-warm); }
+
+.text-petrol { color: var(--petrol); }
+.text-ivory { color: var(--ivory); }
+.text-charcoal { color: var(--charcoal); }
+.text-charcoal-soft { color: var(--charcoal-soft); }
+.text-salt { color: var(--salt-glow); }
+.text-sage { color: var(--sage); }
+.text-forest { color: var(--forest); }
+.text-twilight { color: var(--twilight); }
+
+/* Utility palette acqua (pagina Idroterapia) */
+.bg-water-mist { background: var(--water-mist); }
+.bg-water-light { background: var(--water-light); }
+.bg-water-turquoise { background: var(--water-turquoise); }
+.bg-water-deep { background: var(--water-deep); }
+.bg-water-abyss { background: var(--water-abyss); }
+.text-water-turquoise { color: var(--water-turquoise); }
+.text-water-deep { color: var(--water-deep); }
+.text-water-light { color: var(--water-light); }
+
+/* Link underline animation */
+.link-underline { position: relative; display: inline-block; }
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+.link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+.link-underline.active::after { transform: scaleX(1); }
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--petrol);
+  color: var(--ivory);
+  padding: 0.9rem 1.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--petrol);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--petrol-dark);
+  transform: translateY(-1px);
+}
+.btn-primary .arrow { transition: transform 0.3s ease; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  color: var(--petrol);
+  padding: 0.9rem 1.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--petrol);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background: var(--petrol);
+  color: var(--ivory);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--petrol);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-ghost:hover { color: var(--charcoal); }
+.btn-ghost .arrow { transition: transform 0.3s ease; }
+.btn-ghost:hover .arrow { transform: translateX(3px); }
+
+/* Dark section inversion */
+.on-dark .btn-primary {
+  background: var(--ivory);
+  color: var(--petrol);
+  border-color: var(--ivory);
+}
+.on-dark .btn-primary:hover {
+  background: var(--salt-glow);
+  color: var(--petrol-dark);
+  border-color: var(--salt-glow);
+}
+.on-dark .btn-secondary {
+  color: var(--ivory);
+  border-color: var(--ivory);
+}
+.on-dark .btn-secondary:hover {
+  background: var(--ivory);
+  color: var(--petrol);
+}
+
+/* Labels */
+.eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.separator-line { width: 60px; height: 1px; background: var(--petrol); }
+.on-dark .separator-line { background: var(--ivory); }
+
+/* Nav */
+nav.main-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(219, 231, 236, 0.82);
+  border-bottom: 1px solid rgba(42, 49, 102, 0.12);
+}
+
+/* Image frames */
+.image-frame { position: relative; overflow: hidden; }
+.image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(245, 238, 223, 0.3);
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: fadeUp 0.9s ease-out both; }
+.reveal-1 { animation-delay: 0.1s; }
+.reveal-2 { animation-delay: 0.25s; }
+.reveal-3 { animation-delay: 0.4s; }
+.reveal-4 { animation-delay: 0.55s; }
+
+@keyframes slowFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.slow-float { animation: slowFloat 6s ease-in-out infinite; }
+
+/* Section number ornament */
+.section-number {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+/* Testimonials */
+blockquote.testimonial {
+  border-left: 2px solid var(--petrol);
+  padding-left: 1.5rem;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--charcoal-soft);
+}
+
+.testi-card { transition: all 0.4s ease; }
+.testi-card:hover { transform: translateY(-2px); }
+
+/* Discipline card */
+.discipline-card {
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.discipline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(18, 40, 43, 0.18);
+}
+
+/* Maya glow */
+.maya-glow {
+  position: relative;
+  overflow: hidden;
+}
+.maya-glow::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 70%; height: 200%;
+  background: radial-gradient(ellipse, rgba(229, 152, 86, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Cromoterapia imagery */
+.cromo-image {
+  position: relative;
+  overflow: hidden;
+}
+.cromo-image img { transition: transform 0.8s ease; }
+.cromo-image:hover img { transform: scale(1.03); }
+
+/* Timeline (for Chi sono) */
+.timeline-item {
+  position: relative;
+  padding-left: 2.5rem;
+  padding-bottom: 3.5rem;
+  border-left: 1px solid rgba(27, 58, 62, 0.15);
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0.3rem;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--petrol);
+  border: 2px solid var(--ivory);
+}
+.timeline-item.highlight::before { background: var(--salt-glow); }
+
+.timeline-year {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--charcoal-soft);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Grande virgoletta ornamentale */
+.big-quote-mark {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 8rem;
+  line-height: 0.5;
+  color: var(--salt-glow);
+  opacity: 0.8;
+}
+
+/* Social icons */
+.social-icon {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(245, 238, 223, 0.3);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--ivory);
+}
+.social-icon:hover {
+  background: var(--ivory);
+  color: var(--petrol);
+  border-color: var(--ivory);
+}
+
+/* Mobile menu */
+.mobile-menu { display: none; }
+.mobile-menu.open { display: block; }
+
+/* Stars background pattern */
+.stars-bg {
+  background-image:
+    radial-gradient(circle at 20% 30%, white 1px, transparent 1px),
+    radial-gradient(circle at 70% 60%, white 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, white 1px, transparent 1px),
+    radial-gradient(circle at 85% 20%, white 1px, transparent 1px);
+  background-size: 400px 400px;
+}
+
+/* FAQ accordion */
+details.faq-item {
+  border-bottom: 1px solid rgba(27, 58, 62, 0.15);
+  padding: 1.5rem 0;
+}
+details.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  color: var(--petrol);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 200;
+  transition: transform 0.3s ease;
+}
+details.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+details.faq-item div.faq-answer {
+  margin-top: 1rem;
+  color: var(--charcoal-soft);
+  line-height: 1.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-title { letter-spacing: -0.02em; }
+  .big-quote-mark { font-size: 5rem; }
+}
+
+
+/* ═══ WhatsApp Floating Widget ═══ */
+.wa-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.wa-widget-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  text-decoration: none;
+}
+.wa-widget-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+}
+.wa-widget-btn svg { width: 32px; height: 32px; fill: white; }
+/* Pulse ring animation */
+.wa-widget-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: #25D366;
+  opacity: 0.35;
+  z-index: -1;
+  animation: wa-pulse 2.2s ease-out infinite;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.35; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+/* Label accanto al pulsante (solo desktop) */
+.wa-widget-label {
+  background: white;
+  color: #075E54;
+  padding: 10px 16px;
+  border-radius: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.wa-widget:hover .wa-widget-label {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+@media (max-width: 640px) {
+  .wa-widget { bottom: 16px; right: 16px; }
+  .wa-widget-btn { width: 54px; height: 54px; }
+  .wa-widget-btn svg { width: 28px; height: 28px; }
+  .wa-widget-label { display: none; }
+}

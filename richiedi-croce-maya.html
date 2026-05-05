@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richiedi una Croce Maya · Cristian Bresadola</title>
+<meta name="description" content="Richiedi la tua Croce Maya personale: PDF digitale alta qualità preparato a mano, recapitato via email entro 2-3 settimane.">
+
+<link rel="canonical" href="https://cristianbresadola.com/richiedi-croce-maya.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Cristian Bresadola">
+<meta name="theme-color" content="#1B3A3E">
+<meta name="language" content="Italian">
+<meta name="geo.region" content="IT-TN">
+
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/favicons/site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Cristian Bresadola · Naturopata">
+<meta property="og:title" content="Richiedi una Croce Maya · Cristian Bresadola">
+<meta property="og:description" content="PDF digitale alta qualità preparato a mano, recapitato via email entro 2-3 settimane.">
+<meta property="og:url" content="https://cristianbresadola.com/richiedi-croce-maya.html">
+<meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* ════════════════════════════════════════════════════════
+   STILI SPECIFICI WIZARD CROCE MAYA (identici a primo-contatto)
+═══════════════════════════════════════════════════════════ */
+
+.steps-bar { display: flex; gap: 8px; margin-bottom: 2rem; }
+.steps-bar .step-pill {
+  flex: 1; height: 4px; background: rgba(27, 58, 62, 0.12);
+  border-radius: 99px; transition: background 0.4s ease;
+}
+.steps-bar .step-pill.done, .steps-bar .step-pill.active { background: var(--petrol, #1B3A3E); }
+
+.step-label {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);
+  margin-bottom: 0.5rem; font-weight: 500;
+}
+.step-counter {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 0.95rem;
+  color: var(--salt-glow, #E59856); margin-right: 0.5rem;
+}
+
+.wizard-step { display: none; }
+.wizard-step.is-active { display: block; animation: fadeSlide 0.4s ease; }
+@keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.step-card {
+  background: var(--frost, #DBE7EC); padding: 2.5rem 2rem; border-radius: 0;
+}
+@media (min-width: 768px) { .step-card { padding: 3rem 3.5rem; } }
+
+.form-input {
+  width: 100%; padding: 0.875rem 1rem;
+  background: var(--ivory, #EEF3F6); border: 1px solid rgba(27, 58, 62, 0.15);
+  border-radius: 0; font-family: 'DM Sans', sans-serif; font-size: 1rem;
+  color: var(--charcoal, #2A2A2A); transition: border-color 0.2s, background 0.2s;
+}
+.form-input:focus { outline: none; border-color: var(--petrol, #1B3A3E); background: white; }
+.form-input:invalid:not(:placeholder-shown) { border-color: rgba(229, 152, 86, 0.6); }
+textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; }
+
+.form-label {
+  display: block; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+  color: var(--petrol, #1B3A3E); font-weight: 500; margin-bottom: 0.5rem;
+}
+.form-help {
+  display: block; font-size: 0.75rem; color: var(--charcoal-soft, #4A4A4A);
+  margin-top: 0.4rem; line-height: 1.5;
+}
+.field-error {
+  display: none; font-size: 0.75rem; color: #b05226; margin-top: 0.35rem;
+}
+.field-error.show { display: block; }
+
+.consent-block {
+  display: flex; gap: 0.75rem; align-items: flex-start; padding: 1rem;
+  background: rgba(238, 243, 246, 0.5); border-left: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+.consent-block:has(input:checked) {
+  border-left-color: var(--petrol, #1B3A3E); background: rgba(238, 243, 246, 0.9);
+}
+.consent-block input[type="checkbox"] {
+  margin-top: 0.25rem; flex-shrink: 0; width: 18px; height: 18px;
+  accent-color: var(--petrol, #1B3A3E); cursor: pointer;
+}
+.consent-block label {
+  font-size: 0.8rem; line-height: 1.6; color: var(--charcoal-soft, #4A4A4A); cursor: pointer;
+}
+.consent-block label strong {
+  color: var(--petrol, #1B3A3E); display: block; margin-bottom: 0.25rem; font-weight: 500;
+}
+
+.info-box {
+  background: var(--ivory, #EEF3F6); border-left: 3px solid var(--salt-glow, #E59856);
+  padding: 1rem 1.25rem; margin-bottom: 1rem;
+}
+.info-title {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--petrol, #1B3A3E);
+  margin-bottom: 0.35rem; font-weight: 500;
+}
+.info-text { font-size: 0.9rem; color: var(--charcoal-soft, #4A4A4A); line-height: 1.6; }
+
+.wizard-nav {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(27, 58, 62, 0.1);
+}
+
+.btn-loading { opacity: 0.7; cursor: wait !important; pointer-events: none; }
+
+.feedback-success, .feedback-error { text-align: center; padding: 3rem 2rem; }
+.feedback-success svg, .feedback-error svg {
+  width: 64px; height: 64px; margin: 0 auto 1.5rem;
+  color: var(--petrol, #1B3A3E);
+}
+.feedback-error svg { color: #b05226; }
+
+.text-petrol { color: var(--petrol, #1B3A3E); }
+.text-charcoal-soft { color: var(--charcoal-soft, #4A4A4A); }
+.display-title { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; }
+.display-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
+.eyebrow {
+  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.75rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+}
+</style>
+</head>
+<body class="paper-bg">
+
+<!-- NAVIGATION -->
+<nav class="main-nav" style="position: sticky; top: 0; z-index: 50; background: rgba(238, 243, 246, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(27, 58, 62, 0.08);">
+  <div style="max-width: 80rem; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+    <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+      <img src="/images/logo.jpg" alt="Logo Cristian Bresadola" style="width: 40px; height: 40px; border-radius: 50%;">
+      <div>
+        <div style="font-family: 'Fraunces', serif; font-size: 17px; color: var(--petrol, #1B3A3E); line-height: 1.2;">Cristian Bresadola</div>
+        <div style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);">Naturopata · Riflessologo</div>
+      </div>
+    </a>
+    <a href="croce-maya.html" style="font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none;">← Torna a Croce Maya</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="padding: 4rem 1.5rem 2rem; background: var(--ivory, #EEF3F6);">
+  <div style="max-width: 56rem; margin: 0 auto; text-align: center;">
+    <div class="eyebrow" style="color: var(--salt-glow, #E59856); margin-bottom: 1.5rem;">— Richiesta Croce Maya</div>
+    <h1 class="display-title" style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--petrol, #1B3A3E); margin-bottom: 1.5rem;">
+      Richiedi la tua <span class="display-italic">Croce Maya</span>
+    </h1>
+    <p style="font-size: 1.05rem; color: var(--charcoal-soft, #4A4A4A); max-width: 42rem; margin: 0 auto 1rem; line-height: 1.7;">
+      Quattro passi guidati per comunicarmi i tuoi dati. Consegna in PDF digitale
+      alta qualità entro 2-3 settimane.
+    </p>
+  </div>
+</section>
+
+<!-- WIZARD -->
+<section style="padding: 3rem 1.5rem 5rem;">
+  <div style="max-width: 56rem; margin: 0 auto;">
+
+    <div class="steps-bar" role="progressbar" aria-label="Avanzamento richiesta">
+      <div class="step-pill active" data-step="1"></div>
+      <div class="step-pill" data-step="2"></div>
+      <div class="step-pill" data-step="3"></div>
+      <div class="step-pill" data-step="4"></div>
+    </div>
+
+    <form id="wizardForm" novalidate>
+
+      <!-- ════════ STEP 1 · Cos'è ════════ -->
+      <div class="wizard-step is-active" data-step="1">
+        <div class="step-card step-content">
+          <div class="step-label"><span class="step-counter">01 ·</span>Cos'è e cosa riceverai</div>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 1.5rem;">
+            Una <span class="display-italic">mappa</span> a partire dalla tua data di nascita
+          </h2>
+          <div style="color: var(--charcoal-soft, #4A4A4A); line-height: 1.7; margin-bottom: 1.5rem;">
+            <p style="margin-bottom: 1rem;">
+              La Croce Maya è uno strumento di consapevolezza ispirato al calendario sacro
+              dei Maya (Tzolk'in). Partendo dalla tua data di nascita ricavo la tua firma
+              archetipica personale e la sviluppo in una lettura interpretativa.
+            </p>
+            <p>
+              Il risultato è un PDF di alta qualità, pensato anche per essere stampato e tenuto.
+              Lo preparo a mano per te.
+            </p>
+          </div>
+
+          <div class="info-box">
+            <div class="info-title">Cosa ricevi</div>
+            <p class="info-text">
+              Un <strong>documento PDF personalizzato</strong> via email, di alta qualità,
+              pronto da consultare o stampare.
+            </p>
+          </div>
+
+          <div class="info-box">
+            <div class="info-title">Tempi</div>
+            <p class="info-text">
+              <strong>2–3 settimane</strong> dalla conferma del contributo. Lavoro su ogni
+              Croce con cura, una alla volta.
+            </p>
+          </div>
+
+          <div class="info-box">
+            <div class="info-title">Modalità</div>
+            <p class="info-text">
+              La consegna è solo in formato digitale (PDF via email). Non sono previste
+              sedute di restituzione dal vivo o online: tutto ciò che serve per la lettura
+              è scritto nel documento stesso.
+            </p>
+          </div>
+
+          <div class="info-box">
+            <div class="info-title">Contributo</div>
+            <p class="info-text">
+              Dopo aver ricevuto questa richiesta ti contatto via email entro 3 giorni
+              per concordare insieme il contributo prima di iniziare la preparazione.
+            </p>
+          </div>
+
+          <div class="wizard-nav">
+            <span style="font-size: 0.875rem; color: var(--charcoal-soft, #4A4A4A);">Step 1 di 4</span>
+            <button type="button" class="btn-primary" data-action="next">
+              Procedi
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 2 · Chi sei ════════ -->
+      <div class="wizard-step" data-step="2">
+        <div class="step-card step-content">
+          <div class="step-label"><span class="step-counter">02 ·</span>Chi sei</div>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
+            Come ti <span class="display-italic">contatto?</span>
+          </h2>
+          <p class="text-charcoal-soft" style="margin-bottom: 2rem;">Dati essenziali per l'invio del PDF.</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="form-label" for="f-nome">Nome *</label>
+              <input type="text" id="f-nome" name="nome" required maxlength="100" class="form-input" placeholder="Il tuo nome">
+              <span class="field-error" data-error-for="nome">Inserisci il tuo nome</span>
+            </div>
+            <div>
+              <label class="form-label" for="f-cognome">Cognome *</label>
+              <input type="text" id="f-cognome" name="cognome" required maxlength="100" class="form-input" placeholder="Il tuo cognome">
+              <span class="field-error" data-error-for="cognome">Inserisci il tuo cognome</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+            <div>
+              <label class="form-label" for="f-email">Email *</label>
+              <input type="email" id="f-email" name="email" required maxlength="200" class="form-input" placeholder="tu@email.it">
+              <span class="form-help">Userò questa email per inviarti il PDF</span>
+              <span class="field-error" data-error-for="email">Inserisci una email valida</span>
+            </div>
+            <div>
+              <label class="form-label" for="f-telefono">Telefono / WhatsApp</label>
+              <input type="tel" id="f-telefono" name="telefono" maxlength="40" class="form-input" placeholder="+39 ...">
+              <span class="form-help">Facoltativo, per accordarci sul contributo</span>
+            </div>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn-ghost" data-action="prev">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+              Indietro
+            </button>
+            <button type="button" class="btn-primary" data-action="next">
+              Avanti
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 3 · Dati di nascita ════════ -->
+      <div class="wizard-step" data-step="3">
+        <div class="step-card step-content">
+          <div class="step-label"><span class="step-counter">03 ·</span>I tuoi dati di nascita</div>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
+            La <span class="display-italic">data</span> da cui parte tutto
+          </h2>
+          <p class="text-charcoal-soft" style="margin-bottom: 2rem;">
+            La data di nascita è il punto di partenza. L'ora aggiunge profondità alla lettura.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div>
+              <label class="form-label" for="f-data-nascita">Data di nascita *</label>
+              <input type="date" id="f-data-nascita" name="data_nascita" required class="form-input" min="1900-01-01" max="2026-12-31">
+              <span class="field-error" data-error-for="data_nascita">Inserisci la tua data di nascita</span>
+            </div>
+            <div>
+              <label class="form-label" for="f-ora-nascita">Ora di nascita</label>
+              <input type="time" id="f-ora-nascita" name="ora_nascita" class="form-input" placeholder="HH:MM">
+              <span class="form-help">Facoltativa, ma consigliata se la conosci</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label" for="f-luogo-nascita">Luogo di nascita</label>
+            <input type="text" id="f-luogo-nascita" name="luogo_nascita" maxlength="200" class="form-input" placeholder="Es. Trento, Italia">
+            <span class="form-help">Città e nazione</span>
+          </div>
+
+          <div class="info-box" style="margin-top: 2rem;">
+            <div class="info-title">Una nota</div>
+            <p class="info-text">
+              Se non sei sicuro dell'ora esatta, lascia il campo vuoto: la lettura
+              si basa principalmente sulla data, l'ora arricchisce ma non è indispensabile.
+              Per il luogo va bene anche solo la città.
+            </p>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn-ghost" data-action="prev">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+              Indietro
+            </button>
+            <button type="button" class="btn-primary" data-action="next">
+              Avanti
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 4 · Intenzione + consenso ════════ -->
+      <div class="wizard-step" data-step="4">
+        <div class="step-card step-content">
+          <div class="step-label"><span class="step-counter">04 ·</span>Intenzione e consensi</div>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
+            La tua <span class="display-italic">domanda</span>
+          </h2>
+          <p class="text-charcoal-soft" style="margin-bottom: 2rem;">
+            Qual è l'intenzione con cui ti avvicini a questa lettura?
+          </p>
+
+          <div style="margin-bottom: 2rem;">
+            <label class="form-label" for="f-intenzione">La tua intenzione</label>
+            <textarea id="f-intenzione" name="intenzione" rows="5" maxlength="2000" class="form-input"
+              placeholder="Racconta liberamente. Può essere una domanda precisa, un momento di passaggio che stai vivendo, una curiosità, o semplicemente il desiderio di conoscerti meglio."></textarea>
+            <span class="form-help">
+              Facoltativo ma prezioso: mi aiuta a calibrare la lettura sul tuo presente.
+            </span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.5rem;">
+
+            <div class="consent-block">
+              <input type="checkbox" id="c-privacy" name="consenso_privacy" required>
+              <label for="c-privacy">
+                <strong>Privacy · obbligatorio *</strong>
+                Ho letto l'<a href="privacy-policy.html" target="_blank" style="text-decoration: underline; color: var(--petrol, #1B3A3E);">Informativa Privacy</a>
+                e acconsento al trattamento dei miei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)
+                per la finalità di preparare e inviarmi la lettura della Croce Maya. I dati sono conservati
+                fino a 12 mesi dall'ultimo contatto, non condivisi con terzi a fini commerciali.
+              </label>
+            </div>
+
+            <div class="consent-block">
+              <input type="checkbox" id="c-modello" name="accettato_modello_pdf" required>
+              <label for="c-modello">
+                <strong>Modello di consegna · obbligatorio *</strong>
+                Comprendo che la consegna è <strong>solo digitale</strong> (PDF via email),
+                che i tempi di preparazione sono <strong>2-3 settimane</strong> e che non sono
+                previste sedute di restituzione dal vivo o online. Dopo aver inviato la richiesta,
+                Cristian mi contatterà entro 3 giorni per accordarsi sul contributo prima di
+                iniziare la preparazione.
+              </label>
+            </div>
+
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn-ghost" data-action="prev">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+              Indietro
+            </button>
+            <button type="submit" id="btnSubmit" class="btn-primary">
+              Invia la richiesta
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ FEEDBACK SUCCESS ════════ -->
+      <div class="wizard-step" data-step="success">
+        <div class="step-card feedback-success step-content">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="32" cy="32" r="28"/>
+            <path d="M20 32l8 8 16-16"/>
+          </svg>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 1rem;">
+            <span class="display-italic">Grazie</span>, ho ricevuto la tua richiesta
+          </h2>
+          <p style="font-size: 1.05rem; color: var(--charcoal-soft, #4A4A4A); line-height: 1.7; max-width: 36rem; margin: 0 auto 2rem;">
+            Entro 3 giorni ti contatto via email per concordare il contributo.
+            Dopo la conferma inizio la preparazione e ti consegno il PDF entro 2-3 settimane.
+          </p>
+          <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 0.95rem; color: var(--twilight, #6B8AA8);">
+            In Lak'ech · A Lak'en ·
+          </p>
+          <div style="margin-top: 2rem;">
+            <a href="index.html" class="btn-ghost">← Torna al sito</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ FEEDBACK ERROR ════════ -->
+      <div class="wizard-step" data-step="error">
+        <div class="step-card feedback-error step-content">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="32" cy="32" r="28"/>
+            <path d="M32 20v16M32 42v2"/>
+          </svg>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 1rem;">
+            Qualcosa <span class="display-italic">non ha funzionato</span>
+          </h2>
+          <p id="errorMessage" style="font-size: 1rem; color: var(--charcoal-soft, #4A4A4A); line-height: 1.7; max-width: 36rem; margin: 0 auto 2rem;">
+            Riprova tra qualche secondo. Se il problema persiste, scrivimi a
+            <a href="mailto:info@cristianbresadola.com" style="text-decoration: underline; color: var(--petrol, #1B3A3E);">info@cristianbresadola.com</a>
+            o su <a href="https://wa.me/393396383790" target="_blank" style="text-decoration: underline; color: var(--petrol, #1B3A3E);">WhatsApp</a>.
+          </p>
+          <div class="wizard-nav" style="justify-content: center;">
+            <button type="button" class="btn-primary" data-action="retry">
+              Riprova
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+(function() {
+  'use strict';
+
+  const SUPABASE_URL = 'https://okasxfvoyihovohlaypz.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
+  const TOTAL_STEPS = 4;
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const form = document.getElementById('wizardForm');
+  const stepPills = document.querySelectorAll('.steps-bar .step-pill');
+  let currentStep = 1;
+
+  function showStep(step) {
+    document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('is-active'));
+    const target = document.querySelector(`.wizard-step[data-step="${step}"]`);
+    if (target) target.classList.add('is-active');
+
+    if (typeof step === 'number') {
+      stepPills.forEach((p, i) => {
+        p.classList.remove('active', 'done');
+        if (i + 1 < step) p.classList.add('done');
+        else if (i + 1 === step) p.classList.add('active');
+      });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validateStep(step) {
+    if (step === 2) {
+      const requiredFields = ['nome', 'cognome', 'email'];
+      let valid = true;
+      requiredFields.forEach(name => {
+        const input = form.querySelector(`[name="${name}"]`);
+        const errorEl = form.querySelector(`[data-error-for="${name}"]`);
+        if (!input.value.trim() || (name === 'email' && !input.checkValidity())) {
+          if (errorEl) errorEl.classList.add('show');
+          input.style.borderColor = 'var(--salt-glow, #E59856)';
+          valid = false;
+        } else {
+          if (errorEl) errorEl.classList.remove('show');
+          input.style.borderColor = '';
+        }
+      });
+      return valid;
+    }
+    if (step === 3) {
+      const input = form.querySelector('[name="data_nascita"]');
+      const errorEl = form.querySelector('[data-error-for="data_nascita"]');
+      if (!input.value) {
+        if (errorEl) errorEl.classList.add('show');
+        input.style.borderColor = 'var(--salt-glow, #E59856)';
+        return false;
+      } else {
+        if (errorEl) errorEl.classList.remove('show');
+        input.style.borderColor = '';
+      }
+      return true;
+    }
+    if (step === 4) {
+      const required = ['c-privacy', 'c-modello'];
+      const allChecked = required.every(id => document.getElementById(id).checked);
+      if (!allChecked) {
+        alert('Per inviare la richiesta devi accettare entrambi i consensi obbligatori.');
+        return false;
+      }
+      return true;
+    }
+    return true;
+  }
+
+  form.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const action = btn.dataset.action;
+    if (action === 'next') {
+      if (!validateStep(currentStep)) return;
+      if (currentStep < TOTAL_STEPS) { currentStep++; showStep(currentStep); }
+    } else if (action === 'prev') {
+      if (currentStep > 1) { currentStep--; showStep(currentStep); }
+    } else if (action === 'retry') {
+      currentStep = 4; showStep(4);
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateStep(4)) return;
+
+    const submitBtn = document.getElementById('btnSubmit');
+    submitBtn.classList.add('btn-loading');
+    submitBtn.textContent = 'Invio in corso...';
+
+    const fd = new FormData(form);
+
+    const datiSpecifici = {
+      ora_nascita: fd.get('ora_nascita') || null,
+      intenzione: (fd.get('intenzione') || '').trim() || null,
+      accettato_modello_pdf: !!document.getElementById('c-modello').checked
+    };
+
+    const payload = {
+      tipo_richiesta: 'croce_maya',
+      nome: (fd.get('nome') || '').trim(),
+      cognome: (fd.get('cognome') || '').trim(),
+      email: (fd.get('email') || '').trim().toLowerCase(),
+      telefono: (fd.get('telefono') || '').trim() || null,
+      data_nascita: fd.get('data_nascita') || null,
+      luogo_nascita: (fd.get('luogo_nascita') || '').trim() || null,
+      motivazione: (fd.get('intenzione') || '').trim() || null,
+      dati_specifici: datiSpecifici,
+      consenso_privacy: !!document.getElementById('c-privacy').checked,
+      consenso_dati_salute: true,
+      consenso_disclaimer_medico: true,
+      user_agent: navigator.userAgent,
+      referrer: document.referrer || null,
+      status: 'nuova'
+    };
+
+    try {
+      const { data, error } = await supabase.rpc('invia_richiesta_pubblica', {
+        p_tipo_richiesta: 'croce_maya',
+        p_nome: payload.nome,
+        p_cognome: payload.cognome,
+        p_email: payload.email,
+        p_telefono: payload.telefono,
+        p_data_nascita: payload.data_nascita,
+        p_luogo_nascita: payload.luogo_nascita,
+        p_motivazione: payload.motivazione,
+        p_dati_specifici: payload.dati_specifici,
+        p_consenso_privacy: payload.consenso_privacy,
+        p_consenso_dati_salute: payload.consenso_dati_salute,
+        p_consenso_disclaimer_medico: payload.consenso_disclaimer_medico,
+        p_user_agent: payload.user_agent,
+        p_referrer: payload.referrer
+      });
+      if (error) throw error;
+      const richiestaId = data && data.id ? data.id : null;
+      showStep('success');
+      if (window.dataLayer) {
+        window.dataLayer.push({ event: 'croce_maya_richiesta', richiesta_id: richiestaId });
+      }
+    } catch (err) {
+      console.error('Errore invio richiesta Croce Maya:', err);
+      const errEl = document.getElementById('errorMessage');
+      if (errEl && err.message) {
+        errEl.textContent = err.message + ' Riprova o contattami direttamente.';
+      }
+      showStep('error');
+    } finally {
+      submitBtn.classList.remove('btn-loading');
+      submitBtn.innerHTML = 'Invia la richiesta <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

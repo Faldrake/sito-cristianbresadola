@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Risorse tecniche non da indicizzare
+Disallow: /favicons/
+Disallow: /node_modules/
+Disallow: /fonts/
+
+# Sitemap
+Sitemap: https://cristianbresadola.com/sitemap.xml

@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idroterapia e Fangoterapia · Nel solco della tradizione Kneipp</title>
+<meta name="description" content="Idroterapia secondo la tradizione Kneipp, Priessnitz e Lezaeta. Impacchi, getti, vapori, bagni di contrasto, fangoterapia mirata, educazione alle pratiche casalinghe. Percorso cliente dedicato a Trento.">
+
+<!-- SEO META -->
+<link rel="canonical" href="https://cristianbresadola.com/idroterapia.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Cristian Bresadola">
+<meta name="theme-color" content="#1B3A3E">
+<meta name="language" content="Italian">
+<meta name="geo.region" content="IT-TN">
+<meta name="geo.placename" content="Trento">
+
+<!-- FAVICON & PWA -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/favicons/site.webmanifest">
+
+<!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Cristian Bresadola · Naturopata">
+<meta property="og:title" content="Idroterapia e Fangoterapia · Nel solco della tradizione Kneipp">
+<meta property="og:description" content="Idroterapia secondo la tradizione Kneipp, Priessnitz e Lezaeta. Impacchi, getti, vapori, bagni di contrasto, fangoterapia mirata, educazione alle pratiche casalinghe. Percorso cliente dedicato a Trento.">
+<meta property="og:url" content="https://cristianbresadola.com/idroterapia.html">
+<meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Idroterapia e Fangoterapia · Nel solco della tradizione Kneipp">
+<meta name="twitter:description" content="Idroterapia secondo la tradizione Kneipp, Priessnitz e Lezaeta. Impacchi, getti, vapori, bagni di contrasto, fangoterapia mirata, educazione alle pratiche casalinghe. Percorso cliente dedicato a Trento.">
+<meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* Specifici per la pagina idroterapia */
+  
+  /* Gradient sottile acqua - per hero */
+  .hydro-gradient {
+    background: linear-gradient(135deg, var(--water-abyss) 0%, var(--water-deep) 55%, var(--water-turquoise) 100%);
+  }
+
+  /* Pattern onde leggere sullo sfondo */
+  .water-pattern {
+    background-image:
+      radial-gradient(ellipse at 15% 30%, rgba(168, 207, 201, 0.08) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 70%, rgba(168, 207, 201, 0.06) 0%, transparent 50%);
+  }
+
+  /* Cards pratica - hover lieve */
+  .pratica-card {
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  .pratica-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(15, 58, 55, 0.12);
+  }
+  .pratica-numero {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 5rem;
+    color: var(--water-turquoise);
+    opacity: 0.25;
+    line-height: 1;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    pointer-events: none;
+  }
+
+  /* Scopo card (sciogliere/eliminare/rinforzare) */
+  .scopo-card {
+    background: var(--water-mist);
+    padding: 2.5rem 2rem;
+    transition: all 0.4s ease;
+  }
+  .scopo-card:hover {
+    background: white;
+    box-shadow: 0 10px 25px rgba(15, 58, 55, 0.1);
+  }
+
+  /* Separator acqua */
+  .water-separator {
+    width: 60px;
+    height: 1px;
+    background: var(--water-turquoise);
+  }
+  .on-water-dark .water-separator { background: var(--water-light); }
+
+  /* Pulsanti su sfondo acqua scuro */
+  .on-water-dark .btn-primary {
+    background: var(--water-light);
+    color: var(--water-abyss);
+    border-color: var(--water-light);
+  }
+  .on-water-dark .btn-primary:hover {
+    background: white;
+    border-color: white;
+    color: var(--water-deep);
+  }
+  .on-water-dark .btn-secondary {
+    color: var(--water-light);
+    border-color: var(--water-light);
+  }
+  .on-water-dark .btn-secondary:hover {
+    background: var(--water-light);
+    color: var(--water-deep);
+  }
+  .on-water-dark .link-underline::after { background: currentColor; }
+
+  /* Percorso cliente - numeri grandi */
+  .percorso-step {
+    position: relative;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(29, 89, 84, 0.15);
+  }
+  .percorso-step:last-child { border-bottom: none; }
+
+  .percorso-numero {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: var(--water-turquoise);
+    line-height: 1;
+  }
+
+  /* FAQ */
+  details.hydro-faq {
+    border-bottom: 1px solid rgba(29, 89, 84, 0.18);
+    padding: 1.5rem 0;
+  }
+  details.hydro-faq summary {
+    cursor: pointer;
+    list-style: none;
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    color: var(--water-deep);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+  }
+  details.hydro-faq summary::-webkit-details-marker { display: none; }
+  details.hydro-faq summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    font-weight: 200;
+    color: var(--water-turquoise);
+    transition: transform 0.3s ease;
+  }
+  details.hydro-faq[open] summary::after {
+    transform: rotate(45deg);
+  }
+  details.hydro-faq .hydro-faq-answer {
+    margin-top: 1rem;
+    color: var(--charcoal-soft);
+    line-height: 1.7;
+  }
+
+  /* Tabella è / non è */
+  .cell-e {
+    background: var(--water-mist);
+    padding: 2rem;
+  }
+  .cell-nonè {
+    background: var(--ivory-warm);
+    padding: 2rem;
+  }
+
+  /* Fregio citazione Kneipp */
+  .kneipp-ribbon {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    color: var(--water-light);
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body class="paper-bg">
+
+<!-- NAVIGATION -->
+<nav class="main-nav fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 group">
+      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
+      <div class="hidden sm:block">
+        <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
+        <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 text-sm">
+      <a href="chi-sono.html" class="link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
+      <a href="consulenze.html" class="link-underline text-charcoal hover:text-petrol transition">Consulenze</a>
+      <a href="idroterapia.html" class="link-underline active text-petrol font-medium">Idroterapia</a>
+      <a href="croce-maya.html" class="link-underline text-charcoal hover:text-petrol transition">Croce Maya</a>
+      <a href="formazione.html" class="link-underline text-charcoal hover:text-petrol transition">Formazione</a>
+      <a href="dove-ricevo.html" class="link-underline text-charcoal hover:text-petrol transition">Dove ricevo</a>
+      <a href="contatti.html" class="link-underline text-charcoal hover:text-petrol transition">Contatti</a>
+    </div>
+    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="mobile-menu lg:hidden bg-frost px-6 py-6" style="border-top: 1px solid rgba(42, 49, 102, 0.15);">
+    <div class="flex flex-col gap-4">
+      <a href="chi-sono.html" class="text-charcoal">Chi sono</a>
+      <a href="consulenze.html" class="text-charcoal">Consulenze</a>
+      <a href="idroterapia.html" class="text-petrol font-medium">Idroterapia</a>
+      <a href="croce-maya.html" class="text-charcoal">Croce Maya</a>
+      <a href="formazione.html" class="text-charcoal">Formazione</a>
+      <a href="dove-ricevo.html" class="text-charcoal">Dove ricevo</a>
+      <a href="contatti.html" class="text-charcoal">Contatti</a>
+      <a href="contatti.html" class="btn-primary w-full justify-center mt-2">Scrivimi per un primo contatto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 text-ivory on-water-dark overflow-hidden" style="background-color: #0F3A37;">
+  
+  <!-- Background: foto acqua calma (Pexels) -->
+  <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+    <img src="https://images.pexels.com/photos/9667516/pexels-photo-9667516.jpeg?auto=compress&cs=tinysrgb&w=2000&h=1200&fit=crop" 
+         alt="" 
+         class="w-full h-full object-cover" 
+         style="opacity: 0.35;"
+         loading="eager" 
+         fetchpriority="high">
+  </div>
+
+  <!-- Overlay gradient per leggibilità -->
+  <div class="absolute inset-0 z-10 pointer-events-none" aria-hidden="true" 
+       style="background: linear-gradient(135deg, rgba(15,58,55,0.92) 0%, rgba(29,89,84,0.78) 50%, rgba(63,139,135,0.55) 100%);"></div>
+
+  <!-- Pattern onde decorativo sopra overlay -->
+  <div class="absolute inset-0 z-20 opacity-25 pointer-events-none" aria-hidden="true">
+    <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1400 800">
+      <path d="M 0 400 Q 350 350 700 400 T 1400 400" stroke="rgba(217,232,230,0.4)" stroke-width="1" fill="none"/>
+      <path d="M 0 500 Q 350 450 700 500 T 1400 500" stroke="rgba(217,232,230,0.3)" stroke-width="1" fill="none"/>
+      <path d="M 0 600 Q 350 550 700 600 T 1400 600" stroke="rgba(217,232,230,0.2)" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- CONTENUTO hero -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-30">
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      
+      <div class="lg:col-span-8 reveal reveal-1">
+        <div class="font-display italic text-sm mb-8" style="color: #A8CFC9; letter-spacing: 0.01em;">— Nel solco della tradizione Kneipp</div>
+        
+        <h1 class="display-title text-5xl md:text-6xl lg:text-7xl mb-8" style="color: #EEF3F6;">
+          L'acqua, <span class="display-italic" style="color: #A8CFC9;">prima di tutto.</span>
+        </h1>
+
+        <p class="text-xl max-w-2xl leading-relaxed mb-6 font-display italic" style="color: rgba(238,243,246,0.92);">
+          Idroterapia, fangoterapia, uso consapevole dei centri benessere.
+        </p>
+        
+        <p class="text-base max-w-2xl leading-relaxed" style="color: rgba(238,243,246,0.8);">
+          Le discipline più antiche della naturopatia europea non sono un riempitivo tra un massaggio e l'altro. Sono strumenti codificati che, usati con competenza, accompagnano processi naturali di riequilibrio profondi.
+        </p>
+      </div>
+
+      <div class="lg:col-span-4 reveal reveal-2">
+        <div class="p-7" style="border: 1px solid rgba(168,207,201,0.35); background: rgba(15,58,55,0.4); backdrop-filter: blur(3px);">
+          <div class="eyebrow mb-4" style="color: #A8CFC9;">Le pratiche in studio</div>
+          <ul class="space-y-2.5 text-sm" style="color: rgba(238,243,246,0.95);">
+            <li>◆ Impacchi e bendaggi</li>
+            <li>◆ Getti Kneipp</li>
+            <li>◆ Vapori e fumigazioni</li>
+            <li>◆ Bagni di contrasto</li>
+            <li>◆ Fangoterapia mirata</li>
+            <li>◆ Educazione alle pratiche casalinghe</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PARTIAMO DALL'ONESTÀ
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-ivory">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+    
+    <div class="flex items-center gap-4 mb-6">
+      <span class="eyebrow text-water-deep">Partiamo dall'onestà</span>
+    </div>
+    
+    <h2 class="display-title text-4xl md:text-5xl text-petrol mb-10">
+      Cos'è <span class="display-italic">e cosa non è.</span>
+    </h2>
+
+    <p class="text-lg text-charcoal-soft leading-relaxed mb-10 max-w-3xl">
+      L'idroterapia porta addosso un doppio stereotipo ingombrante: da un lato la terme come luogo vacanziero, dall'altro le mode recenti del bagno ghiacciato. Nessuna delle due racconta cosa sia davvero la disciplina. Preferisco mettere le cose in chiaro.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      
+      <div class="cell-e">
+        <div class="eyebrow text-water-deep mb-5">È</div>
+        <ul class="space-y-4 text-charcoal">
+          <li class="flex gap-3 items-start"><span class="text-water-turquoise mt-1">◆</span><span>Una <strong class="text-water-deep font-medium">pratica naturopatica codificata</strong>, con testi di riferimento e protocolli collaudati da oltre un secolo e mezzo.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-water-turquoise mt-1">◆</span><span>Un lavoro sulla <strong class="text-water-deep font-medium">risposta termica e vascolare</strong> del corpo: il contrasto caldo/freddo attiva meccanismi fisiologici precisi.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-water-turquoise mt-1">◆</span><span>Una pratica <strong class="text-water-deep font-medium">graduale e personale</strong>: si parte sempre dalla condizione reale di chi ho davanti.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-water-turquoise mt-1">◆</span><span>Anche <strong class="text-water-deep font-medium">educazione al gesto quotidiano</strong> a casa — il vero cuore del metodo Kneipp.</span></li>
+        </ul>
+      </div>
+
+      <div class="cell-nonè">
+        <div class="eyebrow mb-5" style="color: #A63B3B;">Non è</div>
+        <ul class="space-y-4 text-charcoal">
+          <li class="flex gap-3 items-start"><span style="color: #A63B3B;" class="mt-1">✕</span><span>Una <strong class="text-water-deep font-medium">SPA</strong>: niente candele aromatiche né passive coccole di benessere.</span></li>
+          <li class="flex gap-3 items-start"><span style="color: #A63B3B;" class="mt-1">✕</span><span>Una <strong class="text-water-deep font-medium">moda del freddo</strong>: l'idea che "più è freddo, più fa bene" tradisce alla radice il metodo.</span></li>
+          <li class="flex gap-3 items-start"><span style="color: #A63B3B;" class="mt-1">✕</span><span>Una <strong class="text-water-deep font-medium">pratica sanitaria</strong>: non diagnostico, non prescrivo, non sostituisco il medico.</span></li>
+          <li class="flex gap-3 items-start"><span style="color: #A63B3B;" class="mt-1">✕</span><span>Una <strong class="text-water-deep font-medium">routine universale</strong>: ogni applicazione va adattata all'età, alla costituzione, al momento.</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     LE RADICI — Priessnitz, Kneipp, Lezaeta
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-ivory relative">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+    
+    <div class="grid lg:grid-cols-12 gap-12 mb-14">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-water-deep">Le radici</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          Tre autori, <span class="display-italic">una disciplina.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-16">
+        <p class="text-charcoal-soft leading-relaxed">
+          L'idroterapia naturopatica moderna non è improvvisazione: è il frutto di <strong class="text-water-deep font-medium">oltre 150 anni di pratica continua</strong>. I tre autori che seguono non sono citazioni di cortesia — sono i riferimenti da cui traggo le basi del mio lavoro, ogni giorno. Ciascuno ha portato un contributo distinto.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      
+      <!-- PRIESSNITZ -->
+      <div class="bg-water-mist p-8 lg:p-10">
+        <div class="font-display italic text-xs text-water-turquoise tracking-widest uppercase mb-4">1799 — 1851</div>
+        <h3 class="font-display text-2xl text-water-deep mb-2">Vincenz Priessnitz</h3>
+        <div class="text-xs uppercase tracking-wider text-charcoal-soft/70 mb-5">Gräfenberg, Slesia</div>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Il <strong class="text-water-deep font-medium">fondatore dell'idroterapia moderna</strong>. Contadino slesiano autodidatta, sviluppò a Gräfenberg protocolli sistematici basati sull'acqua fredda — in particolare il celebre <em>avvolgimento con lenzuolo bagnato</em> e i <em>bendaggi stimolanti</em> che portano ancora il suo nome.
+        </p>
+        <p class="text-xs text-charcoal-soft/80 italic leading-relaxed">
+          Da lui vengono i metodi più intensivi — quelli che richiedono presenza, tempo, perseveranza.
+        </p>
+      </div>
+
+      <!-- KNEIPP -->
+      <div class="bg-water-mist p-8 lg:p-10">
+        <div class="font-display italic text-xs text-water-turquoise tracking-widest uppercase mb-4">1821 — 1897</div>
+        <h3 class="font-display text-2xl text-water-deep mb-2">Sebastian Kneipp</h3>
+        <div class="text-xs uppercase tracking-wider text-charcoal-soft/70 mb-5">Wörishofen, Baviera</div>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Parroco bavarese che trasformò l'idroterapia di Priessnitz in un <strong class="text-water-deep font-medium">sistema didattico completo</strong>, accessibile a chiunque. Organizzò le applicazioni in sette famiglie — impacchi, bagni, vapori, getti, abluzioni, avvolgimenti, bere l'acqua — e in tre scopi: sciogliere, eliminare, rinforzare.
+        </p>
+        <p class="text-xs text-charcoal-soft/80 italic leading-relaxed">
+          Da lui viene la struttura logica del lavoro: ogni applicazione ha un perché preciso.
+        </p>
+      </div>
+
+      <!-- LEZAETA -->
+      <div class="bg-water-mist p-8 lg:p-10">
+        <div class="font-display italic text-xs text-water-turquoise tracking-widest uppercase mb-4">1881 — 1959</div>
+        <h3 class="font-display text-2xl text-water-deep mb-2">Manuel Lezaeta Acharán</h3>
+        <div class="text-xs uppercase tracking-wider text-charcoal-soft/70 mb-5">Santiago del Cile</div>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Naturista cileno, autore del trattato <em>La Medicina Naturale alla Portata di Tutti</em>. Formulò la <strong class="text-water-deep font-medium">Dottrina dell'Equilibrio Termico</strong>, che individua nell'armonia delle temperature — fra pelle (esterna) e mucose (interne) — la condizione di base del benessere funzionale.
+        </p>
+        <p class="text-xs text-charcoal-soft/80 italic leading-relaxed">
+          Da lui viene la cornice interpretativa: perché caldo e freddo sulla pelle possono riequilibrare l'interno.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Dottrina termica - blocco di approfondimento discreto -->
+    <div class="mt-16 grid lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-5">
+        <div class="eyebrow text-water-deep mb-4">Approfondimento</div>
+        <h3 class="font-display text-3xl text-petrol">
+          La Dottrina<br>
+          dell'<span class="display-italic text-water-turquoise">Equilibrio Termico.</span>
+        </h3>
+      </div>
+      <div class="lg:col-span-7 space-y-4 text-charcoal-soft leading-relaxed">
+        <p>
+          Il principio che Lezaeta mise al centro del suo pensiero è tanto semplice quanto lungimirante: il corpo umano ha <strong class="text-water-deep font-medium">due rivestimenti</strong> — la pelle all'esterno e le mucose all'interno — e la sua normalità funzionale dipende dall'equilibrio termico fra questi due strati.
+        </p>
+        <p>
+          Quando per alimentazione sbagliata, sedentarietà o ritmi disfunzionali si instaura una <em>congestione interna</em> con contemporaneo <em>raffreddamento esterno</em> — pelle pallida, piedi freddi, ventre caldo — l'organismo perde la sua armonia funzionale. Molti disagi comuni, secondo Lezaeta, nascono qui.
+        </p>
+        <p>
+          Le applicazioni idroterapiche, da questa lettura, non sono riti di benessere: sono <strong class="text-water-deep font-medium">strumenti per riportare calore dove manca e raffrescare dove stagna</strong>, usando la pelle come grande organo di scambio. La logica di Kneipp trova così in Lezaeta una spiegazione fisiologica coerente.
+        </p>
+        <div class="pt-5 mt-5 border-t border-water-turquoise/20">
+          <p class="text-sm italic text-water-deep">
+            «Il verbo <em>curare</em> non si coniuga nella mia dottrina termica: si tratta di accompagnare la natura, non di sostituirsi ad essa.»
+          </p>
+          <p class="text-xs uppercase tracking-[0.2em] text-water-turquoise mt-3">— Parafrasi da Manuel Lezaeta</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     I TRE SCOPI (Kneipp)
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-water-mist">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+    
+    <div class="grid lg:grid-cols-12 gap-12 mb-14">
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-water-deep">I principi attivi</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-water-deep">
+          Tre scopi, <span class="display-italic">un sistema.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-16">
+        <p class="text-charcoal-soft leading-relaxed">
+          Sebastian Kneipp codificò le sue applicazioni in base a <strong class="text-water-deep font-medium">tre obiettivi ben distinti</strong>. Ogni pratica serve una di queste tre direzioni — oppure ne combina più di una, se scelta con criterio. Questa logica guida tutto il lavoro.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      
+      <div class="scopo-card">
+        <div class="font-display italic text-5xl text-water-turquoise mb-6">I.</div>
+        <div class="eyebrow text-water-deep mb-3">Primo scopo</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Sciogliere</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed">
+          Il calore — vapori, bagni caldi, impacchi tiepidi con erbe — apre, ammorbidisce, predispone. È la fase che prepara il corpo a rilasciare ciò che è congestionato o stagnante.
+        </p>
+      </div>
+
+      <div class="scopo-card">
+        <div class="font-display italic text-5xl text-water-turquoise mb-6">II.</div>
+        <div class="eyebrow text-water-deep mb-3">Secondo scopo</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Eliminare</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed">
+          Avvolgimenti, bendaggi e certi getti accompagnano l'organismo nel processo di smaltimento. Agiscono sulla pelle — il nostro più grande organo di scambio — come canale attivo.
+        </p>
+      </div>
+
+      <div class="scopo-card">
+        <div class="font-display italic text-5xl text-water-turquoise mb-6">III.</div>
+        <div class="eyebrow text-water-deep mb-3">Terzo scopo</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Rinforzare</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed">
+          I bagni freddi, i getti di contrasto, le abluzioni: tonificano la risposta vascolare, risvegliano la reattività del corpo. È qui che avviene il vero lavoro di consolidamento.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="mt-12 pt-10 border-t border-water-deep/15 max-w-3xl">
+      <p class="font-display italic text-lg text-water-deep leading-relaxed">
+        Le applicazioni non sono mai fine a se stesse. Chi le usa con saggezza, aiuta la natura a fare il suo lavoro — e poi si ritira.
+      </p>
+      <p class="text-xs uppercase tracking-[0.25em] text-water-turquoise mt-4">— Parafrasi da Sebastian Kneipp</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     LE PRATICHE IN STUDIO
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-ivory">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+    
+    <div class="mb-16">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="eyebrow text-water-deep">Le pratiche</span>
+      </div>
+      <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+        Sei vie <span class="display-italic">per l'acqua.</span>
+      </h2>
+      <p class="text-charcoal-soft max-w-2xl">
+        Di seguito le pratiche che offro personalmente in studio e che, in buona parte, insegno poi ai clienti perché diventino gesti quotidiani a casa loro. È <strong class="text-water-deep font-medium">lì</strong> che l'idroterapia diventa davvero utile.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+
+      <!-- 01 IMPACCHI -->
+      <div class="pratica-card bg-water-mist p-8">
+        <div class="pratica-numero">01</div>
+        <div class="eyebrow text-water-deep mb-4">Impacchi e bendaggi</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Il contatto lento.</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Applicazioni localizzate di panni — caldi, freddi o alternati — su distretti specifici del corpo. I bendaggi stimolanti (tipo Priessnitz) lavorano nel tempo, spesso per diverse ore, creando una risposta graduale e profonda.
+        </p>
+        <div class="text-xs text-charcoal-soft/70 uppercase tracking-wider border-t border-water-turquoise/20 pt-3">Durata · 20–60 min · anche con ritenzione notturna</div>
+      </div>
+
+      <!-- 02 GETTI KNEIPP -->
+      <div class="pratica-card bg-water-mist p-8">
+        <div class="pratica-numero">02</div>
+        <div class="eyebrow text-water-deep mb-4">Getti Kneipp</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">L'acqua che risveglia.</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Getti mirati con acqua fredda — ginocchio, coscia, schiena, braccio, completo — eseguiti in studio con attrezzatura dedicata. Ogni tipo di getto ha le sue indicazioni precise e il proprio ritmo. Il beneficio dipende da come è fatto, non da quanto è freddo.
+        </p>
+        <div class="text-xs text-charcoal-soft/70 uppercase tracking-wider border-t border-water-turquoise/20 pt-3">Durata · 1–3 min per getto</div>
+      </div>
+
+      <!-- 03 VAPORI -->
+      <div class="pratica-card bg-water-mist p-8">
+        <div class="pratica-numero">03</div>
+        <div class="eyebrow text-water-deep mb-4">Vapori e fumigazioni</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Per vie aperte.</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Vapori localizzati per viso (occhi, orecchie, gola), piedi, mani, a seconda dell'area. Preparati con acque semplici o con decotti di piante officinali (camomilla, achillea, equiseto). Azione rapida sul piano della congestione e del drenaggio.
+        </p>
+        <div class="text-xs text-charcoal-soft/70 uppercase tracking-wider border-t border-water-turquoise/20 pt-3">Durata · 10–20 min</div>
+      </div>
+
+      <!-- 04 BAGNI -->
+      <div class="pratica-card bg-water-mist p-8">
+        <div class="pratica-numero">04</div>
+        <div class="eyebrow text-water-deep mb-4">Bagni di contrasto</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Caldo e freddo in dialogo.</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Pediluvi e maniluvi alternati caldo/freddo, bagni parziali, semicupi. L'alternanza termica lavora sulla microcircolazione, sul ritorno venoso, sul sistema neurovegetativo. Spesso la pratica più semplice da portare a casa.
+        </p>
+        <div class="text-xs text-charcoal-soft/70 uppercase tracking-wider border-t border-water-turquoise/20 pt-3">Durata · 10–30 min</div>
+      </div>
+
+      <!-- 05 FANGOTERAPIA -->
+      <div class="pratica-card bg-water-mist p-8">
+        <div class="pratica-numero">05</div>
+        <div class="eyebrow text-water-deep mb-4">Fangoterapia · argilla</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">La terra che lavora.</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          Applicazioni di argilla o fango mirate a distretti specifici — non un trattamento a tappeto. La scelta del tipo di argilla (verde, bianca, rossa) e della modalità (fredda, calda, impacco prolungato) dipende dall'obiettivo del momento.
+        </p>
+        <div class="text-xs text-charcoal-soft/70 uppercase tracking-wider border-t border-water-turquoise/20 pt-3">Solo su casi specifici</div>
+      </div>
+
+      <!-- 06 EDUCAZIONE -->
+      <div class="pratica-card bg-water-mist p-8">
+        <div class="pratica-numero">06</div>
+        <div class="eyebrow text-water-deep mb-4">Pratiche casalinghe</div>
+        <h3 class="font-display text-2xl text-water-deep mb-4">Il gesto quotidiano.</h3>
+        <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
+          La parte più importante. Kneipp stesso lo diceva: le applicazioni sono nulla se non diventano abitudine. Ogni cliente riceve una selezione di pratiche semplici, adatte alla propria stagione e condizione, da integrare nella vita di tutti i giorni.
+        </p>
+        <div class="text-xs text-charcoal-soft/70 uppercase tracking-wider border-t border-water-turquoise/20 pt-3">Dentro ogni percorso naturopatico</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BALNEOTERAPIA E CENTRI BENESSERE
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-water-deep text-ivory on-water-dark relative overflow-hidden">
+  
+  <div class="absolute inset-0 opacity-10 pointer-events-none">
+    <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1400 600">
+      <path d="M 0 300 Q 350 250 700 300 T 1400 300" stroke="white" stroke-width="1" fill="none"/>
+      <path d="M 0 350 Q 350 300 700 350 T 1400 350" stroke="white" stroke-width="1" fill="none"/>
+      <path d="M 0 400 Q 350 350 700 400 T 1400 400" stroke="white" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 relative">
+    
+    <div class="flex items-center gap-4 mb-6">
+      <span class="eyebrow text-water-light">Fuori dallo studio</span>
+    </div>
+
+    <h2 class="display-title text-4xl md:text-5xl mb-10">
+      Le terme e i centri benessere,<br>
+      <span class="display-italic text-water-light">usati come strumento.</span>
+    </h2>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-start mb-10">
+      <div class="lg:col-span-7 space-y-5 leading-relaxed opacity-90">
+        <p>
+          Nella mia zona — Trentino, Alto Adige, basso Veneto — ci sono alcuni dei <strong class="font-medium">centri termali più importanti d'Italia</strong>. Molte persone ci vanno a caso: prenotano un massaggio, due ore di piscina, tornano a casa piacevolmente stanche ma senza una direzione.
+        </p>
+        <p>
+          Il mio lavoro, su richiesta, è <strong class="font-medium">orientare</strong>: capire cosa sta attraversando la persona, valutare quali proprietà dell'acqua (sulfurea, salsobromoiodica, fredda/calda, ferrosa) possono accompagnare il suo momento, e costruire un utilizzo consapevole di quella specifica terma o centro.
+        </p>
+        <p>
+          Lo stesso vale per i centri benessere moderni — saune, bagni turchi, percorsi vascolari. Strumenti potenti se usati con criterio, semplice intrattenimento se fatti a caso. La differenza la fa <strong class="font-medium">sapere cosa scegliere, quando, e in che ordine</strong>.
+        </p>
+      </div>
+      
+      <div class="lg:col-span-5">
+        <div class="border border-water-light/30 p-7">
+          <div class="eyebrow text-water-light mb-4">Cosa può includere un'indicazione</div>
+          <ul class="space-y-3 text-sm opacity-85">
+            <li>◆ Scelta del tipo di acqua in base al momento</li>
+            <li>◆ Sequenza consigliata dei percorsi vascolari</li>
+            <li>◆ Tempi di permanenza nelle varie stanze</li>
+            <li>◆ Cosa evitare e perché</li>
+            <li>◆ Integrazione con la pratica casalinga</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     IL PERCORSO CLIENTE
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-ivory">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+    
+    <div class="flex items-center gap-4 mb-6">
+      <span class="eyebrow text-water-deep">Come si lavora insieme</span>
+    </div>
+
+    <h2 class="display-title text-4xl md:text-5xl text-petrol mb-12">
+      Il percorso cliente <span class="display-italic">in quattro passaggi.</span>
+    </h2>
+
+    <div>
+
+      <div class="percorso-step grid md:grid-cols-12 gap-6">
+        <div class="md:col-span-2">
+          <div class="percorso-numero">01</div>
+        </div>
+        <div class="md:col-span-10">
+          <h3 class="font-display text-2xl text-water-deep mb-3">Colloquio naturopatico</h3>
+          <p class="text-charcoal-soft leading-relaxed">
+            Si parte dalla persona, non dalle pratiche. In un primo incontro di circa un'ora ricostruiamo il quadro generale — stato di salute, stile di vita, costituzione, stagione, obiettivi realistici. L'idroterapia si inserisce sempre dentro un ragionamento naturopatico più ampio, mai come pratica isolata.
+          </p>
+        </div>
+      </div>
+
+      <div class="percorso-step grid md:grid-cols-12 gap-6">
+        <div class="md:col-span-2">
+          <div class="percorso-numero">02</div>
+        </div>
+        <div class="md:col-span-10">
+          <h3 class="font-display text-2xl text-water-deep mb-3">Valutazione e protocollo personale</h3>
+          <p class="text-charcoal-soft leading-relaxed">
+            Sulla base del colloquio, disegno un <strong class="text-water-deep font-medium">protocollo personalizzato</strong>: quali applicazioni fare in studio, quali a casa, con che frequenza, per quanto tempo. Ogni protocollo è una scheda scritta che ti lasci — non devi ricordarti tutto a memoria dopo l'incontro.
+          </p>
+        </div>
+      </div>
+
+      <div class="percorso-step grid md:grid-cols-12 gap-6">
+        <div class="md:col-span-2">
+          <div class="percorso-numero">03</div>
+        </div>
+        <div class="md:col-span-10">
+          <h3 class="font-display text-2xl text-water-deep mb-3">Applicazioni in studio + pratiche a casa</h3>
+          <p class="text-charcoal-soft leading-relaxed">
+            Le sessioni in studio sono i momenti più intensi — impacchi, getti, vapori, fango mirato. Tra una sessione e l'altra, le <strong class="text-water-deep font-medium">pratiche quotidiane</strong> che ti insegno sono la parte che fa davvero la differenza. Qualche minuto al giorno, fatto bene, vale più di un'ora in studio una volta al mese.
+          </p>
+        </div>
+      </div>
+
+      <div class="percorso-step grid md:grid-cols-12 gap-6">
+        <div class="md:col-span-2">
+          <div class="percorso-numero">04</div>
+        </div>
+        <div class="md:col-span-10">
+          <h3 class="font-display text-2xl text-water-deep mb-3">Follow-up e aggiustamenti</h3>
+          <p class="text-charcoal-soft leading-relaxed">
+            Dopo 3–4 settimane facciamo il punto. Cosa ha funzionato, cosa no, cosa va cambiato. Il protocollo si evolve con te — nessuna pratica resta uguale per mesi senza essere rivista. L'idroterapia è anche <strong class="text-water-deep font-medium">un modo per imparare ad ascoltare il proprio corpo</strong>: con il tempo sarai tu a capire di cosa hai bisogno.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CORSI IN ARRIVO — Punto Riflesso
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-water-abyss text-ivory on-water-dark relative overflow-hidden">
+  
+  <!-- decorazione: logo trasparente -->
+  <div class="absolute -left-32 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none">
+    <img src="./images/logo.jpg" alt="" class="w-[400px] h-[400px] rounded-full">
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 relative">
+    
+    <div class="flex items-center gap-4 mb-6">
+      <span class="eyebrow text-water-light">In arrivo</span>
+    </div>
+
+    <h2 class="display-title text-4xl md:text-5xl mb-8">
+      Corsi di idroterapia<br>
+      <span class="display-italic text-water-light">in apertura.</span>
+    </h2>
+
+    <div class="grid lg:grid-cols-12 gap-10 items-start">
+      
+      <div class="lg:col-span-7 space-y-5 leading-relaxed opacity-90">
+        <p>
+          Con <strong class="font-medium">Punto Riflesso</strong>, la scuola di formazione che presiedo, sto preparando per il prossimo periodo <strong class="font-medium">un percorso formativo dedicato alle pratiche idroterapiche</strong> — nel solco della tradizione Kneipp, con gli approfondimenti sulla Dottrina Termica di Lezaeta e la pratica-firma del Lavaggio del Sangue.
+        </p>
+        <p>
+          Non un'infarinatura divulgativa: un corso serio, per operatori del benessere che vogliono integrare queste discipline nella propria pratica, e per appassionati che cercano conoscenza approfondita.
+        </p>
+        <p class="text-sm opacity-70 italic pt-2">
+          Le date sono in fase di definizione. Se l'argomento ti interessa, lasciami il tuo riferimento: quando il calendario sarà pronto ti avviso personalmente.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="border border-water-light/30 p-7">
+          <div class="eyebrow text-water-light mb-5">Cosa aspettarsi</div>
+          <ul class="space-y-3 text-sm opacity-90">
+            <li class="flex gap-3 items-start"><span class="text-water-light mt-0.5">◆</span><span>Fondamenti teorici: Kneipp, Priessnitz, Lezaeta</span></li>
+            <li class="flex gap-3 items-start"><span class="text-water-light mt-0.5">◆</span><span>Le sette categorie di applicazioni Kneipp</span></li>
+            <li class="flex gap-3 items-start"><span class="text-water-light mt-0.5">◆</span><span>La Dottrina dell'Equilibrio Termico</span></li>
+            <li class="flex gap-3 items-start"><span class="text-water-light mt-0.5">◆</span><span>Il Lavaggio del Sangue passo per passo</span></li>
+            <li class="flex gap-3 items-start"><span class="text-water-light mt-0.5">◆</span><span>Fangoterapia applicata</span></li>
+            <li class="flex gap-3 items-start"><span class="text-water-light mt-0.5">◆</span><span>Protocolli per il lavoro in studio</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-12 pt-10 border-t border-water-light/20 flex flex-wrap gap-4 justify-center">
+      <a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20sono%20interessato%20ai%20prossimi%20corsi%20di%20idroterapia%20con%20Punto%20Riflesso.%20Mi%20avvisi%20quando%20sar%C3%A0%20pronto%20il%20calendario%3F" target="_blank" rel="noopener" class="btn-primary">
+        Avvisami quando apre
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="formazione.html" class="btn-secondary">
+        Tutti i corsi Punto Riflesso
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-water-mist">
+  <div class="max-w-4xl mx-auto px-6 lg:px-12">
+    
+    <div class="flex items-center gap-4 mb-6">
+      <span class="eyebrow text-water-deep">Domande frequenti</span>
+    </div>
+
+    <h2 class="display-title text-4xl md:text-5xl text-petrol mb-12">
+      Le risposte <span class="display-italic">alle domande più comuni.</span>
+    </h2>
+
+    <div class="space-y-0">
+
+      <details class="hydro-faq">
+        <summary>Serve essere in forma per fare idroterapia?</summary>
+        <div class="hydro-faq-answer">
+          Al contrario: spesso è proprio chi non è in forma a trarne maggior beneficio. Per anziani, convalescenti, persone debilitate, Kneipp aveva progettato le versioni più <strong>dolci</strong> di ogni applicazione. La prima regola è <em>più mite, più efficace</em>. L'importante è che sia calibrato sulla persona.
+        </div>
+      </details>
+
+      <details class="hydro-faq">
+        <summary>Ma il freddo non fa male? Io lo sento proprio che mi fa male.</summary>
+        <div class="hydro-faq-answer">
+          Se una persona è in fase di raffreddamento, ha i piedi freddi, o sta tremando, <strong>nessuna applicazione fredda va fatta</strong>. Questa è la prima indicazione di sicurezza. L'idroterapia lavora sulla <em>reazione</em> del corpo al freddo, non sul freddo in sé. Se non c'è calore di base da cui partire, non c'è reazione possibile.
+        </div>
+      </details>
+
+      <details class="hydro-faq">
+        <summary>Posso farlo anche se prendo farmaci?</summary>
+        <div class="hydro-faq-answer">
+          La maggior parte delle pratiche idroterapiche è compatibile con terapie farmacologiche in corso, ma ci sono <strong>eccezioni importanti</strong> (problemi cardiocircolatori, terapie antipertensive, anticoagulanti, gravidanza) che richiedono attenzione e, quando serve, il parere del medico curante. In colloquio valutiamo sempre insieme il contesto prima di proporre qualsiasi applicazione.
+        </div>
+      </details>
+
+      <details class="hydro-faq">
+        <summary>Con che frequenza devo venire in studio?</summary>
+        <div class="hydro-faq-answer">
+          Dipende molto dal percorso. In alcune fasi iniziali può avere senso una seduta a settimana; in altri momenti ogni 2–3 settimane, con il grosso del lavoro che fai tu a casa. Il mio obiettivo non è che tu venga tante volte in studio — è <strong>che tu impari a gestire il tuo benessere in autonomia</strong>. Questo è lo spirito Kneipp originale.
+        </div>
+      </details>
+
+      <details class="hydro-faq">
+        <summary>È un percorso che si può fare online?</summary>
+        <div class="hydro-faq-answer">
+          Il colloquio naturopatico iniziale e i follow-up <strong>sì, online funzionano bene</strong>. Le applicazioni pratiche (getti, impacchi, vapori) ovviamente no — richiedono di essere in studio. Però molte persone fanno la parte di colloquio e di progettazione protocollo a distanza, e vengono in studio solo per le sessioni pratiche.
+        </div>
+      </details>
+
+      <details class="hydro-faq">
+        <summary>Frequento già un centro benessere: come può integrarsi con il tuo lavoro?</summary>
+        <div class="hydro-faq-answer">
+          Benissimo, anzi: spesso è lo scenario più interessante. Se già hai accesso a una SPA o una piscina termale, possiamo <strong>trasformare quelle visite da relax generico a pratica orientata</strong>. Ti dico cosa fare, in che ordine, per quanto tempo, in base a cosa stai attraversando in quel momento.
+        </div>
+      </details>
+
+      <details class="hydro-faq">
+        <summary>Cosa c'entra Lezaeta con l'idroterapia di Kneipp?</summary>
+        <div class="hydro-faq-answer">
+          Kneipp e Lezaeta si integrano perfettamente. Kneipp ci ha lasciato <strong>le pratiche</strong> — sette famiglie di applicazioni codificate fino al dettaglio operativo. Lezaeta ci ha lasciato <strong>la cornice interpretativa</strong>: la Dottrina dell'Equilibrio Termico, che spiega perché quelle applicazioni agiscono sull'organismo. Per chi studia la disciplina sul serio, i due autori vanno letti insieme: uno senza l'altro resta incompleto.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINALE
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 hydro-gradient text-ivory on-water-dark water-pattern relative overflow-hidden">
+  
+  <div class="absolute -right-40 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none">
+    <img src="./images/logo.jpg" alt="" class="w-[500px] h-[500px] rounded-full">
+  </div>
+
+  <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative">
+    <div class="flex justify-center mb-8"><div class="water-separator"></div></div>
+    <h2 class="display-title text-4xl md:text-5xl lg:text-6xl mb-8">
+      Pronto a <span class="display-italic text-water-light">lasciar lavorare l'acqua?</span>
+    </h2>
+    <p class="text-lg opacity-85 mb-12 max-w-2xl mx-auto leading-relaxed">
+      Il percorso inizia da un colloquio naturopatico. Da lì vediamo cosa ha senso per te — in studio, a casa, o come orientamento per un centro termale della tua zona.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="contatti.html" class="btn-primary">
+        Prenota un colloquio
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="btn-secondary">
+        Scrivimi su WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="py-12 bg-ivory">
+  <div class="max-w-4xl mx-auto px-6 lg:px-12">
+    <p class="text-xs text-charcoal-soft italic leading-relaxed">
+      <strong class="not-italic text-water-deep">Nota importante.</strong> Le pratiche idroterapiche e la fangoterapia offerte hanno <strong class="not-italic">carattere complementare</strong> di sostegno al benessere e non sostituiscono il parere del medico. Non vengono effettuate diagnosi né prescritte terapie farmacologiche. In presenza di patologie, terapie in corso, gravidanza, problemi cardiocircolatori o condizioni particolari, consultare sempre il medico curante prima di intraprendere qualsiasi percorso di idroterapia.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
+          <div>
+            <div class="font-display text-xl">Cristian Bresadola</div>
+            <div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div>
+          </div>
+        </div>
+        <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">Iscritto al Registro ASPIN dei Naturopati — Livello Professionista.<br>Codice <strong>TN-1230-NA-P</strong></p>
+        <div class="flex gap-2">
+          <a href="https://www.instagram.com/cristian_bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/cristian.bresadola/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg></a>
+          <a href="http://www.linkedin.com/in/cristian-bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.6C6.1 8.6 5.5 8 5.5 7.1c0-.8.6-1.5 1.5-1.5s1.5.6 1.5 1.5c0 .8-.7 1.5-1.5 1.5zm11.3 9.7h-2.6v-4.6c0-1.2-.4-2-1.5-2-.8 0-1.3.5-1.5 1.1-.1.2-.1.4-.1.7v4.8h-2.6V9.7h2.6v1.1c.3-.5 1-1.3 2.5-1.3 1.8 0 3.2 1.2 3.2 3.7v5.1z"/></svg></a>
+          <a href="https://www.youtube.com/@druido_vds" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.6c-.3-1.1-1.1-1.9-2.2-2.2C18.9 5 12 5 12 5s-6.9 0-8.8.4c-1.1.3-1.9 1.1-2.2 2.2C.6 9.5.6 12 .6 12s0 2.5.4 4.4c.3 1.1 1.1 1.9 2.2 2.2 1.9.4 8.8.4 8.8.4s6.9 0 8.8-.4c1.1-.3 1.9-1.1 2.2-2.2.4-1.9.4-4.4.4-4.4s0-2.5-.4-4.4zM9.8 15.3V8.7l5.8 3.3-5.8 3.3z"/></svg></a>
+          <a href="https://www.tiktok.com/@solandro75" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg></a>
+        </div>
+      </div>
+      <div class="lg:col-span-3">
+        <div class="eyebrow text-salt mb-5">Contatti</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="tel:+393396383790" class="opacity-70 hover:opacity-100 transition">Tel. +39 339 638 3790</a></li>
+          <li><a href="https://wa.me/393396383790" target="_blank" class="opacity-70 hover:opacity-100 transition">WhatsApp diretto</a></li>
+          <li><a href="mailto:info@cristianbresadola.com" class="opacity-70 hover:opacity-100 transition">info@cristianbresadola.com</a></li>
+          <li class="opacity-70 text-xs pt-1">PEC: cristian.bresadola@pec.it</li>
+        </ul>
+      </div>
+      <div class="lg:col-span-3">
+        <div class="eyebrow text-salt mb-5">Sedi</div>
+        <ul class="space-y-5 text-sm">
+          <li><div class="font-medium mb-1">Trento</div><div class="opacity-70">Vicolo della Contrada Tedesca 9<br>38121 Trento</div></li>
+          <li><div class="font-medium mb-1">Val di Sole</div><div class="opacity-70">Studio in Val di Sole · Su appuntamento</div></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="eyebrow text-salt mb-5">Formazione</div>
+        <div class="text-sm opacity-70 mb-4"><strong class="text-ivory font-medium">Presidente di Punto Riflesso</strong></div>
+        <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="link-underline text-sm opacity-90">puntoriflesso.com</a>
+        <div class="eyebrow text-salt mt-6 mb-3">Pubblicazioni</div>
+        <a href="rubrica.html" class="link-underline text-sm opacity-90">Rubrica · UnserTirol24</a>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-ivory/15 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs opacity-60">
+      <div>© <span id="year"></span> Cristian Bresadola · NosLab S.a.s. · P.IVA 02839670227</div>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="hover:opacity-100 opacity-80">Privacy Policy</a>
+        <a href="cookie-policy.html" class="hover:opacity-100 opacity-80">Cookie Policy</a>
+        <a href="https://arkana.cristianbresadola.com" rel="noopener" class="opacity-50 hover:opacity-100" style="opacity: 0.5;">Area riservata</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('mobileToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+
+<!-- WhatsApp Floating Widget -->
+<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20ho%20letto%20la%20pagina%20Idroterapia%20e%20vorrei%20approfondire." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
+  <span class="wa-widget-label">Scrivimi su WhatsApp</span>
+  <span class="wa-widget-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </span>
+</a>
+
+<!-- COOKIE BANNER (informativo) -->
+<div id="cookieBanner" style="display:none; position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 520px; margin: 0 auto; background: var(--petrol-dark); color: var(--ivory); padding: 1.5rem 1.75rem; border-radius: 2px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); z-index: 999; font-size: 0.9rem; line-height: 1.5;">
+  <p style="margin-bottom: 1rem;">
+    Questo sito utilizza solo <strong>cookie tecnici</strong> necessari al funzionamento e al caricamento dei caratteri tipografici. Non utilizza cookie di profilazione o tracciamento pubblicitario.
+    <a href="cookie-policy.html" style="color: var(--salt-glow); text-decoration: underline;">Leggi la Cookie Policy</a>.
+  </p>
+  <div style="display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
+    <a href="privacy-policy.html" style="color: var(--ivory); opacity: 0.7; font-size: 0.85rem; text-decoration: underline; align-self: center;">Privacy</a>
+    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var banner = document.getElementById('cookieBanner');
+  var accepted = localStorage.getItem('cookieNotice_v1');
+  if (!accepted && banner) {
+    setTimeout(function() { banner.style.display = 'block'; }, 800);
+  }
+  var btn = document.getElementById('cookieAccept');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      localStorage.setItem('cookieNotice_v1', 'yes');
+      banner.style.display = 'none';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

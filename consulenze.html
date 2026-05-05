@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consulenze · Naturopatia, Riflessologia, Massaggio, Floriterapia, Fitoterapia</title>
+<meta name="description" content="Consulenze di Cristian Bresadola: naturopatia, riflessologia plantare, massaggio olistico, floriterapia di Bach, fitoterapia. Approccio personalizzato, in studio a Trento o online.">
+
+<!-- SEO META -->
+<link rel="canonical" href="https://cristianbresadola.com/consulenze.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Cristian Bresadola">
+<meta name="theme-color" content="#1B3A3E">
+<meta name="language" content="Italian">
+<meta name="geo.region" content="IT-TN">
+<meta name="geo.placename" content="Trento">
+
+<!-- FAVICON & PWA -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/favicons/site.webmanifest">
+
+<!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Cristian Bresadola · Naturopata">
+<meta property="og:title" content="Consulenze · Naturopatia, Riflessologia, Massaggio, Floriterapia, Fitoterapia">
+<meta property="og:description" content="Consulenze di Cristian Bresadola: naturopatia, riflessologia plantare, massaggio olistico, floriterapia di Bach, fitoterapia. Approccio personalizzato, in studio a Trento o online.">
+<meta property="og:url" content="https://cristianbresadola.com/consulenze.html">
+<meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Consulenze · Naturopatia, Riflessologia, Massaggio, Floriterapia, Fitoterapia">
+<meta name="twitter:description" content="Consulenze di Cristian Bresadola: naturopatia, riflessologia plantare, massaggio olistico, floriterapia di Bach, fitoterapia. Approccio personalizzato, in studio a Trento o online.">
+<meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="paper-bg">
+
+<!-- NAVIGATION -->
+<nav class="main-nav fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 group">
+      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
+      <div class="hidden sm:block">
+        <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
+        <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 text-sm">
+      <a href="chi-sono.html" class="link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
+      <a href="consulenze.html" class="link-underline active text-petrol font-medium">Consulenze</a>
+      <a href="idroterapia.html" class="link-underline text-charcoal hover:text-petrol transition">Idroterapia</a>
+      <a href="croce-maya.html" class="link-underline text-charcoal hover:text-petrol transition">Croce Maya</a>
+      <a href="formazione.html" class="link-underline text-charcoal hover:text-petrol transition">Formazione</a>
+      <a href="dove-ricevo.html" class="link-underline text-charcoal hover:text-petrol transition">Dove ricevo</a>
+      <a href="contatti.html" class="link-underline text-charcoal hover:text-petrol transition">Contatti</a>
+    </div>
+    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="mobile-menu lg:hidden bg-frost px-6 py-6" style="border-top: 1px solid rgba(42, 49, 102, 0.15);">
+    <div class="flex flex-col gap-4">
+      <a href="chi-sono.html" class="text-charcoal">Chi sono</a>
+      <a href="consulenze.html" class="text-petrol font-medium">Consulenze</a>
+      <a href="idroterapia.html" class="link-underline text-charcoal hover:text-petrol transition">Idroterapia</a>
+      <a href="croce-maya.html" class="text-charcoal">Croce Maya</a>
+      <a href="formazione.html" class="text-charcoal">Formazione</a>
+      <a href="dove-ricevo.html" class="text-charcoal">Dove ricevo</a>
+      <a href="contatti.html" class="text-charcoal">Contatti</a>
+      <a href="contatti.html" class="btn-primary w-full justify-center mt-2">Scrivimi per un primo contatto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-32 pb-16 lg:pt-40 lg:pb-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="eyebrow text-petrol mb-6">— Consulenze e trattamenti</div>
+    <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8 max-w-4xl">
+      Cinque strade <span class="display-italic">verso la stessa persona.</span>
+    </h1>
+    <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
+      Ogni disciplina è un angolo di osservazione differente. A volte un percorso nasce intorno a una sola, più spesso si integrano. Le sedute e il percorso li costruiamo insieme dopo un primo colloquio.
+    </p>
+    <div class="mt-8">
+      <a href="contatti.html" class="btn-primary">Prenota un colloquio conoscitivo<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 01 NATUROPATIA -->
+<section id="naturopatia" class="py-20 lg:py-28 bg-frost">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6">
+        <div class="image-frame aspect-[4/3] overflow-hidden">
+          <img src="https://images.pexels.com/photos/5480150/pexels-photo-5480150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Preparazione di erbe officinali" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+      <div class="lg:col-span-6">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-petrol">Naturopatia</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          <span class="display-italic">Il quadro</span> nella sua interezza.
+        </h2>
+        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
+          <p>La naturopatia considera la persona nel suo insieme — corpo, emozioni, storia, alimentazione, ambiente, ritmi di vita. Non una singola tecnica, ma <strong class="text-petrol font-medium">un approccio trasversale</strong> che mette in relazione aspetti che altrove vengono guardati separati.</p>
+          <p>Nella consulenza naturopatica raccolgo la tua storia attraverso un'anamnesi accurata, osservo il quadro complessivo e costruiamo insieme <strong class="text-petrol font-medium">un percorso di riequilibrio</strong> fatto di piccoli cambiamenti nelle abitudini, di supporti naturali (fitoterapici, fiori di Bach, alimentari) e di pratiche di cura di sé.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
+          <div><div class="eyebrow text-petrol mb-1">Durata colloquio</div><div class="text-sm">60–90 min</div></div>
+          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">In studio · Online</div></div>
+        </div>
+        <div class="mt-8"><a href="contatti.html" class="btn-primary">Scrivimi per un primo contatto<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 RIFLESSOLOGIA -->
+<section id="riflessologia" class="py-20 lg:py-28 bg-ivory">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 order-2 lg:order-1">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-petrol">Riflessologia plantare</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          Il piede <span class="display-italic">come mappa.</span>
+        </h2>
+        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
+          <p>Nella tradizione in cui mi sono formato, il piede è una mappa riflessa del corpo intero. Lavorare su <strong class="text-petrol font-medium">zone riflesse specifiche</strong> significa sollecitare, stimolare, riequilibrare il corrispondente distretto dell'organismo, attraverso il sistema nervoso.</p>
+          <p>Il mio lavoro in riflessologia integra <strong class="text-petrol font-medium">la Medicina Tradizionale Cinese</strong> (meridiani, cinque elementi, cicli energetici) e la <strong class="text-petrol font-medium">Tecnica Breuss</strong> (con discendenza diretta dagli allievi di Rudolf Breuss). Nel tempo ho sviluppato un approccio che chiamo <a href="formazione.html" class="link-underline text-petrol font-medium">Metodo Punto Riflesso</a>.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
+          <div><div class="eyebrow text-petrol mb-1">Durata seduta</div><div class="text-sm">60 min circa</div></div>
+          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">Solo in studio</div></div>
+        </div>
+        <div class="mt-8"><a href="contatti.html" class="btn-primary">Prenota una seduta<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="lg:col-span-6 order-1 lg:order-2">
+        <div class="image-frame aspect-[4/3] overflow-hidden">
+          <img src="./images/riflessologia-2.jpg" alt="Cristian Bresadola mentre esegue un trattamento di riflessologia plantare" class="w-full h-full object-cover" style="object-position: center 40%;" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 MASSAGGIO OLISTICO -->
+<section id="massaggio" class="py-20 lg:py-28 bg-frost">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6">
+        <div class="image-frame aspect-[4/3] overflow-hidden">
+          <img src="https://images.pexels.com/photos/6560280/pexels-photo-6560280.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Trattamento olistico con erbe" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+      <div class="lg:col-span-6">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-petrol">Massaggio olistico</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          Non manovre standard: <span class="display-italic">un incontro.</span>
+        </h2>
+        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
+          <p>L'approccio olistico al massaggio non è l'applicazione meccanica di una tecnica, ma un <strong class="text-petrol font-medium">dialogo tattile</strong> in cui il tocco si adatta a ciò che il corpo racconta — zone di tensione, blocchi, richieste di lentezza.</p>
+          <p>Nella mia pratica integro <strong class="text-petrol font-medium">Tecnica Breuss, elementi di Shiatsu, connettivale e drenante</strong>, modulando in base a ciò che il corpo chiede in quel momento. L'obiettivo non è "sciogliere contratture" ma creare uno spazio dove qualcosa possa muoversi.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
+          <div><div class="eyebrow text-petrol mb-1">Durata seduta</div><div class="text-sm">60–90 min</div></div>
+          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">Solo in studio</div></div>
+        </div>
+        <div class="mt-8"><a href="contatti.html" class="btn-primary">Prenota una seduta<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FLORITERAPIA -->
+<section id="floriterapia" class="py-20 lg:py-28 bg-ivory">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 order-2 lg:order-1">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-petrol">Floriterapia</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          <span class="display-italic">I 38 Fiori</span> del Dr. Bach.
+        </h2>
+        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
+          <p>La floriterapia lavora sulle <strong class="text-petrol font-medium">dinamiche emotive ricorrenti</strong> — quelle che ti porti dietro e che colorano, spesso in modo invisibile, le giornate: paure, stanchezze, pensieri insistenti, stati di passaggio.</p>
+          <p>Nella consulenza ti ascolto con calma, ricostruiamo insieme il momento che stai attraversando, e preparo una <strong class="text-petrol font-medium">miscela personalizzata</strong> con i 38 rimedi del Dr. Edward Bach. Non un protocollo standardizzato: ogni miscela è fatta per chi la prende.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
+          <div><div class="eyebrow text-petrol mb-1">Durata colloquio</div><div class="text-sm">60 min circa</div></div>
+          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">In studio · Online</div></div>
+        </div>
+        <div class="mt-8"><a href="contatti.html" class="btn-primary">Scrivimi per un primo contatto<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="lg:col-span-6 order-1 lg:order-2">
+        <div class="image-frame aspect-[4/3] overflow-hidden">
+          <img src="./images/preparazioni.jpg" alt="Preparazioni personalizzate di floriterapia" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 FITOTERAPIA -->
+<section id="fitoterapia" class="py-20 lg:py-28 bg-frost">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6">
+        <div class="image-frame aspect-[4/3] overflow-hidden">
+          <img src="https://images.pexels.com/photos/14379617/pexels-photo-14379617.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Piante officinali" class="w-full h-full object-cover" loading="lazy">
+        </div>
+      </div>
+      <div class="lg:col-span-6">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-petrol">Fitoterapia</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          Le piante <span class="display-italic">a sostegno del benessere.</span>
+        </h2>
+        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
+          <p>La fitoterapia è l'uso mirato delle <strong class="text-petrol font-medium">piante officinali</strong> — tisane, macerati, gemmoderivati, tinture madri, oli essenziali — per sostenere i processi naturali di riequilibrio del corpo.</p>
+          <p>Ogni pianta ha proprietà specifiche e momenti più adatti in cui agire. In consulenza ti consiglio <strong class="text-petrol font-medium">combinazioni coerenti con il tuo momento</strong>, spiegandoti il perché di ogni scelta: niente "magia verde", solo botanica applicata.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
+          <div><div class="eyebrow text-petrol mb-1">Durata colloquio</div><div class="text-sm">60 min circa</div></div>
+          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">In studio · Online</div></div>
+        </div>
+        <div class="mt-8"><a href="contatti.html" class="btn-primary">Scrivimi per un primo contatto<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CROCE MAYA -->
+<section class="py-20 lg:py-24 bg-petrol-dark text-ivory on-dark">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
+    <div class="eyebrow text-salt mb-4">Servizio dedicato</div>
+    <h2 class="display-title text-3xl md:text-4xl mb-6">
+      Cerchi <span class="display-italic text-salt">la Lettura della Croce Maya?</span>
+    </h2>
+    <p class="opacity-80 mb-8 max-w-2xl mx-auto">La Croce Maya ha una pagina tutta sua: strumento di auto-conoscenza strutturata, documento PDF di alta qualità di 20-50 pagine, consegnato via email.</p>
+    <a href="croce-maya.html" class="btn-primary">Vai alla pagina Croce Maya<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- CTA IDROTERAPIA -->
+<section class="py-20 lg:py-24 bg-water-deep text-ivory on-water-dark">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
+    <div class="eyebrow text-water-light mb-4">Percorso dedicato</div>
+    <h2 class="display-title text-3xl md:text-4xl mb-6">
+      Idroterapia <span class="display-italic text-water-light">e fangoterapia?</span>
+    </h2>
+    <p class="opacity-85 mb-8 max-w-2xl mx-auto">Le pratiche idroterapiche nel solco della tradizione Kneipp — impacchi, getti, vapori, bagni di contrasto, fangoterapia mirata — hanno una pagina dedicata con il percorso cliente passo per passo.</p>
+    <a href="idroterapia.html" class="btn-primary">Vai alla pagina Idroterapia<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="py-12 bg-ivory">
+  <div class="max-w-4xl mx-auto px-6 lg:px-12">
+    <p class="text-xs text-charcoal-soft italic leading-relaxed">
+      <strong class="not-italic text-petrol">Nota importante.</strong> Le consulenze e i trattamenti offerti hanno <strong class="not-italic">carattere complementare</strong> e non sostituiscono il parere del medico. Non vengono effettuate diagnosi né prescritte terapie farmacologiche. In presenza di patologie, terapie in corso, gravidanza o condizioni particolari, consultare sempre il medico curante. Il naturopata professionista interviene nel campo del benessere e dell'educazione alla salute, nel rispetto della normativa vigente.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
+          <div>
+            <div class="font-display text-xl">Cristian Bresadola</div>
+            <div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div>
+          </div>
+        </div>
+        <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">Iscritto al Registro ASPIN dei Naturopati — Livello Professionista.<br>Codice <strong>TN-1230-NA-P</strong></p>
+        <div class="flex gap-2">
+          <a href="https://www.instagram.com/cristian_bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/cristian.bresadola/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg></a>
+          <a href="http://www.linkedin.com/in/cristian-bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.6C6.1 8.6 5.5 8 5.5 7.1c0-.8.6-1.5 1.5-1.5s1.5.6 1.5 1.5c0 .8-.7 1.5-1.5 1.5zm11.3 9.7h-2.6v-4.6c0-1.2-.4-2-1.5-2-.8 0-1.3.5-1.5 1.1-.1.2-.1.4-.1.7v4.8h-2.6V9.7h2.6v1.1c.3-.5 1-1.3 2.5-1.3 1.8 0 3.2 1.2 3.2 3.7v5.1z"/></svg></a>
+          <a href="https://www.youtube.com/@druido_vds" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.6c-.3-1.1-1.1-1.9-2.2-2.2C18.9 5 12 5 12 5s-6.9 0-8.8.4c-1.1.3-1.9 1.1-2.2 2.2C.6 9.5.6 12 .6 12s0 2.5.4 4.4c.3 1.1 1.1 1.9 2.2 2.2 1.9.4 8.8.4 8.8.4s6.9 0 8.8-.4c1.1-.3 1.9-1.1 2.2-2.2.4-1.9.4-4.4.4-4.4s0-2.5-.4-4.4zM9.8 15.3V8.7l5.8 3.3-5.8 3.3z"/></svg></a>
+          <a href="https://www.tiktok.com/@solandro75" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg></a>
+        </div>
+      </div>
+      <div class="lg:col-span-3">
+        <div class="eyebrow text-salt mb-5">Contatti</div>
+        <ul class="space-y-3 text-sm">
+          <li><a href="tel:+393396383790" class="opacity-70 hover:opacity-100 transition">Tel. +39 339 638 3790</a></li>
+          <li><a href="https://wa.me/393396383790" target="_blank" class="opacity-70 hover:opacity-100 transition">WhatsApp diretto</a></li>
+          <li><a href="mailto:info@cristianbresadola.com" class="opacity-70 hover:opacity-100 transition">info@cristianbresadola.com</a></li>
+          <li class="opacity-70 text-xs pt-1">PEC: cristian.bresadola@pec.it</li>
+        </ul>
+      </div>
+      <div class="lg:col-span-3">
+        <div class="eyebrow text-salt mb-5">Sedi</div>
+        <ul class="space-y-5 text-sm">
+          <li><div class="font-medium mb-1">Trento</div><div class="opacity-70">Vicolo della Contrada Tedesca 9<br>38121 Trento</div></li>
+          <li><div class="font-medium mb-1">Val di Sole</div><div class="opacity-70">Studio in Val di Sole · Su appuntamento</div></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="eyebrow text-salt mb-5">Formazione</div>
+        <div class="text-sm opacity-70 mb-4"><strong class="text-ivory font-medium">Presidente di Punto Riflesso</strong></div>
+        <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="link-underline text-sm opacity-90">puntoriflesso.com</a>
+        <div class="eyebrow text-salt mt-6 mb-3">Pubblicazioni</div>
+        <a href="rubrica.html" class="link-underline text-sm opacity-90">Rubrica · UnserTirol24</a>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-ivory/15 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs opacity-60">
+      <div>© <span id="year"></span> Cristian Bresadola · NosLab S.a.s. · P.IVA 02839670227</div>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="hover:opacity-100 opacity-80">Privacy Policy</a>
+        <a href="cookie-policy.html" class="hover:opacity-100 opacity-80">Cookie Policy</a>
+        <a href="https://arkana.cristianbresadola.com" rel="noopener" class="opacity-50 hover:opacity-100" style="opacity: 0.5;">Area riservata</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('mobileToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+<!-- WhatsApp Floating Widget -->
+<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20sono%20interessato%20a%20una%20consulenza.%20Mi%20puoi%20dare%20qualche%20informazione%3F" target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
+  <span class="wa-widget-label">Scrivimi su WhatsApp</span>
+  <span class="wa-widget-btn">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </span>
+</a>
+
+<!-- COOKIE BANNER (informativo) -->
+<div id="cookieBanner" style="display:none; position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 520px; margin: 0 auto; background: var(--petrol-dark); color: var(--ivory); padding: 1.5rem 1.75rem; border-radius: 2px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); z-index: 999; font-size: 0.9rem; line-height: 1.5;">
+  <p style="margin-bottom: 1rem;">
+    Questo sito utilizza solo <strong>cookie tecnici</strong> necessari al funzionamento e al caricamento dei caratteri tipografici. Non utilizza cookie di profilazione o tracciamento pubblicitario.
+    <a href="cookie-policy.html" style="color: var(--salt-glow); text-decoration: underline;">Leggi la Cookie Policy</a>.
+  </p>
+  <div style="display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
+    <a href="privacy-policy.html" style="color: var(--ivory); opacity: 0.7; font-size: 0.85rem; text-decoration: underline; align-self: center;">Privacy</a>
+    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var banner = document.getElementById('cookieBanner');
+  var accepted = localStorage.getItem('cookieNotice_v1');
+  if (!accepted && banner) {
+    setTimeout(function() { banner.style.display = 'block'; }, 800);
+  }
+  var btn = document.getElementById('cookieAccept');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      localStorage.setItem('cookieNotice_v1', 'yes');
+      banner.style.display = 'none';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
