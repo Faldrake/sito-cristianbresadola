@@ -471,3 +471,167 @@ details.faq-item div.faq-answer {
   .wa-widget-btn svg { width: 28px; height: 28px; }
   .wa-widget-label { display: none; }
 }
+
+/* ═══════════════════════════════════════════════
+   NAVBAR · Dropdown menu (Consulenze, Saggezza Maya)
+═══════════════════════════════════════════════ */
+
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-dropdown__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  line-height: inherit;
+}
+.nav-dropdown__chevron {
+  transition: transform 0.25s ease;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+.nav-dropdown:hover .nav-dropdown__chevron,
+.nav-dropdown:focus-within .nav-dropdown__chevron,
+.nav-dropdown.is-open-click .nav-dropdown__chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.nav-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 240px;
+  background: var(--ivory, #EEF3F6);
+  border: 1px solid rgba(42, 49, 102, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(18, 40, 43, 0.14), 0 2px 4px rgba(18, 40, 43, 0.04);
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+  z-index: 200;
+}
+/* Triangolino sopra il pannello */
+.nav-dropdown__panel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: var(--ivory, #EEF3F6);
+  border-left: 1px solid rgba(42, 49, 102, 0.12);
+  border-top: 1px solid rgba(42, 49, 102, 0.12);
+}
+.nav-dropdown:hover .nav-dropdown__panel,
+.nav-dropdown:focus-within .nav-dropdown__panel,
+.nav-dropdown.is-open-click .nav-dropdown__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+/* Buffer invisibile per evitare gap di hover */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  right: -10px;
+  height: 16px;
+  pointer-events: none;
+}
+.nav-dropdown:hover::after,
+.nav-dropdown:focus-within::after {
+  pointer-events: auto;
+}
+.nav-dropdown__panel a {
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  color: var(--charcoal, #2A2A2A);
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  transition: background 0.18s ease, color 0.18s ease, padding-left 0.18s ease;
+  display: block;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-dropdown__panel a:hover {
+  background: rgba(27, 58, 62, 0.07);
+  color: var(--petrol, #1B3A3E);
+  padding-left: 1.05rem;
+}
+.nav-dropdown__divider {
+  height: 1px;
+  background: rgba(42, 49, 102, 0.1);
+  margin: 0.4rem 0.3rem;
+}
+.nav-dropdown__overview {
+  font-style: italic;
+  color: var(--petrol, #1B3A3E) !important;
+  font-weight: 500 !important;
+}
+
+/* Active state · voce o dropdown corrente */
+.nav-link.is-nav-active,
+.nav-dropdown__toggle.is-nav-active {
+  color: var(--petrol, #1B3A3E) !important;
+  font-weight: 500;
+}
+.nav-link.is-nav-active::after,
+.nav-dropdown__toggle.is-nav-active::after {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+/* Mobile: dropdown via <details> */
+.nav-mobile-group summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.nav-mobile-group summary::-webkit-details-marker {
+  display: none;
+}
+.nav-mobile-group summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--charcoal-soft, #4A4A4A);
+  transition: transform 0.25s ease;
+}
+.nav-mobile-group[open] summary::after {
+  content: '−';
+}
+.nav-mobile-group a {
+  color: var(--charcoal-soft, #4A4A4A);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  display: block;
+}
+.nav-mobile-group a:hover {
+  color: var(--petrol, #1B3A3E);
+}
+.nav-mobile-group[data-nav].is-nav-active > summary {
+  color: var(--petrol, #1B3A3E);
+  font-weight: 500;
+}
+

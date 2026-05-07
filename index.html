@@ -535,7 +535,7 @@
 ═══════════════════════════════════════════════ -->
 <nav class="main-nav fixed top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
-    
+
     <!-- Logo + Nome -->
     <a href="index.html" class="flex items-center gap-3 group">
       <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
@@ -546,15 +546,40 @@
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden lg:flex items-center gap-8 text-sm">
-      <a href="chi-sono.html" class="link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
-      <a href="consulenze.html" class="link-underline text-charcoal hover:text-petrol transition">Consulenze</a>
-      <a href="idroterapia.html" class="link-underline text-charcoal hover:text-petrol transition">Idroterapia</a>
-      <a href="croce-maya.html" class="link-underline text-charcoal hover:text-petrol transition">Croce Maya</a>
-      <a href="bussola.html" class="link-underline text-charcoal hover:text-petrol transition">Bussola</a>
-      <a href="formazione.html" class="link-underline text-charcoal hover:text-petrol transition">Formazione</a>
-      <a href="dove-ricevo.html" class="link-underline text-charcoal hover:text-petrol transition">Dove ricevo</a>
-      <a href="contatti.html" class="link-underline text-charcoal hover:text-petrol transition">Contatti</a>
+    <div class="hidden lg:flex items-center gap-7 text-sm">
+      <a href="chi-sono.html" data-nav="chi-sono" class="nav-link link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
+
+      <div class="nav-dropdown" data-nav="consulenze">
+        <button class="nav-dropdown__toggle nav-link link-underline text-charcoal hover:text-petrol transition" type="button" aria-haspopup="true" aria-expanded="false">
+          Consulenze
+          <svg class="nav-dropdown__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown__panel" role="menu">
+          <a href="consulenze.html#naturopatia" role="menuitem">Naturopatia</a>
+          <a href="consulenze.html#riflessologia" role="menuitem">Riflessologia plantare</a>
+          <a href="consulenze.html#massaggio" role="menuitem">Massaggio olistico</a>
+          <a href="consulenze.html#floriterapia" role="menuitem">Floriterapia</a>
+          <a href="consulenze.html#fitoterapia" role="menuitem">Fitoterapia</a>
+          <a href="idroterapia.html" role="menuitem">Idroterapia e fangoterapia</a>
+          <div class="nav-dropdown__divider" aria-hidden="true"></div>
+          <a href="consulenze.html" role="menuitem" class="nav-dropdown__overview">Tutte le consulenze →</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown" data-nav="saggezza-maya">
+        <button class="nav-dropdown__toggle nav-link link-underline text-charcoal hover:text-petrol transition" type="button" aria-haspopup="true" aria-expanded="false">
+          Saggezza Maya
+          <svg class="nav-dropdown__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown__panel" role="menu">
+          <a href="croce-maya.html" role="menuitem">La Croce Maya</a>
+          <a href="bussola.html" role="menuitem">La Bussola dell'Anima</a>
+        </div>
+      </div>
+
+      <a href="formazione.html" data-nav="formazione" class="nav-link link-underline text-charcoal hover:text-petrol transition">Formazione</a>
+      <a href="contatti.html" data-nav="contatti" class="nav-link link-underline text-charcoal hover:text-petrol transition">Contatti</a>
+
       <a href="contatti.html" class="btn-primary !py-2.5 !px-5 !text-[13px]">
         Prenota un colloquio
         <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -562,7 +587,7 @@
     </div>
 
     <!-- Mobile menu toggle -->
-    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Menu">
+    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Apri menu" aria-expanded="false">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
@@ -572,21 +597,100 @@
 
   <!-- Mobile menu -->
   <div id="mobileMenu" class="mobile-menu lg:hidden bg-frost px-6 py-6" style="border-top: 1px solid rgba(42, 49, 102, 0.15);">
-    <div class="flex flex-col gap-4">
-      <a href="chi-sono.html" class="text-charcoal">Chi sono</a>
-      <a href="consulenze.html" class="text-charcoal">Consulenze</a>
-      <a href="idroterapia.html" class="text-charcoal">Idroterapia</a>
-      <a href="croce-maya.html" class="text-charcoal">Croce Maya</a>
-      <a href="bussola.html" class="text-charcoal">Bussola</a>
-      <a href="formazione.html" class="text-charcoal">Formazione</a>
-      <a href="dove-ricevo.html" class="text-charcoal">Dove ricevo</a>
-      <a href="contatti.html" class="text-charcoal">Contatti</a>
-      <a href="contatti.html" class="btn-primary w-full justify-center mt-2">
+    <div class="flex flex-col gap-3">
+      <a href="chi-sono.html" data-nav="chi-sono" class="nav-link-mobile text-charcoal py-1">Chi sono</a>
+
+      <details class="nav-mobile-group" data-nav="consulenze">
+        <summary class="text-charcoal py-1">Consulenze</summary>
+        <div class="pl-4 pt-2 flex flex-col gap-2 text-sm">
+          <a href="consulenze.html#naturopatia">Naturopatia</a>
+          <a href="consulenze.html#riflessologia">Riflessologia plantare</a>
+          <a href="consulenze.html#massaggio">Massaggio olistico</a>
+          <a href="consulenze.html#floriterapia">Floriterapia</a>
+          <a href="consulenze.html#fitoterapia">Fitoterapia</a>
+          <a href="idroterapia.html">Idroterapia e fangoterapia</a>
+          <a href="consulenze.html" class="font-medium">Tutte le consulenze →</a>
+        </div>
+      </details>
+
+      <details class="nav-mobile-group" data-nav="saggezza-maya">
+        <summary class="text-charcoal py-1">Saggezza Maya</summary>
+        <div class="pl-4 pt-2 flex flex-col gap-2 text-sm">
+          <a href="croce-maya.html">La Croce Maya</a>
+          <a href="bussola.html">La Bussola dell'Anima</a>
+        </div>
+      </details>
+
+      <a href="formazione.html" data-nav="formazione" class="nav-link-mobile text-charcoal py-1">Formazione</a>
+      <a href="contatti.html" data-nav="contatti" class="nav-link-mobile text-charcoal py-1">Contatti</a>
+
+      <a href="contatti.html" class="btn-primary w-full justify-center mt-3">
         Prenota un colloquio
       </a>
     </div>
   </div>
 </nav>
+
+<script>
+/* Active nav highlighting + mobile toggle (idempotente) */
+(function(){
+  if(window.__navInit) return;
+  window.__navInit = true;
+
+  // Mappa pathname -> data-nav del menu
+  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const map = {
+    'chi-sono.html': 'chi-sono',
+    'consulenze.html': 'consulenze',
+    'idroterapia.html': 'consulenze',
+    'croce-maya.html': 'saggezza-maya',
+    'bussola.html': 'saggezza-maya',
+    'formazione.html': 'formazione',
+    'contatti.html': 'contatti'
+  };
+  const active = map[path];
+  if(active){
+    document.querySelectorAll('[data-nav="' + active + '"]').forEach(function(el){
+      el.classList.add('is-nav-active');
+      const btn = el.querySelector('.nav-dropdown__toggle');
+      if(btn) btn.classList.add('is-nav-active');
+      const link = el.matches('a') ? el : null;
+      if(link) link.classList.add('is-nav-active');
+    });
+  }
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('mobileToggle');
+  const menu = document.getElementById('mobileMenu');
+  if(toggle && menu){
+    toggle.addEventListener('click', function(){
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+
+  // Dropdown ARIA su hover/focus desktop
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+    const toggle = dd.querySelector('.nav-dropdown__toggle');
+    if(!toggle) return;
+    dd.addEventListener('mouseenter', function(){ toggle.setAttribute('aria-expanded','true'); });
+    dd.addEventListener('mouseleave', function(){ toggle.setAttribute('aria-expanded','false'); });
+    toggle.addEventListener('click', function(e){
+      // su touch/click: toggle del panel
+      const open = dd.classList.toggle('is-open-click');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', function(){
+    document.querySelectorAll('.nav-dropdown.is-open-click').forEach(function(dd){
+      dd.classList.remove('is-open-click');
+      const t = dd.querySelector('.nav-dropdown__toggle');
+      if(t) t.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+</script>
 
 <!-- ═══════════════════════════════════════════════
      HERO
@@ -662,6 +766,303 @@
 
     </div>
   </div>
+</section>
+<!-- ═══════════════════════════════════════════════
+     WIDGET LA BUSSOLA DELL'ANIMA
+═══════════════════════════════════════════════ -->
+<section class="bussola-widget" aria-labelledby="bussola-widget-title">
+  <div class="bussola-widget__bg" aria-hidden="true"></div>
+  <div class="bussola-widget__inner">
+
+    <a href="bussola.html" class="bussola-widget__link" aria-label="Apri La Bussola dell'Anima di oggi">
+
+      <div class="bussola-widget__glyph" id="bw-glyph-wrap">
+        <span class="bussola-widget__tone" id="bw-tone">
+          <span class="bw-skel" style="width:30px">--</span>
+        </span>
+        <div class="bussola-widget__glyph-img" id="bw-glyph-img">
+          <span class="bw-skel" style="width:60px;height:60px;border-radius:50%"></span>
+        </div>
+      </div>
+
+      <div class="bussola-widget__body">
+        <div class="bussola-widget__eyebrow">
+          La Bussola dell'Anima
+          <span class="bussola-widget__date" id="bw-date">
+            <span class="bw-skel" style="width:140px">caricamento</span>
+          </span>
+        </div>
+        <h2 class="bussola-widget__title" id="bussola-widget-title">
+          <span id="bw-glyph-name">
+            <span class="bw-skel" style="width:160px">--</span>
+          </span>
+          <em id="bw-poetic">
+            <span class="bw-skel" style="width:240px">--</span>
+          </em>
+        </h2>
+        <p class="bussola-widget__quote" id="bw-quote"></p>
+        <span class="bussola-widget__cta">
+          Apri la Bussola di oggi
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </div>
+
+    </a>
+  </div>
+
+  <style>
+    .bussola-widget{
+      position:relative;
+      padding:5rem 1.5rem;
+      background:#102529;
+      color:#F5EFE2;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .bussola-widget__bg{
+      position:absolute;inset:0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 12% 18%, rgba(245,239,226,0.55), transparent 60%),
+        radial-gradient(1px 1px at 28% 42%, rgba(245,239,226,0.35), transparent 60%),
+        radial-gradient(1.5px 1.5px at 47% 12%, rgba(212,165,91,0.45), transparent 60%),
+        radial-gradient(1px 1px at 63% 33%, rgba(245,239,226,0.4), transparent 60%),
+        radial-gradient(2px 2px at 78% 22%, rgba(245,239,226,0.55), transparent 60%),
+        radial-gradient(1px 1px at 88% 56%, rgba(245,239,226,0.35), transparent 60%),
+        radial-gradient(1.5px 1.5px at 18% 68%, rgba(212,165,91,0.4), transparent 60%),
+        radial-gradient(1px 1px at 36% 82%, rgba(245,239,226,0.4), transparent 60%),
+        radial-gradient(1.5px 1.5px at 54% 71%, rgba(245,239,226,0.45), transparent 60%),
+        radial-gradient(1px 1px at 72% 89%, rgba(245,239,226,0.35), transparent 60%),
+        radial-gradient(2px 2px at 91% 76%, rgba(212,165,91,0.4), transparent 60%),
+        radial-gradient(ellipse at center, rgba(212,165,91,0.10) 0%, transparent 55%);
+      pointer-events:none;
+      z-index:-1;
+      opacity:.85;
+    }
+    .bussola-widget__inner{
+      max-width:1100px;margin:0 auto;
+    }
+    .bussola-widget__link{
+      display:flex;
+      align-items:center;
+      gap:2.5rem;
+      padding:2rem;
+      border-radius:14px;
+      background:rgba(27,58,62,0.4);
+      border:1px solid rgba(212,165,91,0.18);
+      text-decoration:none;
+      color:inherit;
+      transition:all .35s ease;
+      backdrop-filter:blur(2px);
+      -webkit-backdrop-filter:blur(2px);
+    }
+    .bussola-widget__link:hover{
+      background:rgba(27,58,62,0.65);
+      border-color:rgba(212,165,91,0.4);
+      transform:translateY(-2px);
+      box-shadow:0 16px 40px rgba(0,0,0,0.25), 0 0 36px rgba(212,165,91,0.12);
+    }
+    .bussola-widget__glyph{
+      display:flex;flex-direction:column;align-items:center;gap:.5rem;
+      flex-shrink:0;
+    }
+    .bussola-widget__tone{
+      font-family:'Fraunces', serif;
+      font-style:italic;font-weight:500;
+      font-size:3.2rem;line-height:1;
+      color:#D4A55B;
+      text-shadow:0 0 18px rgba(212,165,91,0.4);
+    }
+    .bussola-widget__glyph-img{
+      width:96px;height:96px;
+      display:flex;align-items:center;justify-content:center;
+      background:radial-gradient(circle, rgba(212,165,91,0.25) 0%, rgba(27,58,62,0.85) 70%);
+      border-radius:50%;
+      border:1px solid rgba(212,165,91,0.45);
+      box-shadow:0 0 28px rgba(212,165,91,0.3), inset 0 0 18px rgba(212,165,91,0.15);
+      overflow:hidden;
+    }
+    .bussola-widget__glyph-img img{
+      width:80%;height:80%;object-fit:contain;
+      filter:brightness(1.2) drop-shadow(0 0 4px rgba(212,165,91,0.4));
+    }
+    .bussola-widget__body{
+      flex:1;
+      min-width:0;
+    }
+    .bussola-widget__eyebrow{
+      font-family:'Fraunces', serif;
+      font-style:italic;
+      font-size:.95rem;
+      color:#D4A55B;
+      margin-bottom:.6rem;
+      display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;
+    }
+    .bussola-widget__date{
+      font-family:'DM Sans', sans-serif;
+      font-style:normal;
+      font-size:.7rem;letter-spacing:0.2em;
+      text-transform:uppercase;
+      color:#8FA29F;
+    }
+    .bussola-widget__title{
+      font-family:'Fraunces', serif;
+      font-weight:400;
+      font-size:1.65rem;
+      line-height:1.25;
+      color:#F5EFE2;
+      margin:0 0 .9rem 0;
+      letter-spacing:-0.005em;
+    }
+    .bussola-widget__title em{
+      display:block;
+      font-style:italic;
+      color:#D4A55B;
+      font-size:1.2rem;
+      font-weight:400;
+      margin-top:.25rem;
+    }
+    .bussola-widget__quote{
+      font-family:'Fraunces', serif;
+      font-style:italic;
+      font-size:1rem;
+      color:rgba(245,239,226,0.85);
+      margin:0 0 1.2rem 0;
+      line-height:1.55;
+      max-width:540px;
+    }
+    .bussola-widget__cta{
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-family:'DM Sans', sans-serif;
+      font-size:.78rem;letter-spacing:0.22em;
+      text-transform:uppercase;
+      color:#E6BB75;
+      transition:gap .25s ease, color .25s ease;
+    }
+    .bussola-widget__link:hover .bussola-widget__cta{
+      gap:.85rem;
+      color:#F5EFE2;
+    }
+    .bussola-widget__cta svg{transition:transform .25s ease;}
+    .bussola-widget__link:hover .bussola-widget__cta svg{transform:translateX(3px);}
+
+    /* Skeleton */
+    .bw-skel{
+      display:inline-block;
+      background:linear-gradient(90deg,
+        rgba(245,239,226,0.06) 25%,
+        rgba(245,239,226,0.14) 50%,
+        rgba(245,239,226,0.06) 75%);
+      background-size:200% 100%;
+      animation:bw-pulse 1.5s infinite;
+      border-radius:4px;
+      color:transparent;
+      vertical-align:middle;
+    }
+    @keyframes bw-pulse{
+      0%{background-position:200% 0}
+      100%{background-position:-200% 0}
+    }
+
+    @media (max-width: 720px){
+      .bussola-widget{padding:3.5rem 1.25rem;}
+      .bussola-widget__link{
+        flex-direction:column;
+        text-align:center;
+        gap:1.5rem;
+        padding:1.75rem 1.25rem;
+      }
+      .bussola-widget__body{text-align:center;}
+      .bussola-widget__eyebrow{justify-content:center;}
+      .bussola-widget__title{font-size:1.4rem;}
+      .bussola-widget__title em{font-size:1.1rem;}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .bw-skel{animation:none;}
+      .bussola-widget__link{transition:none;}
+    }
+  </style>
+
+  <script>
+  (function(){
+    'use strict';
+    const SB_URL = 'https://okasxfvoyihovohlaypz.supabase.co';
+    const SB_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
+
+    function todayISO(){
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return y + '-' + m + '-' + day;
+    }
+    function fmtDate(iso){
+      const d = new Date(iso + 'T00:00:00');
+      const giorni = ['domenica','lunedi','martedi','mercoledi','giovedi','venerdi','sabato'];
+      const mesi = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+      return giorni[d.getDay()] + ' ' + d.getDate() + ' ' + mesi[d.getMonth()];
+    }
+    async function fetchOverlay(date){
+      const r = await fetch(SB_URL + '/rest/v1/bussola_anima_overlay?data_gregoriana=eq.' + date + '&select=numero_kin', {
+        headers: {apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, Accept: 'application/json'}
+      });
+      if(!r.ok) throw new Error('overlay');
+      const arr = await r.json();
+      if(!arr.length) throw new Error('empty');
+      return arr[0];
+    }
+    async function fetchKin(numKin){
+      const r = await fetch(SB_URL + '/rest/v1/bussola_anima_giorni?numero_kin=eq.' + numKin + '&select=tono,nome_glifo_yucateco,titolo_kin,citazione_introduttiva,immagine_glifo_url&limit=1', {
+        headers: {apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, Accept: 'application/json'}
+      });
+      if(!r.ok) throw new Error('kin');
+      const arr = await r.json();
+      if(!arr.length) throw new Error('empty');
+      return arr[0];
+    }
+    function $(id){return document.getElementById(id);}
+    function setText(id, txt){
+      const el = $(id);
+      if(el){el.innerHTML = ''; el.textContent = txt || '';}
+    }
+
+    async function init(){
+      try {
+        const dataISO = todayISO();
+        const ov = await fetchOverlay(dataISO);
+        const kin = await fetchKin(ov.numero_kin);
+
+        setText('bw-tone', String(kin.tono || ''));
+        setText('bw-date', fmtDate(dataISO));
+        setText('bw-glyph-name', (kin.nome_glifo_yucateco || '').toUpperCase());
+        setText('bw-poetic', kin.titolo_kin || '');
+
+        const quote = kin.citazione_introduttiva || '';
+        if(quote){
+          $('bw-quote').textContent = quote.length > 180 ? quote.slice(0, 180).trim() + '...' : quote;
+        }
+
+        const imgWrap = $('bw-glyph-img');
+        if(imgWrap && kin.immagine_glifo_url){
+          imgWrap.innerHTML = '<img src="' + kin.immagine_glifo_url + '" alt="' + (kin.nome_glifo_yucateco || '') + '" loading="lazy">';
+        }
+      } catch(err){
+        console.error('Bussola widget:', err);
+        const widget = document.querySelector('.bussola-widget');
+        if(widget) widget.style.display = 'none';
+      }
+    }
+
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+
 </section>
 
 <!-- ═══════════════════════════════════════════════

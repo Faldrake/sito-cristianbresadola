@@ -79,38 +79,162 @@
 <!-- NAVIGATION -->
 <nav class="main-nav fixed top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+
+    <!-- Logo + Nome -->
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="./images/logo.jpg" alt="Logo" class="w-10 h-10 rounded-full">
+      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
       <div class="hidden sm:block">
         <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
         <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
       </div>
     </a>
-    <div class="hidden lg:flex items-center gap-8 text-sm">
-      <a href="chi-sono.html" class="link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
-      <a href="consulenze.html" class="link-underline text-charcoal hover:text-petrol transition">Consulenze</a>
-      <a href="idroterapia.html" class="link-underline text-charcoal hover:text-petrol transition">Idroterapia</a>
-      <a href="croce-maya.html" class="link-underline text-charcoal hover:text-petrol transition">Croce Maya</a>
-      <a href="bussola.html" class="link-underline text-charcoal hover:text-petrol transition">Bussola</a>
-      <a href="formazione.html" class="link-underline text-charcoal hover:text-petrol transition">Formazione</a>
-      <a href="dove-ricevo.html" class="link-underline text-charcoal hover:text-petrol transition">Dove ricevo</a>
-      <a href="contatti.html" class="link-underline active text-petrol font-medium">Contatti</a>
+
+    <!-- Desktop nav -->
+    <div class="hidden lg:flex items-center gap-7 text-sm">
+      <a href="chi-sono.html" data-nav="chi-sono" class="nav-link link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
+
+      <div class="nav-dropdown" data-nav="consulenze">
+        <button class="nav-dropdown__toggle nav-link link-underline text-charcoal hover:text-petrol transition" type="button" aria-haspopup="true" aria-expanded="false">
+          Consulenze
+          <svg class="nav-dropdown__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown__panel" role="menu">
+          <a href="consulenze.html#naturopatia" role="menuitem">Naturopatia</a>
+          <a href="consulenze.html#riflessologia" role="menuitem">Riflessologia plantare</a>
+          <a href="consulenze.html#massaggio" role="menuitem">Massaggio olistico</a>
+          <a href="consulenze.html#floriterapia" role="menuitem">Floriterapia</a>
+          <a href="consulenze.html#fitoterapia" role="menuitem">Fitoterapia</a>
+          <a href="idroterapia.html" role="menuitem">Idroterapia e fangoterapia</a>
+          <div class="nav-dropdown__divider" aria-hidden="true"></div>
+          <a href="consulenze.html" role="menuitem" class="nav-dropdown__overview">Tutte le consulenze →</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown" data-nav="saggezza-maya">
+        <button class="nav-dropdown__toggle nav-link link-underline text-charcoal hover:text-petrol transition" type="button" aria-haspopup="true" aria-expanded="false">
+          Saggezza Maya
+          <svg class="nav-dropdown__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-dropdown__panel" role="menu">
+          <a href="croce-maya.html" role="menuitem">La Croce Maya</a>
+          <a href="bussola.html" role="menuitem">La Bussola dell'Anima</a>
+        </div>
+      </div>
+
+      <a href="formazione.html" data-nav="formazione" class="nav-link link-underline text-charcoal hover:text-petrol transition">Formazione</a>
+      <a href="contatti.html" data-nav="contatti" class="nav-link link-underline text-charcoal hover:text-petrol transition">Contatti</a>
+
+      <a href="contatti.html" class="btn-primary !py-2.5 !px-5 !text-[13px]">
+        Prenota un colloquio
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
-    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+
+    <!-- Mobile menu toggle -->
+    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Apri menu" aria-expanded="false">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
   </div>
+
+  <!-- Mobile menu -->
   <div id="mobileMenu" class="mobile-menu lg:hidden bg-frost px-6 py-6" style="border-top: 1px solid rgba(42, 49, 102, 0.15);">
-    <div class="flex flex-col gap-4">
-      <a href="chi-sono.html" class="text-charcoal">Chi sono</a>
-      <a href="consulenze.html" class="text-charcoal">Consulenze</a>
-      <a href="idroterapia.html" class="link-underline text-charcoal hover:text-petrol transition">Idroterapia</a>
-      <a href="croce-maya.html" class="text-charcoal">Croce Maya</a>
-      <a href="bussola.html" class="text-charcoal">Bussola</a>
-      <a href="formazione.html" class="text-charcoal">Formazione</a>
-      <a href="dove-ricevo.html" class="text-charcoal">Dove ricevo</a>
-      <a href="contatti.html" class="text-petrol font-medium">Contatti</a>
+    <div class="flex flex-col gap-3">
+      <a href="chi-sono.html" data-nav="chi-sono" class="nav-link-mobile text-charcoal py-1">Chi sono</a>
+
+      <details class="nav-mobile-group" data-nav="consulenze">
+        <summary class="text-charcoal py-1">Consulenze</summary>
+        <div class="pl-4 pt-2 flex flex-col gap-2 text-sm">
+          <a href="consulenze.html#naturopatia">Naturopatia</a>
+          <a href="consulenze.html#riflessologia">Riflessologia plantare</a>
+          <a href="consulenze.html#massaggio">Massaggio olistico</a>
+          <a href="consulenze.html#floriterapia">Floriterapia</a>
+          <a href="consulenze.html#fitoterapia">Fitoterapia</a>
+          <a href="idroterapia.html">Idroterapia e fangoterapia</a>
+          <a href="consulenze.html" class="font-medium">Tutte le consulenze →</a>
+        </div>
+      </details>
+
+      <details class="nav-mobile-group" data-nav="saggezza-maya">
+        <summary class="text-charcoal py-1">Saggezza Maya</summary>
+        <div class="pl-4 pt-2 flex flex-col gap-2 text-sm">
+          <a href="croce-maya.html">La Croce Maya</a>
+          <a href="bussola.html">La Bussola dell'Anima</a>
+        </div>
+      </details>
+
+      <a href="formazione.html" data-nav="formazione" class="nav-link-mobile text-charcoal py-1">Formazione</a>
+      <a href="contatti.html" data-nav="contatti" class="nav-link-mobile text-charcoal py-1">Contatti</a>
+
+      <a href="contatti.html" class="btn-primary w-full justify-center mt-3">
+        Prenota un colloquio
+      </a>
     </div>
   </div>
 </nav>
+
+<script>
+/* Active nav highlighting + mobile toggle (idempotente) */
+(function(){
+  if(window.__navInit) return;
+  window.__navInit = true;
+
+  // Mappa pathname -> data-nav del menu
+  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const map = {
+    'chi-sono.html': 'chi-sono',
+    'consulenze.html': 'consulenze',
+    'idroterapia.html': 'consulenze',
+    'croce-maya.html': 'saggezza-maya',
+    'bussola.html': 'saggezza-maya',
+    'formazione.html': 'formazione',
+    'contatti.html': 'contatti'
+  };
+  const active = map[path];
+  if(active){
+    document.querySelectorAll('[data-nav="' + active + '"]').forEach(function(el){
+      el.classList.add('is-nav-active');
+      const btn = el.querySelector('.nav-dropdown__toggle');
+      if(btn) btn.classList.add('is-nav-active');
+      const link = el.matches('a') ? el : null;
+      if(link) link.classList.add('is-nav-active');
+    });
+  }
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('mobileToggle');
+  const menu = document.getElementById('mobileMenu');
+  if(toggle && menu){
+    toggle.addEventListener('click', function(){
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+
+  // Dropdown ARIA su hover/focus desktop
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+    const toggle = dd.querySelector('.nav-dropdown__toggle');
+    if(!toggle) return;
+    dd.addEventListener('mouseenter', function(){ toggle.setAttribute('aria-expanded','true'); });
+    dd.addEventListener('mouseleave', function(){ toggle.setAttribute('aria-expanded','false'); });
+    toggle.addEventListener('click', function(e){
+      // su touch/click: toggle del panel
+      const open = dd.classList.toggle('is-open-click');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', function(){
+    document.querySelectorAll('.nav-dropdown.is-open-click').forEach(function(dd){
+      dd.classList.remove('is-open-click');
+      const t = dd.querySelector('.nav-dropdown__toggle');
+      if(t) t.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+</script>
 
 <!-- HERO -->
 <section class="pt-32 pb-16 lg:pt-40 lg:pb-20">
