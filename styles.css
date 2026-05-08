@@ -635,3 +635,7 @@ details.faq-item div.faq-answer {
   font-weight: 500;
 }
 
+/* Fix menu hamburger mobile */
+.mobile-menu { display: none; }
+.mobile-menu.open { display: block; }
+@media (min-width: 1024px) { .mobile-menu, .mobile-menu.open { display: none; } }
