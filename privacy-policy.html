@@ -446,9 +446,9 @@
 </footer>
 
 <script>
-  const toggle = document.getElementById('mobileToggle');
+  // Mobile menu: chiusura sui click dei link (toggle gestito nello script in cima alla nav)
   const menu = document.getElementById('mobileMenu');
-  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  if(menu) menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
