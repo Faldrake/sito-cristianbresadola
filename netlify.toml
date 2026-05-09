@@ -1,26 +1,47 @@
 # Netlify config - cristianbresadola.com
-# Questo file forza il rilevamento dei form Netlify e abilita le pretty URLs
+# Audit sicurezza 9/05/2026: aggiunti CSP, HSTS, COOP, CORP
 
 [build]
   publish = "."
 
-# Pretty URLs: serve /contatti.html anche su /contatti, ecc.
+# Pretty URLs: serve /contatti.html anche su /contatti
 [build.processing]
   skip_processing = false
 
 [build.processing.html]
   pretty_urls = true
 
-# Headers di sicurezza generici
+# ============================================================
+# SECURITY HEADERS - applicati a tutte le pagine
+# ============================================================
 [[headers]]
   for = "/*"
   [headers.values]
+    # Forza HTTPS per 2 anni con preload (anti-MITM)
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    
+    # Anti-clickjacking
     X-Frame-Options = "DENY"
+    
+    # Anti-MIME-sniffing
     X-Content-Type-Options = "nosniff"
+    
+    # Privacy: invia referrer solo a stesso dominio
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    
+    # Restrizione API browser
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=()"
+    
+    # Cross-origin isolation
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    Cross-Origin-Resource-Policy = "same-site"
+    
+    # Content Security Policy - permette: self, font Google, immagini, connect Supabase
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com; object-src 'none'; upgrade-insecure-requests"
 
-# Cache lunga per asset statici
+# ============================================================
+# CACHE - asset statici cache lunga (immutable)
+# ============================================================
 [[headers]]
   for = "/images/*"
   [headers.values]
@@ -31,8 +52,17 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# La pagina di disiscrizione non deve essere indicizzata
+# ============================================================
+# PAGES SPECIFICHE
+# ============================================================
+# Pagina disiscrizione: noindex
 [[headers]]
   for = "/disiscritto.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Pagina grazie post-form: noindex
+[[headers]]
+  for = "/grazie.html"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
