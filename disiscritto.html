@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>La Bussola dell'Anima · Disiscrizione</title>
+<meta name="description" content="Pagina di conferma disiscrizione dalla newsletter La Bussola dell'Anima di Cristian Bresadola.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:#0A1B1E;
+    color:#F5EFE2;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 18%, rgba(245,239,226,0.55), transparent 60%),
+      radial-gradient(1px 1px at 28% 42%, rgba(245,239,226,0.35), transparent 60%),
+      radial-gradient(1.5px 1.5px at 47% 12%, rgba(212,165,91,0.45), transparent 60%),
+      radial-gradient(2px 2px at 78% 22%, rgba(245,239,226,0.55), transparent 60%),
+      radial-gradient(1.5px 1.5px at 18% 68%, rgba(212,165,91,0.4), transparent 60%),
+      radial-gradient(2px 2px at 91% 76%, rgba(212,165,91,0.4), transparent 60%);
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:560px;width:100%}
+  .brand{text-align:center;margin-bottom:32px}
+  .brand a{text-decoration:none;color:inherit;display:inline-block}
+  .brand-name{font-family:'Fraunces',Georgia,serif;font-size:18px;color:#F5EFE2;margin-bottom:4px;letter-spacing:0.01em}
+  .brand-role{font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.22em;color:rgba(245,239,226,0.55);text-transform:uppercase}
+  .card{
+    background:rgba(27,58,62,0.55);
+    border:1px solid rgba(212,165,91,0.25);
+    border-radius:14px;
+    padding:48px 40px;
+    text-align:center;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    box-shadow:0 24px 60px rgba(0,0,0,0.35);
+  }
+  .eyebrow{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#D4A55B;margin-bottom:20px;font-weight:500;font-family:'DM Sans',sans-serif}
+  .eyebrow.is-error{color:#F0A0A0}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:32px;line-height:1.25;margin-bottom:24px;color:#F5EFE2}
+  h1 em{font-style:italic;color:#D4A55B}
+  h1.is-error em{color:#F0A0A0}
+  p.message{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:16px;line-height:1.7;color:rgba(245,239,226,0.88);margin-bottom:32px}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .btn{display:inline-block;padding:12px 24px;background:transparent;color:#D4A55B;border:1px solid rgba(212,165,91,0.5);border-radius:8px;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.04em;transition:all 0.25s ease}
+  .btn:hover{background:rgba(212,165,91,0.12);border-color:#D4A55B}
+  .btn-primary{background:#D4A55B;color:#0A1B1E;border-color:#D4A55B;font-weight:600}
+  .btn-primary:hover{background:#E6BB75;border-color:#E6BB75}
+  .closing{margin-top:32px;font-family:'Fraunces',Georgia,serif;font-style:italic;color:rgba(212,165,91,0.7);font-size:13px;text-align:center}
+  .stato{display:none}
+  .stato.is-active{display:block}
+  @media (max-width:480px){.card{padding:36px 24px}h1{font-size:26px}p.message{font-size:15px}}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="brand">
+    <a href="/">
+      <p class="brand-name">Cristian Bresadola</p>
+      <p class="brand-role">Naturopata &middot; Riflessologo</p>
+    </a>
+  </div>
+
+  <div class="card">
+
+    <div class="stato" data-stato="ok">
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Sei <em>disiscritto</em>.</h1>
+      <p class="message">La Bussola non arrivera piu nella tua casella. Ti ho mandato una mail di commiato. Se hai cambiato idea, basta che ti iscrivi di nuovo dal sito.</p>
+      <div class="actions">
+        <a href="/" class="btn">Vai al sito</a>
+        <a href="/bussola.html" class="btn btn-primary">Iscriviti di nuovo</a>
+      </div>
+    </div>
+
+    <div class="stato" data-stato="gia">
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Eri <em>gia</em> disiscritto.</h1>
+      <p class="message">Questa email era gia stata rimossa dalla lista in passato. Non riceverai piu newsletter. Se hai cambiato idea e vuoi tornare, ti aspetto.</p>
+      <div class="actions">
+        <a href="/" class="btn">Vai al sito</a>
+        <a href="/bussola.html" class="btn btn-primary">Iscriviti di nuovo</a>
+      </div>
+    </div>
+
+    <div class="stato" data-stato="invalid">
+      <p class="eyebrow is-error">La Bussola dell'Anima</p>
+      <h1 class="is-error">Il link non sembra <em>valido</em>.</h1>
+      <p class="message">Il link che hai cliccato non contiene un identificativo valido. Forse e stato copiato male o tagliato dal tuo client email. Se vuoi disiscriverti, scrivimi a info@cristianbresadola.com e ci penso io.</p>
+      <div class="actions">
+        <a href="/" class="btn">Vai al sito</a>
+        <a href="/contatti.html" class="btn btn-primary">Contattami</a>
+      </div>
+    </div>
+
+    <div class="stato" data-stato="notfound">
+      <p class="eyebrow is-error">La Bussola dell'Anima</p>
+      <h1 class="is-error">Non trovo questa <em>iscrizione</em>.</h1>
+      <p class="message">Il link e tecnicamente valido ma non corrisponde a nessuna iscrizione attualmente registrata. Forse e gia stata cancellata in passato. Se hai dubbi, scrivimi a info@cristianbresadola.com.</p>
+      <div class="actions">
+        <a href="/" class="btn">Vai al sito</a>
+        <a href="/contatti.html" class="btn btn-primary">Contattami</a>
+      </div>
+    </div>
+
+    <div class="stato" data-stato="errore">
+      <p class="eyebrow is-error">La Bussola dell'Anima</p>
+      <h1 class="is-error">Qualcosa non ha <em>funzionato</em>.</h1>
+      <p class="message">C'e stato un errore tecnico. Scrivi a info@cristianbresadola.com e ti tolgo dalla lista a mano. Mi scuso per il disagio.</p>
+      <div class="actions">
+        <a href="/" class="btn">Vai al sito</a>
+        <a href="/contatti.html" class="btn btn-primary">Contattami</a>
+      </div>
+    </div>
+
+    <div class="stato is-active" data-stato="default">
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Pagina di <em>conferma</em></h1>
+      <p class="message">Questa pagina mostra l'esito della disiscrizione dalla newsletter La Bussola dell'Anima. Se sei finito qui per errore, torna al sito.</p>
+      <div class="actions">
+        <a href="/" class="btn btn-primary">Vai al sito</a>
+      </div>
+    </div>
+
+    <p class="closing">In Lak'ech &middot; A Lak'en &middot;</p>
+
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var stato = (params.get('stato') || '').toLowerCase();
+    var validi = ['ok','gia','invalid','notfound','errore'];
+    if(validi.indexOf(stato) !== -1){
+      var elements = document.querySelectorAll('.stato');
+      for(var i = 0; i < elements.length; i++){
+        elements[i].classList.remove('is-active');
+      }
+      var target = document.querySelector('[data-stato="' + stato + '"]);
+      if(target) target.classList.add('is-active');
+    }
+  })();
+</script>
+
+</body>
+</html>

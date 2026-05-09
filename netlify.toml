@@ -1,0 +1,38 @@
+# Netlify config - cristianbresadola.com
+# Questo file forza il rilevamento dei form Netlify e abilita le pretty URLs
+
+[build]
+  publish = "."
+
+# Pretty URLs: serve /contatti.html anche su /contatti, ecc.
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+
+# Headers di sicurezza generici
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache lunga per asset statici
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# La pagina di disiscrizione non deve essere indicizzata
+[[headers]]
+  for = "/disiscritto.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
