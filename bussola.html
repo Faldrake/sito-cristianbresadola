@@ -331,6 +331,30 @@
     from{transform:rotate(0deg)}
     to{transform:rotate(-360deg)}
   }
+
+  /* Hunab Ku decorativo rotante al centro - simmetria 4-fold */
+  .glyph-wheel__hunab{
+    position:absolute;
+    top:50%;left:50%;
+    width:64%;height:64%;
+    pointer-events:none;
+    opacity:.22;
+    color:var(--gold);
+    z-index:1;
+    transform-origin:center center;
+    animation:hunab-rotate 90s linear infinite;
+  }
+  .glyph-wheel:hover .glyph-wheel__hunab,
+  body.modal-open .glyph-wheel__hunab{
+    animation-play-state:paused;
+  }
+  @keyframes hunab-rotate{
+    from{transform:translate(-50%,-50%) rotate(0deg)}
+    to{transform:translate(-50%,-50%) rotate(-360deg)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .glyph-wheel__hunab{animation:none}
+  }
   .glyph-wheel__petal:hover{
     opacity:1;
     background:rgba(212,165,91,0.18);
@@ -936,6 +960,32 @@
 
       <div class="glyph-wheel" id="glyph-wheel" role="img" aria-label="Cerchio dei venti glifi del Tzolk'in con il glifo di oggi al centro">
         <div class="glyph-wheel__ring" id="glyph-ring"></div>
+        <svg class="glyph-wheel__hunab" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+            <!-- cerchio esterno -->
+            <circle cx="100" cy="100" r="78" opacity=".4"/>
+            <!-- cerchio medio -->
+            <circle cx="100" cy="100" r="58"/>
+            <!-- quadrato ruotato di 45 -->
+            <rect x="60" y="60" width="80" height="80" transform="rotate(45 100 100)" opacity=".7"/>
+            <!-- 4 simboli a T ai punti cardinali -->
+            <g transform="translate(100 100)">
+              <g><line x1="0" y1="-78" x2="0" y2="-58"/><line x1="-7" y1="-78" x2="7" y2="-78"/></g>
+              <g transform="rotate(90)"><line x1="0" y1="-78" x2="0" y2="-58"/><line x1="-7" y1="-78" x2="7" y2="-78"/></g>
+              <g transform="rotate(180)"><line x1="0" y1="-78" x2="0" y2="-58"/><line x1="-7" y1="-78" x2="7" y2="-78"/></g>
+              <g transform="rotate(270)"><line x1="0" y1="-78" x2="0" y2="-58"/><line x1="-7" y1="-78" x2="7" y2="-78"/></g>
+            </g>
+            <!-- 4 piccoli punti pieni nei diagonali -->
+            <circle cx="155" cy="100" r="2.5" fill="currentColor" stroke="none"/>
+            <circle cx="100" cy="155" r="2.5" fill="currentColor" stroke="none"/>
+            <circle cx="45" cy="100" r="2.5" fill="currentColor" stroke="none"/>
+            <circle cx="100" cy="45" r="2.5" fill="currentColor" stroke="none"/>
+            <!-- glifo centrale: cerchio piccolo con croce -->
+            <circle cx="100" cy="100" r="14"/>
+            <line x1="100" y1="86" x2="100" y2="114"/>
+            <line x1="86" y1="100" x2="114" y2="100"/>
+          </g>
+        </svg>
         <div class="glyph-wheel__center">
           <div class="glyph-wheel__tone" id="kin-tone-num" data-skel="true">
             <span class="skeleton">--</span>
