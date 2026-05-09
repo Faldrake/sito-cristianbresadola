@@ -334,18 +334,29 @@
       <p>I tuoi dati sono accessibili unicamente a:</p>
       <ul>
         <li><strong>Il Titolare</strong> (Cristian Bresadola) e, se necessario, i professionisti (commercialista, consulente fiscale, legale) coinvolti nella gestione ordinaria dell'attività — con obbligo di riservatezza.</li>
-        <li><strong>Netlify, Inc.</strong> come fornitore dei servizi di hosting e gestione del form di contatto, in qualità di Responsabile esterno del trattamento.</li>
-        <li><strong>Google LLC</strong> limitatamente a servizi tecnici usati dal sito (font Google Fonts, eventuale mappa Google Maps nella pagina Dove ricevo) — vedi sezione cookie.</li>
       </ul>
+      <p>Per ragioni tecniche, alcuni fornitori di servizi terzi — in qualità di <strong>Responsabili esterni del trattamento</strong> ai sensi dell'art. 28 GDPR — possono trattare i tuoi dati per conto del Titolare, esclusivamente per le finalità descritte:</p>
+      <ul>
+        <li><strong>Netlify, Inc.</strong> (sede legale: Stati Uniti) — fornitore di servizi di hosting del sito e raccolta delle submission del form di contatto come canale tecnico di backup.</li>
+        <li><strong>Supabase, Inc.</strong> (database ospitato in Unione Europea, regione Francoforte — eu-central-1) — fornitore della piattaforma database che custodisce le richieste in arrivo dal form contatti, l'iscrizione alla newsletter Bussola dell'Anima e i dati delle consulenze. <strong>I tuoi dati personali sono fisicamente conservati su server in territorio dell'Unione Europea.</strong></li>
+        <li><strong>Resend, Inc.</strong> (sede legale: Stati Uniti) — fornitore del servizio di invio delle email transazionali (notifica al Titolare quando arriva una richiesta dal sito; invio email di benvenuto e newsletter giornaliera della Bussola dell'Anima a chi si è iscritto).</li>
+        <li><strong>CallMeBot</strong> (Antonio Trujillo Carmona, sede in Spagna — Unione Europea) — servizio gratuito utilizzato esclusivamente per inviare al Titolare una notifica WhatsApp quando arriva una nuova richiesta. Trattiamo solo dati strettamente necessari (nome, email, eventuale telefono e oggetto della richiesta) per consentire al Titolare di rispondere tempestivamente.</li>
+        <li><strong>Google LLC</strong> (sede legale: Stati Uniti) — limitatamente a servizi tecnici utilizzati dal sito (font Google Fonts, eventuale mappa Google Maps nella pagina Dove ricevo) — vedi anche la Cookie Policy.</li>
+      </ul>
+      <p>Tutti i fornitori sono stati selezionati anche in base al rispetto degli standard di protezione dei dati richiesti dal GDPR e operano sulla base di contratti di nomina come Responsabili del trattamento o di equivalenti garanzie contrattuali.</p>
       <p>I tuoi dati <strong>non sono venduti, ceduti o comunicati a terzi</strong> per finalità commerciali.</p>
 
       <!-- 6. TRASFERIMENTI EXTRA-UE -->
       <span class="section-ref">Sezione 6</span>
       <h2>Trasferimenti al di fuori dell'Unione Europea</h2>
-      <p>Alcuni dei fornitori tecnici menzionati (Netlify e Google) hanno sede negli <strong>Stati Uniti d'America</strong>. I trasferimenti di dati verso questi paesi sono regolati dalle <strong>Clausole Contrattuali Standard</strong> approvate dalla Commissione Europea, e dalle adesioni al <strong>Data Privacy Framework UE-USA</strong> (entrato in vigore nel 2023), che garantiscono un livello di protezione dei dati adeguato agli standard europei.</p>
-      <p>Per maggiori informazioni:</p>
+      <p>La maggior parte dei tuoi dati personali viene conservata in <strong>territorio dell'Unione Europea</strong>: il database principale (Supabase) è ospitato in Germania (regione Francoforte), e CallMeBot ha sede in Spagna.</p>
+      <p>Alcuni fornitori tecnici (<strong>Netlify, Resend, Google</strong>) hanno invece sede negli <strong>Stati Uniti d'America</strong>. I trasferimenti di dati verso gli Stati Uniti sono regolati dalle <strong>Clausole Contrattuali Standard</strong> approvate dalla Commissione Europea e dalle adesioni al <strong>Data Privacy Framework UE-USA</strong> (entrato in vigore nel 2023), che garantiscono un livello di protezione dei dati adeguato agli standard europei.</p>
+      <p>Per maggiori informazioni puoi consultare le privacy policy dei singoli fornitori:</p>
       <ul>
         <li><a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Privacy Policy di Netlify</a></li>
+        <li><a href="https://supabase.com/privacy" target="_blank" rel="noopener">Privacy Policy di Supabase</a></li>
+        <li><a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">Privacy Policy di Resend</a></li>
+        <li><a href="https://www.callmebot.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy di CallMeBot</a></li>
         <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy di Google</a></li>
       </ul>
 
@@ -446,9 +457,9 @@
 </footer>
 
 <script>
-  // Mobile menu: chiusura sui click dei link (toggle gestito nello script in cima alla nav)
+  const toggle = document.getElementById('mobileToggle');
   const menu = document.getElementById('mobileMenu');
-  if(menu) menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
