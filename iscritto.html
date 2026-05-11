@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iscrizione confermata · La Bussola dell'Anima</title>
+<meta name="description" content="Conferma della tua iscrizione a La Bussola dell'Anima di Cristian Bresadola.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://cristianbresadola.com/iscritto.html">
+
+<!-- FAVICON -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ivory:#F5EFE2;
+    --frost:#E8E4D9;
+    --petrol:#1B3A3E;
+    --petrol-deep:#0A1B1E;
+    --salt:rgba(245,239,226,0.55);
+    --gold:#D4A55B;
+    --gold-soft:rgba(212,165,91,0.18);
+    --forest:#a8d2a8;
+    --charcoal-soft:rgba(10,27,30,0.72);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--petrol);background:var(--ivory);-webkit-font-smoothing:antialiased;line-height:1.55}
+  a{color:var(--petrol);text-decoration:none}
+  a:hover{color:var(--gold)}
+
+  /* Layout centrato */
+  .page{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    background:radial-gradient(ellipse at 50% -10%, rgba(212,165,91,0.08) 0%, transparent 50%), var(--ivory);
+  }
+
+  header{
+    padding:32px 24px 0 24px;
+    text-align:center;
+  }
+  header .brand-name{
+    font-family:'Fraunces',Georgia,serif;
+    font-size:20px;font-weight:400;
+    color:var(--petrol);
+    margin:0 0 4px 0;
+  }
+  header .brand-sub{
+    font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+    color:rgba(27,58,62,0.55);
+    margin:0;
+  }
+
+  main{
+    flex:1;
+    display:flex;align-items:center;justify-content:center;
+    padding:48px 24px;
+  }
+  .card{
+    max-width:560px;width:100%;
+    background:#fff;
+    border:1px solid rgba(212,165,91,0.22);
+    border-radius:14px;
+    padding:48px 36px;
+    text-align:center;
+    box-shadow:0 4px 32px rgba(27,58,62,0.06);
+  }
+  .eyebrow{
+    font-family:'Fraunces',Georgia,serif;
+    font-style:italic;font-size:15px;
+    color:var(--gold);
+    margin:0 0 12px 0;
+  }
+  h1{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:400;font-size:36px;line-height:1.2;
+    color:var(--petrol);
+    margin:0 0 8px 0;
+  }
+  h1 em{font-style:italic;color:var(--gold)}
+  .divider{
+    display:inline-block;width:36px;height:1px;
+    background:rgba(212,165,91,0.5);
+    margin:18px 0;
+  }
+  .lead{
+    font-family:'Fraunces',Georgia,serif;
+    font-style:italic;font-size:17px;line-height:1.7;
+    color:var(--petrol);
+    margin:0 0 18px 0;
+  }
+  .body{
+    font-size:14px;line-height:1.7;
+    color:var(--charcoal-soft);
+    margin:0 0 28px 0;
+  }
+  .body strong{color:var(--petrol);font-weight:500}
+
+  .cta-row{
+    display:flex;flex-direction:column;gap:12px;
+    align-items:center;
+  }
+  @media(min-width:480px){
+    .cta-row{flex-direction:row;justify-content:center}
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 26px;
+    border-radius:999px;
+    font-size:13px;font-weight:500;
+    letter-spacing:0.04em;
+    transition:all .25s ease;
+    text-align:center;
+    cursor:pointer;
+    text-decoration:none;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--petrol-deep);
+  }
+  .btn-primary:hover{
+    background:#c89846;
+    color:var(--petrol-deep);
+    transform:translateY(-1px);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--petrol);
+    border:1px solid rgba(27,58,62,0.22);
+  }
+  .btn-ghost:hover{
+    background:rgba(27,58,62,0.05);
+    color:var(--petrol);
+  }
+
+  .closing{
+    margin-top:32px;
+    padding-top:24px;
+    border-top:1px solid rgba(27,58,62,0.08);
+    font-family:'Fraunces',Georgia,serif;
+    font-style:italic;font-size:14px;
+    color:var(--gold);
+  }
+
+  footer{
+    padding:24px;
+    text-align:center;
+    font-size:11px;
+    color:rgba(27,58,62,0.45);
+    line-height:1.6;
+  }
+  footer a{color:rgba(27,58,62,0.65)}
+
+  .state{display:none}
+  .state.is-active{display:block}
+
+  /* Stato OK: tocco di verde dolce */
+  #state-ok .eyebrow{color:var(--forest)}
+  #state-ok h1 em{color:var(--forest)}
+
+  /* Stato errore/invalid: meno spazio per CTA primary */
+  .icon-stato{
+    display:inline-block;
+    width:56px;height:56px;
+    line-height:56px;
+    border-radius:50%;
+    margin-bottom:18px;
+    font-size:28px;
+  }
+  #state-ok .icon-stato{background:rgba(168,210,168,0.16);color:var(--forest)}
+  #state-gia .icon-stato{background:rgba(212,165,91,0.16);color:var(--gold)}
+  #state-invalid .icon-stato,#state-notfound .icon-stato,#state-errore .icon-stato{background:rgba(178,90,90,0.12);color:#b25a5a}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="brand-name">Cristian Bresadola</p>
+  <p class="brand-sub">Naturopata · Riflessologo</p>
+</header>
+
+<main>
+  <div class="card">
+
+    <!-- STATO: ok (conferma riuscita) -->
+    <div class="state" id="state-ok">
+      <span class="icon-stato">✓</span>
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Iscrizione <em>confermata</em>.</h1>
+      <span class="divider"></span>
+      <p class="lead">Sei dentro. Da oggi, ogni mattina, ricevi il kin del giorno.</p>
+      <p class="body">Tra qualche istante ti arriverà una prima email con il <strong>kin di oggi</strong>. È il primo passo del cammino. La Bussola partirà ogni mattina alle <strong>06:00 ora italiana</strong>.</p>
+      <div class="cta-row">
+        <a href="/bussola.html" class="btn btn-primary">Apri la Bussola di oggi</a>
+        <a href="/" class="btn btn-ghost">Torna al sito</a>
+      </div>
+    </div>
+
+    <!-- STATO: gia (già confermato) -->
+    <div class="state" id="state-gia">
+      <span class="icon-stato">◯</span>
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Sei <em>già</em> con noi.</h1>
+      <span class="divider"></span>
+      <p class="lead">La tua iscrizione era già confermata.</p>
+      <p class="body">Stai già ricevendo La Bussola dell'Anima ogni mattina alle 06:00 (ora italiana). Non c'è bisogno di fare nulla.</p>
+      <div class="cta-row">
+        <a href="/bussola.html" class="btn btn-primary">Apri la Bussola di oggi</a>
+      </div>
+    </div>
+
+    <!-- STATO: invalid (token malformato) -->
+    <div class="state" id="state-invalid">
+      <span class="icon-stato">!</span>
+      <p class="eyebrow">Link incompleto</p>
+      <h1>Qualcosa non <em>quadra</em>.</h1>
+      <span class="divider"></span>
+      <p class="lead">Il link che hai aperto non è valido.</p>
+      <p class="body">Forse l'hai copiato a metà, oppure il tuo client di posta ha interrotto l'indirizzo. Prova ad aprire di nuovo l'email originale e a cliccare direttamente sul pulsante <strong>Conferma la mia iscrizione</strong>.</p>
+      <div class="cta-row">
+        <a href="/" class="btn btn-ghost">Torna al sito</a>
+        <a href="mailto:info@cristianbresadola.com" class="btn btn-ghost">Scrivi a Cristian</a>
+      </div>
+    </div>
+
+    <!-- STATO: notfound (token non corrisponde) -->
+    <div class="state" id="state-notfound">
+      <span class="icon-stato">?</span>
+      <p class="eyebrow">Iscrizione non trovata</p>
+      <h1>Non <em>riconosco</em> questo link.</h1>
+      <span class="divider"></span>
+      <p class="lead">Forse è già stato usato, oppure l'iscrizione non esiste più.</p>
+      <p class="body">Se vuoi iscriverti, torna alla <a href="/bussola.html" style="color:var(--gold);text-decoration:underline">pagina della Bussola</a> e compila il modulo. Se pensi sia un errore, scrivimi.</p>
+      <div class="cta-row">
+        <a href="/bussola.html" class="btn btn-primary">Iscriviti di nuovo</a>
+        <a href="mailto:info@cristianbresadola.com" class="btn btn-ghost">Scrivi a Cristian</a>
+      </div>
+    </div>
+
+    <!-- STATO: errore (problema tecnico) -->
+    <div class="state" id="state-errore">
+      <span class="icon-stato">⚠</span>
+      <p class="eyebrow">Errore tecnico</p>
+      <h1>Qualcosa è <em>andato storto</em>.</h1>
+      <span class="divider"></span>
+      <p class="lead">Non sono riuscito a confermare la tua iscrizione.</p>
+      <p class="body">Riprova tra qualche minuto cliccando ancora il link nell'email. Se il problema persiste scrivimi a <a href="mailto:info@cristianbresadola.com" style="color:var(--gold);text-decoration:underline">info@cristianbresadola.com</a> e te lo sistemo a mano.</p>
+      <div class="cta-row">
+        <a href="mailto:info@cristianbresadola.com" class="btn btn-primary">Scrivi a Cristian</a>
+        <a href="/" class="btn btn-ghost">Torna al sito</a>
+      </div>
+    </div>
+
+    <p class="closing">In Lak'ech · A Lak'en ·</p>
+
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> Cristian Bresadola · NosLab S.a.s. · P.IVA 02839670227<br>
+  <a href="/privacy-policy.html">Privacy</a> · <a href="/cookie-policy.html">Cookie</a>
+</footer>
+
+</div>
+
+<script>
+  // Attiva lo stato in base a ?stato=...
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var stato = (params.get('stato') || 'ok').toLowerCase();
+    var valid = ['ok','gia','invalid','notfound','errore'];
+    if(valid.indexOf(stato) === -1) stato = 'ok';
+    var el = document.getElementById('state-' + stato);
+    if(el) el.classList.add('is-active');
+    else document.getElementById('state-ok').classList.add('is-active');
+  })();
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
