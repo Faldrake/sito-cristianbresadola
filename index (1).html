@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formazione · Corsi di Riflessologia, MTC, Metodo Breuss — Punto Riflesso</title>
-<meta name="description" content="Corsi di Riflessologia, Master in Medicina Tradizionale Cinese, Metodo Breuss, Metamorfico e il nuovo Metodo Punto Riflesso. Formazione per operatori olistici in Trentino.">
+<title>Grazie · Cristian Bresadola</title>
+<meta name="description" content="Grazie per avermi scritto. Ti rispondo personalmente entro 24-48 ore.">
 
 <!-- SEO META -->
-<link rel="canonical" href="https://cristianbresadola.com/formazione.html">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://cristianbresadola.com/grazie.html">
+<meta name="robots" content="noindex, nofollow">
 <meta name="author" content="Cristian Bresadola">
 <meta name="theme-color" content="#1B3A3E">
 <meta name="language" content="Italian">
@@ -26,9 +26,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Formazione · Corsi di Riflessologia, MTC, Metodo Breuss — Punto Riflesso">
-<meta property="og:description" content="Corsi di Riflessologia, Master in Medicina Tradizionale Cinese, Metodo Breuss, Metamorfico e il nuovo Metodo Punto Riflesso. Formazione per operatori olistici in Trentino.">
-<meta property="og:url" content="https://cristianbresadola.com/formazione.html">
+<meta property="og:title" content="Grazie · Cristian Bresadola">
+<meta property="og:description" content="Grazie per avermi scritto. Ti rispondo personalmente entro 24-48 ore.">
+<meta property="og:url" content="https://cristianbresadola.com/contatti.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -38,8 +38,8 @@
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Formazione · Corsi di Riflessologia, MTC, Metodo Breuss — Punto Riflesso">
-<meta name="twitter:description" content="Corsi di Riflessologia, Master in Medicina Tradizionale Cinese, Metodo Breuss, Metamorfico e il nuovo Metodo Punto Riflesso. Formazione per operatori olistici in Trentino.">
+<meta name="twitter:title" content="Contatti · Cristian Bresadola — Prenotazioni e informazioni">
+<meta name="twitter:description" content="Contatta Cristian Bresadola per un primo contatto, informazioni sui corsi o richieste di consulenza. Tel/WhatsApp +39 339 638 3790, email info@cristianbresadola.com.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
 
@@ -48,6 +48,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .form-input {
+    background: var(--ivory);
+    border: 1px solid rgba(27, 58, 62, 0.15);
+    padding: 0.9rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    width: 100%;
+    transition: border-color 0.3s ease;
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--petrol);
+    background: white;
+  }
+  .form-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--petrol);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+</style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
 </head>
@@ -153,228 +178,87 @@
     </div>
   </div>
 </nav>
-
-<script>
-/* Active nav highlighting + mobile toggle (idempotente) */
-(function(){
-  if(window.__navInit) return;
-  window.__navInit = true;
-
-  // Mappa pathname -> data-nav del menu
-  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  const map = {
-    'chi-sono.html': 'chi-sono',
-    'consulenze.html': 'consulenze',
-    'idroterapia.html': 'consulenze',
-    'croce-maya.html': 'saggezza-maya',
-    'bussola.html': 'saggezza-maya',
-    'formazione.html': 'formazione',
-    'cerchio-del-druido/': 'cerchio-del-druido',
-    'cerchio-del-druido': 'cerchio-del-druido',
-    'contatti.html': 'contatti'
-  };
-  const active = map[path];
-  if(active){
-    document.querySelectorAll('[data-nav="' + active + '"]').forEach(function(el){
-      el.classList.add('is-nav-active');
-      const btn = el.querySelector('.nav-dropdown__toggle');
-      if(btn) btn.classList.add('is-nav-active');
-      const link = el.matches('a') ? el : null;
-      if(link) link.classList.add('is-nav-active');
-    });
-  }
-
-  // Mobile menu toggle
-  const toggle = document.getElementById('mobileToggle');
-  const menu = document.getElementById('mobileMenu');
-  if(toggle && menu){
-    toggle.addEventListener('click', function(){
-      const isOpen = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  }
-
-  // Dropdown ARIA su hover/focus desktop
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd){
-    const toggle = dd.querySelector('.nav-dropdown__toggle');
-    if(!toggle) return;
-    dd.addEventListener('mouseenter', function(){ toggle.setAttribute('aria-expanded','true'); });
-    dd.addEventListener('mouseleave', function(){ toggle.setAttribute('aria-expanded','false'); });
-    toggle.addEventListener('click', function(e){
-      // su touch/click: toggle del panel
-      const open = dd.classList.toggle('is-open-click');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      e.stopPropagation();
-    });
-  });
-  document.addEventListener('click', function(){
-    document.querySelectorAll('.nav-dropdown.is-open-click').forEach(function(dd){
-      dd.classList.remove('is-open-click');
-      const t = dd.querySelector('.nav-dropdown__toggle');
-      if(t) t.setAttribute('aria-expanded','false');
-    });
-  });
-})();
-</script>
-
-<!-- HERO -->
+<!-- HERO GRAZIE -->
 <section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-ivory">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-10 items-end">
-      <div class="lg:col-span-7">
-        <div class="eyebrow text-forest mb-6">— Formazione · Punto Riflesso</div>
-        <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8">
-          I corsi <span class="display-italic">di Punto Riflesso.</span>
-        </h1>
-        <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
-          Dal <strong class="text-petrol font-medium">2022</strong> conduco percorsi formativi nelle discipline olistiche che ho studiato a fondo negli anni. Ogni corso è pensato per chi vuole imparare a lavorare davvero sulle persone, con basi solide e tempi rispettati.
+  <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+    <p class="eyebrow text-petrol mb-6">— Messaggio ricevuto</p>
+    <h1 class="display-italic text-petrol-dark mb-8">
+      Grazie per avermi <em>scritto</em>.
+    </h1>
+    <p class="text-xl lg:text-2xl text-charcoal-soft leading-relaxed max-w-2xl mx-auto" style="font-family: 'Fraunces', Georgia, serif; font-style: italic;">
+      Ho ricevuto il tuo messaggio. Ti rispondo personalmente, di solito entro 24–48 ore.
+    </p>
+  </div>
+</section>
+
+<!-- BODY GRAZIE -->
+<section class="py-16 lg:py-24 bg-frost">
+  <div class="max-w-3xl mx-auto px-6 lg:px-12">
+    <div class="bg-ivory p-8 lg:p-12 space-y-6" style="border: 1px solid rgba(42, 49, 102, 0.1);">
+
+      <div class="flex items-start gap-4">
+        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
+        <p class="text-charcoal-soft leading-relaxed">
+          <strong class="text-petrol-dark">Quando ti rispondo:</strong> di solito entro un paio di giorni lavorativi. Se la tua richiesta è urgente o hai bisogno di parlarmi a voce, scrivimi su WhatsApp al <a href="https://wa.me/393396383790" class="underline text-petrol hover:text-chrome-blue">+39 339 638 3790</a>.
         </p>
       </div>
-      <div class="lg:col-span-5">
-        <div class="bg-frost p-8 border-l-4 border-forest">
-          <div class="eyebrow text-forest mb-3">Il metodo</div>
-          <h3 class="font-display text-2xl text-petrol mb-3">Metodo Punto Riflesso</h3>
-          <p class="text-sm text-charcoal-soft leading-relaxed">Un approccio integrato che unisce <strong class="text-petrol font-medium">riflessologia plantare, massaggio Breuss, Medicina Tradizionale Cinese</strong> e discipline olistiche in un lavoro coerente sulla persona. Lo insegno progressivamente lungo tutti i corsi.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- CORSI -->
-<section class="py-20 lg:py-28 bg-frost">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="mb-14">
-      <div class="flex items-center gap-4 mb-6">
-        <span class="section-number">— Corsi attivi</span>
-      </div>
-      <h2 class="display-title text-4xl md:text-5xl text-petrol">
-        Cinque percorsi, <span class="display-italic">un metodo.</span>
-      </h2>
-    </div>
-
-    <div class="space-y-5">
-
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display italic text-7xl text-forest opacity-40">01</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Percorso base · 3 livelli</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Riflessologia Plantare</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Il percorso più importante: tre livelli progressivi per imparare la riflessologia come pratica completa. Dall'anatomia del piede alle zone riflesse, dall'approccio alla persona alla costruzione di trattamenti coerenti.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Weekend intensivi</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Operatori olistici, appassionati motivati</div></div>
-        </div>
+      <div class="flex items-start gap-4">
+        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
+        <p class="text-charcoal-soft leading-relaxed">
+          <strong class="text-petrol-dark">Controlla la casella spam</strong> nei prossimi giorni: a volte le mie risposte ci finiscono dentro. Se la trovi lì, segnala come "non spam" così le prossime arrivano dirette.
+        </p>
       </div>
 
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display italic text-7xl text-forest opacity-40">02</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Perfezionamento</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Master in Riflessologia e MTC</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Il livello successivo. Si integra la Medicina Tradizionale Cinese — meridiani, cinque elementi, diagnostica energetica — con la riflessologia plantare. Riservato a chi ha già un percorso base.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Weekend + lavoro personale</div></div>
-          <div><span class="eyebrow text-petrol">Prerequisiti</span><div>Percorso base o equivalente</div></div>
-        </div>
-      </div>
-
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display italic text-7xl text-forest opacity-40">03</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Tecnica specifica</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Tecnica Breuss</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Il massaggio Breuss nella trasmissione con <strong class="text-petrol font-medium">discendenza diretta dagli allievi di Rudolf Breuss</strong>. Una tecnica precisa per la colonna vertebrale, che insegno con il rispetto per la catena di trasmissione originale.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Workshop intensivo</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Operatori e naturopati</div></div>
-        </div>
-      </div>
-
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display italic text-7xl text-forest opacity-40">04</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Percorso evolutivo</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Metamorfico dell'Incarnazione</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">La Tecnica Metamorfica applicata al percorso di incarnazione della persona. Un lavoro sottile, profondo, che unisce competenza tecnica e capacità di ascolto.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Percorso in più weekend</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Operatori, appassionati di discipline olistiche</div></div>
-        </div>
-      </div>
-
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display italic text-7xl text-forest opacity-40">05</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Corso online</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Medicina Tradizionale Cinese</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Corso interamente online per scoprire le fondamenta della MTC: i cinque elementi, i meridiani, la diagnosi energetica. Accessibile anche da chi non ha una formazione precedente.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Online · Moduli registrati</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Aperto a tutti</div></div>
-        </div>
+      <div class="flex items-start gap-4">
+        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
+        <p class="text-charcoal-soft leading-relaxed">
+          <strong class="text-petrol-dark">I tuoi dati</strong> sono trattati solo per rispondere alla tua richiesta, conservati fino a 12 mesi dall'ultimo contatto, mai condivisi con terzi a fini commerciali. <a href="privacy-policy.html" class="underline text-petrol hover:text-chrome-blue">Informativa Privacy</a>.
+        </p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ALLIEVI -->
-<section class="py-20 lg:py-28 bg-ivory">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6">
-        <div class="image-frame aspect-[5/4] overflow-hidden">
-          <img src="./images/allievi.jpg" alt="Gruppo di allievi con attestati del corso di Riflessologia Plantare Punto Riflesso" class="w-full h-full object-cover">
-        </div>
-      </div>
-      <div class="lg:col-span-6">
-        <div class="eyebrow text-petrol mb-6">— Gli allievi</div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-8">
-          Una <span class="display-italic">comunità</span> in cammino.
-        </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed">
-          <p>Chi arriva a Punto Riflesso non cerca solo "una tecnica": cerca uno spazio dove imparare a lavorare con le persone, con i tempi giusti e con strumenti solidi.</p>
-          <p>Gli allievi diventano nel tempo una rete di professionisti e appassionati che continuano a confrontarsi tra loro, a tornare per perfezionamenti, a collaborare. È una delle cose più belle di questo lavoro.</p>
-        </div>
-      </div>
+<!-- CTA SUGGESTIONS -->
+<section class="py-16 lg:py-24 bg-ivory">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+    <p class="eyebrow text-petrol text-center mb-12">— Nel frattempo</p>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <a href="chi-sono.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
+        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Chi sono</p>
+        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Conoscimi meglio</p>
+      </a>
+
+      <a href="consulenze.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
+        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Consulenze</p>
+        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Scopri le discipline</p>
+      </a>
+
+      <a href="bussola.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
+        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Bussola dell'Anima</p>
+        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Il kin di oggi</p>
+      </a>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/" class="inline-block px-8 py-3 bg-petrol text-ivory hover:bg-petrol-dark transition-colors" style="font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em;">
+        Torna alla home
+      </a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-20 lg:py-28 bg-petrol text-ivory on-dark">
-  <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-    <h2 class="display-title text-4xl md:text-5xl mb-8">
-      Vuoi iscriverti <span class="display-italic text-salt">a un corso?</span>
-    </h2>
-    <p class="opacity-80 mb-10 max-w-2xl mx-auto leading-relaxed">
-      Per date, iscrizioni, quote e calendari aggiornati il canale più veloce è WhatsApp o email. Rispondo personalmente e costruiamo insieme il percorso più adatto a te.
-    </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="btn-primary">Scrivimi su WhatsApp</a>
-      <a href="mailto:info@cristianbresadola.com" class="btn-secondary">Scrivimi via email</a>
-    </div>
-    <p class="mt-10 text-xs opacity-60">Sito Punto Riflesso: <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="underline">puntoriflesso.com</a></p>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="grid lg:grid-cols-12 gap-10 mb-16">
       <div class="lg:col-span-4">
         <div class="flex items-center gap-3 mb-6">
           <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
-          <div>
-            <div class="font-display text-xl">Cristian Bresadola</div>
-            <div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div>
-          </div>
+          <div><div class="font-display text-xl">Cristian Bresadola</div><div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div></div>
         </div>
         <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">Iscritto al Registro ASPIN dei Naturopati — Livello Professionista.<br>Codice <strong>TN-1230-NA-P</strong></p>
         <div class="flex gap-2">
@@ -422,7 +306,7 @@
 
 
 <!-- WhatsApp Floating Widget -->
-<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20vorrei%20informazioni%20sui%20corsi%20di%20Punto%20Riflesso." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
+<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20ti%20scrivo%20dal%20tuo%20sito." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
   <span class="wa-widget-label">Scrivimi su WhatsApp</span>
   <span class="wa-widget-btn">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

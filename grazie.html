@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grazie · Cristian Bresadola</title>
-<meta name="description" content="Grazie per avermi scritto. Ti rispondo personalmente entro 24-48 ore.">
+<title>Dove ricevo · Studi a Trento e in Val di Sole — Trentino</title>
+<meta name="description" content="Gli studi di Cristian Bresadola: Trento (Vicolo della Contrada Tedesca 9) e Val di Sole — Trentino. Alcune consulenze disponibili anche interamente online.">
 
 <!-- SEO META -->
-<link rel="canonical" href="https://cristianbresadola.com/grazie.html">
-<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://cristianbresadola.com/dove-ricevo.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Cristian Bresadola">
 <meta name="theme-color" content="#1B3A3E">
 <meta name="language" content="Italian">
@@ -26,9 +26,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Grazie · Cristian Bresadola">
-<meta property="og:description" content="Grazie per avermi scritto. Ti rispondo personalmente entro 24-48 ore.">
-<meta property="og:url" content="https://cristianbresadola.com/contatti.html">
+<meta property="og:title" content="Dove ricevo · Studi a Trento e in Val di Sole — Trentino">
+<meta property="og:description" content="Gli studi di Cristian Bresadola: Trento (Vicolo della Contrada Tedesca 9) e Val di Sole — Trentino. Alcune consulenze disponibili anche interamente online.">
+<meta property="og:url" content="https://cristianbresadola.com/dove-ricevo.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -38,8 +38,8 @@
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contatti · Cristian Bresadola — Prenotazioni e informazioni">
-<meta name="twitter:description" content="Contatta Cristian Bresadola per un primo contatto, informazioni sui corsi o richieste di consulenza. Tel/WhatsApp +39 339 638 3790, email info@cristianbresadola.com.">
+<meta name="twitter:title" content="Dove ricevo · Studi a Trento e in Val di Sole — Trentino">
+<meta name="twitter:description" content="Gli studi di Cristian Bresadola: Trento (Vicolo della Contrada Tedesca 9) e Val di Sole — Trentino. Alcune consulenze disponibili anche interamente online.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
 
@@ -48,31 +48,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
-<style>
-  .form-input {
-    background: var(--ivory);
-    border: 1px solid rgba(27, 58, 62, 0.15);
-    padding: 0.9rem 1rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    color: var(--charcoal);
-    width: 100%;
-    transition: border-color 0.3s ease;
-  }
-  .form-input:focus {
-    outline: none;
-    border-color: var(--petrol);
-    background: white;
-  }
-  .form-label {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.85rem;
-    color: var(--petrol);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-</style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
 </head>
@@ -178,80 +153,202 @@
     </div>
   </div>
 </nav>
-<!-- HERO GRAZIE -->
-<section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-ivory">
-  <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-    <p class="eyebrow text-petrol mb-6">— Messaggio ricevuto</p>
-    <h1 class="display-italic text-petrol-dark mb-8">
-      Grazie per avermi <em>scritto</em>.
+
+<script>
+/* Active nav highlighting + mobile toggle (idempotente) */
+(function(){
+  if(window.__navInit) return;
+  window.__navInit = true;
+
+  // Mappa pathname -> data-nav del menu
+  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const map = {
+    'chi-sono.html': 'chi-sono',
+    'consulenze.html': 'consulenze',
+    'idroterapia.html': 'consulenze',
+    'croce-maya.html': 'saggezza-maya',
+    'bussola.html': 'saggezza-maya',
+    'formazione.html': 'formazione',
+    'cerchio-del-druido/': 'cerchio-del-druido',
+    'cerchio-del-druido': 'cerchio-del-druido',
+    'contatti.html': 'contatti'
+  };
+  const active = map[path];
+  if(active){
+    document.querySelectorAll('[data-nav="' + active + '"]').forEach(function(el){
+      el.classList.add('is-nav-active');
+      const btn = el.querySelector('.nav-dropdown__toggle');
+      if(btn) btn.classList.add('is-nav-active');
+      const link = el.matches('a') ? el : null;
+      if(link) link.classList.add('is-nav-active');
+    });
+  }
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('mobileToggle');
+  const menu = document.getElementById('mobileMenu');
+  if(toggle && menu){
+    toggle.addEventListener('click', function(){
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
+
+  // Dropdown ARIA su hover/focus desktop
+  document.querySelectorAll('.nav-dropdown').forEach(function(dd){
+    const toggle = dd.querySelector('.nav-dropdown__toggle');
+    if(!toggle) return;
+    dd.addEventListener('mouseenter', function(){ toggle.setAttribute('aria-expanded','true'); });
+    dd.addEventListener('mouseleave', function(){ toggle.setAttribute('aria-expanded','false'); });
+    toggle.addEventListener('click', function(e){
+      // su touch/click: toggle del panel
+      const open = dd.classList.toggle('is-open-click');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click', function(){
+    document.querySelectorAll('.nav-dropdown.is-open-click').forEach(function(dd){
+      dd.classList.remove('is-open-click');
+      const t = dd.querySelector('.nav-dropdown__toggle');
+      if(t) t.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+</script>
+
+<!-- HERO -->
+<section class="pt-32 pb-16 lg:pt-40 lg:pb-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="eyebrow text-petrol mb-6">— Dove ricevo</div>
+    <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8 max-w-4xl">
+      Due studi, <span class="display-italic">un solo approccio.</span>
     </h1>
-    <p class="text-xl lg:text-2xl text-charcoal-soft leading-relaxed max-w-2xl mx-auto" style="font-family: 'Fraunces', Georgia, serif; font-style: italic;">
-      Ho ricevuto il tuo messaggio. Ti rispondo personalmente, di solito entro 24–48 ore.
+    <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
+      Ricevo in due sedi diverse del Trentino: a <strong class="text-petrol font-medium">Trento</strong>, nel centro storico, e in <strong class="text-petrol font-medium">Val di Sole</strong>. Alcune consulenze — come la Lettura della Croce Maya — sono disponibili anche interamente online.
     </p>
   </div>
 </section>
 
-<!-- BODY GRAZIE -->
-<section class="py-16 lg:py-24 bg-frost">
-  <div class="max-w-3xl mx-auto px-6 lg:px-12">
-    <div class="bg-ivory p-8 lg:p-12 space-y-6" style="border: 1px solid rgba(42, 49, 102, 0.1);">
-
-      <div class="flex items-start gap-4">
-        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
-        <p class="text-charcoal-soft leading-relaxed">
-          <strong class="text-petrol-dark">Quando ti rispondo:</strong> di solito entro un paio di giorni lavorativi. Se la tua richiesta è urgente o hai bisogno di parlarmi a voce, scrivimi su WhatsApp al <a href="https://wa.me/393396383790" class="underline text-petrol hover:text-chrome-blue">+39 339 638 3790</a>.
-        </p>
+<!-- GALLERIA STUDIO TRENTO -->
+<section class="pb-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="cromo-image aspect-[4/5] overflow-hidden">
+        <img src="./images/studio-accoglienza.jpg" alt="Studio di Trento — sala di accoglienza" class="w-full h-full object-cover" loading="lazy">
       </div>
-
-      <div class="flex items-start gap-4">
-        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
-        <p class="text-charcoal-soft leading-relaxed">
-          <strong class="text-petrol-dark">Controlla la casella spam</strong> nei prossimi giorni: a volte le mie risposte ci finiscono dentro. Se la trovi lì, segnala come "non spam" così le prossime arrivano dirette.
-        </p>
+      <div class="cromo-image aspect-[4/5] overflow-hidden">
+        <img src="./images/studio-lettino.jpg" alt="Studio di Trento — sala trattamenti con cromoterapia" class="w-full h-full object-cover" loading="lazy">
       </div>
-
-      <div class="flex items-start gap-4">
-        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
-        <p class="text-charcoal-soft leading-relaxed">
-          <strong class="text-petrol-dark">I tuoi dati</strong> sono trattati solo per rispondere alla tua richiesta, conservati fino a 12 mesi dall'ultimo contatto, mai condivisi con terzi a fini commerciali. <a href="privacy-policy.html" class="underline text-petrol hover:text-chrome-blue">Informativa Privacy</a>.
-        </p>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- CTA SUGGESTIONS -->
-<section class="py-16 lg:py-24 bg-ivory">
-  <div class="max-w-5xl mx-auto px-6 lg:px-12">
-    <p class="eyebrow text-petrol text-center mb-12">— Nel frattempo</p>
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <a href="chi-sono.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
-        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Chi sono</p>
-        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Conoscimi meglio</p>
-      </a>
-
-      <a href="consulenze.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
-        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Consulenze</p>
-        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Scopri le discipline</p>
-      </a>
-
-      <a href="bussola.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
-        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Bussola dell'Anima</p>
-        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Il kin di oggi</p>
-      </a>
-
+<!-- STUDIO TRENTO -->
+<section id="trento" class="py-20 lg:py-28 bg-frost">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <div class="eyebrow text-chrome-blue mb-5">Studio principale</div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          <span class="display-italic">Trento.</span>
+        </h2>
+        <p class="text-charcoal-soft leading-relaxed mb-8">Nel cuore del centro storico, lo studio di Trento è la sede principale dove ricevo la maggior parte dei consulti e dei trattamenti. Uno spazio pensato per permettere alle persone di fermarsi davvero — con <strong class="text-petrol font-medium">cromoterapia attiva</strong> per le sessioni di riflessologia e di massaggio olistico.</p>
+      </div>
+      <div class="lg:col-span-7 space-y-6">
+        <div class="bg-ivory p-6 lg:p-8">
+          <div class="eyebrow text-petrol mb-3">Indirizzo</div>
+          <p class="text-lg text-petrol font-medium mb-2">Vicolo della Contrada Tedesca 9</p>
+          <p class="text-charcoal-soft text-sm">38121 Trento</p>
+          <a href="https://maps.google.com/?q=Vicolo+della+Contrada+Tedesca+9+Trento" target="_blank" rel="noopener" class="btn-ghost text-sm mt-4">Apri in Google Maps<svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="bg-ivory p-6 lg:p-8">
+          <div class="eyebrow text-petrol mb-3">Orari di ricevimento</div>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div><div class="font-medium text-petrol">Mercoledì</div><div class="text-charcoal-soft">16:00 — 21:00</div></div>
+            <div><div class="font-medium text-petrol">Altri giorni</div><div class="text-charcoal-soft">Su richiesta</div></div>
+          </div>
+          <p class="text-xs text-charcoal-soft italic mt-4">La prenotazione è sempre necessaria — puoi usare il calendario online.</p>
+        </div>
+        <a href="contatti.html" class="btn-primary w-full justify-center">Prenota un appuntamento a Trento<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
 
-    <div class="text-center mt-12">
-      <a href="/" class="inline-block px-8 py-3 bg-petrol text-ivory hover:bg-petrol-dark transition-colors" style="font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em;">
-        Torna alla home
-      </a>
+    <!-- Mappa Google embed -->
+    <div class="mt-12 aspect-[21/9] overflow-hidden">
+      <iframe src="https://www.google.com/maps?q=Vicolo+della+Contrada+Tedesca+9,+38121+Trento&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
 
+<!-- STUDIO VAL DI SOLE -->
+<section id="val-di-sole" class="py-20 lg:py-28 bg-ivory">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <div class="eyebrow text-forest mb-5">Su appuntamento</div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          <span class="display-italic">Val di Sole —</span> Trentino.
+        </h2>
+        <p class="text-charcoal-soft leading-relaxed mb-8">Il secondo studio si trova in <strong class="text-petrol font-medium">Val di Sole</strong>, immerso nella natura del Trentino occidentale. È uno spazio più raccolto, dove ricevo su appuntamento chi si trova in valle o desidera fare un percorso in un contesto più appartato.</p>
+      </div>
+      <div class="lg:col-span-7 space-y-6">
+        <div class="bg-frost p-6 lg:p-8 border-l-4 border-forest">
+          <div class="eyebrow text-forest mb-3">Dove</div>
+          <p class="text-lg text-petrol font-medium mb-2">Val di Sole — Trentino</p>
+          <p class="text-charcoal-soft text-sm mb-4">La località precisa e l'indirizzo vengono comunicati al momento della conferma dell'appuntamento.</p>
+          <p class="text-xs text-charcoal-soft italic">Trattandosi di uno spazio privato, preferisco condividere i dettagli solo con chi ha già fissato l'incontro.</p>
+        </div>
+        <div class="bg-frost p-6 lg:p-8">
+          <div class="eyebrow text-petrol mb-3">Come prenotare</div>
+          <p class="text-sm text-charcoal-soft leading-relaxed mb-4">Per prenotare un appuntamento in Val di Sole, contattami via WhatsApp o telefono: concordiamo insieme giorno, orario e tipologia di trattamento.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="btn-primary">Scrivimi su WhatsApp</a>
+          <a href="tel:+393396383790" class="btn-secondary">Chiamami</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE -->
+<section class="py-20 lg:py-28 bg-petrol-dark text-ivory on-dark relative overflow-hidden">
+  <div class="absolute inset-0 stars-bg opacity-20 pointer-events-none"></div>
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 relative">
+    <div class="flex items-center gap-4 mb-6">
+      <span class="section-number text-ivory">— Online</span>
+    </div>
+    <h2 class="display-title text-4xl md:text-5xl mb-8">
+      Alcune consulenze sono <span class="display-italic text-salt">interamente online.</span>
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <div>
+        <h3 class="font-display text-xl mb-4">Disponibili online</h3>
+        <ul class="space-y-3 text-sm opacity-85">
+          <li class="flex gap-3 items-start"><span class="text-salt mt-1">◆</span><span><strong class="font-medium">Lettura della Croce Maya</strong> — interamente a distanza, documento PDF consegnato via email</span></li>
+          <li class="flex gap-3 items-start"><span class="text-salt mt-1">◆</span><span><strong class="font-medium">Consulenze di naturopatia</strong></span></li>
+          <li class="flex gap-3 items-start"><span class="text-salt mt-1">◆</span><span><strong class="font-medium">Consulenze di floriterapia e fitoterapia</strong></span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-display text-xl mb-4">Solo in studio</h3>
+        <ul class="space-y-3 text-sm opacity-85">
+          <li class="flex gap-3 items-start"><span class="text-salt mt-1">◆</span><span><strong class="font-medium">Riflessologia plantare</strong></span></li>
+          <li class="flex gap-3 items-start"><span class="text-salt mt-1">◆</span><span><strong class="font-medium">Massaggio olistico e Tecnica Breuss</strong></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-10 border-t border-ivory/15 text-center">
+      <p class="opacity-80 mb-6">Non sai quale modalità scegliere? Scrivi e ne parliamo.</p>
+      <a href="contatti.html" class="btn-primary">Prenota un colloquio conoscitivo<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="grid lg:grid-cols-12 gap-10 mb-16">
@@ -306,7 +403,7 @@
 
 
 <!-- WhatsApp Floating Widget -->
-<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20ti%20scrivo%20dal%20tuo%20sito." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
+<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20vorrei%20fissare%20un%20appuntamento%20nel%20tuo%20studio." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
   <span class="wa-widget-label">Scrivimi su WhatsApp</span>
   <span class="wa-widget-btn">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

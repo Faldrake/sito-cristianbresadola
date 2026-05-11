@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Richiedi una Croce Maya · Cristian Bresadola</title>
-<meta name="description" content="Richiedi la tua Croce Maya personale: PDF digitale alta qualità preparato a mano, recapitato via email entro 2-3 settimane.">
+<title>Primo contatto · Cristian Bresadola — Compila la scheda iniziale</title>
+<meta name="description" content="Compila la scheda di primo contatto per iniziare un percorso con Cristian Bresadola, naturopata in Trentino. Cinque passi guidati, riservati e gratuiti.">
 
-<link rel="canonical" href="https://cristianbresadola.com/richiedi-croce-maya.html">
+<link rel="canonical" href="https://cristianbresadola.com/primo-contatto.html">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Cristian Bresadola">
 <meta name="theme-color" content="#1B3A3E">
 <meta name="language" content="Italian">
 <meta name="geo.region" content="IT-TN">
+<meta name="geo.placename" content="Trento">
 
 <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
@@ -22,9 +23,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Richiedi una Croce Maya · Cristian Bresadola">
-<meta property="og:description" content="PDF digitale alta qualità preparato a mano, recapitato via email entro 2-3 settimane.">
-<meta property="og:url" content="https://cristianbresadola.com/richiedi-croce-maya.html">
+<meta property="og:title" content="Primo contatto · Cristian Bresadola">
+<meta property="og:description" content="Inizia il tuo percorso compilando la scheda guidata in cinque passi. Riservata e gratuita.">
+<meta property="og:url" content="https://cristianbresadola.com/primo-contatto.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -39,8 +40,11 @@
 
 <style>
 /* ════════════════════════════════════════════════════════
-   STILI SPECIFICI WIZARD CROCE MAYA (identici a primo-contatto)
+   STILI SPECIFICI WIZARD PRIMO CONTATTO
+   Aderenti al design system del sito (palette ivory/petrol/salt).
 ═══════════════════════════════════════════════════════════ */
+
+.wizard-shell { min-height: calc(100vh - 80px); display: flex; flex-direction: column; }
 
 .steps-bar { display: flex; gap: 8px; margin-bottom: 2rem; }
 .steps-bar .step-pill {
@@ -91,6 +95,42 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 }
 .field-error.show { display: block; }
 
+.chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1rem; background: var(--ivory, #EEF3F6);
+  border: 1px solid rgba(27, 58, 62, 0.18); border-radius: 99px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+  color: var(--charcoal, #2A2A2A); cursor: pointer;
+  transition: all 0.2s ease; user-select: none;
+}
+.chip:hover { border-color: var(--petrol, #1B3A3E); background: white; }
+.chip.selected {
+  background: var(--petrol, #1B3A3E); color: var(--ivory, #EEF3F6);
+  border-color: var(--petrol, #1B3A3E);
+}
+.chip.selected::before { content: "✓"; font-weight: 600; }
+
+.radio-card-group {
+  display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-top: 0.5rem;
+}
+@media (min-width: 640px) { .radio-card-group { grid-template-columns: repeat(3, 1fr); } }
+.radio-card {
+  position: relative; cursor: pointer; padding: 1.25rem 1rem;
+  background: var(--ivory, #EEF3F6); border: 1px solid rgba(27, 58, 62, 0.15);
+  transition: all 0.2s; text-align: center;
+}
+.radio-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+.radio-card:hover { border-color: var(--petrol, #1B3A3E); background: white; }
+.radio-card.selected {
+  background: var(--petrol, #1B3A3E); color: var(--ivory, #EEF3F6);
+  border-color: var(--petrol, #1B3A3E);
+}
+.radio-card .rc-title {
+  font-family: 'Fraunces', serif; font-size: 1rem; margin-bottom: 0.25rem; font-weight: 400;
+}
+.radio-card .rc-sub { font-size: 0.75rem; opacity: 0.7; }
+
 .consent-block {
   display: flex; gap: 0.75rem; align-items: flex-start; padding: 1rem;
   background: rgba(238, 243, 246, 0.5); border-left: 3px solid transparent;
@@ -110,33 +150,29 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   color: var(--petrol, #1B3A3E); display: block; margin-bottom: 0.25rem; font-weight: 500;
 }
 
-.info-box {
-  background: var(--ivory, #EEF3F6); border-left: 3px solid var(--salt-glow, #E59856);
-  padding: 1rem 1.25rem; margin-bottom: 1rem;
-}
-.info-title {
-  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--petrol, #1B3A3E);
-  margin-bottom: 0.35rem; font-weight: 500;
-}
-.info-text { font-size: 0.9rem; color: var(--charcoal-soft, #4A4A4A); line-height: 1.6; }
-
 .wizard-nav {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(27, 58, 62, 0.1);
 }
 
-.btn-loading { opacity: 0.7; cursor: wait !important; pointer-events: none; }
+.btn-loading {
+  opacity: 0.7; cursor: wait !important; pointer-events: none;
+}
 
-.feedback-success, .feedback-error { text-align: center; padding: 3rem 2rem; }
+.feedback-success, .feedback-error {
+  text-align: center; padding: 3rem 2rem;
+}
 .feedback-success svg, .feedback-error svg {
   width: 64px; height: 64px; margin: 0 auto 1.5rem;
   color: var(--petrol, #1B3A3E);
 }
 .feedback-error svg { color: #b05226; }
 
+.bg-ivory { background: var(--ivory, #EEF3F6); }
+.border-salt-glow { border-color: var(--salt-glow, #E59856); }
 .text-petrol { color: var(--petrol, #1B3A3E); }
 .text-charcoal-soft { color: var(--charcoal-soft, #4A4A4A); }
+.text-salt { color: var(--salt-glow, #E59856); }
 .display-title { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; }
 .display-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
 .eyebrow {
@@ -149,7 +185,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 </head>
 <body class="paper-bg">
 
-<!-- NAVIGATION -->
+<!-- NAVIGATION (replicata minimalmente dal sito principale) -->
 <nav class="main-nav" style="position: sticky; top: 0; z-index: 50; background: rgba(238, 243, 246, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(27, 58, 62, 0.08);">
   <div style="max-width: 80rem; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between;">
     <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
@@ -159,20 +195,21 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         <div style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);">Naturopata · Riflessologo</div>
       </div>
     </a>
-    <a href="croce-maya.html" style="font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none;">← Torna a Croce Maya</a>
+    <a href="index.html" style="font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none;">← Torna al sito</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section style="padding: 4rem 1.5rem 2rem; background: var(--ivory, #EEF3F6);">
   <div style="max-width: 56rem; margin: 0 auto; text-align: center;">
-    <div class="eyebrow" style="color: var(--salt-glow, #E59856); margin-bottom: 1.5rem;">— Richiesta Croce Maya</div>
+    <div class="eyebrow" style="color: var(--salt-glow, #E59856); margin-bottom: 1.5rem;">— Primo contatto</div>
     <h1 class="display-title" style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--petrol, #1B3A3E); margin-bottom: 1.5rem;">
-      Richiedi la tua <span class="display-italic">Croce Maya</span>
+      La <span class="display-italic">scheda</span> per iniziare un percorso
     </h1>
     <p style="font-size: 1.05rem; color: var(--charcoal-soft, #4A4A4A); max-width: 42rem; margin: 0 auto 1rem; line-height: 1.7;">
-      Quattro passi guidati per comunicarmi i tuoi dati. Consegna in PDF digitale
-      alta qualità entro 2-3 settimane.
+      Cinque passi guidati per raccontarmi chi sei e cosa stai cercando.
+      Mi serve a prepararmi per il nostro primo incontro.
+      I dati sono trattati con riservatezza assoluta.
     </p>
   </div>
 </section>
@@ -181,71 +218,51 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 <section style="padding: 3rem 1.5rem 5rem;">
   <div style="max-width: 56rem; margin: 0 auto;">
 
-    <div class="steps-bar" role="progressbar" aria-label="Avanzamento richiesta">
+    <!-- BARRA STEP -->
+    <div class="steps-bar" role="progressbar" aria-label="Avanzamento del modulo">
       <div class="step-pill active" data-step="1"></div>
       <div class="step-pill" data-step="2"></div>
       <div class="step-pill" data-step="3"></div>
       <div class="step-pill" data-step="4"></div>
+      <div class="step-pill" data-step="5"></div>
     </div>
 
     <form id="wizardForm" novalidate>
 
-      <!-- ════════ STEP 1 · Cos'è ════════ -->
+      <!-- ════════ STEP 1 · Benvenuto ════════ -->
       <div class="wizard-step is-active" data-step="1">
         <div class="step-card step-content">
-          <div class="step-label"><span class="step-counter">01 ·</span>Cos'è e cosa riceverai</div>
+          <div class="step-label"><span class="step-counter">01 ·</span>Benvenuto</div>
           <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 1.5rem;">
-            Una <span class="display-italic">mappa</span> a partire dalla tua data di nascita
+            <span class="display-italic">Grazie</span> per voler iniziare un percorso
           </h2>
-          <div style="color: var(--charcoal-soft, #4A4A4A); line-height: 1.7; margin-bottom: 1.5rem;">
+          <div style="color: var(--charcoal-soft, #4A4A4A); line-height: 1.7; margin-bottom: 2rem;">
             <p style="margin-bottom: 1rem;">
-              La Croce Maya è uno strumento di consapevolezza ispirato al calendario sacro
-              dei Maya (Tzolk'in). Partendo dalla tua data di nascita ricavo la tua firma
-              archetipica personale e la sviluppo in una lettura interpretativa.
+              Questa scheda mi serve a inquadrare la tua situazione prima del nostro primo incontro,
+              così possiamo arrivare al colloquio con un quadro chiaro.
+            </p>
+            <p style="margin-bottom: 1rem;">
+              Compilarla richiede circa 5–7 minuti. Niente è obbligatorio oltre i campi essenziali (nome,
+              cognome, email): tutto il resto puoi lasciarlo in bianco se preferisci raccontarlo a voce.
             </p>
             <p>
-              Il risultato è un PDF di alta qualità, pensato anche per essere stampato e tenuto.
-              Lo preparo a mano per te.
+              <strong class="text-petrol">Riservatezza:</strong> i dati che condividi qui restano tra me
+              e te, conservati in modo sicuro e usati solo per la nostra relazione professionale.
             </p>
           </div>
 
-          <div class="info-box">
-            <div class="info-title">Cosa ricevi</div>
-            <p class="info-text">
-              Un <strong>documento PDF personalizzato</strong> via email, di alta qualità,
-              pronto da consultare o stampare.
-            </p>
-          </div>
-
-          <div class="info-box">
-            <div class="info-title">Tempi</div>
-            <p class="info-text">
-              <strong>2–3 settimane</strong> dalla conferma del contributo. Lavoro su ogni
-              Croce con cura, una alla volta.
-            </p>
-          </div>
-
-          <div class="info-box">
-            <div class="info-title">Modalità</div>
-            <p class="info-text">
-              La consegna è solo in formato digitale (PDF via email). Non sono previste
-              sedute di restituzione dal vivo o online: tutto ciò che serve per la lettura
-              è scritto nel documento stesso.
-            </p>
-          </div>
-
-          <div class="info-box">
-            <div class="info-title">Contributo</div>
-            <p class="info-text">
-              Dopo aver ricevuto questa richiesta ti contatto via email entro 3 giorni
-              per concordare insieme il contributo prima di iniziare la preparazione.
+          <div style="background: var(--ivory, #EEF3F6); border-left: 4px solid var(--salt-glow, #E59856); padding: 1rem; margin-bottom: 2rem;">
+            <p style="font-size: 0.875rem; color: var(--charcoal-soft, #4A4A4A); line-height: 1.6;">
+              <strong class="text-petrol">Una nota importante:</strong> sono naturopata, non medico.
+              Il mio lavoro affianca la medicina, non la sostituisce. Per patologie diagnosticate
+              o terapie in corso, il riferimento resta sempre il tuo medico curante.
             </p>
           </div>
 
           <div class="wizard-nav">
-            <span style="font-size: 0.875rem; color: var(--charcoal-soft, #4A4A4A);">Step 1 di 4</span>
+            <span style="font-size: 0.875rem; color: var(--charcoal-soft, #4A4A4A);">Step 1 di 5</span>
             <button type="button" class="btn-primary" data-action="next">
-              Procedi
+              Iniziamo
               <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
           </div>
@@ -257,9 +274,9 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         <div class="step-card step-content">
           <div class="step-label"><span class="step-counter">02 ·</span>Chi sei</div>
           <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
-            Come ti <span class="display-italic">contatto?</span>
+            Iniziamo dalle <span class="display-italic">basi</span>
           </h2>
-          <p class="text-charcoal-soft" style="margin-bottom: 2rem;">Dati essenziali per l'invio del PDF.</p>
+          <p class="text-charcoal-soft" style="margin-bottom: 2rem;">Mi presenti?</p>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
             <div>
@@ -274,17 +291,27 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
             <div>
               <label class="form-label" for="f-email">Email *</label>
               <input type="email" id="f-email" name="email" required maxlength="200" class="form-input" placeholder="tu@email.it">
-              <span class="form-help">Userò questa email per inviarti il PDF</span>
               <span class="field-error" data-error-for="email">Inserisci una email valida</span>
             </div>
             <div>
               <label class="form-label" for="f-telefono">Telefono / WhatsApp</label>
               <input type="tel" id="f-telefono" name="telefono" maxlength="40" class="form-input" placeholder="+39 ...">
-              <span class="form-help">Facoltativo, per accordarci sul contributo</span>
+              <span class="form-help">Lo userò solo per ricontattarti per fissare il primo incontro</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+            <div>
+              <label class="form-label" for="f-citta">Città / zona</label>
+              <input type="text" id="f-citta" name="citta" maxlength="100" class="form-input" placeholder="Es. Trento, Cles, Milano">
+            </div>
+            <div>
+              <label class="form-label" for="f-professione">Professione</label>
+              <input type="text" id="f-professione" name="professione" maxlength="100" class="form-input" placeholder="Facoltativo">
             </div>
           </div>
 
@@ -301,43 +328,66 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         </div>
       </div>
 
-      <!-- ════════ STEP 3 · Dati di nascita ════════ -->
+      <!-- ════════ STEP 3 · Cosa cerchi ════════ -->
       <div class="wizard-step" data-step="3">
         <div class="step-card step-content">
-          <div class="step-label"><span class="step-counter">03 ·</span>I tuoi dati di nascita</div>
+          <div class="step-label"><span class="step-counter">03 ·</span>Cosa cerchi</div>
           <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
-            La <span class="display-italic">data</span> da cui parte tutto
+            <span class="display-italic">A cosa</span> sei interessato?
           </h2>
           <p class="text-charcoal-soft" style="margin-bottom: 2rem;">
-            La data di nascita è il punto di partenza. L'ora aggiunge profondità alla lettura.
+            Scegli una o più discipline. Se non sei sicuro, ne parliamo all'incontro.
           </p>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
-            <div>
-              <label class="form-label" for="f-data-nascita">Data di nascita *</label>
-              <input type="date" id="f-data-nascita" name="data_nascita" required class="form-input" min="1900-01-01" max="2026-12-31">
-              <span class="field-error" data-error-for="data_nascita">Inserisci la tua data di nascita</span>
+          <div style="margin-bottom: 2rem;">
+            <label class="form-label">Discipline di interesse</label>
+            <div class="chip-group" id="chips-discipline">
+              <span class="chip" data-value="naturopatia">Naturopatia</span>
+              <span class="chip" data-value="riflessologia">Riflessologia</span>
+              <span class="chip" data-value="floriterapia">Floriterapia</span>
+              <span class="chip" data-value="fitoterapia">Fitoterapia</span>
+              <span class="chip" data-value="massaggio">Massaggio olistico</span>
+              <span class="chip" data-value="mtc">Medicina Tradizionale Cinese</span>
+              <span class="chip" data-value="croce_maya">Croce Maya</span>
+              <span class="chip" data-value="idroterapia">Idroterapia</span>
+              <span class="chip" data-value="non_so">Non lo so ancora</span>
             </div>
-            <div>
-              <label class="form-label" for="f-ora-nascita">Ora di nascita</label>
-              <input type="time" id="f-ora-nascita" name="ora_nascita" class="form-input" placeholder="HH:MM">
-              <span class="form-help">Facoltativa, ma consigliata se la conosci</span>
+            <span class="form-help">Selezione multipla. Tocca per attivare/disattivare.</span>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <label class="form-label">Sede preferita</label>
+            <div class="radio-card-group">
+              <label class="radio-card" data-radio="trento">
+                <input type="radio" name="sede" value="trento">
+                <div class="rc-title">Trento</div>
+                <div class="rc-sub">Vicolo Contrada Tedesca 9</div>
+              </label>
+              <label class="radio-card" data-radio="val_di_sole">
+                <input type="radio" name="sede" value="val_di_sole">
+                <div class="rc-title">Val di Sole</div>
+                <div class="rc-sub">Trentino · Su appuntamento</div>
+              </label>
+              <label class="radio-card" data-radio="indifferente">
+                <input type="radio" name="sede" value="indifferente">
+                <div class="rc-title">Indifferente</div>
+                <div class="rc-sub">Decidiamo insieme</div>
+              </label>
             </div>
           </div>
 
           <div>
-            <label class="form-label" for="f-luogo-nascita">Luogo di nascita</label>
-            <input type="text" id="f-luogo-nascita" name="luogo_nascita" maxlength="200" class="form-input" placeholder="Es. Trento, Italia">
-            <span class="form-help">Città e nazione</span>
-          </div>
-
-          <div class="info-box" style="margin-top: 2rem;">
-            <div class="info-title">Una nota</div>
-            <p class="info-text">
-              Se non sei sicuro dell'ora esatta, lascia il campo vuoto: la lettura
-              si basa principalmente sulla data, l'ora arricchisce ma non è indispensabile.
-              Per il luogo va bene anche solo la città.
-            </p>
+            <label class="form-label" for="f-segnalato">Come ci siamo conosciuti?</label>
+            <select id="f-segnalato" name="segnalato_da" class="form-input">
+              <option value="">Seleziona (facoltativo)</option>
+              <option value="passaparola">Passaparola</option>
+              <option value="instagram">Instagram</option>
+              <option value="facebook">Facebook</option>
+              <option value="google">Ricerca Google</option>
+              <option value="rubrica_unsertirol24">Rubrica UnserTirol24</option>
+              <option value="evento">A un evento o corso</option>
+              <option value="altro">Altro</option>
+            </select>
           </div>
 
           <div class="wizard-nav">
@@ -353,23 +403,76 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         </div>
       </div>
 
-      <!-- ════════ STEP 4 · Intenzione + consenso ════════ -->
+      <!-- ════════ STEP 4 · Il tuo benessere oggi ════════ -->
       <div class="wizard-step" data-step="4">
         <div class="step-card step-content">
-          <div class="step-label"><span class="step-counter">04 ·</span>Intenzione e consensi</div>
+          <div class="step-label"><span class="step-counter">04 ·</span>Il tuo benessere oggi</div>
           <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
-            La tua <span class="display-italic">domanda</span>
+            Cosa ti porta <span class="display-italic">qui</span>?
           </h2>
           <p class="text-charcoal-soft" style="margin-bottom: 2rem;">
-            Qual è l'intenzione con cui ti avvicini a questa lettura?
+            Raccontami liberamente. Se preferisci, puoi essere breve e approfondire all'incontro.
+          </p>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label class="form-label" for="f-motivazione">Cosa ti porta qui?</label>
+            <textarea id="f-motivazione" name="motivazione" rows="4" maxlength="2000" class="form-input"
+              placeholder="Due righe, oppure un racconto più lungo. Come preferisci."></textarea>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label class="form-label">Aree su cui ti piacerebbe lavorare</label>
+            <div class="chip-group" id="chips-aree">
+              <span class="chip" data-value="stress_ansia">Stress / Ansia</span>
+              <span class="chip" data-value="sonno">Sonno</span>
+              <span class="chip" data-value="energia">Energia</span>
+              <span class="chip" data-value="digestione">Digestione</span>
+              <span class="chip" data-value="muscoloscheletrico">Dolori muscoloscheletrici</span>
+              <span class="chip" data-value="emozioni">Cambiamenti emotivi</span>
+              <span class="chip" data-value="stagionalita">Stagionalità</span>
+              <span class="chip" data-value="crescita">Crescita personale</span>
+              <span class="chip" data-value="altro">Altro</span>
+            </div>
+            <span class="form-help">Selezione multipla, opzionale.</span>
+          </div>
+
+          <div>
+            <label class="form-label" for="f-percorsi">Hai già fatto percorsi simili in passato?</label>
+            <textarea id="f-percorsi" name="percorsi_simili_passato" rows="3" maxlength="1000" class="form-input"
+              placeholder="Es. Sì, ho seguito un percorso di floriterapia 2 anni fa / No, mai"></textarea>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn-ghost" data-action="prev">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+              Indietro
+            </button>
+            <button type="button" class="btn-primary" data-action="next">
+              Avanti
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 5 · Note + consenso ════════ -->
+      <div class="wizard-step" data-step="5">
+        <div class="step-card step-content">
+          <div class="step-label"><span class="step-counter">05 ·</span>Ultimo passo</div>
+          <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 0.5rem;">
+            <span class="display-italic">Note</span> e consensi
+          </h2>
+          <p class="text-charcoal-soft" style="margin-bottom: 2rem;">
+            Qualcosa di importante che dovrei sapere prima del nostro incontro?
           </p>
 
           <div style="margin-bottom: 2rem;">
-            <label class="form-label" for="f-intenzione">La tua intenzione</label>
-            <textarea id="f-intenzione" name="intenzione" rows="5" maxlength="2000" class="form-input"
-              placeholder="Racconta liberamente. Può essere una domanda precisa, un momento di passaggio che stai vivendo, una curiosità, o semplicemente il desiderio di conoscerti meglio."></textarea>
+            <label class="form-label" for="f-note">Note importanti per il naturopata</label>
+            <textarea id="f-note" name="note_importanti" rows="4" maxlength="2000" class="form-input"
+              placeholder="Es. patologie diagnosticate, terapie farmacologiche in corso, gravidanza, allergie, situazioni particolari che vuoi io sappia in anticipo..."></textarea>
             <span class="form-help">
-              Facoltativo ma prezioso: mi aiuta a calibrare la lettura sul tuo presente.
+              Per garantirti la massima sicurezza, segnala qui patologie, terapie in corso, gravidanza
+              o condizioni particolari. Resta tutto riservato.
             </span>
           </div>
 
@@ -381,20 +484,28 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
                 <strong>Privacy · obbligatorio *</strong>
                 Ho letto l'<a href="privacy-policy.html" target="_blank" style="text-decoration: underline; color: var(--petrol, #1B3A3E);">Informativa Privacy</a>
                 e acconsento al trattamento dei miei dati personali ai sensi del Regolamento UE 2016/679 (GDPR)
-                per la finalità di preparare e inviarmi la lettura della Croce Maya. I dati sono conservati
-                fino a 12 mesi dall'ultimo contatto, non condivisi con terzi a fini commerciali.
+                per la finalità di rispondere alla mia richiesta. I dati sono conservati fino a 12 mesi
+                dall'ultimo contatto, non condivisi con terzi a fini commerciali.
               </label>
             </div>
 
             <div class="consent-block">
-              <input type="checkbox" id="c-modello" name="accettato_modello_pdf" required>
-              <label for="c-modello">
-                <strong>Modello di consegna · obbligatorio *</strong>
-                Comprendo che la consegna è <strong>solo digitale</strong> (PDF via email),
-                che i tempi di preparazione sono <strong>2-3 settimane</strong> e che non sono
-                previste sedute di restituzione dal vivo o online. Dopo aver inviato la richiesta,
-                Cristian mi contatterà entro 3 giorni per accordarsi sul contributo prima di
-                iniziare la preparazione.
+              <input type="checkbox" id="c-salute" name="consenso_dati_salute" required>
+              <label for="c-salute">
+                <strong>Dati relativi alla salute · obbligatorio *</strong>
+                Acconsento al trattamento dei miei dati relativi alla salute (categorie particolari ex art. 9 GDPR)
+                per le finalità di consulenza naturopatica. I dati sono trattati con misure di sicurezza adeguate
+                e accessibili solo a Cristian Bresadola.
+              </label>
+            </div>
+
+            <div class="consent-block">
+              <input type="checkbox" id="c-medico" name="consenso_disclaimer_medico" required>
+              <label for="c-medico">
+                <strong>Ruolo del naturopata · obbligatorio *</strong>
+                Comprendo che la naturopatia in Italia non è una professione sanitaria regolamentata,
+                che il naturopata non diagnostica patologie, non prescrive farmaci e che le sue
+                indicazioni di benessere non sostituiscono il parere del medico curante.
               </label>
             </div>
 
@@ -406,7 +517,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
               Indietro
             </button>
             <button type="submit" id="btnSubmit" class="btn-primary">
-              Invia la richiesta
+              Invia la scheda
               <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
           </div>
@@ -421,11 +532,11 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
             <path d="M20 32l8 8 16-16"/>
           </svg>
           <h2 class="display-title" style="font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--petrol, #1B3A3E); margin-bottom: 1rem;">
-            <span class="display-italic">Grazie</span>, ho ricevuto la tua richiesta
+            <span class="display-italic">Grazie</span>, ho ricevuto la tua scheda
           </h2>
           <p style="font-size: 1.05rem; color: var(--charcoal-soft, #4A4A4A); line-height: 1.7; max-width: 36rem; margin: 0 auto 2rem;">
-            Entro 3 giorni ti contatto via email per concordare il contributo.
-            Dopo la conferma inizio la preparazione e ti consegno il PDF entro 2-3 settimane.
+            Ti ricontatto entro 48 ore lavorative all'email che mi hai indicato per fissare insieme
+            il nostro primo incontro.
           </p>
           <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 0.95rem; color: var(--twilight, #6B8AA8);">
             In Lak'ech · A Lak'en ·
@@ -464,6 +575,9 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   </div>
 </section>
 
+<!-- ════════════════════════════════════════════════════════
+     JAVASCRIPT WIZARD
+═══════════════════════════════════════════════════════════ -->
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
 (function() {
@@ -471,12 +585,18 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 
   const SUPABASE_URL = 'https://okasxfvoyihovohlaypz.supabase.co';
   const SUPABASE_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
-  const TOTAL_STEPS = 4;
+  const TOTAL_STEPS = 5;
 
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   const form = document.getElementById('wizardForm');
   const stepPills = document.querySelectorAll('.steps-bar .step-pill');
   let currentStep = 1;
+
+  const formData = {
+    discipline_interesse: [],
+    aree_lavoro: [],
+    sede_preferita: null
+  };
 
   function showStep(step) {
     document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('is-active'));
@@ -511,24 +631,11 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
       });
       return valid;
     }
-    if (step === 3) {
-      const input = form.querySelector('[name="data_nascita"]');
-      const errorEl = form.querySelector('[data-error-for="data_nascita"]');
-      if (!input.value) {
-        if (errorEl) errorEl.classList.add('show');
-        input.style.borderColor = 'var(--salt-glow, #E59856)';
-        return false;
-      } else {
-        if (errorEl) errorEl.classList.remove('show');
-        input.style.borderColor = '';
-      }
-      return true;
-    }
-    if (step === 4) {
-      const required = ['c-privacy', 'c-modello'];
+    if (step === 5) {
+      const required = ['c-privacy', 'c-salute', 'c-medico'];
       const allChecked = required.every(id => document.getElementById(id).checked);
       if (!allChecked) {
-        alert('Per inviare la richiesta devi accettare entrambi i consensi obbligatori.');
+        alert('Per inviare la scheda devi accettare tutti e tre i consensi obbligatori.');
         return false;
       }
       return true;
@@ -546,39 +653,67 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
     } else if (action === 'prev') {
       if (currentStep > 1) { currentStep--; showStep(currentStep); }
     } else if (action === 'retry') {
-      currentStep = 4; showStep(4);
+      currentStep = 5; showStep(5);
     }
+  });
+
+  function setupChipGroup(containerId, dataKey) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      const value = chip.dataset.value;
+      const idx = formData[dataKey].indexOf(value);
+      if (idx >= 0) {
+        formData[dataKey].splice(idx, 1);
+        chip.classList.remove('selected');
+      } else {
+        formData[dataKey].push(value);
+        chip.classList.add('selected');
+      }
+    });
+  }
+  setupChipGroup('chips-discipline', 'discipline_interesse');
+  setupChipGroup('chips-aree', 'aree_lavoro');
+
+  document.querySelectorAll('.radio-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      const radio = card.querySelector('input[type="radio"]');
+      radio.checked = true;
+      formData.sede_preferita = radio.value;
+    });
   });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!validateStep(4)) return;
+    if (!validateStep(5)) return;
 
     const submitBtn = document.getElementById('btnSubmit');
     submitBtn.classList.add('btn-loading');
     submitBtn.textContent = 'Invio in corso...';
 
     const fd = new FormData(form);
-
-    const datiSpecifici = {
-      ora_nascita: fd.get('ora_nascita') || null,
-      intenzione: (fd.get('intenzione') || '').trim() || null,
-      accettato_modello_pdf: !!document.getElementById('c-modello').checked
-    };
-
     const payload = {
-      tipo_richiesta: 'croce_maya',
+      tipo_richiesta: 'primo_contatto',
       nome: (fd.get('nome') || '').trim(),
       cognome: (fd.get('cognome') || '').trim(),
       email: (fd.get('email') || '').trim().toLowerCase(),
       telefono: (fd.get('telefono') || '').trim() || null,
-      data_nascita: fd.get('data_nascita') || null,
-      luogo_nascita: (fd.get('luogo_nascita') || '').trim() || null,
-      motivazione: (fd.get('intenzione') || '').trim() || null,
-      dati_specifici: datiSpecifici,
+      citta: (fd.get('citta') || '').trim() || null,
+      professione: (fd.get('professione') || '').trim() || null,
+      discipline_interesse: formData.discipline_interesse.length > 0 ? formData.discipline_interesse : null,
+      sede_preferita: formData.sede_preferita,
+      motivazione: (fd.get('motivazione') || '').trim() || null,
+      aree_lavoro: formData.aree_lavoro.length > 0 ? formData.aree_lavoro : null,
+      percorsi_simili_passato: (fd.get('percorsi_simili_passato') || '').trim() || null,
+      note_importanti: (fd.get('note_importanti') || '').trim() || null,
+      segnalato_da: fd.get('segnalato_da') || null,
       consenso_privacy: !!document.getElementById('c-privacy').checked,
-      consenso_dati_salute: true,
-      consenso_disclaimer_medico: true,
+      consenso_dati_salute: !!document.getElementById('c-salute').checked,
+      consenso_disclaimer_medico: !!document.getElementById('c-medico').checked,
       user_agent: navigator.userAgent,
       referrer: document.referrer || null,
       status: 'nuova'
@@ -586,15 +721,20 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 
     try {
       const { data, error } = await supabase.rpc('invia_richiesta_pubblica', {
-        p_tipo_richiesta: 'croce_maya',
+        p_tipo_richiesta: 'primo_contatto',
         p_nome: payload.nome,
         p_cognome: payload.cognome,
         p_email: payload.email,
         p_telefono: payload.telefono,
-        p_data_nascita: payload.data_nascita,
-        p_luogo_nascita: payload.luogo_nascita,
+        p_professione: payload.professione,
+        p_citta: payload.citta,
+        p_discipline_interesse: payload.discipline_interesse,
+        p_sede_preferita: payload.sede_preferita,
         p_motivazione: payload.motivazione,
-        p_dati_specifici: payload.dati_specifici,
+        p_aree_lavoro: payload.aree_lavoro,
+        p_percorsi_simili_passato: payload.percorsi_simili_passato,
+        p_note_importanti: payload.note_importanti,
+        p_segnalato_da: payload.segnalato_da,
         p_consenso_privacy: payload.consenso_privacy,
         p_consenso_dati_salute: payload.consenso_dati_salute,
         p_consenso_disclaimer_medico: payload.consenso_disclaimer_medico,
@@ -605,10 +745,10 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
       const richiestaId = data && data.id ? data.id : null;
       showStep('success');
       if (window.dataLayer) {
-        window.dataLayer.push({ event: 'croce_maya_richiesta', richiesta_id: richiestaId });
+        window.dataLayer.push({ event: 'primo_contatto_inviato', richiesta_id: richiestaId });
       }
     } catch (err) {
-      console.error('Errore invio richiesta Croce Maya:', err);
+      console.error('Errore invio richiesta primo contatto:', err);
       const errEl = document.getElementById('errorMessage');
       if (errEl && err.message) {
         errEl.textContent = err.message + ' Riprova o contattami direttamente.';
@@ -616,7 +756,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
       showStep('error');
     } finally {
       submitBtn.classList.remove('btn-loading');
-      submitBtn.innerHTML = 'Invia la richiesta <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+      submitBtn.innerHTML = 'Invia la scheda <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
     }
   });
 })();

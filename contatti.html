@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contatti · Cristian Bresadola — Prenotazioni e informazioni</title>
-<meta name="description" content="Contatta Cristian Bresadola per un primo contatto, informazioni sui corsi o richieste di consulenza. Tel/WhatsApp +39 339 638 3790, email info@cristianbresadola.com.">
+<title>Chi sono · Cristian Bresadola — Percorso e formazione</title>
+<meta name="description" content="Cristian Bresadola: naturopata diplomato all'Accademia Ildegarda, riflessologo, presidente di Punto Riflesso. Percorso formativo in naturopatia, riflessologia, MTC, psicogenealogia.">
 
 <!-- SEO META -->
-<link rel="canonical" href="https://cristianbresadola.com/contatti.html">
+<link rel="canonical" href="https://cristianbresadola.com/chi-sono.html">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Cristian Bresadola">
 <meta name="theme-color" content="#1B3A3E">
@@ -23,12 +23,12 @@
 <link rel="manifest" href="/favicons/site.webmanifest">
 
 <!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
-<meta property="og:type" content="website">
+<meta property="og:type" content="profile">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Contatti · Cristian Bresadola — Prenotazioni e informazioni">
-<meta property="og:description" content="Contatta Cristian Bresadola per un primo contatto, informazioni sui corsi o richieste di consulenza. Tel/WhatsApp +39 339 638 3790, email info@cristianbresadola.com.">
-<meta property="og:url" content="https://cristianbresadola.com/contatti.html">
+<meta property="og:title" content="Chi sono · Cristian Bresadola — Percorso e formazione">
+<meta property="og:description" content="Cristian Bresadola: naturopata diplomato all'Accademia Ildegarda, riflessologo, presidente di Punto Riflesso. Percorso formativo in naturopatia, riflessologia, MTC, psicogenealogia.">
+<meta property="og:url" content="https://cristianbresadola.com/chi-sono.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -38,84 +38,225 @@
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contatti · Cristian Bresadola — Prenotazioni e informazioni">
-<meta name="twitter:description" content="Contatta Cristian Bresadola per un primo contatto, informazioni sui corsi o richieste di consulenza. Tel/WhatsApp +39 339 638 3790, email info@cristianbresadola.com.">
+<meta name="twitter:title" content="Chi sono · Cristian Bresadola — Percorso e formazione">
+<meta name="twitter:description" content="Cristian Bresadola: naturopata diplomato all'Accademia Ildegarda, riflessologo, presidente di Punto Riflesso. Percorso formativo in naturopatia, riflessologia, MTC, psicogenealogia.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
+
 <style>
-  .form-input {
+  :root {
+    --ivory: #EEF3F6;
+    --ivory-warm: #C9DCE5;
+    --frost: #DBE7EC;
+    --twilight: #6B8AA8;
+    --petrol: #1B3A3E;
+    --petrol-dark: #12282B;
+    --chrome-blue: #2A3166;
+    --chrome-blue-soft: #454B85;
+    --forest: #2D5139;
+    --forest-soft: #3F6B4D;
+    --salt-glow: #E59856;
+    --charcoal: #2A2A2A;
+    --charcoal-soft: #4A4A4A;
+    --sage: #8A9B86;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
     background: var(--ivory);
-    border: 1px solid rgba(27, 58, 62, 0.15);
-    padding: 0.9rem 1rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
     color: var(--charcoal);
-    width: 100%;
-    transition: border-color 0.3s ease;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
-  .form-input:focus {
-    outline: none;
-    border-color: var(--petrol);
-    background: white;
+
+  .font-display { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+  .display-title { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; }
+  .display-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
+
+  .paper-bg {
+    background: var(--ivory);
+    background-image: radial-gradient(circle at 1px 1px, rgba(42, 42, 42, 0.03) 1px, transparent 0);
+    background-size: 24px 24px;
   }
-  .form-label {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.85rem;
+
+  .bg-petrol { background: var(--petrol); }
+  .bg-petrol-dark { background: var(--petrol-dark); }
+  .bg-chrome { background: var(--chrome-blue); }
+  .bg-forest { background: var(--forest); }
+  .bg-frost { background: var(--frost); }
+  .bg-twilight { background: var(--twilight); }
+  .bg-ivory { background: var(--ivory); }
+  .bg-ivory-warm { background: var(--ivory-warm); }
+
+  .text-petrol { color: var(--petrol); }
+  .text-ivory { color: var(--ivory); }
+  .text-charcoal { color: var(--charcoal); }
+  .text-charcoal-soft { color: var(--charcoal-soft); }
+  .text-salt { color: var(--salt-glow); }
+  .text-sage { color: var(--sage); }
+  .text-forest { color: var(--forest); }
+  .text-twilight { color: var(--twilight); }
+
+  .link-underline { position: relative; display: inline-block; }
+  .link-underline::after {
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 100%; height: 1px; background: currentColor;
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.4s ease;
+  }
+  .link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+  .link-underline.active::after { transform: scaleX(1); }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--petrol); color: var(--ivory);
+    padding: 0.9rem 1.75rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+    letter-spacing: 0.02em; border: 1px solid var(--petrol);
+    transition: all 0.3s ease; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--petrol-dark); transform: translateY(-1px); }
+  .btn-primary .arrow { transition: transform 0.3s ease; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: transparent; color: var(--petrol);
+    padding: 0.9rem 1.75rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+    letter-spacing: 0.02em; border: 1px solid var(--petrol);
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover { background: var(--petrol); color: var(--ivory); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
     color: var(--petrol);
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
+    letter-spacing: 0.02em; transition: all 0.3s ease;
+  }
+  .btn-ghost:hover { color: var(--charcoal); }
+  .btn-ghost .arrow { transition: transform 0.3s ease; }
+  .btn-ghost:hover .arrow { transform: translateX(3px); }
+
+  .on-dark .btn-primary { background: var(--ivory); color: var(--petrol); border-color: var(--ivory); }
+  .on-dark .btn-primary:hover { background: var(--salt-glow); color: var(--petrol-dark); border-color: var(--salt-glow); }
+  .on-dark .btn-secondary { color: var(--ivory); border-color: var(--ivory); }
+  .on-dark .btn-secondary:hover { background: var(--ivory); color: var(--petrol); }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+  }
+
+  .separator-line { width: 60px; height: 1px; background: var(--petrol); }
+  .on-dark .separator-line { background: var(--ivory); }
+
+  nav.main-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(219, 231, 236, 0.82);
+    border-bottom: 1px solid rgba(42, 49, 102, 0.12);
+  }
+
+  .image-frame { position: relative; overflow: hidden; }
+  .image-frame::after {
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid rgba(245, 238, 223, 0.3);
+    pointer-events: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: fadeUp 0.9s ease-out both; }
+  .reveal-1 { animation-delay: 0.1s; }
+  .reveal-2 { animation-delay: 0.25s; }
+  .reveal-3 { animation-delay: 0.4s; }
+
+  @keyframes slowFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .slow-float { animation: slowFloat 6s ease-in-out infinite; }
+
+  .section-number {
+    font-family: 'Fraunces', serif;
+    font-style: italic; font-weight: 300;
+    font-size: 0.9rem; opacity: 0.5;
+  }
+
+  /* Timeline styling */
+  .timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    padding-bottom: 3.5rem;
+    border-left: 1px solid rgba(27, 58, 62, 0.15);
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0.3rem;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--petrol);
+    border: 2px solid var(--ivory);
+  }
+  .timeline-item.highlight::before { background: var(--salt-glow); }
+
+  .timeline-year {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    color: var(--charcoal-soft);
     margin-bottom: 0.5rem;
     display: block;
   }
-</style>
 
-<!-- STRUCTURED DATA - ContactPage + LocalBusiness reference -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Contatti · Cristian Bresadola Naturopata",
-  "url": "https://cristianbresadola.com/contatti.html",
-  "mainEntity": {
-    "@type": "HealthAndBeautyBusiness",
-    "@id": "https://cristianbresadola.com/#business",
-    "name": "Cristian Bresadola — Naturopata",
-    "telephone": "+39-339-638-3790",
-    "email": "info@cristianbresadola.com",
-    "url": "https://cristianbresadola.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Vicolo della Contrada Tedesca 9",
-      "addressLocality": "Trento",
-      "addressRegion": "TN",
-      "postalCode": "38122",
-      "addressCountry": "IT"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "21",
-      "bestRating": "5"
-    },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Wednesday",
-      "opens": "16:00",
-      "closes": "21:00"
-    }],
-    "sameAs": [
-      "https://share.google/Mw3aDYG9f26zGl0BX",
-      "https://www.instagram.com/cristian_bresadola/",
-      "https://www.facebook.com/cristian.bresadola"
-    ]
+  .big-quote-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 8rem;
+    line-height: 0.5;
+    color: var(--salt-glow);
+    opacity: 0.8;
   }
-}
-</script>
+
+  .social-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(245, 238, 223, 0.3);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .social-icon:hover {
+    background: var(--ivory); color: var(--petrol); border-color: var(--ivory);
+  }
+
+  .mobile-menu { display: none; }
+  .mobile-menu.open { display: block; }
+
+  @media (max-width: 768px) {
+    .display-title { letter-spacing: -0.02em; }
+    .big-quote-mark { font-size: 5rem; }
+  }
+</style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
 </head>
@@ -285,312 +426,453 @@
 })();
 </script>
 
-<!-- HERO -->
-<section class="pt-32 pb-16 lg:pt-40 lg:pb-20">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="eyebrow text-petrol mb-6">— Contatti</div>
-    <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8 max-w-4xl">
-      <span class="display-italic">Parliamone.</span>
-    </h1>
-    <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
-      Ci sono più modi per raggiungermi. Per una prima chiacchierata o per una domanda rapida <strong class="text-petrol font-medium">WhatsApp</strong> è il canale più veloce. Per richieste più articolate preferisco <strong class="text-petrol font-medium">l'email o il modulo qui sotto</strong>. Se preferisci, puoi anche chiamarmi direttamente.
-    </p>
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+  
+  <div class="absolute -top-20 -left-40 opacity-[0.04] pointer-events-none slow-float">
+    <img src="./images/logo.jpg" alt="" class="w-[500px] h-[500px] rounded-full">
   </div>
-</section>
 
-<!-- CANALI DI CONTATTO -->
-<section class="py-16 bg-frost">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
       
-      <a href="https://calendar.app.google/TfHZvNmBCscrPou58" target="_blank" rel="noopener" class="bg-petrol text-ivory p-7 group transition-all hover:-translate-y-1 hover:shadow-lg">
-        <div class="w-10 h-10 mb-5 text-salt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <div class="eyebrow text-salt mb-2">Consigliato</div>
-        <h3 class="font-display text-xl mb-2">Prenota direttamente</h3>
-        <p class="text-sm opacity-80 mb-4">Calendario con gli slot liberi, scegli tu.</p>
-        <span class="text-xs uppercase tracking-wider group-hover:translate-x-1 transition inline-flex items-center gap-2">Apri il calendario →</span>
-      </a>
+      <div class="lg:col-span-6 reveal reveal-1">
+        <div class="eyebrow text-petrol mb-6">Presentazione</div>
+        
+        <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8">
+          Chi <span class="display-italic text-salt">sono.</span>
+        </h1>
 
-      <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="bg-ivory p-7 group transition-all hover:-translate-y-1 hover:shadow-lg">
-        <div class="w-10 h-10 mb-5 text-forest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.6.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.4 5L2 22l5-1.4c1.5.8 3.2 1.2 5 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></div>
-        <div class="eyebrow text-forest mb-2">Rapido</div>
-        <h3 class="font-display text-xl text-petrol mb-2">WhatsApp</h3>
-        <p class="text-sm text-charcoal-soft mb-4">+39 339 638 3790</p>
-        <span class="text-xs uppercase tracking-wider text-petrol group-hover:translate-x-1 transition inline-flex items-center gap-2">Scrivimi →</span>
-      </a>
+        <p class="text-lg text-charcoal-soft max-w-xl mb-6 leading-relaxed">
+          Sono <strong class="text-petrol font-medium">Cristian Bresadola</strong>. Naturopata iscritto al Registro ASPIN, riflessologo, fondatore di Punto Riflesso.
+        </p>
+        <p class="text-base text-charcoal-soft max-w-xl leading-relaxed">
+          Lavoro con le persone partendo da una convinzione semplice: <em class="text-petrol not-italic">la struttura viene prima del sintomo</em>. Prima di proporre una strategia, cerco di capire cosa c'è alla base — nel corpo, nella storia, nelle modalità ricorrenti.
+        </p>
 
-      <a href="tel:+393396383790" class="bg-ivory p-7 group transition-all hover:-translate-y-1 hover:shadow-lg">
-        <div class="w-10 h-10 mb-5 text-petrol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
-        <div class="eyebrow text-petrol mb-2">Voce</div>
-        <h3 class="font-display text-xl text-petrol mb-2">Telefono</h3>
-        <p class="text-sm text-charcoal-soft mb-4">+39 339 638 3790</p>
-        <span class="text-xs uppercase tracking-wider text-petrol group-hover:translate-x-1 transition inline-flex items-center gap-2">Chiamami →</span>
-      </a>
+        <div class="mt-10 pt-8 border-t border-petrol/15 flex flex-wrap gap-x-10 gap-y-4 items-center text-xs text-charcoal-soft">
+          <div>
+            <span class="eyebrow block text-petrol mb-1">Iscrizione</span>
+            <span class="font-medium">ASPIN · TN-1230-NA-P</span>
+          </div>
+          <div>
+            <span class="eyebrow block text-petrol mb-1">Dal 2022</span>
+            <span class="font-medium">Fondatore Punto Riflesso</span>
+          </div>
+          <div>
+            <span class="eyebrow block text-petrol mb-1">Collabora</span>
+            <span class="font-medium">UnserTirol24</span>
+          </div>
+        </div>
+      </div>
 
-      <a href="mailto:info@cristianbresadola.com" class="bg-ivory p-7 group transition-all hover:-translate-y-1 hover:shadow-lg">
-        <div class="w-10 h-10 mb-5 text-petrol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></div>
-        <div class="eyebrow text-petrol mb-2">Più articolato</div>
-        <h3 class="font-display text-xl text-petrol mb-2">Email</h3>
-        <p class="text-sm text-charcoal-soft mb-4 break-all">info@cristianbresadola.com</p>
-        <span class="text-xs uppercase tracking-wider text-petrol group-hover:translate-x-1 transition inline-flex items-center gap-2">Scrivimi →</span>
-      </a>
+      <div class="lg:col-span-6 reveal reveal-2">
+        <div class="relative">
+          <div class="image-frame aspect-[4/5] rounded-sm overflow-hidden bg-petrol/5">
+            <img src="./images/hero-cristian.jpg" alt="Cristian Bresadola" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════ CTA PRIMO CONTATTO (NUOVO MODULO GUIDATO) ═══════ -->
-<section class="py-20 lg:py-28 bg-petrol text-ivory on-dark">
-  <div class="max-w-5xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <div class="eyebrow text-salt mb-6">— Per iniziare un percorso</div>
-        <h2 class="display-title text-4xl md:text-5xl mb-6">
-          Compila la <span class="display-italic">scheda guidata</span>.
-        </h2>
-        <p class="opacity-85 leading-relaxed text-lg mb-4">
-          Cinque passi per raccontarmi chi sei e cosa cerchi. Mi serve a prepararmi per il nostro
-          primo incontro così arriviamo al colloquio con un quadro chiaro.
-        </p>
-        <p class="opacity-70 text-sm">
-          Riservata, gratuita, richiede 5–7 minuti.
-        </p>
-      </div>
-      <div class="text-center lg:text-right">
-        <a href="primo-contatto.html" class="btn-primary inline-flex">
-          Inizia la scheda
-          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <p class="text-xs opacity-60 mt-4">Per intenzioni di percorso più strutturate</p>
-      </div>
+<!-- ═══════════════════════════════════════════════
+     FILOSOFIA DI LAVORO
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-36 bg-petrol-dark text-ivory on-dark relative overflow-hidden">
+  
+  <!-- Stelle decorative sullo sfondo -->
+  <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 20% 30%, white 1px, transparent 1px), radial-gradient(circle at 70% 60%, white 1px, transparent 1px), radial-gradient(circle at 40% 80%, white 1px, transparent 1px), radial-gradient(circle at 85% 20%, white 1px, transparent 1px); background-size: 400px 400px;"></div>
+
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 relative">
+    
+    <div class="flex items-center gap-4 mb-10 justify-center">
+      <span class="eyebrow text-salt">La filosofia di lavoro</span>
     </div>
+
+    <div class="big-quote-mark mb-4 text-center">"</div>
+
+    <blockquote class="font-display text-2xl md:text-3xl lg:text-[2.25rem] leading-snug italic text-center mb-10">
+      La prima cosa che faccio, quando una persona entra in studio, è <span class="text-salt">osservare</span>. Osservare il corpo: ciò che dice prima delle parole.
+    </blockquote>
+
+    <div class="max-w-3xl mx-auto space-y-6 text-ivory/80 leading-relaxed text-lg">
+      <p>
+        Cerco di essere autentico, vero, trasparente. Non do false speranze. Metto a disposizione le competenze che ho per accompagnare i <strong class="text-ivory font-medium">processi naturali di riequilibrio</strong> della persona — quello che il corpo sa già fare, quando trova le condizioni giuste.
+      </p>
+      <p>
+        Quello che spero resti, quando una persona esce da qui, è la piacevolezza di essersi presa del tempo di cura. L'attenzione al proprio benessere come scelta consapevole.
+      </p>
+    </div>
+
+    <div class="flex justify-center mt-12">
+      <div class="separator-line"></div>
+    </div>
+
+    <p class="text-center mt-6 text-xs uppercase tracking-[0.3em] opacity-50">— Cristian Bresadola</p>
+
   </div>
 </section>
 
-<!-- FORM CONTATTI -->
-<section class="py-20 lg:py-28 bg-ivory">
+<!-- ═══════════════════════════════════════════════
+     IL PERCORSO (TIMELINE)
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-ivory">
   <div class="max-w-6xl mx-auto px-6 lg:px-12">
+    
+    <div class="grid lg:grid-cols-12 gap-12 mb-16">
+      <div class="lg:col-span-6">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-petrol">Il percorso</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
+          Un cammino<br>
+          <span class="display-italic">non lineare.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-6 lg:pt-16">
+        <p class="text-charcoal-soft leading-relaxed">
+          Il mio interesse per le discipline olistiche nasce molti anni fa, da esperienze personali che si sono progressivamente trasformate in ricerca e poi in professione. Queste sono le tappe fondamentali del mio percorso formativo.
+        </p>
+      </div>
+    </div>
+
     <div class="grid lg:grid-cols-12 gap-12">
       
-      <div class="lg:col-span-5">
-        <div class="eyebrow text-petrol mb-6">— Hai una domanda veloce?</div>
-        <h2 class="display-title text-4xl text-petrol mb-6">
-          Oppure <span class="display-italic">scrivimi qui.</span>
-        </h2>
-        <p class="text-charcoal-soft leading-relaxed mb-8">
-          Compila il modulo e ti rispondo personalmente, di solito entro 24–48 ore. Per richieste urgenti usa WhatsApp o telefono.
-        </p>
-        <div class="space-y-4 text-sm">
-          <div class="flex gap-3 items-start"><span class="text-salt">◆</span><span class="text-charcoal-soft">I tuoi dati sono trattati solo per risponderti e non vengono condivisi con terzi.</span></div>
-          <div class="flex gap-3 items-start"><span class="text-salt">◆</span><span class="text-charcoal-soft">Non invio newsletter senza averti chiesto prima.</span></div>
-        </div>
-      </div>
+      <div class="lg:col-span-10 lg:col-start-2">
 
-      <div class="lg:col-span-7">
-        <!-- Form Netlify: il name="contatto" e data-netlify="true" abilitano la raccolta submission automatica -->
-        <form name="contatto" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-5 bg-frost p-8 lg:p-10">
-          
-          <input type="hidden" name="form-name" value="contatto">
-          <p class="hidden"><label>Non compilare: <input name="bot-field"></label></p>
-          
-          <div>
-            <label class="form-label" for="nome">Nome e cognome *</label>
-            <input type="text" id="nome" name="nome" required class="form-input" placeholder="Come ti chiami">
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-5">
-            <div>
-              <label class="form-label" for="email">Email *</label>
-              <input type="email" id="email" name="email" required class="form-input" placeholder="tu@email.it">
-            </div>
-            <div>
-              <label class="form-label" for="telefono">Telefono (facoltativo)</label>
-              <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="+39 ...">
-            </div>
-          </div>
-          
-          <div>
-            <label class="form-label" for="servizio">Cosa ti interessa?</label>
-            <select id="servizio" name="servizio" class="form-input">
-              <option value="">Seleziona (facoltativo)</option>
-              <option value="colloquio">Colloquio conoscitivo</option>
-              <option value="naturopatia">Naturopatia</option>
-              <option value="riflessologia">Riflessologia plantare</option>
-              <option value="massaggio">Massaggio olistico</option>
-              <option value="idroterapia">Idroterapia e fangoterapia</option>
-              <option value="floriterapia">Floriterapia / Fiori di Bach</option>
-              <option value="fitoterapia">Fitoterapia</option>
-              <option value="croce-maya">Lettura della Croce Maya</option>
-              <option value="formazione">Corsi di Punto Riflesso</option>
-              <option value="altro">Altro</option>
-            </select>
-          </div>
-          
-          <div>
-            <label class="form-label" for="messaggio">Messaggio *</label>
-            <textarea id="messaggio" name="messaggio" required rows="6" class="form-input" placeholder="Scrivimi quello che ti serve — senza formalità"></textarea>
-          </div>
-          
-          <div class="space-y-3 pt-2 border-t border-petrol/10">
-            <div class="flex items-start gap-3 text-xs text-charcoal-soft">
-              <input type="checkbox" id="privacy" name="privacy" required class="mt-1 flex-shrink-0">
-              <label for="privacy" class="leading-relaxed">
-                <strong class="text-petrol">Privacy · obbligatorio *</strong><br>
-                Ho letto l'<a href="privacy-policy.html" target="_blank" class="underline text-chrome-blue">Informativa Privacy</a> e acconsento al trattamento dei miei dati personali ai sensi del Regolamento UE 2016/679 (GDPR) per rispondere alla mia richiesta. I dati sono conservati fino a 12 mesi dall'ultimo contatto, non vengono condivisi con terzi a fini commerciali.
-              </label>
-            </div>
-            <div class="flex items-start gap-3 text-xs text-charcoal-soft">
-              <input type="checkbox" id="marketing" name="marketing" class="mt-1 flex-shrink-0">
-              <label for="marketing" class="leading-relaxed">
-                <strong class="text-petrol">Aggiornamenti · facoltativo</strong><br>
-                Acconsento a ricevere occasionali comunicazioni professionali (aperture corsi, nuovi percorsi, articoli). Posso revocare questo consenso in ogni momento scrivendo a info@cristianbresadola.com.
-              </label>
-            </div>
-          </div>
-          
-          <button type="submit" class="btn-primary w-full justify-center">
-            Invia il messaggio
-            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-          
-          <p class="text-xs text-charcoal-soft italic pt-2">* Campi obbligatori</p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TROVACI A TRENTO - mappa + recensioni Google -->
-<section class="py-20 lg:py-28 bg-ivory">
-  <div class="max-w-6xl mx-auto px-6 lg:px-12">
-    <div class="text-center mb-12">
-      <span class="eyebrow text-petrol mb-3 inline-block">Studio di Trento</span>
-      <h2 class="display-title text-4xl md:text-5xl text-petrol">Trovaci a Trento</h2>
-    </div>
-
-    <div class="grid lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">
-      <!-- MAPPA -->
-      <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-lg ring-1 ring-petrol/10 min-h-[400px]">
-        <iframe
-          src="https://www.google.com/maps?q=Vicolo+della+Contrada+Tedesca+9+Trento&output=embed&z=16"
-          width="100%"
-          height="100%"
-          style="border:0; min-height:400px; display:block;"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Mappa dello studio di Cristian Bresadola in Vicolo della Contrada Tedesca 9 a Trento"
-          allowfullscreen></iframe>
-      </div>
-
-      <!-- BOX INFO + RECENSIONI -->
-      <div class="lg:col-span-2 flex flex-col gap-6">
-
-        <!-- Indirizzo -->
-        <div class="bg-frost rounded-2xl p-7">
-          <div class="eyebrow text-petrol mb-3">Indirizzo</div>
-          <p class="font-medium text-petrol leading-relaxed">
-            Vicolo della Contrada Tedesca 9<br>
-            38122 Trento (TN)
+        <!-- 01 Accademia Ildegarda -->
+        <div class="timeline-item highlight">
+          <span class="timeline-year">2016 — 2020</span>
+          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Naturopatia & Medicina Tradizionale Cinese</h3>
+          <p class="text-charcoal-soft leading-relaxed mb-3">
+            Diploma quadriennale in Naturopatia ad indirizzo riflessologico presso l'<strong class="text-petrol font-medium">Accademia di Naturopatia Ildegarda</strong> (Associazione Raggio di Sole), con specializzazione in Riflessologia Plantare e Medicina Tradizionale Cinese.
           </p>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Vicolo+della+Contrada+Tedesca+9+Trento" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-4 text-sm text-petrol font-medium hover:text-gold transition">
-            Ottieni indicazioni
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+          <p class="text-charcoal-soft leading-relaxed text-sm italic">
+            Nello stesso periodo (2019–2020) ho insegnato <em>Storia dell'Arte Sanitaria</em> come docente nella stessa scuola. Dal 2020 sono iscritto al Registro ASPIN dei Naturopati con Livello Professionista — codice <strong class="text-petrol font-medium not-italic">TN-1230-NA-P</strong>.
+          </p>
         </div>
 
-        <!-- Orari -->
-        <div class="bg-frost rounded-2xl p-7">
-          <div class="eyebrow text-petrol mb-3">Orari</div>
-          <p class="font-medium text-petrol">Mercoledì 16:00 – 21:00</p>
-          <p class="text-sm text-charcoal-soft mt-1 opacity-75">Solo su appuntamento</p>
+        <!-- 02 Fucinalchemica -->
+        <div class="timeline-item">
+          <span class="timeline-year">2020 — 2023</span>
+          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Psicogenealogia & Costellazioni Familiari</h3>
+          <p class="text-charcoal-soft leading-relaxed mb-3">
+            Formazione quadriennale (450 ore) in <strong class="text-petrol font-medium">Psicogenealogia e Costellazioni Familiari ad indirizzo alchemico immaginale</strong> presso Fucinalchemica, con Erica Cappelletti.
+          </p>
+          <p class="text-charcoal-soft leading-relaxed text-sm italic">
+            Parallelamente, ho lavorato come naturopata all'interno della scuola, conducendo consulenze e insegnando nei corsi di Tecnica Breuss e Tecnica Metamorfica (2019–2022).
+          </p>
         </div>
 
-        <!-- Recensioni Google -->
-        <div class="bg-petrol text-ivory rounded-2xl p-7">
-          <div class="flex items-center gap-3 mb-3">
-            <div class="text-3xl font-display" style="color:#D4A55B;">5,0</div>
-            <div class="flex gap-0.5" style="color:#D4A55B;">
-              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-            </div>
-          </div>
-          <p class="text-sm opacity-90 mb-5">21 recensioni su Google</p>
-          <div class="flex flex-col gap-3">
-            <a href="https://share.google/Mw3aDYG9f26zGl0BX" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-ivory text-petrol font-medium hover:bg-gold hover:text-petrol transition text-sm">
-              Vedi su Google
-            </a>
-            <a href="https://share.google/Mw3aDYG9f26zGl0BX" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-ivory/30 text-ivory hover:bg-ivory hover:text-petrol transition text-sm">
-              Lascia una recensione
-            </a>
+        <!-- 03 Psicologia -->
+        <div class="timeline-item">
+          <span class="timeline-year">In corso</span>
+          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Psicologia</h3>
+          <p class="text-charcoal-soft leading-relaxed">
+            Iscritto al <strong class="text-petrol font-medium">Corso di Laurea in Psicologia</strong>. La convinzione che mi muove è che il corpo e la mente non si possano leggere separatamente — un approccio olistico ha bisogno anche di fondamenta scientifiche solide.
+          </p>
+        </div>
+
+        <!-- 04 Breuss -->
+        <div class="timeline-item">
+          <span class="timeline-year">Formazione specifica</span>
+          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Massaggio Breuss</h3>
+          <p class="text-charcoal-soft leading-relaxed">
+            Formazione nel <strong class="text-petrol font-medium">massaggio Breuss con discendenza diretta dagli allievi di Rudolf Breuss</strong>. Una trasmissione continua, ininterrotta, che considero parte preziosa della mia formazione. Oggi trasmetto questa tecnica a mia volta attraverso i corsi di Punto Riflesso.
+          </p>
+        </div>
+
+        <!-- 05 Altri percorsi -->
+        <div class="timeline-item">
+          <span class="timeline-year">Altri percorsi formativi</span>
+          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-5">Il resto del bagaglio</h3>
+          <p class="text-charcoal-soft leading-relaxed mb-5">
+            Ogni percorso ha aggiunto qualcosa a come guardo le persone oggi. Di seguito i principali:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-charcoal-soft">
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Reiki</strong> (3 livelli)<br><span class="text-xs italic opacity-70">con Jilenia Adain Rodolfi</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Tecnica Metamorfica</strong> (3 livelli)</div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Tantra gestaltico</strong><br><span class="text-xs italic opacity-70">con Ornella Marini</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Sciamanesimo amazzonico</strong></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Riflessologia Antica — le 9 chiavi</strong><br><span class="text-xs italic opacity-70">con Andrea Navoni</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Idroterapia</strong><br><span class="text-xs italic opacity-70">con Corrado Tanzi</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Metamedicina</strong> (1° livello)<br><span class="text-xs italic opacity-70">con Maria Gabriella Bardelli</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Cosmologia Maya</strong><br><span class="text-xs italic opacity-70">con Marco Fardin</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Enneagramma</strong> (1° livello)<br><span class="text-xs italic opacity-70">con Stefano Graticola</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Lettura intuitiva dei Tarocchi</strong><br><span class="text-xs italic opacity-70">metodo Jodorowski con E. Cappelletti e C. Cocco</span></div></div>
           </div>
         </div>
 
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- PEC E INFO LEGALI -->
-<section class="py-16 bg-frost">
+<!-- ═══════════════════════════════════════════════
+     PUNTO RIFLESSO
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-frost">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-5 order-2 lg:order-1">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="eyebrow text-forest">Il mio metodo</span>
+        </div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-8">
+          <span class="display-italic">Fondatore</span><br>
+          di Punto Riflesso.
+        </h2>
+        <p class="text-charcoal-soft leading-relaxed mb-5">
+          Dal <strong class="text-petrol font-medium">2022</strong> sono fondatore e presidente di <strong class="text-petrol font-medium">Punto Riflesso</strong>: la realtà con cui conduco corsi, workshop e percorsi formativi sulle discipline olistiche.
+        </p>
+        <p class="text-charcoal-soft leading-relaxed mb-8">
+          Nel tempo ho sviluppato il <strong class="text-petrol font-medium">Metodo Punto Riflesso</strong>, un approccio integrato che unisce riflessologia plantare, massaggio Breuss, Medicina Tradizionale Cinese e discipline olistiche in un lavoro coerente sulla persona.
+        </p>
+
+        <div class="space-y-3 text-sm text-charcoal mb-10">
+          <div class="text-xs uppercase tracking-wider text-petrol mb-2 font-medium">Corsi attivi</div>
+          <div class="flex gap-3 items-start"><span class="text-forest mt-0.5">◆</span><span>Percorso di Riflessologia Plantare (3 livelli)</span></div>
+          <div class="flex gap-3 items-start"><span class="text-forest mt-0.5">◆</span><span>Master in Riflessologia Plantare e MTC</span></div>
+          <div class="flex gap-3 items-start"><span class="text-forest mt-0.5">◆</span><span>Tecnica Breuss</span></div>
+          <div class="flex gap-3 items-start"><span class="text-forest mt-0.5">◆</span><span>Metamorfico dell'incarnazione</span></div>
+          <div class="flex gap-3 items-start"><span class="text-forest mt-0.5">◆</span><span>Medicina Tradizionale Cinese (corso online)</span></div>
+        </div>
+
+        <a href="formazione.html" class="btn-primary">
+          Vai alla pagina Formazione
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="lg:col-span-7 order-1 lg:order-2">
+        <div class="image-frame aspect-[5/4] overflow-hidden bg-petrol/5">
+          <img src="./images/allievi.jpg" alt="Gruppo di allievi con attestati del corso di Riflessologia Plantare Punto Riflesso" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     COLLABORAZIONI
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-ivory">
   <div class="max-w-6xl mx-auto px-6 lg:px-12">
-    <div class="grid md:grid-cols-3 gap-8 text-sm">
-      <div>
-        <div class="eyebrow text-petrol mb-3">Posta certificata</div>
-        <p class="text-charcoal-soft">Per comunicazioni ufficiali:<br><a href="mailto:cristian.bresadola@pec.it" class="text-petrol font-medium">cristian.bresadola@pec.it</a></p>
+    
+    <div class="mb-14">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="eyebrow text-petrol">Collaborazioni e pubblicazioni</span>
       </div>
-      <div>
-        <div class="eyebrow text-petrol mb-3">Iscrizione ASPIN</div>
-        <p class="text-charcoal-soft">Registro dei Naturopati<br>Livello Professionista<br><strong class="text-petrol">TN-1230-NA-P</strong></p>
+      <h2 class="display-title text-4xl md:text-5xl text-petrol max-w-3xl">
+        Dove puoi <span class="display-italic">leggermi e trovarmi.</span>
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <div class="bg-frost p-8 lg:p-10">
+        <div class="eyebrow text-chrome-blue mb-5">Rubrica bilingue</div>
+        <h3 class="font-display text-2xl text-petrol mb-4">UnserTirol24 · <em class="italic">Pillole di benessere</em></h3>
+        <p class="text-charcoal-soft text-sm leading-relaxed mb-6">
+          Ogni <strong class="text-petrol font-medium">giovedì alle 18:30</strong> analizzo un disagio comune e propongo quattro strategie naturali di riequilibrio. Il formato è <strong class="text-petrol font-medium">bilingue italiano–tedesco</strong>, per raggiungere entrambe le comunità del Trentino–Alto Adige.
+        </p>
+        <a href="rubrica.html" class="btn-ghost text-xs">
+          Scopri di più sulla rubrica
+          <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
-      <div>
-        <div class="eyebrow text-petrol mb-3">Partita IVA</div>
-        <p class="text-charcoal-soft italic">In corso di attivazione.<br>Per emissione fatture richiedere i dati via email.</p>
+
+      <div class="bg-frost p-8 lg:p-10">
+        <div class="eyebrow text-chrome-blue mb-5">Serate e workshop</div>
+        <h3 class="font-display text-2xl text-petrol mb-4">Eventi divulgativi sul territorio</h3>
+        <p class="text-charcoal-soft text-sm leading-relaxed">
+          Organizzo e conduco regolarmente serate informative e workshop pubblici in varie realtà del Trentino, incluse collaborazioni con <strong class="text-petrol font-medium">Studio44</strong> a Trento. I temi ricorrenti: riflessologia, morforiflessologia, Medicina Tradizionale Cinese, lettura della Croce Maya.
+        </p>
       </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FUORI DALLO STUDIO
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-twilight text-ivory on-dark relative overflow-hidden">
+  
+  <div class="max-w-5xl mx-auto px-6 lg:px-12 relative">
+
+    <div class="flex items-center gap-4 mb-6">
+      <span class="eyebrow text-salt">Fuori dallo studio</span>
+    </div>
+
+    <h2 class="display-title text-4xl md:text-5xl mb-12 max-w-3xl">
+      Tre passioni <span class="display-italic text-salt">che si tengono insieme.</span>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+
+      <div>
+        <div class="font-display text-5xl italic text-salt mb-4">I.</div>
+        <h3 class="font-display text-xl mb-3">La montagna</h3>
+        <p class="text-sm opacity-80 leading-relaxed">
+          Vivo e ricevo in Val di Sole. La montagna è un luogo a cui appartengo — le lunghe camminate nel bosco sono un modo per stare fermo dentro.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-display text-5xl italic text-salt mb-4">II.</div>
+        <h3 class="font-display text-xl mb-3">Ricerche storico-culturali</h3>
+        <p class="text-sm opacity-80 leading-relaxed">
+          Archeologia delle tradizioni locali, simbolismi antichi, narrazioni popolari. La stessa curiosità che mi ha portato al Tzolk'in guatemalteco e alle costellazioni familiari.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-display text-5xl italic text-salt mb-4">III.</div>
+        <h3 class="font-display text-xl mb-3">Informatica</h3>
+        <p class="text-sm opacity-80 leading-relaxed">
+          Un altro grande interesse da molti anni, un modo diverso di pensare ai sistemi — come stanno insieme le cose, come si incastrano i pezzi.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-ivory/20">
+      <p class="font-display italic text-lg max-w-2xl opacity-90">
+        Sono tre strade apparentemente distanti, mosse dalla stessa curiosità: capire come stanno insieme le cose.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINALE
+═══════════════════════════════════════════════ -->
+<section class="py-24 lg:py-32 bg-petrol text-ivory on-dark relative overflow-hidden">
+  
+  <div class="absolute -right-40 top-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none">
+    <img src="./images/logo.jpg" alt="" class="w-[500px] h-[500px] rounded-full">
+  </div>
+
+  <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative">
+    <div class="flex justify-center mb-8">
+      <div class="separator-line"></div>
+    </div>
+    <h2 class="display-title text-4xl md:text-5xl lg:text-6xl mb-8">
+      Adesso <span class="display-italic text-salt">tocca a te.</span>
+    </h2>
+    <p class="text-lg opacity-80 mb-12 max-w-2xl mx-auto leading-relaxed">
+      Il primo passo è un colloquio conoscitivo. Puoi prenotare direttamente dal calendario, o scrivermi su WhatsApp se preferisci parlarne prima.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="contatti.html" class="btn-primary">
+        Prenota un colloquio
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.6.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.4 5L2 22l5-1.4c1.5.8 3.2 1.2 5 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Scrivimi su WhatsApp
+      </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
 <footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    
     <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      
       <div class="lg:col-span-4">
         <div class="flex items-center gap-3 mb-6">
           <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
-          <div><div class="font-display text-xl">Cristian Bresadola</div><div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div></div>
+          <div>
+            <div class="font-display text-xl">Cristian Bresadola</div>
+            <div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div>
+          </div>
         </div>
-        <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">Iscritto al Registro ASPIN dei Naturopati — Livello Professionista.<br>Codice <strong>TN-1230-NA-P</strong></p>
+        <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">
+          Iscritto al Registro ASPIN dei Naturopati — Livello Professionista.<br>
+          Codice <strong>TN-1230-NA-P</strong>
+        </p>
         <div class="flex gap-2">
-          <a href="https://www.instagram.com/cristian_bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
-          <a href="https://www.facebook.com/cristian.bresadola/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg></a>
-          <a href="http://www.linkedin.com/in/cristian-bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.6C6.1 8.6 5.5 8 5.5 7.1c0-.8.6-1.5 1.5-1.5s1.5.6 1.5 1.5c0 .8-.7 1.5-1.5 1.5zm11.3 9.7h-2.6v-4.6c0-1.2-.4-2-1.5-2-.8 0-1.3.5-1.5 1.1-.1.2-.1.4-.1.7v4.8h-2.6V9.7h2.6v1.1c.3-.5 1-1.3 2.5-1.3 1.8 0 3.2 1.2 3.2 3.7v5.1z"/></svg></a>
-          <a href="https://www.youtube.com/@druido_vds" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.6c-.3-1.1-1.1-1.9-2.2-2.2C18.9 5 12 5 12 5s-6.9 0-8.8.4c-1.1.3-1.9 1.1-2.2 2.2C.6 9.5.6 12 .6 12s0 2.5.4 4.4c.3 1.1 1.1 1.9 2.2 2.2 1.9.4 8.8.4 8.8.4s6.9 0 8.8-.4c1.1-.3 1.9-1.1 2.2-2.2.4-1.9.4-4.4.4-4.4s0-2.5-.4-4.4zM9.8 15.3V8.7l5.8 3.3-5.8 3.3z"/></svg></a>
+          <a href="https://www.instagram.com/cristian_bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/cristian.bresadola/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg>
+          </a>
+          <a href="http://www.linkedin.com/in/cristian-bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.6C6.1 8.6 5.5 8 5.5 7.1c0-.8.6-1.5 1.5-1.5s1.5.6 1.5 1.5c0 .8-.7 1.5-1.5 1.5zm11.3 9.7h-2.6v-4.6c0-1.2-.4-2-1.5-2-.8 0-1.3.5-1.5 1.1-.1.2-.1.4-.1.7v4.8h-2.6V9.7h2.6v1.1c.3-.5 1-1.3 2.5-1.3 1.8 0 3.2 1.2 3.2 3.7v5.1z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@druido_vds" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.6c-.3-1.1-1.1-1.9-2.2-2.2C18.9 5 12 5 12 5s-6.9 0-8.8.4c-1.1.3-1.9 1.1-2.2 2.2C.6 9.5.6 12 .6 12s0 2.5.4 4.4c.3 1.1 1.1 1.9 2.2 2.2 1.9.4 8.8.4 8.8.4s6.9 0 8.8-.4c1.1-.3 1.9-1.1 2.2-2.2.4-1.9.4-4.4.4-4.4s0-2.5-.4-4.4zM9.8 15.3V8.7l5.8 3.3-5.8 3.3z"/></svg>
+          </a>
           <a href="https://www.tiktok.com/@solandro75" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg></a>
         </div>
       </div>
+
       <div class="lg:col-span-3">
         <div class="eyebrow text-salt mb-5">Contatti</div>
         <ul class="space-y-3 text-sm">
           <li><a href="tel:+393396383790" class="opacity-70 hover:opacity-100 transition">Tel. +39 339 638 3790</a></li>
           <li><a href="https://wa.me/393396383790" target="_blank" class="opacity-70 hover:opacity-100 transition">WhatsApp diretto</a></li>
           <li><a href="mailto:info@cristianbresadola.com" class="opacity-70 hover:opacity-100 transition">info@cristianbresadola.com</a></li>
+          <li class="opacity-70 text-xs pt-1">PEC: cristian.bresadola@pec.it</li>
         </ul>
       </div>
+
       <div class="lg:col-span-3">
         <div class="eyebrow text-salt mb-5">Sedi</div>
         <ul class="space-y-5 text-sm">
-          <li><div class="font-medium mb-1">Trento</div><div class="opacity-70">Vicolo della Contrada Tedesca 9</div></li>
-          <li><div class="font-medium mb-1">Val di Sole</div><div class="opacity-70">Studio in Val di Sole · Su appuntamento</div></li>
+          <li>
+            <div class="font-medium mb-1">Trento</div>
+            <div class="opacity-70">Vicolo della Contrada Tedesca 9<br>38121 Trento</div>
+          </li>
+          <li>
+            <div class="font-medium mb-1">Val di Sole</div>
+            <div class="opacity-70">Studio in Val di Sole · Su appuntamento</div>
+          </li>
         </ul>
       </div>
+
       <div class="lg:col-span-2">
         <div class="eyebrow text-salt mb-5">Formazione</div>
+        <div class="text-sm opacity-70 mb-4">
+          <strong class="text-ivory font-medium">Presidente di Punto Riflesso</strong>
+        </div>
         <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="link-underline text-sm opacity-90">puntoriflesso.com</a>
+        <div class="eyebrow text-salt mt-6 mb-3">Pubblicazioni</div>
+        <a href="rubrica.html" class="link-underline text-sm opacity-90">Rubrica · UnserTirol24</a>
       </div>
+
     </div>
+
     <div class="pt-8 border-t border-ivory/15 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs opacity-60">
       <div>© <span id="year"></span> Cristian Bresadola · NosLab S.a.s. · P.IVA 02839670227</div>
-      <div class="flex gap-6"><a href="privacy-policy.html" class="opacity-80 hover:opacity-100 transition">Privacy</a><a href="cookie-policy.html" class="opacity-80 hover:opacity-100 transition">Cookie</a></div>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="hover:opacity-100 opacity-80">Privacy Policy</a>
+        <a href="cookie-policy.html" class="hover:opacity-100 opacity-80">Cookie Policy</a>
+        <a href="https://arkana.cristianbresadola.com" rel="noopener" class="opacity-50 hover:opacity-100" style="opacity: 0.5;">Area riservata</a>
+      </div>
     </div>
+
+    <p class="text-[11px] opacity-40 mt-6 leading-relaxed max-w-3xl">
+      Le consulenze e i trattamenti offerti hanno carattere complementare e non sostituiscono il parere del medico. Non vengono effettuate diagnosi né prescritte terapie farmacologiche. In presenza di patologie, terapie in corso, gravidanza o condizioni particolari, consultare sempre il medico curante.
+    </p>
+
   </div>
 </footer>
 
@@ -603,8 +885,9 @@
 </script>
 
 
+
 <!-- WhatsApp Floating Widget -->
-<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20ti%20scrivo%20dal%20tuo%20sito." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
+<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20ho%20letto%20la%20tua%20pagina%20Chi%20sono%20e%20vorrei%20contattarti." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
   <span class="wa-widget-label">Scrivimi su WhatsApp</span>
   <span class="wa-widget-btn">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
