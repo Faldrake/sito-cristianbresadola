@@ -1,6 +1,7 @@
 # Netlify config - cristianbresadola.com
 # Audit sicurezza 9/05/2026: aggiunti CSP, HSTS, COOP, CORP
 # Aggiornamento 11/05/2026: CSP ampliato per Umami analytics (cloud.umami.is) + frame-src per Google Maps e YouTube
+# Aggiornamento 11/05/2026 20:45: aggiunto api-gateway.umami.dev (beacon API Umami) + unpkg.com (Supabase JS SDK)
 
 [build]
   publish = "."
@@ -38,7 +39,7 @@
     Cross-Origin-Resource-Policy = "same-site"
     
     # Content Security Policy - permette: self, font Google, immagini, connect Supabase+Umami, script Umami, frame Maps+YouTube
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co https://cloud.umami.is; frame-src https://www.google.com https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co https://cloud.umami.is https://api-gateway.umami.dev; frame-src https://www.google.com https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com; object-src 'none'; upgrade-insecure-requests"
 
 # ============================================================
 # CACHE - asset statici cache lunga (immutable)
