@@ -22,7 +22,7 @@
 <meta property="og:title" content="La Bussola dell'Anima · Il kin Maya di oggi">
 <meta property="og:description" content="Ogni giorno un'energia diversa secondo il calendario Tzolk'in dei Maya. Glifo, tono, pratica del giorno, onda evolutiva. Uno strumento di osservazione, non divinazione.">
 <meta property="og:url" content="https://cristianbresadola.com/bussola.html">
-<meta property="og:image" content="https://cristianbresadola.com/images/og-bussola.jpg">
+<meta property="og:image" content="https://cristianbresadola.com/images/og-bussola.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="La Bussola dell'Anima · 20 glifi del Tzolk'in">
@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="La Bussola dell'Anima · Il kin Maya di oggi">
 <meta name="twitter:description" content="Ogni giorno un'energia diversa secondo il calendario Tzolk'in dei Maya. Uno strumento di osservazione, non divinazione.">
-<meta name="twitter:image" content="https://cristianbresadola.com/images/og-bussola.jpg">
+<meta name="twitter:image" content="https://cristianbresadola.com/images/og-bussola.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -918,7 +918,132 @@
       transition-duration:.01ms !important;
     }
   }
+
+
+  /* === MINI-FORM ISCRIZIONE INLINE (subito dopo il glyph wheel) === */
+  .newsletter-inline{
+    position:relative;
+    padding:64px 24px 80px 24px;
+    background:linear-gradient(180deg, rgba(10,27,30,0) 0%, rgba(212,165,91,0.06) 50%, rgba(10,27,30,0) 100%);
+    text-align:center;
+  }
+  .newsletter-inline__inner{
+    max-width:520px;margin:0 auto;
+    background:rgba(16,37,41,0.65);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    border:1px solid rgba(212,165,91,0.28);
+    border-radius:18px;
+    padding:38px 32px 32px 32px;
+    box-shadow:0 8px 40px rgba(10,27,30,0.45), inset 0 0 32px rgba(212,165,91,0.04);
+    transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+  }
+  .newsletter-inline__inner:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 52px rgba(10,27,30,0.55), inset 0 0 36px rgba(212,165,91,0.08);
+    border-color:rgba(212,165,91,0.45);
+  }
+  .newsletter-inline__inner.is-submitted{
+    transform:none;
+    background:rgba(168,210,168,0.10);
+    border-color:rgba(168,210,168,0.45);
+  }
+  .newsletter-inline__eyebrow{
+    margin:0 0 10px 0;
+    font-size:11px;letter-spacing:0.24em;text-transform:uppercase;
+    color:#D4A55B;font-weight:500;
+  }
+  .newsletter-inline__title{
+    margin:0 0 14px 0;
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:400;font-size:26px;line-height:1.25;
+    color:#F5EFE2;
+  }
+  .newsletter-inline__title em{
+    font-style:italic;color:#D4A55B;
+  }
+  .newsletter-inline__lead{
+    margin:0 0 22px 0;
+    font-family:'Fraunces',Georgia,serif;font-style:italic;
+    font-size:14px;line-height:1.55;
+    color:rgba(245,239,226,0.78);
+  }
+  .newsletter-inline__form{
+    display:flex;flex-direction:column;gap:10px;
+    margin:0 0 14px 0;
+  }
+  @media(min-width:480px){
+    .newsletter-inline__form{flex-direction:row}
+  }
+  .newsletter-inline__input{
+    flex:1;
+    padding:13px 16px;
+    background:rgba(245,239,226,0.07);
+    border:1px solid rgba(245,239,226,0.18);
+    border-radius:10px;
+    color:#F5EFE2;
+    font-family:'DM Sans',Helvetica,Arial,sans-serif;
+    font-size:14px;
+    transition:all .2s ease;
+  }
+  .newsletter-inline__input:focus{
+    outline:none;
+    border-color:#D4A55B;
+    background:rgba(245,239,226,0.10);
+    box-shadow:0 0 0 3px rgba(212,165,91,0.18);
+  }
+  .newsletter-inline__input::placeholder{
+    color:rgba(245,239,226,0.45);
+  }
+  .newsletter-inline__btn{
+    padding:13px 22px;
+    background:#D4A55B;
+    color:#0A1B1E;
+    border:none;
+    border-radius:10px;
+    font-size:13px;font-weight:600;letter-spacing:0.04em;
+    cursor:pointer;
+    transition:background .2s ease, transform .15s ease;
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  }
+  .newsletter-inline__btn:hover:not(:disabled){
+    background:#c89846;transform:translateY(-1px);
+  }
+  .newsletter-inline__btn:disabled{
+    opacity:.55;cursor:not-allowed;
+  }
+  .newsletter-inline__consent{
+    display:flex;align-items:flex-start;gap:8px;
+    text-align:left;
+    margin:0 0 12px 0;
+    font-size:11px;line-height:1.55;
+    color:rgba(245,239,226,0.65);
+  }
+  .newsletter-inline__consent input{
+    margin-top:2px;flex-shrink:0;
+    accent-color:#D4A55B;
+  }
+  .newsletter-inline__feedback{
+    margin:8px 0 0 0;
+    font-size:12px;line-height:1.5;
+    min-height:18px;
+    color:rgba(245,239,226,0.75);
+  }
+  .newsletter-inline__feedback.is-error{color:#e8a8a8}
+  .newsletter-inline__feedback.is-success{color:#a8d2a8}
+  .newsletter-inline__feedback.is-info{color:#D4A55B}
+  .newsletter-inline__privacy{
+    margin:14px 0 0 0;
+    font-size:10px;letter-spacing:0.05em;
+    color:rgba(245,239,226,0.45);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .newsletter-inline__inner{transition:none}
+    .newsletter-inline__inner:hover{transform:none}
+  }
 </style>
+  <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
 </head>
 <body>
 
@@ -986,6 +1111,40 @@
         Leggi il giorno
         <span class="hero__scroll-arrow" aria-hidden="true"></span>
       </a>
+    </div>
+  </section>
+
+  <!-- MINI-FORM ISCRIZIONE NEWSLETTER (catturare i caldi appena visto il kin) -->
+  <section class="newsletter-inline" aria-labelledby="ns-inline-title">
+    <div class="newsletter-inline__inner" id="ns-inline-wrapper">
+      <p class="newsletter-inline__eyebrow">Ricevi La Bussola</p>
+      <h2 class="newsletter-inline__title" id="ns-inline-title">
+        Una <em>scintilla</em> all'alba.
+      </h2>
+      <p class="newsletter-inline__lead">
+        Ogni mattina alle 06:00 il kin del giorno nella tua casella. Asciutto, breve, gratuito.
+      </p>
+      <form class="newsletter-inline__form" id="ns-inline-form" novalidate>
+        <input
+          type="email"
+          id="ns-inline-email"
+          name="email"
+          class="newsletter-inline__input"
+          placeholder="La tua email"
+          autocomplete="email"
+          required>
+        <button type="submit" class="newsletter-inline__btn" id="ns-inline-submit">
+          Iscrivimi <span aria-hidden="true">&rarr;</span>
+        </button>
+      </form>
+      <label class="newsletter-inline__consent">
+        <input type="checkbox" id="ns-inline-consent" name="consent" required>
+        <span>Acconsento al trattamento della mia email per ricevere la newsletter giornaliera della Bussola dell'Anima, secondo la <a href="/privacy-policy.html" style="color:#D4A55B;text-decoration:underline;">privacy policy</a>.</span>
+      </label>
+      <p class="newsletter-inline__feedback" id="ns-inline-feedback" role="status" aria-live="polite"></p>
+      <p class="newsletter-inline__privacy">
+        Doppio opt-in &middot; niente spam &middot; disiscrizione con un click
+      </p>
     </div>
   </section>
 
@@ -1344,6 +1503,93 @@
           submitBtn.disabled = false;
         }
       });
+
+      // === HANDLER MINI-FORM (newsletter-inline sopra il fold) ===
+      const miniForm = document.getElementById('ns-inline-form');
+      const miniEmail = document.getElementById('ns-inline-email');
+      const miniConsent = document.getElementById('ns-inline-consent');
+      const miniSubmit = document.getElementById('ns-inline-submit');
+      const miniFeedback = document.getElementById('ns-inline-feedback');
+      const miniWrapper = document.getElementById('ns-inline-wrapper');
+
+      function setMiniFeedback(msg, kind){
+        if(!miniFeedback) return;
+        miniFeedback.textContent = msg;
+        miniFeedback.className = 'newsletter-inline__feedback' + (kind ? ' is-' + kind : '');
+      }
+
+      if(miniForm){
+        miniForm.addEventListener('submit', async function(e){
+          e.preventDefault();
+          const email = (miniEmail.value || '').trim().toLowerCase();
+          const consent = miniConsent.checked;
+
+          if(!isValidEmail(email)){
+            setMiniFeedback('Inserisci un indirizzo email valido.', 'error');
+            miniEmail.focus();
+            return;
+          }
+          if(!consent){
+            setMiniFeedback('Per iscriverti devi accettare il trattamento dei dati.', 'error');
+            miniConsent.focus();
+            return;
+          }
+
+          miniSubmit.disabled = true;
+          setMiniFeedback('Iscrizione in corso...', 'info');
+
+          try {
+            const res = await fetch(SB_URL + '/rest/v1/bussola_iscritti', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Prefer': 'return=minimal',
+                'apikey': SB_KEY,
+                'Authorization': 'Bearer ' + SB_KEY
+              },
+              body: JSON.stringify({
+                email: email,
+                consenso_privacy: true,
+                data_consenso_privacy: new Date().toISOString(),
+                source: 'bussola_pagina_inline',
+                user_agent: (navigator.userAgent || '').slice(0, 500)
+              })
+            });
+
+            if(res.ok){
+              miniWrapper.classList.add('is-submitted');
+              setMiniFeedback('Ti ho mandato una mail. Conferma il link per attivare l\'iscrizione.', 'success');
+              return;
+            }
+
+            let body = null;
+            try { body = await res.json(); } catch(e){}
+            const code = body && body.code;
+            const msg = body && body.message ? body.message : '';
+
+            if(code === '23505' || (msg && msg.indexOf('duplicate') >= 0)){
+              setMiniFeedback('Sei gia iscritto con questa email. Niente di cui preoccuparsi.', 'info');
+              miniSubmit.disabled = false;
+              return;
+            }
+
+            if(res.status === 400 || res.status === 422){
+              setMiniFeedback('Indirizzo email non valido.', 'error');
+              miniSubmit.disabled = false;
+              return;
+            }
+
+            throw new Error('HTTP ' + res.status);
+
+          } catch(err){
+            console.error('Newsletter mini:', err);
+            setMiniFeedback('Qualcosa non ha funzionato. Riprova fra un momento.', 'error');
+            miniSubmit.disabled = false;
+          }
+        });
+      }
+
     })();
     </script>
   </section>

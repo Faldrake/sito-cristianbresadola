@@ -61,6 +61,8 @@
   .cookie-table th { font-weight: 500; color: var(--petrol); background: var(--frost); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.02em; text-transform: uppercase; }
   .cookie-table tr:last-child td { border-bottom: none; }
 </style>
+  <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
 </head>
 <body class="paper-bg">
 
@@ -249,7 +251,9 @@
       <p>I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo (computer, tablet, smartphone) per memorizzare informazioni tra una visita e l'altra. Esistono cookie di diverso tipo, alcuni strettamente necessari al funzionamento del sito, altri che servono a misurare statistiche, altri ancora — quelli più invasivi — usati per profilare gli utenti a scopo pubblicitario.</p>
 
       <h2>Cosa usa questo sito</h2>
-      <p><strong>Questo sito non utilizza cookie di profilazione, di tracciamento pubblicitario, né di analytics comportamentali.</strong></p>
+      <p><strong>Questo sito non utilizza cookie di profilazione né di tracciamento pubblicitario.</strong></p>
+      <p>Per misurare l'andamento del sito utilizziamo <strong>Umami</strong> (Umami Software, LLC), un sistema di analytics aggregato che <strong>non utilizza cookie</strong> e non costruisce profili degli utenti. Umami raccoglie solo dati anonimi e aggregati (numero di visite, pagine più viste, paese di provenienza, browser, tempo medio sulla pagina) per aiutarci a capire quali contenuti sono più utili. Non vengono memorizzati identificatori persistenti né dati personali identificabili.</p>
+      <p>Maggiori informazioni: <a href="https://umami.is/privacy" target="_blank" rel="noopener">Privacy Policy di Umami</a>.</p>
       <p>Utilizza esclusivamente:</p>
       <ul>
         <li><strong>Cookie tecnici</strong> necessari al corretto funzionamento del sito. Non richiedono consenso preventivo ai sensi della normativa vigente.</li>
@@ -362,9 +366,9 @@
 </footer>
 
 <script>
-  // Mobile menu: chiusura sui click dei link (toggle gestito nello script in cima alla nav)
+  const toggle = document.getElementById('mobileToggle');
   const menu = document.getElementById('mobileMenu');
-  if(menu) menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
