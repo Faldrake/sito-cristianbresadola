@@ -417,6 +417,73 @@
     background:#1B3A3E;
     color:#F5EFE2;
   }
+
+  /* === Immagine protetta (mappa Punto Riflesso) === */
+  .rfl-figure{
+    margin:40px -20px 40px -20px;
+    text-align:center;
+  }
+  .rfl-image-wrap{
+    position:relative;
+    display:inline-block;
+    max-width:720px;
+    width:100%;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-touch-callout:none;
+  }
+  .rfl-image{
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    box-shadow:0 8px 24px rgba(27,58,62,0.12);
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-touch-callout:none;
+    -webkit-user-drag:none;
+    -moz-user-drag:none;
+    user-drag:none;
+    pointer-events:none;
+    display:block;
+  }
+  .rfl-image-overlay{
+    position:absolute;
+    inset:0;
+    background:transparent;
+    cursor:default;
+    border-radius:8px;
+  }
+  .rfl-figcaption{
+    font-family:'Fraunces',Georgia,serif;
+    font-style:italic;
+    font-size:14px;
+    color:rgba(27,58,62,0.6);
+    margin-top:14px;
+    line-height:1.6;
+    max-width:680px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:0 20px;
+  }
+  .rfl-figcaption a{
+    color:#D4A55B;
+    border:none;
+    text-decoration:none;
+    font-style:normal;
+    font-weight:500;
+  }
+  .rfl-figcaption a:hover{
+    text-decoration:underline;
+  }
+  .rfl-figcaption strong{
+    color:rgba(27,58,62,0.85);
+    font-weight:500;
+    font-style:normal;
+  }
 </style>
 
 </head>
@@ -506,6 +573,22 @@
     <p>Chi viene la prima volta nel mio studio di Vicolo della Contrada Tedesca 9, qui a Trento, arriva quasi sempre con la stessa domanda. <em>"Mi farà male?"</em> La risposta breve è no. La risposta più lunga richiede di spiegare cosa è davvero la riflessologia plantare, e cosa non è.</p>
 
     <p>In questo articolo provo a raccontarti tutto: dalla prima telefonata fino al momento in cui ti rialzi dal lettino, passando per le quaranta zone riflesse del piede e per le tre domande che facciamo sempre alla fine. Se stai pensando di provare un trattamento e vuoi capire prima cosa aspettarti, qui trovi le risposte concrete che cerchi.</p>
+
+    <figure class="rfl-figure">
+      <div class="rfl-image-wrap"
+           oncontextmenu="return false;"
+           ondragstart="return false;"
+           onselectstart="return false;">
+        <img src="../images/riflessologia-plantare-mappa.jpg" 
+             alt="Mappa della visione plantare dei punti riflessi - materiale didattico Punto Riflesso"
+             class="rfl-image"
+             draggable="false"
+             oncontextmenu="return false;"
+             ondragstart="return false;">
+        <div class="rfl-image-overlay" aria-hidden="true"></div>
+      </div>
+      <figcaption class="rfl-figcaption">La visione plantare dei punti riflessi · materiale didattico di <a href="https://puntoriflesso.com" target="_blank" rel="noopener">Punto Riflesso</a>, la scuola di formazione professionale fondata da Cristian Bresadola. <strong>La mappa completa con tutti i nomi dei punti è oggetto del corso professionale.</strong></figcaption>
+    </figure>
 
     <h2>Cos'è <em>davvero</em> la riflessologia plantare</h2>
 
@@ -669,6 +752,39 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script>
+/* Protezione immagini blog · scoraggia copy facile (no protezione assoluta) */
+(function(){
+  // Blocca click destro su immagini protette
+  document.addEventListener('contextmenu', function(e){
+    if(e.target.matches('img.rfl-image') || e.target.closest('.rfl-image-wrap')){
+      e.preventDefault();
+      return false;
+    }
+  });
+  // Blocca drag su immagini protette
+  document.addEventListener('dragstart', function(e){
+    if(e.target.matches('img.rfl-image')){
+      e.preventDefault();
+      return false;
+    }
+  });
+  // Blocca selezione su wrapper protetto
+  document.addEventListener('selectstart', function(e){
+    if(e.target.closest('.rfl-image-wrap')){
+      e.preventDefault();
+      return false;
+    }
+  });
+  // Su touch: blocca long-press iOS che apre menu salva immagine
+  document.querySelectorAll('.rfl-image-wrap').forEach(function(wrap){
+    wrap.addEventListener('touchstart', function(e){
+      // Solo prevent se è long press potenziale (single touch sostenuto)
+    }, { passive: true });
+  });
+})();
+</script>
 
 </body>
 </html>
