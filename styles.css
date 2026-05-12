@@ -1,415 +1,641 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rubrica · Pillole di benessere su UnserTirol24 — Cristian Bresadola</title>
-<meta name="description" content="Ogni giovedì Cristian Bresadola cura una rubrica bilingue italiano-tedesco di benessere e naturopatia su UnserTirol24, la testata indipendente del Trentino-Alto Adige.">
+/* ═══════════════════════════════════════════════
+   cristianbresadola.com — stylesheet condiviso
+═══════════════════════════════════════════════ */
 
-<!-- SEO META -->
-<link rel="canonical" href="https://cristianbresadola.com/rubrica.html">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="author" content="Cristian Bresadola">
-<meta name="theme-color" content="#1B3A3E">
-<meta name="language" content="Italian">
-<meta name="geo.region" content="IT-TN">
-<meta name="geo.placename" content="Trento">
+:root {
+  --ivory: #EEF3F6;
+  --ivory-warm: #C9DCE5;
+  --frost: #DBE7EC;
+  --twilight: #6B8AA8;
+  --petrol: #1B3A3E;
+  --petrol-dark: #12282B;
+  --chrome-blue: #2A3166;
+  --chrome-blue-soft: #454B85;
+  --forest: #2D5139;
+  --forest-soft: #3F6B4D;
+  --salt-glow: #E59856;
+  --charcoal: #2A2A2A;
+  --charcoal-soft: #4A4A4A;
+  --sage: #8A9B86;
 
-<!-- FAVICON & PWA -->
-<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-<link rel="manifest" href="/favicons/site.webmanifest">
+  /* Palette "acqua" per pagina Idroterapia */
+  --water-mist: #D9E8E6;
+  --water-light: #A8CFC9;
+  --water-turquoise: #3F8B87;
+  --water-deep: #1D5954;
+  --water-abyss: #0F3A37;
+}
 
-<!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:locale" content="it_IT">
-<meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Rubrica · Pillole di benessere su UnserTirol24 — Cristian Bresadola">
-<meta property="og:description" content="Ogni giovedì Cristian Bresadola cura una rubrica bilingue italiano-tedesco di benessere e naturopatia su UnserTirol24, la testata indipendente del Trentino-Alto Adige.">
-<meta property="og:url" content="https://cristianbresadola.com/rubrica.html">
-<meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
-<meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-<!-- TWITTER CARD -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Rubrica · Pillole di benessere su UnserTirol24 — Cristian Bresadola">
-<meta name="twitter:description" content="Ogni giovedì Cristian Bresadola cura una rubrica bilingue italiano-tedesco di benessere e naturopatia su UnserTirol24, la testata indipendente del Trentino-Alto Adige.">
-<meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
-<meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="tailwind.css">
-<link rel="stylesheet" href="styles.css">
-  <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
-</head>
-<body class="paper-bg">
+/* Typography */
+.font-display { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+.display-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.display-italic {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+}
 
-<!-- NAVIGATION -->
-<nav class="main-nav fixed top-0 left-0 right-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+/* Paper background texture */
+.paper-bg {
+  background: var(--ivory);
+  background-image: radial-gradient(circle at 1px 1px, rgba(42, 42, 42, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
 
-    <!-- Logo + Nome -->
-    <a href="index.html" class="flex items-center gap-3 group">
-      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
-      <div class="hidden sm:block">
-        <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
-        <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
-      </div>
-    </a>
+/* Colour utilities */
+.bg-petrol { background: var(--petrol); }
+.bg-petrol-dark { background: var(--petrol-dark); }
+.bg-chrome { background: var(--chrome-blue); }
+.bg-forest { background: var(--forest); }
+.bg-frost { background: var(--frost); }
+.bg-twilight { background: var(--twilight); }
+.bg-ivory { background: var(--ivory); }
+.bg-ivory-warm { background: var(--ivory-warm); }
 
-    <!-- Desktop nav -->
-    <div class="hidden lg:flex items-center gap-8 text-sm">
-      <a href="chi-sono.html" data-nav="chi-sono" class="nav-link link-underline text-charcoal hover:text-petrol transition">Chi sono</a>
+.text-petrol { color: var(--petrol); }
+.text-ivory { color: var(--ivory); }
+.text-charcoal { color: var(--charcoal); }
+.text-charcoal-soft { color: var(--charcoal-soft); }
+.text-salt { color: var(--salt-glow); }
+.text-sage { color: var(--sage); }
+.text-forest { color: var(--forest); }
+.text-twilight { color: var(--twilight); }
 
-      <div class="nav-dropdown" data-nav="consulenze">
-        <button class="nav-dropdown__toggle nav-link link-underline text-charcoal hover:text-petrol transition" type="button" aria-haspopup="true" aria-expanded="false">
-          Consulenze
-          <svg class="nav-dropdown__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="nav-dropdown__panel" role="menu">
-          <a href="consulenze.html#naturopatia" role="menuitem">Naturopatia</a>
-          <a href="consulenze.html#riflessologia" role="menuitem">Riflessologia plantare</a>
-          <a href="consulenze.html#massaggio" role="menuitem">Massaggio olistico</a>
-          <a href="consulenze.html#floriterapia" role="menuitem">Floriterapia</a>
-          <a href="consulenze.html#fitoterapia" role="menuitem">Fitoterapia</a>
-          <a href="idroterapia.html" role="menuitem">Idroterapia e fangoterapia</a>
-          <div class="nav-dropdown__divider" aria-hidden="true"></div>
-          <a href="consulenze.html" role="menuitem" class="nav-dropdown__overview">Tutte le consulenze →</a>
-        </div>
-      </div>
+/* Utility palette acqua (pagina Idroterapia) */
+.bg-water-mist { background: var(--water-mist); }
+.bg-water-light { background: var(--water-light); }
+.bg-water-turquoise { background: var(--water-turquoise); }
+.bg-water-deep { background: var(--water-deep); }
+.bg-water-abyss { background: var(--water-abyss); }
+.text-water-turquoise { color: var(--water-turquoise); }
+.text-water-deep { color: var(--water-deep); }
+.text-water-light { color: var(--water-light); }
 
-      <div class="nav-dropdown" data-nav="saggezza-maya">
-        <button class="nav-dropdown__toggle nav-link link-underline text-charcoal hover:text-petrol transition" type="button" aria-haspopup="true" aria-expanded="false">
-          Saggezza Maya
-          <svg class="nav-dropdown__chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="nav-dropdown__panel" role="menu">
-          <a href="croce-maya.html" role="menuitem">La Croce Maya</a>
-          <a href="bussola.html" role="menuitem">La Bussola dell'Anima</a>
-        </div>
-      </div>
+/* Link underline animation */
+.link-underline { position: relative; display: inline-block; }
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+.link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+.link-underline.active::after { transform: scaleX(1); }
 
-      <a href="cerchio-del-druido/" data-nav="cerchio-del-druido" class="nav-link link-underline text-charcoal hover:text-petrol transition">Il Cerchio del Druido</a>
-      <a href="formazione.html" data-nav="formazione" class="nav-link link-underline text-charcoal hover:text-petrol transition">Formazione</a>
-      <a href="contatti.html" data-nav="contatti" class="nav-link link-underline text-charcoal hover:text-petrol transition">Contatti</a>
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--petrol);
+  color: var(--ivory);
+  padding: 0.9rem 1.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--petrol);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--petrol-dark);
+  transform: translateY(-1px);
+}
+.btn-primary .arrow { transition: transform 0.3s ease; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
 
-      <a href="contatti.html" class="btn-primary !py-2.5 !px-5 !text-[13px]">
-        Prenota
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  color: var(--petrol);
+  padding: 0.9rem 1.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--petrol);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-secondary:hover {
+  background: var(--petrol);
+  color: var(--ivory);
+}
 
-    <!-- Mobile menu toggle -->
-    <button id="mobileToggle" class="lg:hidden text-petrol" aria-label="Apri menu" aria-expanded="false">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--petrol);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.btn-ghost:hover { color: var(--charcoal); }
+.btn-ghost .arrow { transition: transform 0.3s ease; }
+.btn-ghost:hover .arrow { transform: translateX(3px); }
 
-  </div>
+/* Dark section inversion */
+.on-dark .btn-primary {
+  background: var(--ivory);
+  color: var(--petrol);
+  border-color: var(--ivory);
+}
+.on-dark .btn-primary:hover {
+  background: var(--salt-glow);
+  color: var(--petrol-dark);
+  border-color: var(--salt-glow);
+}
+.on-dark .btn-secondary {
+  color: var(--ivory);
+  border-color: var(--ivory);
+}
+.on-dark .btn-secondary:hover {
+  background: var(--ivory);
+  color: var(--petrol);
+}
 
-  <!-- Mobile menu -->
-  <div id="mobileMenu" class="mobile-menu lg:hidden bg-frost px-6 py-6" style="border-top: 1px solid rgba(42, 49, 102, 0.15);">
-    <div class="flex flex-col gap-3">
-      <a href="chi-sono.html" data-nav="chi-sono" class="nav-link-mobile text-charcoal py-1">Chi sono</a>
+/* Labels */
+.eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
 
-      <details class="nav-mobile-group" data-nav="consulenze">
-        <summary class="text-charcoal py-1">Consulenze</summary>
-        <div class="pl-4 pt-2 flex flex-col gap-2 text-sm">
-          <a href="consulenze.html#naturopatia">Naturopatia</a>
-          <a href="consulenze.html#riflessologia">Riflessologia plantare</a>
-          <a href="consulenze.html#massaggio">Massaggio olistico</a>
-          <a href="consulenze.html#floriterapia">Floriterapia</a>
-          <a href="consulenze.html#fitoterapia">Fitoterapia</a>
-          <a href="idroterapia.html">Idroterapia e fangoterapia</a>
-          <a href="consulenze.html" class="font-medium">Tutte le consulenze →</a>
-        </div>
-      </details>
+.separator-line { width: 60px; height: 1px; background: var(--petrol); }
+.on-dark .separator-line { background: var(--ivory); }
 
-      <details class="nav-mobile-group" data-nav="saggezza-maya">
-        <summary class="text-charcoal py-1">Saggezza Maya</summary>
-        <div class="pl-4 pt-2 flex flex-col gap-2 text-sm">
-          <a href="croce-maya.html">La Croce Maya</a>
-          <a href="bussola.html">La Bussola dell'Anima</a>
-        </div>
-      </details>
+/* Nav */
+nav.main-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(219, 231, 236, 0.82);
+  border-bottom: 1px solid rgba(42, 49, 102, 0.12);
+}
 
-      <a href="cerchio-del-druido/" data-nav="cerchio-del-druido" class="nav-link-mobile text-charcoal py-1">Il Cerchio del Druido</a>
-      <a href="formazione.html" data-nav="formazione" class="nav-link-mobile text-charcoal py-1">Formazione</a>
-      <a href="contatti.html" data-nav="contatti" class="nav-link-mobile text-charcoal py-1">Contatti</a>
+/* Image frames */
+.image-frame { position: relative; overflow: hidden; }
+.image-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(245, 238, 223, 0.3);
+  pointer-events: none;
+}
 
-      <a href="contatti.html" class="btn-primary w-full justify-center mt-3">
-        Prenota
-      </a>
-    </div>
-  </div>
-</nav>
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: fadeUp 0.9s ease-out both; }
+.reveal-1 { animation-delay: 0.1s; }
+.reveal-2 { animation-delay: 0.25s; }
+.reveal-3 { animation-delay: 0.4s; }
+.reveal-4 { animation-delay: 0.55s; }
 
-<script>
-/* Active nav highlighting + mobile toggle (idempotente) */
-(function(){
-  if(window.__navInit) return;
-  window.__navInit = true;
+@keyframes slowFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.slow-float { animation: slowFloat 6s ease-in-out infinite; }
 
-  // Mappa pathname -> data-nav del menu
-  const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  const map = {
-    'chi-sono.html': 'chi-sono',
-    'consulenze.html': 'consulenze',
-    'idroterapia.html': 'consulenze',
-    'croce-maya.html': 'saggezza-maya',
-    'bussola.html': 'saggezza-maya',
-    'formazione.html': 'formazione',
-    'cerchio-del-druido/': 'cerchio-del-druido',
-    'cerchio-del-druido': 'cerchio-del-druido',
-    'contatti.html': 'contatti'
-  };
-  const active = map[path];
-  if(active){
-    document.querySelectorAll('[data-nav="' + active + '"]').forEach(function(el){
-      el.classList.add('is-nav-active');
-      const btn = el.querySelector('.nav-dropdown__toggle');
-      if(btn) btn.classList.add('is-nav-active');
-      const link = el.matches('a') ? el : null;
-      if(link) link.classList.add('is-nav-active');
-    });
-  }
+/* Section number ornament */
+.section-number {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
 
-  // Mobile menu toggle
-  const toggle = document.getElementById('mobileToggle');
-  const menu = document.getElementById('mobileMenu');
-  if(toggle && menu){
-    toggle.addEventListener('click', function(){
-      const isOpen = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  }
+/* Testimonials */
+blockquote.testimonial {
+  border-left: 2px solid var(--petrol);
+  padding-left: 1.5rem;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--charcoal-soft);
+}
 
-  // Dropdown ARIA su hover/focus desktop
-  document.querySelectorAll('.nav-dropdown').forEach(function(dd){
-    const toggle = dd.querySelector('.nav-dropdown__toggle');
-    if(!toggle) return;
-    dd.addEventListener('mouseenter', function(){ toggle.setAttribute('aria-expanded','true'); });
-    dd.addEventListener('mouseleave', function(){ toggle.setAttribute('aria-expanded','false'); });
-    toggle.addEventListener('click', function(e){
-      // su touch/click: toggle del panel
-      const open = dd.classList.toggle('is-open-click');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      e.stopPropagation();
-    });
-  });
-  document.addEventListener('click', function(){
-    document.querySelectorAll('.nav-dropdown.is-open-click').forEach(function(dd){
-      dd.classList.remove('is-open-click');
-      const t = dd.querySelector('.nav-dropdown__toggle');
-      if(t) t.setAttribute('aria-expanded','false');
-    });
-  });
-})();
-</script>
+.testi-card { transition: all 0.4s ease; }
+.testi-card:hover { transform: translateY(-2px); }
 
-<!-- HERO -->
-<section class="pt-32 pb-16 lg:pt-40 lg:pb-20">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="eyebrow text-petrol mb-6">— Rubrica · Pubblicazioni</div>
-    <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8 max-w-4xl">
-      Pillole di <span class="display-italic">benessere.</span>
-    </h1>
-    <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
-      Ogni <strong class="text-petrol font-medium">giovedì alle 18:30</strong> curo una rubrica bilingue italiano-tedesco di benessere e naturopatia sulle pagine di <strong class="text-petrol font-medium">UnserTirol24</strong>, la testata indipendente del Trentino-Alto Adige.
-    </p>
-  </div>
-</section>
+/* Discipline card */
+.discipline-card {
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.discipline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(18, 40, 43, 0.18);
+}
 
-<!-- COS'È UT24 -->
-<section class="pb-20">
-  <div class="max-w-5xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-      <div class="lg:col-span-4">
-        <div class="eyebrow text-chrome-blue mb-5">La testata</div>
-        <h2 class="display-title text-3xl md:text-4xl text-petrol">
-          <span class="display-italic">UnserTirol24.</span>
-        </h2>
-      </div>
-      <div class="lg:col-span-8">
-        <div class="space-y-5 text-charcoal-soft leading-relaxed">
-          <p>
-            UnserTirol24 è una testata giornalistica indipendente che racconta il territorio di Tirolo, Alto Adige e Trentino in entrambe le lingue: italiano e tedesco. Nasce come portale di riferimento per chi vive e frequenta quest'area di confine, con una redazione che pubblica ogni giorno notizie, approfondimenti e rubriche d'opinione.
-          </p>
-          <p>
-            Collaboro con la redazione dal <strong class="text-petrol font-medium">2021</strong>, quando sono iniziate le prime pubblicazioni episodiche su temi di naturopatia e fitoterapia. Dal febbraio <strong class="text-petrol font-medium">2026</strong> la collaborazione è diventata una rubrica settimanale fissa.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+/* Maya glow */
+.maya-glow {
+  position: relative;
+  overflow: hidden;
+}
+.maya-glow::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 70%; height: 200%;
+  background: radial-gradient(ellipse, rgba(229, 152, 86, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
 
-<!-- IL FORMATO -->
-<section class="py-20 lg:py-28 bg-frost">
-  <div class="max-w-5xl mx-auto px-6 lg:px-12">
-    <div class="eyebrow text-petrol mb-5">Il formato</div>
-    <h2 class="display-title text-4xl md:text-5xl text-petrol mb-12">
-      Ogni settimana <span class="display-italic">un disagio, quattro vie.</span>
-    </h2>
+/* Cromoterapia imagery */
+.cromo-image {
+  position: relative;
+  overflow: hidden;
+}
+.cromo-image img { transition: transform 0.8s ease; }
+.cromo-image:hover img { transform: scale(1.03); }
 
-    <div class="grid md:grid-cols-2 gap-10 lg:gap-14 mb-12">
-      <div>
-        <p class="text-charcoal-soft leading-relaxed mb-6">
-          Ogni puntata della rubrica affronta <strong class="text-petrol font-medium">un disagio comune</strong> — un mal di testa, un'insonnia, una cistite ricorrente — e lo legge attraverso le lenti della <strong class="text-petrol font-medium">Medicina Tradizionale Cinese</strong>, per poi proporre quattro strategie naturali di riequilibrio.
-        </p>
-        <p class="text-charcoal-soft leading-relaxed">
-          Non consigli universali, ma <strong class="text-petrol font-medium">strumenti concreti</strong> che chi legge può iniziare a sperimentare autonomamente: un punto di riflessologia da cercare sul piede, un'applicazione idroterapica da fare a casa, una pianta officinale, un sale di Schüssler.
-        </p>
-      </div>
+/* Timeline (for Chi sono) */
+.timeline-item {
+  position: relative;
+  padding-left: 2.5rem;
+  padding-bottom: 3.5rem;
+  border-left: 1px solid rgba(27, 58, 62, 0.15);
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0.3rem;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--petrol);
+  border: 2px solid var(--ivory);
+}
+.timeline-item.highlight::before { background: var(--salt-glow); }
 
-      <div class="bg-ivory p-7 lg:p-8 border-l-4 border-salt">
-        <div class="eyebrow text-petrol mb-5">La struttura di ogni articolo</div>
-        <ul class="space-y-4 text-sm">
-          <li class="flex gap-3 items-start"><span class="text-salt text-lg leading-none mt-0.5">👣</span><div><div class="font-medium text-petrol">Riflessologia</div><div class="text-charcoal-soft text-xs mt-0.5">Il punto da cercare, come trattarlo</div></div></li>
-          <li class="flex gap-3 items-start"><span class="text-salt text-lg leading-none mt-0.5">💧</span><div><div class="font-medium text-petrol">Idroterapia</div><div class="text-charcoal-soft text-xs mt-0.5">L'applicazione da fare a casa</div></div></li>
-          <li class="flex gap-3 items-start"><span class="text-salt text-lg leading-none mt-0.5">🌿</span><div><div class="font-medium text-petrol">Fitoterapia</div><div class="text-charcoal-soft text-xs mt-0.5">La pianta officinale utile</div></div></li>
-          <li class="flex gap-3 items-start"><span class="text-salt text-lg leading-none mt-0.5">🧂</span><div><div class="font-medium text-petrol">Sali di Schüssler</div><div class="text-charcoal-soft text-xs mt-0.5">Il sale biochimico indicato</div></div></li>
-        </ul>
-      </div>
-    </div>
+.timeline-year {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--charcoal-soft);
+  margin-bottom: 0.5rem;
+  display: block;
+}
 
-    <div class="bg-ivory p-7 lg:p-8">
-      <div class="eyebrow text-chrome-blue mb-3">Alcuni dei temi affrontati</div>
-      <p class="text-charcoal-soft text-sm leading-relaxed">
-        Cefalea · Gastrite · Ansia e palpitazioni · Difese immunitarie · Insonnia · Acne · Stitichezza · Crampi e tensioni muscolari · Cistiti ricorrenti · Tarassaco e fegato · e molto altro, un disagio alla volta.
-      </p>
-    </div>
-  </div>
-</section>
+/* Grande virgoletta ornamentale */
+.big-quote-mark {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 8rem;
+  line-height: 0.5;
+  color: var(--salt-glow);
+  opacity: 0.8;
+}
 
-<!-- CTA FINALE -->
-<section class="py-20 lg:py-28 bg-petrol-dark text-ivory on-dark relative overflow-hidden">
-  <div class="absolute inset-0 stars-bg opacity-20 pointer-events-none"></div>
-  <div class="max-w-4xl mx-auto px-6 lg:px-12 relative text-center">
-    <div class="flex justify-center mb-8"><div class="separator-line"></div></div>
-    <h2 class="display-title text-4xl md:text-5xl lg:text-6xl mb-8">
-      Leggi la <span class="display-italic text-salt">rubrica.</span>
-    </h2>
-    <p class="text-lg opacity-85 mb-12 max-w-2xl mx-auto leading-relaxed">
-      Tutti gli articoli della rubrica sono pubblicati su UnserTirol24. Ogni giovedì alle 18:30 ne esce uno nuovo.
-    </p>
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="https://www.unsertirol24.com/?s=Pillole+di+benessere" target="_blank" rel="noopener" class="btn-primary">
-        Vai alla rubrica su UnserTirol24
-        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a href="chi-sono.html" class="btn-secondary">
-        Torna alla pagina Chi sono
-      </a>
-    </div>
+/* Social icons */
+.social-icon {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(245, 238, 223, 0.3);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--ivory);
+}
+.social-icon:hover {
+  background: var(--ivory);
+  color: var(--petrol);
+  border-color: var(--ivory);
+}
 
-    <p class="mt-12 text-xs opacity-60 italic max-w-2xl mx-auto leading-relaxed">
-      I contenuti della rubrica hanno carattere divulgativo e non sostituiscono il parere del medico. In presenza di patologie, terapie in corso, gravidanza o condizioni particolari, consulta sempre il tuo medico curante prima di adottare qualsiasi suggerimento.
-    </p>
-  </div>
-</section>
+/* Mobile menu */
+.mobile-menu { display: none; }
+.mobile-menu.open { display: block; }
 
-<!-- FOOTER -->
-<footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-10 mb-16">
-      <div class="lg:col-span-4">
-        <div class="flex items-center gap-3 mb-6">
-          <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
-          <div><div class="font-display text-xl">Cristian Bresadola</div><div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div></div>
-        </div>
-        <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">Iscritto al Registro ASPIN dei Naturopati — Livello Professionista.<br>Codice <strong>TN-1230-NA-P</strong></p>
-        <div class="flex gap-2">
-          <a href="https://www.instagram.com/cristian_bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
-          <a href="https://www.facebook.com/cristian.bresadola/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"/></svg></a>
-          <a href="http://www.linkedin.com/in/cristian-bresadola" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.6C6.1 8.6 5.5 8 5.5 7.1c0-.8.6-1.5 1.5-1.5s1.5.6 1.5 1.5c0 .8-.7 1.5-1.5 1.5zm11.3 9.7h-2.6v-4.6c0-1.2-.4-2-1.5-2-.8 0-1.3.5-1.5 1.1-.1.2-.1.4-.1.7v4.8h-2.6V9.7h2.6v1.1c.3-.5 1-1.3 2.5-1.3 1.8 0 3.2 1.2 3.2 3.7v5.1z"/></svg></a>
-          <a href="https://www.youtube.com/@druido_vds" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.6c-.3-1.1-1.1-1.9-2.2-2.2C18.9 5 12 5 12 5s-6.9 0-8.8.4c-1.1.3-1.9 1.1-2.2 2.2C.6 9.5.6 12 .6 12s0 2.5.4 4.4c.3 1.1 1.1 1.9 2.2 2.2 1.9.4 8.8.4 8.8.4s6.9 0 8.8-.4c1.1-.3 1.9-1.1 2.2-2.2.4-1.9.4-4.4.4-4.4s0-2.5-.4-4.4zM9.8 15.3V8.7l5.8 3.3-5.8 3.3z"/></svg></a>
-          <a href="https://www.tiktok.com/@solandro75" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg></a>
-        </div>
-      </div>
-      <div class="lg:col-span-3">
-        <div class="eyebrow text-salt mb-5">Contatti</div>
-        <ul class="space-y-3 text-sm">
-          <li><a href="tel:+393396383790" class="opacity-70 hover:opacity-100 transition">Tel. +39 339 638 3790</a></li>
-          <li><a href="https://wa.me/393396383790" target="_blank" class="opacity-70 hover:opacity-100 transition">WhatsApp diretto</a></li>
-          <li><a href="mailto:info@cristianbresadola.com" class="opacity-70 hover:opacity-100 transition">info@cristianbresadola.com</a></li>
-        </ul>
-      </div>
-      <div class="lg:col-span-3">
-        <div class="eyebrow text-salt mb-5">Sedi</div>
-        <ul class="space-y-5 text-sm">
-          <li><div class="font-medium mb-1">Trento</div><div class="opacity-70">Vicolo della Contrada Tedesca 9</div></li>
-          <li><div class="font-medium mb-1">Val di Sole</div><div class="opacity-70">Studio in Val di Sole · Su appuntamento</div></li>
-        </ul>
-      </div>
-      <div class="lg:col-span-2">
-        <div class="eyebrow text-salt mb-5">Formazione</div>
-        <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="link-underline text-sm opacity-90">puntoriflesso.com</a>
-      </div>
-    </div>
-    <div class="pt-8 border-t border-ivory/15 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs opacity-60">
-      <div>© <span id="year"></span> Cristian Bresadola · NosLab S.a.s. · P.IVA 02839670227</div>
-      <div class="flex gap-6"><a href="privacy-policy.html" class="opacity-80 hover:opacity-100 transition">Privacy</a><a href="cookie-policy.html" class="opacity-80 hover:opacity-100 transition">Cookie</a></div>
-    </div>
-  </div>
-</footer>
+/* Stars background pattern */
+.stars-bg {
+  background-image:
+    radial-gradient(circle at 20% 30%, white 1px, transparent 1px),
+    radial-gradient(circle at 70% 60%, white 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, white 1px, transparent 1px),
+    radial-gradient(circle at 85% 20%, white 1px, transparent 1px);
+  background-size: 400px 400px;
+}
 
-<script>
-  // Mobile menu: chiusura sui click dei link (toggle gestito nello script in cima alla nav)
-  const menu = document.getElementById('mobileMenu');
-  if(menu) menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+/* FAQ accordion */
+details.faq-item {
+  border-bottom: 1px solid rgba(27, 58, 62, 0.15);
+  padding: 1.5rem 0;
+}
+details.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  color: var(--petrol);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 200;
+  transition: transform 0.3s ease;
+}
+details.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+details.faq-item div.faq-answer {
+  margin-top: 1rem;
+  color: var(--charcoal-soft);
+  line-height: 1.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-title { letter-spacing: -0.02em; }
+  .big-quote-mark { font-size: 5rem; }
+}
 
 
-<!-- WhatsApp Floating Widget -->
-<a href="https://wa.me/393396383790?text=Ciao%20Cristian%2C%20vorrei%20fissare%20un%20appuntamento%20nel%20tuo%20studio." target="_blank" rel="noopener" class="wa-widget" aria-label="Scrivimi su WhatsApp">
-  <span class="wa-widget-label">Scrivimi su WhatsApp</span>
-  <span class="wa-widget-btn">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </svg>
-  </span>
-</a>
+/* ═══ WhatsApp Floating Widget ═══ */
+.wa-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.wa-widget-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  text-decoration: none;
+}
+.wa-widget-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+}
+.wa-widget-btn svg { width: 32px; height: 32px; fill: white; }
+/* Pulse ring animation */
+.wa-widget-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: #25D366;
+  opacity: 0.35;
+  z-index: -1;
+  animation: wa-pulse 2.2s ease-out infinite;
+}
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.35; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+/* Label accanto al pulsante (solo desktop) */
+.wa-widget-label {
+  background: white;
+  color: #075E54;
+  padding: 10px 16px;
+  border-radius: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.wa-widget:hover .wa-widget-label {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+@media (max-width: 640px) {
+  .wa-widget { bottom: 16px; right: 16px; }
+  .wa-widget-btn { width: 54px; height: 54px; }
+  .wa-widget-btn svg { width: 28px; height: 28px; }
+  .wa-widget-label { display: none; }
+}
 
-<!-- COOKIE BANNER (informativo) -->
-<div id="cookieBanner" style="display:none; position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 520px; margin: 0 auto; background: var(--petrol-dark); color: var(--ivory); padding: 1.5rem 1.75rem; border-radius: 2px; box-shadow: 0 10px 40px rgba(0,0,0,0.25); z-index: 999; font-size: 0.9rem; line-height: 1.5;">
-  <p style="margin-bottom: 1rem;">
-    Questo sito utilizza solo <strong>cookie tecnici</strong> necessari al funzionamento e al caricamento dei caratteri tipografici. Non utilizza cookie di profilazione o tracciamento pubblicitario.
-    <a href="cookie-policy.html" style="color: var(--salt-glow); text-decoration: underline;">Leggi la Cookie Policy</a>.
-  </p>
-  <div style="display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
-    <a href="privacy-policy.html" style="color: var(--ivory); opacity: 0.7; font-size: 0.85rem; text-decoration: underline; align-self: center;">Privacy</a>
-    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
-  </div>
-</div>
+/* ═══════════════════════════════════════════════
+   NAVBAR · Dropdown menu (Consulenze, Saggezza Maya)
+═══════════════════════════════════════════════ */
 
-<script>
-(function() {
-  var banner = document.getElementById('cookieBanner');
-  var accepted = localStorage.getItem('cookieNotice_v1');
-  if (!accepted && banner) {
-    setTimeout(function() { banner.style.display = 'block'; }, 800);
-  }
-  var btn = document.getElementById('cookieAccept');
-  if (btn) {
-    btn.addEventListener('click', function() {
-      localStorage.setItem('cookieNotice_v1', 'yes');
-      banner.style.display = 'none';
-    });
-  }
-})();
-</script>
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-dropdown__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  line-height: inherit;
+}
+.nav-dropdown__chevron {
+  transition: transform 0.25s ease;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+.nav-dropdown:hover .nav-dropdown__chevron,
+.nav-dropdown:focus-within .nav-dropdown__chevron,
+.nav-dropdown.is-open-click .nav-dropdown__chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.nav-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 240px;
+  background: var(--ivory, #EEF3F6);
+  border: 1px solid rgba(42, 49, 102, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(18, 40, 43, 0.14), 0 2px 4px rgba(18, 40, 43, 0.04);
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+  z-index: 200;
+}
+/* Triangolino sopra il pannello */
+.nav-dropdown__panel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: var(--ivory, #EEF3F6);
+  border-left: 1px solid rgba(42, 49, 102, 0.12);
+  border-top: 1px solid rgba(42, 49, 102, 0.12);
+}
+.nav-dropdown:hover .nav-dropdown__panel,
+.nav-dropdown:focus-within .nav-dropdown__panel,
+.nav-dropdown.is-open-click .nav-dropdown__panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+/* Buffer invisibile per evitare gap di hover */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  right: -10px;
+  height: 16px;
+  pointer-events: none;
+}
+.nav-dropdown:hover::after,
+.nav-dropdown:focus-within::after {
+  pointer-events: auto;
+}
+.nav-dropdown__panel a {
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  color: var(--charcoal, #2A2A2A);
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  transition: background 0.18s ease, color 0.18s ease, padding-left 0.18s ease;
+  display: block;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-dropdown__panel a:hover {
+  background: rgba(27, 58, 62, 0.07);
+  color: var(--petrol, #1B3A3E);
+  padding-left: 1.05rem;
+}
+.nav-dropdown__divider {
+  height: 1px;
+  background: rgba(42, 49, 102, 0.1);
+  margin: 0.4rem 0.3rem;
+}
+.nav-dropdown__overview {
+  font-style: italic;
+  color: var(--petrol, #1B3A3E) !important;
+  font-weight: 500 !important;
+}
 
-</body>
-</html>
+/* Active state · voce o dropdown corrente */
+.nav-link.is-nav-active,
+.nav-dropdown__toggle.is-nav-active {
+  color: var(--petrol, #1B3A3E) !important;
+  font-weight: 500;
+}
+.nav-link.is-nav-active::after,
+.nav-dropdown__toggle.is-nav-active::after {
+  transform: scaleX(1) !important;
+  transform-origin: left !important;
+}
+
+/* Mobile: dropdown via <details> */
+.nav-mobile-group summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.nav-mobile-group summary::-webkit-details-marker {
+  display: none;
+}
+.nav-mobile-group summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--charcoal-soft, #4A4A4A);
+  transition: transform 0.25s ease;
+}
+.nav-mobile-group[open] summary::after {
+  content: '−';
+}
+.nav-mobile-group a {
+  color: var(--charcoal-soft, #4A4A4A);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  display: block;
+}
+.nav-mobile-group a:hover {
+  color: var(--petrol, #1B3A3E);
+}
+.nav-mobile-group[data-nav].is-nav-active > summary {
+  color: var(--petrol, #1B3A3E);
+  font-weight: 500;
+}
+
+/* Fix menu hamburger mobile */
+.mobile-menu { display: none; }
+.mobile-menu.open { display: block; }
+@media (min-width: 1024px) { .mobile-menu, .mobile-menu.open { display: none; } }
