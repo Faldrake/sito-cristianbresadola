@@ -3,6 +3,12 @@
 ═══════════════════════════════════════════════ */
 
 :root {
+  /* Tipografia — unico punto di verita' per tutto il sito.
+     Fallback: Iowan Old Style e' presente su iOS/macOS ed e' molto vicino a Fraunces,
+     cosi' se il webfont tarda la pagina non ripiega su Times. */
+  --display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
   --ivory: #EEF3F6;
   --ivory-warm: #C9DCE5;
   --frost: #DBE7EC;
@@ -30,7 +36,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--body);
   background: var(--ivory);
   color: var(--charcoal);
   font-weight: 300;
@@ -39,15 +45,15 @@ body {
 }
 
 /* Typography */
-.font-display { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+.font-display { font-family: var(--display); font-optical-sizing: auto; }
 .display-title {
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1.05;
 }
 .display-italic {
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-style: italic;
   font-weight: 300;
 }
@@ -111,7 +117,7 @@ body {
   background: var(--petrol);
   color: var(--ivory);
   padding: 0.9rem 1.75rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--body);
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
@@ -134,7 +140,7 @@ body {
   background: transparent;
   color: var(--petrol);
   padding: 0.9rem 1.75rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--body);
   font-weight: 500;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
@@ -152,7 +158,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   color: var(--petrol);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--body);
   font-weight: 500;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
@@ -185,7 +191,7 @@ body {
 
 /* Labels */
 .eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--body);
   font-weight: 500;
   font-size: 0.75rem;
   letter-spacing: 0.25em;
@@ -232,7 +238,7 @@ nav.main-nav {
 
 /* Section number ornament */
 .section-number {
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-style: italic;
   font-weight: 300;
   font-size: 0.9rem;
@@ -243,7 +249,7 @@ nav.main-nav {
 blockquote.testimonial {
   border-left: 2px solid var(--petrol);
   padding-left: 1.5rem;
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-weight: 300;
   font-style: italic;
   font-size: 1.1rem;
@@ -308,7 +314,7 @@ blockquote.testimonial {
 .timeline-item.highlight::before { background: var(--salt-glow); }
 
 .timeline-year {
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-style: italic;
   font-weight: 300;
   font-size: 0.85rem;
@@ -320,7 +326,7 @@ blockquote.testimonial {
 
 /* Grande virgoletta ornamentale */
 .big-quote-mark {
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-weight: 300;
   font-size: 8rem;
   line-height: 0.5;
@@ -368,7 +374,7 @@ details.faq-item {
 details.faq-item summary {
   cursor: pointer;
   list-style: none;
-  font-family: 'Fraunces', serif;
+  font-family: var(--display);
   font-size: 1.25rem;
   color: var(--petrol);
   display: flex;
@@ -450,7 +456,7 @@ details.faq-item div.faq-answer {
   color: #075E54;
   padding: 10px 16px;
   border-radius: 24px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--body);
   font-size: 0.85rem;
   font-weight: 500;
   box-shadow: 0 4px 14px rgba(0,0,0,0.1);

@@ -44,21 +44,25 @@
 <meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
 
 <style>
+  :root{
+    --display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
   .legal-content { max-width: 820px; }
-  .legal-content h2 { font-family: 'Fraunces', serif; color: var(--petrol); font-size: 1.75rem; font-weight: 400; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
-  .legal-content h3 { font-family: 'DM Sans', sans-serif; color: var(--petrol); font-size: 1.1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
+  .legal-content h2 { font-family:var(--display); color: var(--petrol); font-size: 1.75rem; font-weight: 400; margin-top: 3rem; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .legal-content h3 { font-family:var(--body); color: var(--petrol); font-size: 1.1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; }
   .legal-content p, .legal-content li { color: var(--charcoal-soft); line-height: 1.75; margin-bottom: 1rem; font-size: 0.97rem; }
   .legal-content ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
   .legal-content li { margin-bottom: 0.5rem; list-style: disc; }
   .legal-content strong { color: var(--petrol); font-weight: 500; }
   .legal-content a { color: var(--chrome-blue); text-decoration: underline; text-underline-offset: 2px; }
-  .legal-content .section-ref { font-family: 'Fraunces', serif; font-style: italic; color: var(--twilight); font-size: 0.85rem; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
+  .legal-content .section-ref { font-family:var(--display); font-style: italic; color: var(--twilight); font-size: 0.85rem; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
   .legal-summary { background: var(--frost); padding: 1.5rem; border-left: 3px solid var(--petrol); margin: 1.5rem 0; }
   .legal-summary p { margin-bottom: 0; color: var(--petrol); font-size: 0.9rem; }
 </style>
@@ -490,7 +494,7 @@
   </p>
   <div style="display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
     <a href="privacy-policy.html" style="color: var(--ivory); opacity: 0.7; font-size: 0.85rem; text-decoration: underline; align-self: center;">Privacy</a>
-    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
+    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family:var(--body); font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
   </div>
 </div>
 

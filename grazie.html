@@ -45,15 +45,19 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
 <style>
+  :root {
+    --display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
   .form-input {
     background: var(--ivory);
     border: 1px solid rgba(27, 58, 62, 0.15);
     padding: 0.9rem 1rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family:var(--body);
     font-size: 0.95rem;
     color: var(--charcoal);
     width: 100%;
@@ -65,7 +69,7 @@
     background: white;
   }
   .form-label {
-    font-family: 'DM Sans', sans-serif;
+    font-family:var(--body);
     font-weight: 500;
     font-size: 0.85rem;
     color: var(--petrol);
@@ -185,7 +189,7 @@
     <h1 class="display-italic text-petrol-dark mb-8">
       Grazie per avermi <em>scritto</em>.
     </h1>
-    <p class="text-xl lg:text-2xl text-charcoal-soft leading-relaxed max-w-2xl mx-auto" style="font-family: 'Fraunces', Georgia, serif; font-style: italic;">
+    <p class="text-xl lg:text-2xl text-charcoal-soft leading-relaxed max-w-2xl mx-auto" style="font-family:var(--display); font-style: italic;">
       Ho ricevuto il tuo messaggio. Ti rispondo personalmente, di solito entro 24–48 ore.
     </p>
   </div>
@@ -197,21 +201,21 @@
     <div class="bg-ivory p-8 lg:p-12 space-y-6" style="border: 1px solid rgba(42, 49, 102, 0.1);">
 
       <div class="flex items-start gap-4">
-        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
+        <span class="text-2xl text-petrol flex-shrink-0" style="font-family:var(--display);">·</span>
         <p class="text-charcoal-soft leading-relaxed">
           <strong class="text-petrol-dark">Quando ti rispondo:</strong> di solito entro un paio di giorni lavorativi. Se la tua richiesta è urgente o hai bisogno di parlarmi a voce, scrivimi su WhatsApp al <a href="https://wa.me/393396383790" class="underline text-petrol hover:text-chrome-blue">+39 339 638 3790</a>.
         </p>
       </div>
 
       <div class="flex items-start gap-4">
-        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
+        <span class="text-2xl text-petrol flex-shrink-0" style="font-family:var(--display);">·</span>
         <p class="text-charcoal-soft leading-relaxed">
           <strong class="text-petrol-dark">Controlla la casella spam</strong> nei prossimi giorni: a volte le mie risposte ci finiscono dentro. Se la trovi lì, segnala come "non spam" così le prossime arrivano dirette.
         </p>
       </div>
 
       <div class="flex items-start gap-4">
-        <span class="text-2xl text-petrol flex-shrink-0" style="font-family: 'Fraunces', serif;">·</span>
+        <span class="text-2xl text-petrol flex-shrink-0" style="font-family:var(--display);">·</span>
         <p class="text-charcoal-soft leading-relaxed">
           <strong class="text-petrol-dark">I tuoi dati</strong> sono trattati solo per rispondere alla tua richiesta, conservati fino a 12 mesi dall'ultimo contatto, mai condivisi con terzi a fini commerciali. <a href="privacy-policy.html" class="underline text-petrol hover:text-chrome-blue">Informativa Privacy</a>.
         </p>
@@ -228,24 +232,24 @@
     <div class="grid md:grid-cols-3 gap-6">
 
       <a href="chi-sono.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
-        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Chi sono</p>
-        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Conoscimi meglio</p>
+        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family:var(--body); letter-spacing: 0.18em;">Chi sono</p>
+        <p class="text-petrol-dark group-hover:text-petrol" style="font-family:var(--display); font-size: 1.25rem; font-style: italic;">Conoscimi meglio</p>
       </a>
 
       <a href="consulenze.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
-        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Consulenze</p>
-        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Scopri le discipline</p>
+        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family:var(--body); letter-spacing: 0.18em;">Consulenze</p>
+        <p class="text-petrol-dark group-hover:text-petrol" style="font-family:var(--display); font-size: 1.25rem; font-style: italic;">Scopri le discipline</p>
       </a>
 
       <a href="bussola.html" class="block bg-frost p-8 hover:bg-petrol/5 transition-colors group">
-        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family: 'DM Sans', sans-serif; letter-spacing: 0.18em;">Bussola dell'Anima</p>
-        <p class="text-petrol-dark group-hover:text-petrol" style="font-family: 'Fraunces', Georgia, serif; font-size: 1.25rem; font-style: italic;">Il kin di oggi</p>
+        <p class="text-xs uppercase tracking-widest text-petrol/60 mb-3" style="font-family:var(--body); letter-spacing: 0.18em;">Bussola dell'Anima</p>
+        <p class="text-petrol-dark group-hover:text-petrol" style="font-family:var(--display); font-size: 1.25rem; font-style: italic;">Il kin di oggi</p>
       </a>
 
     </div>
 
     <div class="text-center mt-12">
-      <a href="/" class="inline-block px-8 py-3 bg-petrol text-ivory hover:bg-petrol-dark transition-colors" style="font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em;">
+      <a href="/" class="inline-block px-8 py-3 bg-petrol text-ivory hover:bg-petrol-dark transition-colors" style="font-family:var(--body); font-size: 0.9rem; letter-spacing: 0.05em;">
         Torna alla home
       </a>
     </div>
@@ -323,7 +327,7 @@
   </p>
   <div style="display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
     <a href="privacy-policy.html" style="color: var(--ivory); opacity: 0.7; font-size: 0.85rem; text-decoration: underline; align-self: center;">Privacy</a>
-    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
+    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family:var(--body); font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
   </div>
 </div>
 

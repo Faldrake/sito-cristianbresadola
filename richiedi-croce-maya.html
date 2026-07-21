@@ -32,7 +32,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
@@ -42,6 +42,11 @@
    STILI SPECIFICI WIZARD CROCE MAYA (identici a primo-contatto)
 ═══════════════════════════════════════════════════════════ */
 
+:root {
+  --display:'Fraunces','Iowan Old Style',Georgia,serif;
+  --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+
 .steps-bar { display: flex; gap: 8px; margin-bottom: 2rem; }
 .steps-bar .step-pill {
   flex: 1; height: 4px; background: rgba(27, 58, 62, 0.12);
@@ -50,12 +55,12 @@
 .steps-bar .step-pill.done, .steps-bar .step-pill.active { background: var(--petrol, #1B3A3E); }
 
 .step-label {
-  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.18em;
+  font-family:var(--body); font-size: 0.75rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);
   margin-bottom: 0.5rem; font-weight: 500;
 }
 .step-counter {
-  font-family: 'Fraunces', serif; font-style: italic; font-size: 0.95rem;
+  font-family:var(--display); font-style: italic; font-size: 0.95rem;
   color: var(--salt-glow, #E59856); margin-right: 0.5rem;
 }
 
@@ -71,7 +76,7 @@
 .form-input {
   width: 100%; padding: 0.875rem 1rem;
   background: var(--ivory, #EEF3F6); border: 1px solid rgba(27, 58, 62, 0.15);
-  border-radius: 0; font-family: 'DM Sans', sans-serif; font-size: 1rem;
+  border-radius: 0; font-family:var(--body); font-size: 1rem;
   color: var(--charcoal, #2A2A2A); transition: border-color 0.2s, background 0.2s;
 }
 .form-input:focus { outline: none; border-color: var(--petrol, #1B3A3E); background: white; }
@@ -79,7 +84,7 @@
 textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; }
 
 .form-label {
-  display: block; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+  display: block; font-family:var(--body); font-size: 0.875rem;
   color: var(--petrol, #1B3A3E); font-weight: 500; margin-bottom: 0.5rem;
 }
 .form-help {
@@ -115,7 +120,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   padding: 1rem 1.25rem; margin-bottom: 1rem;
 }
 .info-title {
-  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em;
+  font-family:var(--body); font-size: 0.75rem; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--petrol, #1B3A3E);
   margin-bottom: 0.35rem; font-weight: 500;
 }
@@ -137,10 +142,10 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 
 .text-petrol { color: var(--petrol, #1B3A3E); }
 .text-charcoal-soft { color: var(--charcoal-soft, #4A4A4A); }
-.display-title { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; }
-.display-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
+.display-title { font-family:var(--display); font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; }
+.display-italic { font-family:var(--display); font-style: italic; font-weight: 300; }
 .eyebrow {
-  font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.75rem;
+  font-family:var(--body); font-weight: 500; font-size: 0.75rem;
   letter-spacing: 0.22em; text-transform: uppercase;
 }
 </style>
@@ -155,7 +160,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
     <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
       <img src="/images/logo.jpg" alt="Logo Cristian Bresadola" style="width: 40px; height: 40px; border-radius: 50%;">
       <div>
-        <div style="font-family: 'Fraunces', serif; font-size: 17px; color: var(--petrol, #1B3A3E); line-height: 1.2;">Cristian Bresadola</div>
+        <div style="font-family:var(--display); font-size: 17px; color: var(--petrol, #1B3A3E); line-height: 1.2;">Cristian Bresadola</div>
         <div style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);">Naturopata · Riflessologo</div>
       </div>
     </a>
@@ -427,7 +432,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
             Entro 3 giorni ti contatto via email per concordare il contributo.
             Dopo la conferma inizio la preparazione e ti consegno il PDF entro 2-3 settimane.
           </p>
-          <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 0.95rem; color: var(--twilight, #6B8AA8);">
+          <p style="font-family:var(--display); font-style: italic; font-size: 0.95rem; color: var(--twilight, #6B8AA8);">
             In Lak'ech · A Lak'en ·
           </p>
           <div style="margin-top: 2rem;">

@@ -207,7 +207,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
@@ -228,6 +228,8 @@
     --charcoal: #2A2A2A;
     --charcoal-soft: #4A4A4A;
     --sage: #8A9B86;
+    --display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -235,7 +237,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family:var(--body);
     background: var(--ivory);
     color: var(--charcoal);
     font-weight: 300;
@@ -244,19 +246,19 @@
   }
 
   .font-display {
-    font-family: 'Fraunces', serif;
+    font-family:var(--display);
     font-optical-sizing: auto;
   }
 
   .display-title {
-    font-family: 'Fraunces', serif;
+    font-family:var(--display);
     font-weight: 300;
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
 
   .display-italic {
-    font-family: 'Fraunces', serif;
+    font-family:var(--display);
     font-style: italic;
     font-weight: 300;
   }
@@ -315,7 +317,7 @@
     background: var(--petrol);
     color: var(--ivory);
     padding: 0.9rem 1.75rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family:var(--body);
     font-weight: 500;
     font-size: 0.95rem;
     letter-spacing: 0.02em;
@@ -337,7 +339,7 @@
     background: transparent;
     color: var(--petrol);
     padding: 0.9rem 1.75rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family:var(--body);
     font-weight: 500;
     font-size: 0.95rem;
     letter-spacing: 0.02em;
@@ -354,7 +356,7 @@
     align-items: center;
     gap: 0.5rem;
     color: var(--petrol);
-    font-family: 'DM Sans', sans-serif;
+    font-family:var(--body);
     font-weight: 500;
     font-size: 0.9rem;
     letter-spacing: 0.02em;
@@ -386,7 +388,7 @@
 
   /* Small caps label */
   .eyebrow {
-    font-family: 'DM Sans', sans-serif;
+    font-family:var(--body);
     font-weight: 500;
     font-size: 0.75rem;
     letter-spacing: 0.25em;
@@ -474,7 +476,7 @@
   blockquote.testimonial {
     border-left: 2px solid var(--petrol);
     padding-left: 1.5rem;
-    font-family: 'Fraunces', serif;
+    font-family:var(--display);
     font-weight: 300;
     font-style: italic;
     font-size: 1.1rem;
@@ -488,7 +490,7 @@
 
   /* Numbers for sections */
   .section-number {
-    font-family: 'Fraunces', serif;
+    font-family:var(--display);
     font-style: italic;
     font-weight: 300;
     font-size: 0.9rem;
@@ -1048,7 +1050,7 @@
       flex-shrink:0;
     }
     .bussola-widget__tone{
-      font-family:'Fraunces', serif;
+      font-family:var(--display);
       font-style:italic;font-weight:500;
       font-size:3.2rem;line-height:1;
       color:#D4A55B;
@@ -1072,7 +1074,7 @@
       min-width:0;
     }
     .bussola-widget__eyebrow{
-      font-family:'Fraunces', serif;
+      font-family:var(--display);
       font-style:italic;
       font-size:.95rem;
       color:#D4A55B;
@@ -1080,14 +1082,14 @@
       display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;
     }
     .bussola-widget__date{
-      font-family:'DM Sans', sans-serif;
+      font-family:var(--body);
       font-style:normal;
       font-size:.7rem;letter-spacing:0.2em;
       text-transform:uppercase;
       color:#8FA29F;
     }
     .bussola-widget__title{
-      font-family:'Fraunces', serif;
+      font-family:var(--display);
       font-weight:400;
       font-size:1.65rem;
       line-height:1.25;
@@ -1104,7 +1106,7 @@
       margin-top:.25rem;
     }
     .bussola-widget__quote{
-      font-family:'Fraunces', serif;
+      font-family:var(--display);
       font-style:italic;
       font-size:1rem;
       color:rgba(245,239,226,0.85);
@@ -1114,7 +1116,7 @@
     }
     .bussola-widget__cta{
       display:inline-flex;align-items:center;gap:.5rem;
-      font-family:'DM Sans', sans-serif;
+      font-family:var(--body);
       font-size:.78rem;letter-spacing:0.22em;
       text-transform:uppercase;
       color:#E6BB75;
@@ -1283,7 +1285,7 @@
         </p>
 
         <a href="idroterapia.html" class="inline-flex items-center gap-3 px-8 py-4 transition-all group" 
-           style="background: #E59856; color: #12282B; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.02em;">
+           style="background: #E59856; color: #12282B; font-family:var(--body); font-weight: 500; font-size: 0.9rem; letter-spacing: 0.02em;">
           Scopri il percorso completo
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:translate-x-1 transition">
             <path d="M5 12h14M13 6l6 6-6 6"/>
@@ -1344,7 +1346,7 @@
         </p>
 
         <a href="cerchio-del-druido/" class="inline-flex items-center gap-3 px-8 py-4 transition-all group" 
-           style="background: #1B3A3E; color: #F5EFE2; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.02em;">
+           style="background: #1B3A3E; color: #F5EFE2; font-family:var(--body); font-weight: 500; font-size: 0.9rem; letter-spacing: 0.02em;">
           Esplora il Cerchio
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:translate-x-1 transition">
             <path d="M5 12h14M13 6l6 6-6 6"/>
@@ -2010,7 +2012,7 @@
   </p>
   <div style="display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap;">
     <a href="privacy-policy.html" style="color: var(--ivory); opacity: 0.7; font-size: 0.85rem; text-decoration: underline; align-self: center;">Privacy</a>
-    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
+    <button id="cookieAccept" style="background: var(--salt-glow); color: var(--petrol-dark); border: none; padding: 0.6rem 1.5rem; font-family:var(--body); font-weight: 500; font-size: 0.85rem; cursor: pointer; border-radius: 2px;">Ho capito</button>
   </div>
 </div>
 

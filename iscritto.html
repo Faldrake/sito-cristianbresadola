@@ -15,10 +15,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 
 <style>
   :root{
+    --display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --ivory:#F5EFE2;
     --frost:#E8E4D9;
     --petrol:#1B3A3E;
@@ -30,7 +32,7 @@
     --charcoal-soft:rgba(10,27,30,0.72);
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--petrol);background:var(--ivory);-webkit-font-smoothing:antialiased;line-height:1.55}
+  html,body{margin:0;padding:0;font-family:var(--body);color:var(--petrol);background:var(--ivory);-webkit-font-smoothing:antialiased;line-height:1.55}
   a{color:var(--petrol);text-decoration:none}
   a:hover{color:var(--gold)}
 
@@ -46,7 +48,7 @@
     text-align:center;
   }
   header .brand-name{
-    font-family:'Fraunces',Georgia,serif;
+    font-family:var(--display);
     font-size:20px;font-weight:400;
     color:var(--petrol);
     margin:0 0 4px 0;
@@ -72,13 +74,13 @@
     box-shadow:0 4px 32px rgba(27,58,62,0.06);
   }
   .eyebrow{
-    font-family:'Fraunces',Georgia,serif;
+    font-family:var(--display);
     font-style:italic;font-size:15px;
     color:var(--gold);
     margin:0 0 12px 0;
   }
   h1{
-    font-family:'Fraunces',Georgia,serif;
+    font-family:var(--display);
     font-weight:400;font-size:36px;line-height:1.2;
     color:var(--petrol);
     margin:0 0 8px 0;
@@ -90,7 +92,7 @@
     margin:18px 0;
   }
   .lead{
-    font-family:'Fraunces',Georgia,serif;
+    font-family:var(--display);
     font-style:italic;font-size:17px;line-height:1.7;
     color:var(--petrol);
     margin:0 0 18px 0;
@@ -143,7 +145,7 @@
     margin-top:32px;
     padding-top:24px;
     border-top:1px solid rgba(27,58,62,0.08);
-    font-family:'Fraunces',Georgia,serif;
+    font-family:var(--display);
     font-style:italic;font-size:14px;
     color:var(--gold);
   }
