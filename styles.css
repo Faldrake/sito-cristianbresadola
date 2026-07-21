@@ -645,3 +645,61 @@ details.faq-item div.faq-answer {
 .mobile-menu { display: none; }
 .mobile-menu.open { display: block; }
 @media (min-width: 1024px) { .mobile-menu, .mobile-menu.open { display: none; } }
+
+/* ═══════════════════════════════════════════════
+   Firma NosLab — credito di produzione nel footer
+═══════════════════════════════════════════════ */
+.noslab-sign {
+  --noslab-green: #87CF3B;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.65rem 1.1rem 0.65rem 0.85rem;
+  border: 1px solid rgba(238, 243, 246, 0.14);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(238, 243, 246, 0.03);
+  transition: border-color .35s ease, background .35s ease, transform .35s ease;
+}
+.noslab-sign:hover,
+.noslab-sign:focus-visible {
+  border-color: rgba(135, 207, 59, 0.45);
+  background: rgba(135, 207, 59, 0.07);
+  transform: translateY(-2px);
+}
+.noslab-sign:focus-visible { outline: 2px solid var(--noslab-green); outline-offset: 3px; }
+
+.noslab-sign__mark {
+  width: 30px; height: auto;
+  flex: 0 0 auto;
+  opacity: .55;
+  transition: opacity .35s ease, transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.noslab-sign:hover .noslab-sign__mark { opacity: 1; transform: translateY(-1px); }
+
+/* Gli accenti verdi restano spenti finche' non si passa sopra */
+.noslab-sign__mark .accent { fill: currentColor; opacity: .45; transition: fill .35s ease, opacity .35s ease; }
+.noslab-sign:hover .noslab-sign__mark .accent { fill: var(--noslab-green); opacity: 1; }
+
+.noslab-sign__text { display: flex; flex-direction: column; line-height: 1.25; }
+.noslab-sign__label {
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  opacity: .55; margin-bottom: 3px;
+}
+.noslab-sign__name {
+  font-size: 13px; font-weight: 500; letter-spacing: .01em;
+  transition: color .35s ease;
+}
+.noslab-sign:hover .noslab-sign__name { color: var(--noslab-green); }
+.noslab-sign__payoff {
+  font-family: var(--display);
+  font-style: italic; font-size: 11px;
+  opacity: .5; margin-top: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noslab-sign, .noslab-sign__mark, .noslab-sign__mark .accent, .noslab-sign__name { transition: none; }
+  .noslab-sign:hover { transform: none; }
+  .noslab-sign:hover .noslab-sign__mark { transform: none; }
+}
