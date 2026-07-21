@@ -703,3 +703,10 @@ details.faq-item div.faq-answer {
   .noslab-sign:hover { transform: none; }
   .noslab-sign:hover .noslab-sign__mark { transform: none; }
 }
+
+/* Ritratto della home: la foto e' in bianco e nero, il sito ha una palette calda.
+   Velatura leggera verso l'avorio perche' dialoghi con il resto della pagina
+   invece di staccare. Volutamente contenuta: non deve diventare un seppia. */
+.hero-ritratto {
+  filter: sepia(0.18) contrast(1.04) brightness(1.02);
+}
