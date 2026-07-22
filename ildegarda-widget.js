@@ -29,13 +29,16 @@
   var K_SESSION = 'ildegarda_session_id';
   var K_CONSENSO = 'ildegarda_consenso';
 
-  // Apertura in 4 step della sezione 3 del system prompt. Statica: non
-  // consuma token e non viene inviata al backend, che ricostruisce lo
-  // storico dal database.
-  var BENVENUTO =
-    'Ciao, sono Ildegarda, l’assistente AI di Cristian Bresadola, prodotta da ' +
-    'NosLab S.a.s. Posso aiutarti a orientarti tra i servizi, le discipline e i ' +
-    'percorsi di benessere di Cristian. Come posso esserti utile?';
+  // Nota di apertura, non è Ildegarda che parla.
+  //
+  // Qui prima c'era il saluto in 4 step della sezione 3 del system prompt,
+  // mostrato staticamente. Sembrava gratis, ma produceva una presentazione
+  // doppia: il saluto statico non entra nello storico che il backend
+  // ricostruisce dal database, quindi per il modello il primo messaggio
+  // dell'utente resta il primo turno e lui si presenta di nuovo.
+  // Meglio lasciare che sia Ildegarda ad aprire, con parole sue, nella sua
+  // prima risposta vera.
+  var APERTURA = 'Scrivi la tua domanda: Ildegarda ti risponde qui.';
 
   function leggi(chiave) {
     try { return window.localStorage.getItem(chiave); } catch (e) { return null; }
@@ -305,7 +308,7 @@
       scrivi(K_CONSENSO, new Date().toISOString());
       box.remove();
       abilita();
-      aggiungi('sua', BENVENUTO);
+      aggiungi('avviso', APERTURA);
       testo.focus();
     });
     corpo.scrollTop = corpo.scrollHeight;
@@ -331,7 +334,7 @@
       avviato = true;
       if (leggi(K_CONSENSO)) {
         abilita();
-        aggiungi('sua', BENVENUTO);
+        aggiungi('avviso', APERTURA);
       } else {
         testo.disabled = true;
         aggiornaInvia();
