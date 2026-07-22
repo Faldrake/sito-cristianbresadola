@@ -22,6 +22,7 @@
   window.__ildegardaWidget = true;
 
   var ENDPOINT = 'https://okasxfvoyihovohlaypz.supabase.co/functions/v1/ildegarda-chat';
+  var ENDPOINT_HANDOFF = 'https://okasxfvoyihovohlaypz.supabase.co/functions/v1/ildegarda-handoff';
   var STORAGE = 'https://okasxfvoyihovohlaypz.supabase.co/storage/v1/object/public/assets/ildegarda/';
   var AVATAR = STORAGE + 'ildegarda-avatar.webp';
   var SFONDO = STORAGE + 'ildegarda-sfondo-pannello.webp';
@@ -183,6 +184,48 @@
     '.consenso button:hover { background: var(--petrol-dark); }',
     '.consenso button:focus-visible { outline: 2px solid var(--salt-glow); outline-offset: 2px; }',
 
+    /* modulo per farsi ricontattare */
+    '.modulo { position: relative; }',
+    '.modulo label {',
+    '  display: block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;',
+    '  color: var(--charcoal-soft); margin: 0 0 3px;',
+    '}',
+    '.modulo input, .modulo textarea {',
+    '  width: 100%; padding: 8px 10px; margin-bottom: 9px;',
+    '  border: 1px solid rgba(27,58,62,.2); border-radius: 7px;',
+    '  font-family: var(--body); font-size: 15px; color: var(--charcoal); background: #fff;',
+    '}',
+    '.modulo textarea { resize: vertical; min-height: 58px; line-height: 1.45; }',
+    '.modulo input:focus, .modulo textarea:focus { outline: none; border-color: var(--petrol); }',
+    // La riga del consenso e' un <label> come le etichette dei campi, ma non
+    // deve ereditarne il maiuscoletto: un consenso GDPR va letto, non gridato.
+    '.modulo .consenso-riga {',
+    '  display: flex; gap: 8px; align-items: flex-start;',
+    '  text-transform: none; letter-spacing: normal;',
+    '  font-size: 13.5px; line-height: 1.5; color: var(--charcoal);',
+    '  margin: 4px 0 12px; cursor: pointer;',
+    '}',
+    '.modulo .consenso-riga input { width: auto; margin: 2px 0 0; flex: none; }',
+    '.modulo .riga-bottoni { display: flex; gap: 8px; align-items: stretch; }',
+    '.modulo .riga-bottoni button {',
+    '  width: auto; padding: 10px 14px; border: 0; border-radius: 8px;',
+    '  font-family: var(--body); font-size: 14px; line-height: 1.2; cursor: pointer;',
+    '}',
+    '.modulo .conferma { flex: 1 1 auto; background: var(--petrol); color: #fff; }',
+    '.modulo .conferma:hover:not(:disabled) { background: var(--petrol-dark); }',
+    '.modulo .conferma:disabled { opacity: .45; cursor: default; }',
+    '.modulo .annulla { flex: 0 0 auto; background: transparent; color: var(--charcoal-soft); }',
+    '.modulo .errore { color: #8B3A3A; font-size: 13px; margin: 0 0 8px; display: none; }',
+
+    '.invito {',
+    '  display: block; width: 100%; text-align: left; padding: 9px 12px;',
+    '  border: 0; border-top: 1px solid rgba(27,58,62,.12); background: #fff;',
+    '  font-family: var(--body); font-size: 13px; color: var(--petrol);',
+    '  cursor: pointer; text-decoration: underline; text-underline-offset: 2px;',
+    '}',
+    '.invito:hover { background: var(--frost); }',
+    '.invito[hidden] { display: none; }',
+
     '.piede { border-top: 1px solid rgba(27,58,62,.12); background: #fff; }',
     '.campo { display: flex; align-items: flex-end; gap: 8px; padding: 10px 10px 8px; }',
     '.campo textarea {',
@@ -225,6 +268,8 @@
     // fuori dallo schermo. 16px esatti lo disinnescano: e' l'unica ragione per
     // cui qui la misura e' diversa dal resto.
     '  .campo textarea { font-size: 16px; }',
+    // stessa ragione: anche i campi del modulo devono stare a 16px, o iOS zooma
+    '  .modulo input, .modulo textarea { font-size: 16px; }',
     '}',
     '@media (prefers-reduced-motion: reduce) {',
     '  .bolla, .pannello { transition: none; }',
@@ -257,6 +302,7 @@
       '  </header>',
       '  <div class="corpo" role="log" aria-live="polite" aria-relevant="additions"></div>',
       '  <div class="piede">',
+      '    <button class="invito" type="button">Vuoi che Cristian ti ricontatti?</button>',
       '    <div class="campo">',
       '      <textarea rows="1" placeholder="Scrivi il tuo messaggio" aria-label="Il tuo messaggio"></textarea>',
       '      <button class="invia" type="button" aria-label="Invia il messaggio" disabled>',
@@ -472,6 +518,104 @@
         if (!testo.disabled) testo.focus();
       });
   }
+
+  // ---- Passaggio di consegne a Cristian ----
+  //
+  // Il consenso non si deduce da quello che scrive Ildegarda: lo dà la persona
+  // con un gesto suo, spuntando la casella e inviando il modulo. Per un
+  // consenso su dati di salute l'inequivocabile vale più dell'elegante.
+  var invito = root.querySelector('.invito');
+  var moduloAperto = false;
+
+  function apriModuloHandoff() {
+    if (moduloAperto) return;
+    moduloAperto = true;
+    invito.hidden = true;
+
+    var box = document.createElement('div');
+    box.className = 'consenso modulo';
+    box.innerHTML = [
+      '<p style="margin-bottom:10px">Lascia un recapito: Cristian ti ricontatta di persona. ',
+      'Quello che ci siamo detti qui gli arriva insieme al messaggio.</p>',
+      '<p class="errore"></p>',
+      '<label for="ho-nome">Come ti chiami</label>',
+      '<input id="ho-nome" autocomplete="name">',
+      '<label for="ho-recapito">Email o telefono</label>',
+      '<input id="ho-recapito" autocomplete="email">',
+      '<label for="ho-messaggio">Vuoi aggiungere qualcosa? (facoltativo)</label>',
+      '<textarea id="ho-messaggio"></textarea>',
+      '<label class="consenso-riga">',
+      '  <input type="checkbox" id="ho-consenso">',
+      '  <span>Acconsento a passare il mio nome, il mio recapito e questa conversazione ',
+      '  a Cristian Bresadola, perché mi ricontatti.</span>',
+      '</label>',
+      '<div class="riga-bottoni">',
+      '  <button type="button" class="conferma">Invia a Cristian</button>',
+      '  <button type="button" class="annulla">Annulla</button>',
+      '</div>'
+    ].join('');
+    corpo.appendChild(box);
+    corpo.scrollTop = corpo.scrollHeight;
+    box.querySelector('#ho-nome').focus();
+
+    var errore = box.querySelector('.errore');
+    var conferma = box.querySelector('.conferma');
+
+    function chiudiModulo() {
+      box.remove();
+      moduloAperto = false;
+      invito.hidden = false;
+    }
+
+    box.querySelector('.annulla').addEventListener('click', chiudiModulo);
+
+    conferma.addEventListener('click', function () {
+      var nome = box.querySelector('#ho-nome').value.trim();
+      var recapito = box.querySelector('#ho-recapito').value.trim();
+      var messaggio = box.querySelector('#ho-messaggio').value.trim();
+      var consenso = box.querySelector('#ho-consenso').checked;
+
+      function segnala(testo) {
+        errore.textContent = testo;
+        errore.style.display = 'block';
+      }
+      if (!nome || !recapito) { segnala('Servono il nome e un recapito.'); return; }
+      if (!consenso) { segnala('Senza il tuo consenso non posso passare nulla a Cristian.'); return; }
+
+      errore.style.display = 'none';
+      conferma.disabled = true;
+      conferma.textContent = 'Invio...';
+
+      window.fetch(ENDPOINT_HANDOFF, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_id: sessionId(), nome: nome, recapito: recapito,
+          messaggio: messaggio, consenso: true
+        })
+      })
+        .then(function (res) { return res.json().then(function (d) { return { ok: res.ok, d: d }; }); })
+        .then(function (esito) {
+          if (esito.ok && esito.d && esito.d.ok) {
+            chiudiModulo();
+            aggiungi('avviso', 'Fatto: ho passato il tuo recapito a Cristian. Ti ricontatta lui, ' +
+              'appena può. Se nel frattempo ti viene in mente altro, scrivimi pure qui.');
+          } else {
+            conferma.disabled = false;
+            conferma.textContent = 'Invia a Cristian';
+            segnala('Non sono riuscita a inviare. Riprova fra poco, oppure scrivi a Cristian dalla pagina Contatti.');
+          }
+        })
+        .catch(function (err) {
+          console.warn('[Ildegarda] handoff fallito:', err);
+          conferma.disabled = false;
+          conferma.textContent = 'Invia a Cristian';
+          segnala('La connessione non è riuscita. Riprova, oppure scrivi dalla pagina Contatti.');
+        });
+    });
+  }
+
+  invito.addEventListener('click', apriModuloHandoff);
 
   bolla.addEventListener('click', apri);
   chiudi.addEventListener('click', chiudiPannello);
