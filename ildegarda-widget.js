@@ -217,6 +217,11 @@
     '    width: auto; height: auto; max-height: none;',
     '    border-radius: 12px;',
     '  }',
+    // Safari su iPhone ingrandisce da solo la pagina quando il cursore entra in
+    // un campo con testo sotto i 16px. Lo zoom scala tutto e spinge la testata
+    // fuori dallo schermo. 16px esatti lo disinnescano: e' l'unica ragione per
+    // cui qui la misura e' diversa dal resto.
+    '  .campo textarea { font-size: 16px; }',
     '}',
     '@media (prefers-reduced-motion: reduce) {',
     '  .bolla, .pannello { transition: none; }',
@@ -281,6 +286,45 @@
   var inAttesa = false;
   var avviato = false;
 
+  // ---- Adattamento all'area visibile reale (mobile) ----
+  //
+  // Su iPhone il viewport di layout non si restringe quando compare la
+  // tastiera, e con la barra degli indirizzi visibile e' piu' alto di quel che
+  // si vede. Un pannello ancorato con il solo CSS finisce quindi fuori dallo
+  // schermo, di solito verso l'alto: sparisce la testata.
+  //
+  // visualViewport riporta l'area davvero visibile, tastiera compresa. Su
+  // mobile posizioniamo il pannello con quei numeri; su desktop lasciamo fare
+  // al CSS, togliendo gli stili inline.
+  function suMobile() {
+    return window.matchMedia('(max-width: 600px)').matches;
+  }
+
+  function adattaAlViewport() {
+    var vv = window.visualViewport;
+    if (!vv || pannello.hidden) return;
+
+    if (!suMobile()) {
+      pannello.style.removeProperty('top');
+      pannello.style.removeProperty('height');
+      pannello.style.removeProperty('bottom');
+      return;
+    }
+
+    var margine = 8;
+    pannello.style.top = Math.max(0, vv.offsetTop + margine) + 'px';
+    pannello.style.height = Math.max(240, vv.height - margine * 2) + 'px';
+    pannello.style.bottom = 'auto';
+  }
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', adattaAlViewport);
+    window.visualViewport.addEventListener('scroll', adattaAlViewport);
+  }
+  window.addEventListener('orientationchange', function () {
+    window.setTimeout(adattaAlViewport, 250);
+  });
+
   function aggiungi(tipo, contenuto) {
     var riga = document.createElement('div');
     riga.className = 'riga ' + tipo;
@@ -337,6 +381,7 @@
   function apri() {
     pannello.hidden = false;
     bolla.hidden = true;
+    adattaAlViewport();
     // forza il reflow perche' la transizione parta dallo stato iniziale
     void pannello.offsetWidth;
     pannello.classList.add('aperto');
@@ -359,6 +404,9 @@
     pannello.classList.remove('aperto');
     window.setTimeout(function () {
       pannello.hidden = true;
+      pannello.style.removeProperty('top');
+      pannello.style.removeProperty('height');
+      pannello.style.removeProperty('bottom');
       bolla.hidden = false;
       bolla.focus();
     }, 200);
