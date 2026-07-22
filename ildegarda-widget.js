@@ -91,6 +91,10 @@
     '  position: fixed; left: 24px; bottom: 24px;',
     '  width: 380px; max-width: calc(100vw - 32px);',
     '  height: 560px; max-height: calc(100vh - 48px);',
+    // dvh segue l'area davvero visibile: serve al telefono in orizzontale, che
+    // essendo largo piu' di 600px non ricade nella regola mobile qui sotto.
+    // I browser che non lo conoscono ignorano la riga e tengono quella sopra.
+    '  max-height: calc(100dvh - 48px);',
     '  display: flex; flex-direction: column; overflow: hidden;',
     '  background: var(--ivory); border-radius: 14px;',
     '  border: 1px solid rgba(27,58,62,.14);',
@@ -127,6 +131,8 @@
     '  flex: 1; overflow-y: auto; padding: 16px 14px; position: relative;',
     '  display: flex; flex-direction: column; gap: 10px;',
     '  background-color: var(--ivory);',
+    // senza questo, arrivati in fondo alla chat su mobile si trascina la pagina sotto
+    '  overscroll-behavior: contain;',
     '}',
     '.corpo::before {',
     '  content: \'\'; position: absolute; inset: 0; pointer-events: none;',
@@ -200,11 +206,16 @@
     '  color: var(--charcoal-soft); opacity: .85;',
     '}',
 
-    '@media (max-width: 480px) {',
+    // Su mobile niente vh: su telefono 100vh vale l'altezza CON la barra degli
+    // indirizzi nascosta, quindi e' piu' alto dell'area visibile. Ancorato in
+    // basso, il pannello sbordava dall'alto e sembrava gigante. Fissando sia
+    // top sia bottom e' il browser a calcolare l'altezza, e segue l'area reale.
+    '@media (max-width: 600px) {',
     '  .bolla { left: 16px; bottom: 16px; width: 54px; height: 54px; }',
     '  .pannello {',
-    '    left: 8px; right: 8px; bottom: 8px; width: auto;',
-    '    height: calc(100vh - 16px); max-height: none;',
+    '    left: 8px; right: 8px; top: 8px; bottom: 8px;',
+    '    width: auto; height: auto; max-height: none;',
+    '    border-radius: 12px;',
     '  }',
     '}',
     '@media (prefers-reduced-motion: reduce) {',
