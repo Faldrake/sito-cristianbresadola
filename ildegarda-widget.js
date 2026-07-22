@@ -212,9 +212,12 @@
     // top sia bottom e' il browser a calcolare l'altezza, e segue l'area reale.
     '@media (max-width: 600px) {',
     '  .bolla { left: 16px; bottom: 16px; width: 54px; height: 54px; }',
+    // Ripiego se visualViewport non c'e': pannello ancorato in basso che
+    // occupa poco meno di tre quarti dello schermo, non tutto. Le misure
+    // esatte le mette comunque il JS.
     '  .pannello {',
-    '    left: 8px; right: 8px; top: 8px; bottom: 8px;',
-    '    width: auto; height: auto; max-height: none;',
+    '    left: 8px; right: 8px; top: auto; bottom: 8px;',
+    '    width: auto; height: 72dvh; max-height: calc(100dvh - 16px);',
     '    border-radius: 12px;',
     '  }',
     // Safari su iPhone ingrandisce da solo la pagina quando il cursore entra in
@@ -311,9 +314,20 @@
       return;
     }
 
+    // Il pannello non prende tutto lo schermo: sarebbe invadente e coprirebbe
+    // il sito. Sta ancorato in basso e ne occupa poco meno di tre quarti,
+    // lasciando vedere la pagina sopra.
+    // Eccezione: quando l'area visibile e' gia' piccola perche' c'e' la
+    // tastiera, lasciarne fuori un quarto non servirebbe a niente — la pagina
+    // sotto non e' comunque raggiungibile — e la chat diventerebbe illeggibile.
+    // In quel caso si prende tutto lo spazio disponibile.
     var margine = 8;
-    pannello.style.top = Math.max(0, vv.offsetTop + margine) + 'px';
-    pannello.style.height = Math.max(240, vv.height - margine * 2) + 'px';
+    var disponibile = vv.height - margine * 2;
+    var altezza = vv.height < 520 ? disponibile : Math.round(vv.height * 0.72);
+    altezza = Math.max(260, Math.min(altezza, disponibile));
+
+    pannello.style.height = altezza + 'px';
+    pannello.style.top = Math.round(vv.offsetTop + vv.height - altezza - margine) + 'px';
     pannello.style.bottom = 'auto';
   }
 
