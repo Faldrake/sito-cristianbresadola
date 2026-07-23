@@ -681,4 +681,13 @@
   root.addEventListener('keydown', function (ev) {
     if (ev.key === 'Escape' && !pannello.hidden) chiudiPannello();
   });
+
+  // Unico aggancio pubblico: serve alla pagina /ildegarda per aprire la chat
+  // da un pulsante nel testo, invece di dire "cerca il pallino in basso a
+  // destra". Volutamente minimo: da fuori si puo' solo aprire.
+  window.Ildegarda = {
+    apri: function () {
+      if (pannello.hidden) apri();
+    }
+  };
 })();

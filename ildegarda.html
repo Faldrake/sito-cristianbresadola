@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consulenze · Naturopatia, Riflessologia, Massaggio, Floriterapia, Fitoterapia</title>
-<meta name="description" content="Consulenze di Cristian Bresadola: naturopatia, riflessologia plantare, massaggio olistico, floriterapia di Bach, fitoterapia. Approccio personalizzato, in studio a Trento o online.">
+<title>Ildegarda · L'assistente del sito — cosa fa, cosa non fa, come tratta i tuoi dati</title>
+<meta name="description" content="Ildegarda è l'assistente digitale del sito di Cristian Bresadola: ti orienta tra consulenze e percorsi e, se serve, passa il tuo contatto a Cristian. Non fa diagnosi e non sostituisce il medico. Qui trovi cosa sa fare, cosa non fa e come vengono trattati i tuoi dati.">
 
 <!-- SEO META -->
-<link rel="canonical" href="https://cristianbresadola.com/consulenze.html">
+<link rel="canonical" href="https://cristianbresadola.com/ildegarda.html">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Cristian Bresadola">
 <meta name="theme-color" content="#1B3A3E">
@@ -22,13 +22,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
 <link rel="manifest" href="/favicons/site.webmanifest">
 
-<!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn) -->
+<!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Consulenze · Naturopatia, Riflessologia, Massaggio, Floriterapia, Fitoterapia">
-<meta property="og:description" content="Consulenze di Cristian Bresadola: naturopatia, riflessologia plantare, massaggio olistico, floriterapia di Bach, fitoterapia. Approccio personalizzato, in studio a Trento o online.">
-<meta property="og:url" content="https://cristianbresadola.com/consulenze.html">
+<meta property="og:title" content="Ildegarda · L'assistente del sito">
+<meta property="og:description" content="Cosa sa fare, cosa non fa e come tratta i tuoi dati l'assistente digitale del sito di Cristian Bresadola.">
+<meta property="og:url" content="https://cristianbresadola.com/ildegarda.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -38,8 +38,8 @@
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Consulenze · Naturopatia, Riflessologia, Massaggio, Floriterapia, Fitoterapia">
-<meta name="twitter:description" content="Consulenze di Cristian Bresadola: naturopatia, riflessologia plantare, massaggio olistico, floriterapia di Bach, fitoterapia. Approccio personalizzato, in studio a Trento o online.">
+<meta name="twitter:title" content="Ildegarda · L'assistente del sito">
+<meta name="twitter:description" content="Cosa sa fare, cosa non fa e come tratta i tuoi dati l'assistente digitale del sito di Cristian Bresadola.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola — Naturopata, Riflessologo, Formatore">
 
@@ -161,7 +161,6 @@
   if(window.__navInit) return;
   window.__navInit = true;
 
-  // Mappa pathname -> data-nav del menu
   const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const map = {
     'chi-sono.html': 'chi-sono',
@@ -185,7 +184,6 @@
     });
   }
 
-  // Mobile menu toggle
   const toggle = document.getElementById('mobileToggle');
   const menu = document.getElementById('mobileMenu');
   if(toggle && menu){
@@ -195,14 +193,12 @@
     });
   }
 
-  // Dropdown ARIA su hover/focus desktop
   document.querySelectorAll('.nav-dropdown').forEach(function(dd){
     const toggle = dd.querySelector('.nav-dropdown__toggle');
     if(!toggle) return;
     dd.addEventListener('mouseenter', function(){ toggle.setAttribute('aria-expanded','true'); });
     dd.addEventListener('mouseleave', function(){ toggle.setAttribute('aria-expanded','false'); });
     toggle.addEventListener('click', function(e){
-      // su touch/click: toggle del panel
       const open = dd.classList.toggle('is-open-click');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       e.stopPropagation();
@@ -221,190 +217,149 @@
 <!-- HERO -->
 <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-20">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="eyebrow text-petrol mb-6">— Consulenze e trattamenti</div>
+    <div class="eyebrow text-petrol mb-6">— L'assistente del sito</div>
     <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8 max-w-4xl">
-      Cinque strade <span class="display-italic">verso la stessa persona.</span>
+      Ildegarda risponde subito. <span class="display-italic">Curare è un'altra cosa.</span>
     </h1>
     <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
-      Ogni disciplina è un angolo di osservazione differente. A volte un percorso nasce intorno a una sola, più spesso si integrano. Le sedute e il percorso li costruiamo insieme dopo un primo colloquio.
+      In basso a destra, su ogni pagina, c'è una piccola bolla. Dentro c'è Ildegarda: un'assistente digitale che ti aiuta a orientarti fra le discipline, i percorsi e i modi di incontrarmi — a qualsiasi ora, anche quando io non ci sono. Questa pagina spiega per bene che cos'è, che cosa <em>non</em> è, e che fine fanno le cose che le scrivi.
     </p>
-    <div class="mt-8">
-      <a href="contatti.html" class="btn-primary">Prenota un colloquio conoscitivo<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <button type="button" class="btn-primary" onclick="if(window.Ildegarda) window.Ildegarda.apri();">
+        Apri Ildegarda
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <a href="contatti.html" class="link-underline text-petrol self-center">Preferisco scrivere a te direttamente →</a>
     </div>
   </div>
 </section>
 
-<!-- 01 NATUROPATIA -->
-<section id="naturopatia" class="py-20 lg:py-28 bg-frost">
+<!-- CHE COS'È -->
+<section class="py-20 lg:py-28 bg-frost">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6">
-        <div class="image-frame aspect-[4/3] overflow-hidden">
-          <img src="https://images.pexels.com/photos/5480150/pexels-photo-5480150.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Preparazione di erbe officinali" class="w-full h-full object-cover" loading="lazy">
-        </div>
-      </div>
-      <div class="lg:col-span-6">
-        <div class="flex items-center gap-4 mb-6">
-          <span class="eyebrow text-petrol">Naturopatia</span>
-        </div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
-          <span class="display-italic">Il quadro</span> nella sua interezza.
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow text-petrol">Che cos'è</span>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mt-4">
+          Un programma, <span class="display-italic">non una persona.</span>
         </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
-          <p>La naturopatia considera la persona nel suo insieme — corpo, emozioni, storia, alimentazione, ambiente, ritmi di vita. Non una singola tecnica, ma <strong class="text-petrol font-medium">un approccio trasversale</strong> che mette in relazione aspetti che altrove vengono guardati separati.</p>
-          <p>Nella consulenza naturopatica raccolgo la tua storia attraverso un'anamnesi accurata, osservo il quadro complessivo e costruiamo insieme <strong class="text-petrol font-medium">un percorso di riequilibrio</strong> fatto di piccoli cambiamenti nelle abitudini, di supporti naturali (fitoterapici, fiori di Bach, alimentari) e di pratiche di cura di sé.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
-          <div><div class="eyebrow text-petrol mb-1">Durata colloquio</div><div class="text-sm">60–90 min</div></div>
-          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">In studio · Online</div></div>
-        </div>
-        <div class="mt-8"><a href="contatti.html" class="btn-primary">Scrivimi per un primo contatto<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="lg:col-span-7 space-y-4 text-charcoal-soft leading-relaxed">
+        <p>Ildegarda è un <strong class="text-petrol font-medium">assistente basato su intelligenza artificiale</strong>, sviluppato per questo sito da NosLab S.a.s. Non è una segretaria, non è una collaboratrice, e soprattutto <strong class="text-petrol font-medium">non sono io</strong>. Si presenta come quello che è fin dalla prima riga, e non le ho chiesto di fingere altro.</p>
+        <p>Il nome è un piccolo omaggio a Ildegarda di Bingen, che nel XII secolo metteva insieme osservazione della natura, cura e scrittura. L'omaggio finisce lì: quella era una donna, questa è una macchina che compone frasi.</p>
+        <p>Serve a farti risparmiare tempo. Se la domanda è «la riflessologia può aiutarmi con il sonno?» oppure «dove ricevi?» oppure «quanto dura una prima seduta?», Ildegarda risponde in trenta secondi invece che in due giorni. Se la domanda è più tua che generica, ti porta da me.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 02 RIFLESSOLOGIA -->
-<section id="riflessologia" class="py-20 lg:py-28 bg-ivory">
+<!-- COSA SA FARE -->
+<section class="py-20 lg:py-28 bg-ivory">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6 order-2 lg:order-1">
-        <div class="flex items-center gap-4 mb-6">
-          <span class="eyebrow text-petrol">Riflessologia plantare</span>
-        </div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
-          Il piede <span class="display-italic">come mappa.</span>
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow text-petrol">Cosa sa fare</span>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mt-4">
+          Orientare, <span class="display-italic">e poi farsi da parte.</span>
         </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
-          <p>Nella tradizione in cui mi sono formato, il piede è una mappa riflessa del corpo intero. Lavorare su <strong class="text-petrol font-medium">zone riflesse specifiche</strong> significa sollecitare, stimolare, riequilibrare il corrispondente distretto dell'organismo, attraverso il sistema nervoso.</p>
-          <p>Il mio lavoro in riflessologia integra <strong class="text-petrol font-medium">la Medicina Tradizionale Cinese</strong> (meridiani, cinque elementi, cicli energetici) e la <strong class="text-petrol font-medium">Tecnica Breuss</strong> (con discendenza diretta dagli allievi di Rudolf Breuss). Nel tempo ho sviluppato un approccio che chiamo <a href="formazione.html" class="link-underline text-petrol font-medium">Metodo Punto Riflesso</a>.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
-          <div><div class="eyebrow text-petrol mb-1">Durata seduta</div><div class="text-sm">60 min circa</div></div>
-          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">Solo in studio</div></div>
-        </div>
-        <div class="mt-8"><a href="contatti.html" class="btn-primary">Prenota una seduta<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
-      <div class="lg:col-span-6 order-1 lg:order-2">
-        <div class="image-frame aspect-[4/3] overflow-hidden">
-          <img src="./images/riflessologia-2.jpg" alt="Cristian Bresadola mentre esegue un trattamento di riflessologia plantare" class="w-full h-full object-cover" style="object-position: center 40%;" loading="lazy">
-        </div>
+      <div class="lg:col-span-7">
+        <ul class="space-y-5 text-charcoal-soft leading-relaxed">
+          <li class="pl-5 border-l-2 border-petrol/20"><strong class="text-petrol font-medium">Spiegarti le discipline.</strong> Naturopatia, riflessologia plantare, massaggio olistico, floriterapia, fitoterapia, idroterapia: che cosa sono, in che cosa si distinguono, quando ha senso l'una o l'altra.</li>
+          <li class="pl-5 border-l-2 border-petrol/20"><strong class="text-petrol font-medium">Raccontarti come funziona un incontro.</strong> Quanto dura, che cosa succede in una prima seduta, che differenza c'è fra studio e online.</li>
+          <li class="pl-5 border-l-2 border-petrol/20"><strong class="text-petrol font-medium">Aiutarti a capire se vale la pena sentirci.</strong> Non tutte le domande hanno bisogno di un appuntamento. Alcune sì.</li>
+          <li class="pl-5 border-l-2 border-petrol/20"><strong class="text-petrol font-medium">Passarmi il tuo contatto.</strong> Se preferisci che sia io a scriverti, Ildegarda raccoglie nome e recapito — solo se glielo consenti — e me li gira. Da lì in poi rispondo io, di persona.</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 03 MASSAGGIO OLISTICO -->
-<section id="massaggio" class="py-20 lg:py-28 bg-frost">
+<!-- COSA NON FA -->
+<section class="py-20 lg:py-28 bg-petrol-dark text-ivory on-dark">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6">
-        <div class="image-frame aspect-[4/3] overflow-hidden">
-          <img src="https://images.pexels.com/photos/6560280/pexels-photo-6560280.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Trattamento olistico con erbe" class="w-full h-full object-cover" loading="lazy">
-        </div>
-      </div>
-      <div class="lg:col-span-6">
-        <div class="flex items-center gap-4 mb-6">
-          <span class="eyebrow text-petrol">Massaggio olistico</span>
-        </div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
-          Non manovre standard: <span class="display-italic">un incontro.</span>
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow text-salt">Cosa non fa</span>
+        <h2 class="display-title text-4xl md:text-5xl mt-4">
+          I limiti <span class="display-italic text-salt">detti chiaramente.</span>
         </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
-          <p>L'approccio olistico al massaggio non è l'applicazione meccanica di una tecnica, ma un <strong class="text-petrol font-medium">dialogo tattile</strong> in cui il tocco si adatta a ciò che il corpo racconta — zone di tensione, blocchi, richieste di lentezza.</p>
-          <p>Nella mia pratica integro <strong class="text-petrol font-medium">Tecnica Breuss, elementi di Shiatsu, connettivale e drenante</strong>, modulando in base a ciò che il corpo chiede in quel momento. L'obiettivo non è "sciogliere contratture" ma creare uno spazio dove qualcosa possa muoversi.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
-          <div><div class="eyebrow text-petrol mb-1">Durata seduta</div><div class="text-sm">60–90 min</div></div>
-          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">Solo in studio</div></div>
-        </div>
-        <div class="mt-8"><a href="contatti.html" class="btn-primary">Prenota una seduta<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <p class="opacity-70 mt-6 text-sm leading-relaxed">Questa è la parte più importante della pagina. Un assistente che non dichiara i propri limiti è un assistente di cui non fidarsi.</p>
+      </div>
+      <div class="lg:col-span-7">
+        <ul class="space-y-5 opacity-85 leading-relaxed">
+          <li class="pl-5 border-l-2 border-salt/40"><strong class="text-salt font-medium">Non fa diagnosi e non prescrive nulla.</strong> Non lo faccio io, che sono un naturopata, e a maggior ragione non lo fa un programma. Se hai un sintomo che ti preoccupa, la persona da sentire è il tuo medico.</li>
+          <li class="pl-5 border-l-2 border-salt/40"><strong class="text-salt font-medium">Non sostituisce il colloquio.</strong> Quello che faccio nasce dall'ascolto di una storia intera — il corpo, il momento, la vita che c'è intorno. Una chat non ci arriva, e non deve provarci.</li>
+          <li class="pl-5 border-l-2 border-salt/40"><strong class="text-salt font-medium">Può sbagliare.</strong> È un modello linguistico: costruisce frasi plausibili, e ogni tanto una frase plausibile è anche sbagliata. Su quello che conta — un rimedio, un'interazione, una data — verifica con me prima di agire.</li>
+          <li class="pl-5 border-l-2 border-salt/40"><strong class="text-salt font-medium">Non gestisce emergenze.</strong> Se le descrivi qualcosa di urgente, Ildegarda ha una sola risposta possibile, ed è mandarti dove si deve: <strong class="text-salt">112</strong> per l'emergenza generica, <strong class="text-salt">118</strong> per quella sanitaria. Non aspettare una chat.</li>
+          <li class="pl-5 border-l-2 border-salt/40"><strong class="text-salt font-medium">Non tiene compagnia nei momenti difficili.</strong> Se stai attraversando una sofferenza psicologica, non è una macchina che ti serve. Ildegarda non proverà a farti da sostegno: ti dirà di rivolgerti a chi è in grado di darne davvero.</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 04 FLORITERAPIA -->
-<section id="floriterapia" class="py-20 lg:py-28 bg-ivory">
+<!-- I TUOI DATI -->
+<section class="py-20 lg:py-28 bg-frost">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6 order-2 lg:order-1">
-        <div class="flex items-center gap-4 mb-6">
-          <span class="eyebrow text-petrol">Floriterapia</span>
-        </div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
-          <span class="display-italic">I 38 Fiori</span> del Dr. Bach.
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow text-petrol">I tuoi dati</span>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mt-4">
+          Che fine fa <span class="display-italic">quello che scrivi.</span>
         </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
-          <p>La floriterapia lavora sulle <strong class="text-petrol font-medium">dinamiche emotive ricorrenti</strong> — quelle che ti porti dietro e che colorano, spesso in modo invisibile, le giornate: paure, stanchezze, pensieri insistenti, stati di passaggio.</p>
-          <p>Nella consulenza ti ascolto con calma, ricostruiamo insieme il momento che stai attraversando, e preparo una <strong class="text-petrol font-medium">miscela personalizzata</strong> con i 38 rimedi del Dr. Edward Bach. Non un protocollo standardizzato: ogni miscela è fatta per chi la prende.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
-          <div><div class="eyebrow text-petrol mb-1">Durata colloquio</div><div class="text-sm">60 min circa</div></div>
-          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">In studio · Online</div></div>
-        </div>
-        <div class="mt-8"><a href="contatti.html" class="btn-primary">Scrivimi per un primo contatto<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <p class="text-charcoal-soft mt-6 text-sm leading-relaxed">Quello che si racconta a un naturopata riguarda la salute. Va trattato come tale, anche quando passa da una chat.</p>
       </div>
-      <div class="lg:col-span-6 order-1 lg:order-2">
-        <div class="image-frame aspect-[4/3] overflow-hidden">
-          <img src="./images/preparazioni.jpg" alt="Preparazioni personalizzate di floriterapia" class="w-full h-full object-cover" loading="lazy">
-        </div>
+      <div class="lg:col-span-7 space-y-4 text-charcoal-soft leading-relaxed">
+        <p><strong class="text-petrol font-medium">Prima si chiede, poi si salva.</strong> Ildegarda ti domanda il consenso all'inizio. Finché non lo dai, non conserva nulla di quello che scrivi.</p>
+        <p><strong class="text-petrol font-medium">Che cosa viene conservato.</strong> Il testo della conversazione e, se hai chiesto di essere ricontattato, il nome e il recapito che hai lasciato. L'indirizzo IP viene salvato solo in forma cifrata, non in chiaro: serve a difendere il servizio dagli abusi, non a riconoscerti.</p>
+        <p><strong class="text-petrol font-medium">Per quanto tempo.</strong> La conversazione viene <strong class="text-petrol">anonimizzata 30 giorni dopo</strong> l'eventuale contatto con me, e <strong class="text-petrol">cancellata dopo 90 giorni</strong> di inattività. Non serve che tu chieda niente: succede da solo.</p>
+        <p><strong class="text-petrol font-medium">Dove.</strong> Su server europei, in Germania. Non escono dall'Unione Europea.</p>
+        <p><strong class="text-petrol font-medium">Chi risponde.</strong> Co-titolari del trattamento siamo io, Cristian Bresadola, e NosLab S.a.s., che ha costruito il sistema. Puoi chiedere in qualsiasi momento di vedere, correggere o cancellare quello che ti riguarda, scrivendo a <a href="mailto:info@cristianbresadola.com" class="link-underline text-petrol font-medium">info@cristianbresadola.com</a>.</p>
+        <p class="pt-2"><a href="privacy-policy.html" class="link-underline text-petrol font-medium">Leggi la Privacy Policy completa →</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 05 FITOTERAPIA -->
-<section id="fitoterapia" class="py-20 lg:py-28 bg-frost">
+<!-- FARSI RICONTATTARE -->
+<section class="py-20 lg:py-28 bg-ivory">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6">
-        <div class="image-frame aspect-[4/3] overflow-hidden">
-          <img src="https://images.pexels.com/photos/14379617/pexels-photo-14379617.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Piante officinali" class="w-full h-full object-cover" loading="lazy">
-        </div>
-      </div>
-      <div class="lg:col-span-6">
-        <div class="flex items-center gap-4 mb-6">
-          <span class="eyebrow text-petrol">Fitoterapia</span>
-        </div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-6">
-          Le piante <span class="display-italic">a sostegno del benessere.</span>
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow text-petrol">Se vuoi che ti scriva io</span>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol mt-4">
+          Il passaggio <span class="display-italic">di mano.</span>
         </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed mb-6">
-          <p>La fitoterapia è l'uso mirato delle <strong class="text-petrol font-medium">piante officinali</strong> — tisane, macerati, gemmoderivati, tinture madri, oli essenziali — per sostenere i processi naturali di riequilibrio del corpo.</p>
-          <p>Ogni pianta ha proprietà specifiche e momenti più adatti in cui agire. In consulenza ti consiglio <strong class="text-petrol font-medium">combinazioni coerenti con il tuo momento</strong>, spiegandoti il perché di ogni scelta: niente "magia verde", solo botanica applicata.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-petrol/15">
-          <div><div class="eyebrow text-petrol mb-1">Durata colloquio</div><div class="text-sm">60 min circa</div></div>
-          <div><div class="eyebrow text-petrol mb-1">Modalità</div><div class="text-sm">In studio · Online</div></div>
-        </div>
-        <div class="mt-8"><a href="contatti.html" class="btn-primary">Scrivimi per un primo contatto<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="lg:col-span-7 space-y-4 text-charcoal-soft leading-relaxed">
+        <p>Dentro la chat c'è un piccolo modulo per chiedere di essere ricontattato. Lo compili tu, quando vuoi tu: Ildegarda non raccoglie il tuo recapito di nascosto nel corso della conversazione.</p>
+        <p>Quello che mi arriva è essenziale: <strong class="text-petrol font-medium">il nome che hai lasciato, il recapito, l'argomento e il contesto</strong> di cui stavate parlando. Serve perché quando ti rispondo io sappia già di cosa si tratta, e tu non debba ricominciare da capo.</p>
+        <p>Poi la macchina esce di scena. <strong class="text-petrol font-medium">Ti contatto io</strong>, con i miei tempi di persona che lavora — di solito entro un giorno o due.</p>
+        <p class="pt-2">Se tutto questo ti sembra un giro largo, hai ragione: <a href="contatti.html" class="link-underline text-petrol font-medium">i miei contatti diretti sono qui</a>, telefono e WhatsApp compresi.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA CROCE MAYA -->
-<section class="py-20 lg:py-24 bg-petrol-dark text-ivory on-dark">
-  <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
-    <div class="eyebrow text-salt mb-4">Servizio dedicato</div>
-    <h2 class="display-title text-3xl md:text-4xl mb-6">
-      Cerchi <span class="display-italic text-salt">la Lettura della Croce Maya?</span>
-    </h2>
-    <p class="opacity-80 mb-8 max-w-2xl mx-auto">La Croce Maya ha una pagina tutta sua: strumento di auto-conoscenza strutturata, documento PDF di alta qualità di 20-50 pagine, consegnato via email.</p>
-    <a href="croce-maya.html" class="btn-primary">Vai alla pagina Croce Maya<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </div>
-</section>
-
-<!-- CTA IDROTERAPIA -->
+<!-- CHIUSURA -->
 <section class="py-20 lg:py-24 bg-water-deep text-ivory on-water-dark">
   <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
-    <div class="eyebrow text-water-light mb-4">Percorso dedicato</div>
+    <div class="eyebrow text-water-light mb-4">In pratica</div>
     <h2 class="display-title text-3xl md:text-4xl mb-6">
-      Idroterapia <span class="display-italic text-water-light">e fangoterapia?</span>
+      Provala. <span class="display-italic text-water-light">Poi vieni a parlarne con me.</span>
     </h2>
-    <p class="opacity-85 mb-8 max-w-2xl mx-auto">Le pratiche idroterapiche nel solco della tradizione Kneipp — impacchi, getti, vapori, bagni di contrasto, fangoterapia mirata — hanno una pagina dedicata con il percorso cliente passo per passo.</p>
-    <a href="idroterapia.html" class="btn-primary">Vai alla pagina Idroterapia<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="opacity-85 mb-8 max-w-2xl mx-auto">Ildegarda è utile per la prima mezz'ora di curiosità. Per tutto il resto — la storia, il corpo, le domande che non stanno in una riga — serve un incontro.</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <button type="button" class="btn-primary" onclick="if(window.Ildegarda) window.Ildegarda.apri();">
+        Apri Ildegarda
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <a href="contatti.html" class="btn-primary">
+        Prenota un colloquio
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -412,7 +367,7 @@
 <section class="py-12 bg-ivory">
   <div class="max-w-4xl mx-auto px-6 lg:px-12">
     <p class="text-xs text-charcoal-soft italic leading-relaxed">
-      <strong class="not-italic text-petrol">Nota importante.</strong> Le consulenze e i trattamenti offerti hanno <strong class="not-italic">carattere complementare</strong> e non sostituiscono il parere del medico. Non vengono effettuate diagnosi né prescritte terapie farmacologiche. In presenza di patologie, terapie in corso, gravidanza o condizioni particolari, consultare sempre il medico curante. Il naturopata professionista interviene nel campo del benessere e dell'educazione alla salute, nel rispetto della normativa vigente.
+      <strong class="not-italic text-petrol">Nota importante.</strong> Le informazioni fornite da Ildegarda hanno <strong class="not-italic">carattere divulgativo e orientativo</strong> e non costituiscono in alcun modo diagnosi, prescrizione o parere medico. Non sostituiscono il consulto con il medico curante né la consulenza naturopatica di persona. In presenza di patologie, terapie in corso, gravidanza o condizioni particolari, consultare sempre il medico. In caso di emergenza chiamare il 112 o il 118.
     </p>
   </div>
 </section>
