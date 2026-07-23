@@ -405,78 +405,9 @@ details.faq-item div.faq-answer {
 }
 
 
-/* ═══ WhatsApp Floating Widget ═══ */
-.wa-widget {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.3s ease;
-}
-.wa-widget-btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #25D366;
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
-  text-decoration: none;
-}
-.wa-widget-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
-}
-.wa-widget-btn svg { width: 32px; height: 32px; fill: white; }
-/* Pulse ring animation */
-.wa-widget-btn::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: #25D366;
-  opacity: 0.35;
-  z-index: -1;
-  animation: wa-pulse 2.2s ease-out infinite;
-}
-@keyframes wa-pulse {
-  0%   { transform: scale(1);   opacity: 0.35; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-/* Label accanto al pulsante (solo desktop) */
-.wa-widget-label {
-  background: white;
-  color: #075E54;
-  padding: 10px 16px;
-  border-radius: 24px;
-  font-family: var(--body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
-  pointer-events: none;
-}
-.wa-widget:hover .wa-widget-label {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-@media (max-width: 640px) {
-  .wa-widget { bottom: 16px; right: 16px; }
-  .wa-widget-btn { width: 54px; height: 54px; }
-  .wa-widget-btn svg { width: 28px; height: 28px; }
-  .wa-widget-label { display: none; }
-}
+/* Il pulsante WhatsApp fluttuante non c'e' piu': dal 23 luglio la
+   funzione vive dentro il widget di Ildegarda, in basso a destra. */
+
 
 /* ═══════════════════════════════════════════════
    NAVBAR · Dropdown menu (Consulenze, Saggezza Maya)

@@ -29,6 +29,12 @@
 
   var K_SESSION = 'ildegarda_session_id';
   var K_CONSENSO = 'ildegarda_consenso';
+  var K_VISTO = 'ildegarda_gia_aperta';
+
+  // Numero WhatsApp di Cristian, gia' pubblico sul sito. Il messaggio
+  // precompilato e' lo stesso che aveva il vecchio pulsante fluttuante.
+  var WHATSAPP = 'https://wa.me/393396383790?text=' + encodeURIComponent(
+    'Ciao Cristian, arrivo dal tuo sito. Vorrei sapere di piu’ sui tuoi servizi.');
 
   // Nota di apertura, non è Ildegarda che parla.
   //
@@ -75,21 +81,34 @@
 
     /* bolla */
     '.bolla {',
-    '  position: fixed; left: 24px; bottom: 24px;',
+    '  position: fixed; right: 24px; bottom: 24px;',
     '  width: 60px; height: 60px; border-radius: 50%;',
     '  border: 1px solid rgba(255,255,255,.35); padding: 0; margin: 0;',
-    '  background: var(--petrol); cursor: pointer; overflow: hidden;',
+    '  background: var(--petrol); cursor: pointer; overflow: visible;',
     '  box-shadow: 0 6px 24px rgba(27,58,62,.32);',
     '  transition: transform .22s ease, box-shadow .22s ease;',
     '}',
     '.bolla:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(27,58,62,.42); }',
     '.bolla:focus-visible { outline: 2px solid var(--salt-glow); outline-offset: 3px; }',
-    '.bolla img { width: 100%; height: 100%; object-fit: cover; display: block; }',
+    '.bolla img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }',
     '.bolla[hidden] { display: none; }',
+
+    // Pallino di richiamo. Sparisce dopo la prima apertura e non torna:
+    // segnala "qui c'e' qualcosa di nuovo", non finge messaggi non letti.
+    '.pallino {',
+    '  position: absolute; top: -3px; right: -3px;',
+    '  min-width: 20px; height: 20px; padding: 0 5px;',
+    '  border-radius: 10px; background: #D64545; color: #fff;',
+    '  border: 2px solid #fff;',
+    '  font-size: 11px; font-weight: 700; line-height: 16px;',
+    '  display: flex; align-items: center; justify-content: center;',
+    '  pointer-events: none;',
+    '}',
+    '.pallino[hidden] { display: none; }',
 
     /* pannello */
     '.pannello {',
-    '  position: fixed; left: 24px; bottom: 24px;',
+    '  position: fixed; right: 24px; bottom: 24px;',
     '  width: 380px; max-width: calc(100vw - 32px);',
     '  height: 560px; max-height: calc(100vh - 48px);',
     // dvh segue l'area davvero visibile: serve al telefono in orizzontale, che
@@ -226,6 +245,17 @@
     '.invito:hover { background: var(--frost); }',
     '.invito[hidden] { display: none; }',
 
+    '.azioni { display: flex; border-top: 1px solid rgba(27,58,62,.12); }',
+    '.azioni .invito { border-top: 0; }',
+    '.azioni .invito:first-child { flex: 1; }',
+    '.invito--wa {',
+    '  flex: none; width: auto; text-decoration: none;',
+    '  border-left: 1px solid rgba(27,58,62,.12);',
+    '  display: inline-flex; align-items: center; gap: 6px;',
+    '  color: #128C7E; white-space: nowrap;',
+    '}',
+    '.invito--wa svg { width: 15px; height: 15px; fill: currentColor; flex: none; }',
+
     '.piede { border-top: 1px solid rgba(27,58,62,.12); background: #fff; }',
     '.campo { display: flex; align-items: flex-end; gap: 8px; padding: 10px 10px 8px; }',
     '.campo textarea {',
@@ -254,7 +284,7 @@
     // basso, il pannello sbordava dall'alto e sembrava gigante. Fissando sia
     // top sia bottom e' il browser a calcolare l'altezza, e segue l'area reale.
     '@media (max-width: 600px) {',
-    '  .bolla { left: 16px; bottom: 16px; width: 54px; height: 54px; }',
+    '  .bolla { right: 16px; bottom: 16px; width: 54px; height: 54px; }',
     // Ripiego se visualViewport non c'e': pannello ancorato in basso che
     // occupa poco meno di tre quarti dello schermo, non tutto. Le misure
     // esatte le mette comunque il JS.
@@ -290,6 +320,7 @@
     wrap.innerHTML = [
       '<button class="bolla" type="button" aria-label="Apri la chat con Ildegarda">',
       '  <img alt="" src="' + AVATAR + '" width="60" height="60">',
+      '  <span class="pallino" aria-hidden="true">1</span>',
       '</button>',
       '<section class="pannello" role="dialog" aria-modal="false" aria-label="Chat con Ildegarda" hidden>',
       '  <header class="testata">',
@@ -302,7 +333,13 @@
       '  </header>',
       '  <div class="corpo" role="log" aria-live="polite" aria-relevant="additions"></div>',
       '  <div class="piede">',
-      '    <button class="invito" type="button">Vuoi che Cristian ti ricontatti?</button>',
+      '    <div class="azioni">',
+      '      <button class="invito" type="button">Vuoi che Cristian ti ricontatti?</button>',
+      '      <a class="invito invito--wa" href="' + WHATSAPP + '" target="_blank" rel="noopener">',
+      '        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.6.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.4 5L2 22l5-1.4c1.5.8 3.2 1.2 5 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>',
+      '        WhatsApp',
+      '      </a>',
+      '    </div>',
       '    <div class="campo">',
       '      <textarea rows="1" placeholder="Scrivi il tuo messaggio" aria-label="Il tuo messaggio"></textarea>',
       '      <button class="invia" type="button" aria-label="Invia il messaggio" disabled>',
@@ -441,6 +478,8 @@
   function apri() {
     pannello.hidden = false;
     bolla.hidden = true;
+    pallino.hidden = true;
+    scrivi(K_VISTO, '1');
     adattaAlViewport();
     // forza il reflow perche' la transizione parta dallo stato iniziale
     void pannello.offsetWidth;
@@ -524,13 +563,18 @@
   // Il consenso non si deduce da quello che scrive Ildegarda: lo dà la persona
   // con un gesto suo, spuntando la casella e inviando il modulo. Per un
   // consenso su dati di salute l'inequivocabile vale più dell'elegante.
-  var invito = root.querySelector('.invito');
+  var invito = root.querySelector('.azioni .invito');
+  var azioni = root.querySelector('.azioni');
+  var pallino = root.querySelector('.pallino');
   var moduloAperto = false;
+
+  // Gia' aperta almeno una volta: niente richiamo.
+  if (leggi(K_VISTO)) pallino.hidden = true;
 
   function apriModuloHandoff() {
     if (moduloAperto) return;
     moduloAperto = true;
-    invito.hidden = true;
+    azioni.hidden = true;
 
     var box = document.createElement('div');
     box.className = 'consenso modulo';
@@ -564,7 +608,7 @@
     function chiudiModulo() {
       box.remove();
       moduloAperto = false;
-      invito.hidden = false;
+      azioni.hidden = false;
     }
 
     box.querySelector('.annulla').addEventListener('click', chiudiModulo);
