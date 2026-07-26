@@ -52,10 +52,13 @@ body {
   letter-spacing: -0.03em;
   line-height: 1.05;
 }
+/* L'enfasi nei titoli non passa piu' dal corsivo. Stesso carattere del titolo
+   (Fraunces), ma un gradino di peso in piu' (500 contro 300) per tenere viva
+   l'enfasi senza corsivo. Dove c'e' anche un colore (classi text-* o inline)
+   i due segnali si sommano; dove non c'e', il peso da solo la fa leggere. */
 .display-italic {
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 /* Paper background texture */
