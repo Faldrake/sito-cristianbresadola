@@ -61,6 +61,16 @@ body {
   font-weight: 500;
 }
 
+/* =========================================================
+   NESSUN CORSIVO SU TUTTO IL SITO — scelta di stile del 26 lug 2026.
+   Una regola sola invece di rincorrere ogni classe, utility Tailwind,
+   tag <em>/<i>, e blocco <style> inline. L'!important serve a battere
+   le utility e gli stili inline; e' voluto. L'enfasi nei titoli resta
+   affidata a peso e colore (vedi .display-italic). Per riavere il
+   corsivo, basta togliere questa regola.
+   ========================================================= */
+* { font-style: normal !important; }
+
 /* Paper background texture */
 .paper-bg {
   background: var(--ivory);
@@ -242,7 +252,6 @@ nav.main-nav {
 /* Section number ornament */
 .section-number {
   font-family: var(--display);
-  font-style: italic;
   font-weight: 300;
   font-size: 0.9rem;
   opacity: 0.5;
@@ -318,7 +327,6 @@ blockquote.testimonial {
 
 .timeline-year {
   font-family: var(--display);
-  font-style: italic;
   font-weight: 300;
   font-size: 0.85rem;
   letter-spacing: 0.02em;
