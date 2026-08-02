@@ -27,6 +27,9 @@
   var AVATAR = STORAGE + 'ildegarda-avatar.webp';
   var SFONDO = STORAGE + 'ildegarda-sfondo-pannello.webp';
 
+  // K_SESSION vive in sessionStorage (vedi sessionId qui sotto); le altre due
+  // chiavi stanno in localStorage, perche' consenso dato e richiamo gia' visto
+  // devono restare fra una visita e l'altra.
   var K_SESSION = 'ildegarda_session_id';
   var K_CONSENSO = 'ildegarda_consenso';
   var K_VISTO = 'ildegarda_gia_aperta';
@@ -54,15 +57,37 @@
     try { window.localStorage.setItem(chiave, valore); } catch (e) { /* storage negato */ }
   }
 
+  // Il session_id vive in sessionStorage, non in localStorage: muore con la
+  // scheda. Serve solo a tenere insieme i messaggi della visita in corso (il
+  // backend ricostruisce lo storico dal database cercando per session_id), e
+  // sessionStorage sopravvive alla navigazione fra le pagine nella stessa
+  // scheda: la continuita' che serve c'e' tutta. Un id che sopravvivesse alla
+  // chiusura del browser sarebbe un identificativo persistente, con il
+  // consenso preventivo che si porta dietro; e non comprerebbe nessuna
+  // funzione visibile, perche' il widget non rimostra mai lo storico delle
+  // visite passate.
+  function leggiSessione(chiave) {
+    try { return window.sessionStorage.getItem(chiave); } catch (e) { return null; }
+  }
+  function scriviSessione(chiave, valore) {
+    try { window.sessionStorage.setItem(chiave, valore); } catch (e) { /* storage negato */ }
+  }
+
+  // Bonifica delle versioni precedenti, che salvavano il session_id in
+  // localStorage: se c'e' ancora, si toglie, non si migra. Migrarlo vorrebbe
+  // dire riportarsi dietro proprio l'identificativo persistente che si sta
+  // eliminando.
+  try { window.localStorage.removeItem(K_SESSION); } catch (e) { /* storage negato */ }
+
   function sessionId() {
-    var id = leggi(K_SESSION);
+    var id = leggiSessione(K_SESSION);
     if (id) return id;
     if (window.crypto && window.crypto.randomUUID) {
       id = window.crypto.randomUUID();
     } else {
       id = 'sid-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
     }
-    scrivi(K_SESSION, id);
+    scriviSessione(K_SESSION, id);
     return id;
   }
 
@@ -401,8 +426,8 @@
     // il sito. Sta ancorato in basso e ne occupa poco meno di tre quarti,
     // lasciando vedere la pagina sopra.
     // Eccezione: quando l'area visibile e' gia' piccola perche' c'e' la
-    // tastiera, lasciarne fuori un quarto non servirebbe a niente — la pagina
-    // sotto non e' comunque raggiungibile — e la chat diventerebbe illeggibile.
+    // tastiera, lasciarne fuori un quarto non servirebbe a niente (la pagina
+    // sotto non e' comunque raggiungibile) e la chat diventerebbe illeggibile.
     // In quel caso si prende tutto lo spazio disponibile.
     var margine = 8;
     var disponibile = vv.height - margine * 2;
@@ -448,11 +473,16 @@
     var box = document.createElement('div');
     box.className = 'consenso';
     box.innerHTML = [
-      '<p>Prima di cominciare: le conversazioni con Ildegarda vengono conservate per ',
-      'poter dare continuità allo scambio, e cancellate dopo 90 giorni dall’ultima ',
-      'attività. Titolari del trattamento sono Cristian Bresadola e NosLab S.a.s. ',
-      'Dettagli nella <a href="/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>',
-      '<p>Non scrivere qui dati che non vuoi vengano conservati.</p>',
+      '<p>Prima di cominciare, tre cose dette chiare. Le conversazioni vengono ',
+      'conservate per dare continuità allo scambio e cancellate dopo 90 giorni ',
+      'dall’ultima attività. Le risposte le compone un modello di intelligenza ',
+      'artificiale di un fornitore statunitense (Anthropic): quello che scrivi ',
+      'qui viene inviato ai suoi server per comporre la risposta, quindi esce ',
+      'dall’Unione Europea. Titolari del trattamento sono Cristian Bresadola e ',
+      'NosLab S.a.s. Dettagli nella ',
+      '<a href="/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>',
+      '<p>Non scrivere qui dati che non vuoi vengano conservati: se preferisci ',
+      'che nulla esca dall’UE, usa i <a href="/contatti" target="_blank" rel="noopener">canali diretti</a>.</p>',
       '<button type="button">Ho capito, cominciamo</button>'
     ].join('');
     corpo.appendChild(box);

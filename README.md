@@ -1,6 +1,6 @@
 # cristianbresadola.com
 
-Sito pubblico di **Cristian Bresadola** — naturopata, riflessologo, massaggiatore
+Sito pubblico di **Cristian Bresadola**: naturopata, riflessologo, massaggiatore
 olistico e formatore. Prodotto da **NosLab S.a.s.**
 
 HTML statico + Tailwind, con i contenuti dinamici (pubblicazioni, rubrica) letti da
@@ -39,7 +39,7 @@ netlify.toml            header di sicurezza, pretty URLs, cache
 images/ favicons/       risorse statiche
 ```
 
-La tipografia usa **due sole variabili** — `--display` e `--body` — con fallback
+La tipografia usa **due sole variabili** (`--display` e `--body`) con fallback
 identici su tutte le pagine. Se aggiungi una pagina, riusale invece di ridichiarare
 i font.
 

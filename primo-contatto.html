@@ -207,7 +207,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 <!-- HERO -->
 <section style="padding: 4rem 1.5rem 2rem; background: var(--ivory, #EEF3F6);">
   <div style="max-width: 56rem; margin: 0 auto; text-align: center;">
-    <div class="eyebrow" style="color: var(--salt-glow, #E59856); margin-bottom: 1.5rem;">— Primo contatto</div>
+    <div class="eyebrow" style="color: var(--salt-glow, #E59856); margin-bottom: 1.5rem;">· Primo contatto</div>
     <h1 class="display-title" style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--petrol, #1B3A3E); margin-bottom: 1.5rem;">
       La <span class="display-italic">scheda</span> per iniziare un percorso
     </h1>
@@ -583,7 +583,6 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 <!-- ════════════════════════════════════════════════════════
      JAVASCRIPT WIZARD
 ═══════════════════════════════════════════════════════════ -->
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
 (function() {
   'use strict';
@@ -592,7 +591,33 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   const SUPABASE_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
   const TOTAL_STEPS = 5;
 
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  // Niente SDK esterno: la pagina usa una sola rpc, basta una POST alle API REST.
+  // Stessa interfaccia { data, error } del client Supabase, così il codice sotto non cambia.
+  const supabase = {
+    rpc: async function(nome, argomenti) {
+      let res;
+      try {
+        res = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + nome, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(argomenti)
+        });
+      } catch (e) {
+        return { data: null, error: new Error('Non riesco a raggiungere il server: controlla la connessione.') };
+      }
+      let corpo = null;
+      try { corpo = await res.json(); } catch (e) { corpo = null; }
+      if (!res.ok) {
+        const msg = (corpo && corpo.message) ? corpo.message : 'Il server ha risposto con un errore (codice ' + res.status + ').';
+        return { data: null, error: new Error(msg) };
+      }
+      return { data: corpo, error: null };
+    }
+  };
   const form = document.getElementById('wizardForm');
   const stepPills = document.querySelectorAll('.steps-bar .step-pill');
   let currentStep = 1;

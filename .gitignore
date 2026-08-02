@@ -1,0 +1,5 @@
+# Local Netlify folder
+.netlify
+
+# Configurazione locale degli strumenti
+.claude/

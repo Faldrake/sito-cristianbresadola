@@ -1,9 +1,9 @@
 /* ═══════════════════════════════════════════════
-   cristianbresadola.com — stylesheet condiviso
+   cristianbresadola.com · stylesheet condiviso
 ═══════════════════════════════════════════════ */
 
 :root {
-  /* Tipografia — unico punto di verita' per tutto il sito.
+  /* Tipografia: unico punto di verita' per tutto il sito.
      Fallback: Iowan Old Style e' presente su iOS/macOS ed e' molto vicino a Fraunces,
      cosi' se il webfont tarda la pagina non ripiega su Times. */
   --display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
@@ -62,7 +62,7 @@ body {
 }
 
 /* =========================================================
-   NESSUN CORSIVO SU TUTTO IL SITO — scelta di stile del 26 lug 2026.
+   NESSUN CORSIVO SU TUTTO IL SITO · scelta di stile del 26 lug 2026.
    Una regola sola invece di rincorrere ogni classe, utility Tailwind,
    tag <em>/<i>, e blocco <style> inline. L'!important serve a battere
    le utility e gli stili inline; e' voluto. L'enfasi nei titoli resta
