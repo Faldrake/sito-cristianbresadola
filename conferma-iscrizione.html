@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conferma l'iscrizione · La Bussola dell'Anima</title>
+<meta name="description" content="Ultimo passo per attivare la tua iscrizione a La Bussola dell'Anima di Cristian Bresadola.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://cristianbresadola.com/conferma-iscrizione.html">
+
+<!--
+  PERCHE' QUESTA PAGINA STA QUI E NON DENTRO LA FUNZIONE.
+
+  Fino al 03/08/2026 il bottone di conferma era servito direttamente
+  dall'edge function `bussola-conferma-iscrizione`, che restituiva HTML con il
+  suo bravo `Content-Type: text/html`. Non arrivava mai: la piattaforma lo
+  sovrascrive con `text/plain`, aggiunge `nosniff` e una politica di sicurezza
+  che vieta tutto. E' una difesa di Supabase, non un difetto del codice: impedisce
+  che un dominio condiviso serva pagine arbitrarie, che sarebbe una comodita' per
+  chi costruisce inganni. La conseguenza, pero', la vedeva il cliente: premeva
+  "conferma" e il telefono gli scaricava un file di testo.
+
+  Su questo dominio l'HTML e' HTML. E la pagina puo' finalmente avere la veste
+  del sito invece di essere un foglio nero con un bottone.
+
+  IL DOPPIO OPT-IN RESTA, ED E' PIU' SOLIDO DI PRIMA. La conferma avviene solo
+  su POST, e la POST parte solo se una persona preme il bottone. Gli scanner di
+  posta aziendali (SafeLinks, Proofpoint, gli antivirus) seguono i link in
+  arrivo: prima finivano sulla funzione, adesso finiscono su una pagina statica
+  che non tocca niente. Un effetto in meno da cui difendersi.
+-->
+
+<!-- FAVICON -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --ivory:#F5EFE2;
+    --petrol:#1B3A3E;
+    --petrol-deep:#0A1B1E;
+    --gold:#D4A55B;
+    --charcoal-soft:rgba(10,27,30,0.72);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:var(--body);color:var(--petrol);background:var(--ivory);-webkit-font-smoothing:antialiased;line-height:1.55}
+  a{color:var(--petrol);text-decoration:none}
+  a:hover{color:var(--gold)}
+
+  .page{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    background:radial-gradient(ellipse at 50% -10%, rgba(212,165,91,0.08) 0%, transparent 50%), var(--ivory);
+  }
+  header{padding:32px 24px 0 24px;text-align:center}
+  header .brand-name{font-family:var(--display);font-size:20px;font-weight:400;color:var(--petrol);margin:0 0 4px 0}
+  header .brand-sub{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(27,58,62,0.55);margin:0}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px}
+  .card{
+    max-width:560px;width:100%;
+    background:#fff;
+    border:1px solid rgba(212,165,91,0.22);
+    border-radius:14px;
+    padding:48px 36px;
+    text-align:center;
+    box-shadow:0 4px 32px rgba(27,58,62,0.06);
+  }
+  .eyebrow{font-family:var(--display);font-style:italic;font-size:15px;color:var(--gold);margin:0 0 12px 0}
+  h1{font-family:var(--display);font-weight:400;font-size:36px;line-height:1.2;color:var(--petrol);margin:0 0 8px 0}
+  h1 em{font-style:italic;color:var(--gold)}
+  .divider{display:inline-block;width:36px;height:1px;background:rgba(212,165,91,0.5);margin:18px 0}
+  .lead{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.7;color:var(--petrol);margin:0 0 18px 0}
+  .body{font-size:14px;line-height:1.7;color:var(--charcoal-soft);margin:0 0 28px 0}
+  .body strong{color:var(--petrol);font-weight:500}
+
+  .btn{
+    display:inline-block;
+    padding:16px 30px;
+    border:0;
+    border-radius:999px;
+    font-family:var(--body);
+    font-size:14px;font-weight:500;
+    letter-spacing:0.04em;
+    transition:all .25s ease;
+    text-align:center;cursor:pointer;text-decoration:none;
+  }
+  .btn-primary{background:var(--gold);color:var(--petrol-deep)}
+  .btn-primary:hover{background:#c89846;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--petrol);border:1px solid rgba(27,58,62,0.22);padding:14px 26px;font-size:13px}
+  .btn-ghost:hover{background:rgba(27,58,62,0.05)}
+
+  .minuta{margin:28px 0 0 0;font-size:12px;line-height:1.6;color:rgba(27,58,62,0.5)}
+  .closing{
+    margin-top:32px;padding-top:24px;
+    border-top:1px solid rgba(27,58,62,0.08);
+    font-family:var(--display);font-style:italic;font-size:14px;color:var(--gold);
+  }
+  footer{padding:24px;text-align:center;font-size:11px;color:rgba(27,58,62,0.45);line-height:1.6}
+  footer a{color:rgba(27,58,62,0.65)}
+
+  .state{display:none}
+  .state.is-active{display:block}
+  .icon-stato{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:52px;height:52px;border-radius:50%;
+    background:rgba(212,165,91,0.16);color:var(--gold);
+    font-size:22px;margin-bottom:20px;
+  }
+  #state-guasto .icon-stato{background:rgba(178,90,90,0.12);color:#b25a5a}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="brand-name">Cristian Bresadola</p>
+  <p class="brand-sub">Naturopata · Riflessologo · TN-1230-NA-P</p>
+</header>
+
+<main>
+  <div class="card">
+
+    <!-- Il caso normale: il collegamento porta un token buono. -->
+    <div class="state" id="state-invito">
+      <span class="icon-stato">✧</span>
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Un <em>ultimo</em> passo.</h1>
+      <span class="divider"></span>
+      <p class="lead">Premi il pulsante e la tua iscrizione è attiva.</p>
+      <!-- La promessa dice la verita' sui tempi, e non e' un dettaglio: appena
+           la conferma va a buon fine la funzione manda SUBITO il kin di oggi
+           (triggerWelcome), e solo da domani parte il giro delle 06:00. Scrivere
+           "da domattina" avrebbe fatto arrivare un'email inattesa un minuto
+           dopo, che e' il modo piu' rapido di far sospettare uno sbaglio a chi
+           si e' appena fidato. -->
+      <p class="body">Appena premi ti arriva il <strong>kin di oggi</strong>: il glifo, il tono, una domanda da portarti dietro. Poi ogni mattina alle <strong>06:00</strong>, ora italiana.</p>
+
+      <!-- La POST va alla funzione, che conferma e riporta qui sul sito. Il
+           token viaggia nell'indirizzo perché è lì che la funzione lo legge. -->
+      <form id="modulo" method="POST" action="">
+        <button type="submit" class="btn btn-primary">Confermo l'iscrizione</button>
+      </form>
+
+      <p class="minuta">Se non sei stato tu a iscriverti, chiudi questa pagina: senza conferma non ti arriverà nessuna comunicazione.</p>
+    </div>
+
+    <!-- Token assente o malformato: si dice, senza far finta di niente. -->
+    <div class="state" id="state-guasto">
+      <span class="icon-stato">!</span>
+      <p class="eyebrow">La Bussola dell'Anima</p>
+      <h1>Questo <em>collegamento</em> non funziona.</h1>
+      <span class="divider"></span>
+      <p class="lead">Manca la parte che dice chi sei, oppure il collegamento si è spezzato per strada.</p>
+      <p class="body">Capita quando l'indirizzo viene copiato a metà. Prova ad aprire di nuovo il pulsante dall'email, oppure iscriviti un'altra volta: ci vogliono dieci secondi.</p>
+      <a href="/bussola.html" class="btn btn-ghost">Torna alla Bussola</a>
+    </div>
+
+    <p class="closing">In Lak'ech · A Lak'en ·</p>
+
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> Cristian Bresadola · NosLab S.a.s. · P.IVA 02839670227<br>
+  <a href="/privacy-policy.html">Privacy</a> · <a href="/cookie-policy.html">Cookie</a>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var FUNZIONE = 'https://okasxfvoyihovohlaypz.supabase.co/functions/v1/bussola-conferma-iscrizione';
+
+  // Il token DEVE essere un UUID, e si controlla prima di toccarlo. Non è
+  // pignoleria: questo valore arriva dall'indirizzo, cioè da chiunque, e finisce
+  // dentro l'azione di un modulo. Con un controllo stretto non resta niente da
+  // iniettare; senza, la pagina diventerebbe una leva per mandare la POST di
+  // qualcun altro altrove.
+  var UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+  var token = new URLSearchParams(window.location.search).get('token') || '';
+  var buono = UUID.test(token);
+
+  if (buono) {
+    // `setAttribute` e non innerHTML: il token è già validato, ma la regola di
+    // non comporre HTML da una stringa esterna vale comunque.
+    document.getElementById('modulo').setAttribute('action', FUNZIONE + '?token=' + encodeURIComponent(token));
+  }
+
+  document.getElementById(buono ? 'state-invito' : 'state-guasto').classList.add('is-active');
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+
+<noscript>
+  <div style="max-width:560px;margin:0 auto 48px auto;padding:0 24px;text-align:center;font-size:14px;color:#1B3A3E;">
+    Per confermare serve JavaScript attivo. Apri questo collegamento in un browser normale
+    (Safari, Chrome, Firefox) invece che dentro l'anteprima dell'app di posta.
+  </div>
+</noscript>
+
+</body>
+</html>

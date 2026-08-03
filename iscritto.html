@@ -150,6 +150,71 @@
     color:var(--gold);
   }
 
+  /* L'invito alla Croce Maya.
+     Sta solo nello stato di conferma riuscita, e in fondo alla scheda: chi
+     arriva qui e' venuto a confermare, non a leggere una proposta.
+     A convincere non e' il richiamo, e' l'immagine: quella copertina mostra
+     davvero che cosa si riceve, ed e' la stessa che sta sulla pagina della
+     Croce Maya. Le parole accanto ripetono l'onesta' con cui Cristian presenta
+     il servizio ("non un oroscopo, non una previsione, non una diagnosi"),
+     perche' su questo argomento e' proprio quella a fare la differenza fra
+     credere e non credere. */
+  .invito{
+    margin-top:36px;
+    padding:22px;
+    background:rgba(212,165,91,0.07);
+    border:1px solid rgba(212,165,91,0.22);
+    border-radius:12px;
+    text-align:left;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  /* Sopra i 560px l'immagine va di fianco: in colonna occuperebbe mezzo
+     schermo e spingerebbe il bottone sotto la piega. */
+  @media(min-width:560px){
+    .invito{flex-direction:row;align-items:flex-start;gap:22px}
+    .invito-figura{flex:0 0 168px}
+    .invito-parole{flex:1;min-width:0}
+  }
+
+  .invito-figura{margin:0}
+  .invito-figura img{
+    display:block;width:100%;height:auto;
+    border-radius:8px;
+    /* La copertina e' scura e la scheda e' bianca: senza un bordo il blu
+       notte finirebbe di taglio sul foglio. */
+    border:1px solid rgba(27,58,62,0.12);
+    box-shadow:0 6px 20px rgba(27,58,62,0.14);
+  }
+  .invito-figura figcaption{
+    margin-top:8px;
+    font-size:10px;line-height:1.4;
+    letter-spacing:0.06em;
+    color:rgba(27,58,62,0.45);
+    text-align:center;
+  }
+
+  .invito-occhiello{
+    margin:0 0 10px 0;
+    font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+    color:rgba(27,58,62,0.5);
+  }
+  .invito-titolo{
+    margin:0 0 12px 0;
+    font-family:var(--display);
+    font-size:18px;line-height:1.35;
+    color:var(--petrol);
+  }
+  .invito-titolo em{font-style:italic;color:var(--gold)}
+  .invito-testo{
+    margin:0 0 18px 0;
+    font-size:13.5px;line-height:1.65;
+    color:var(--charcoal-soft);
+  }
+  .invito-testo strong{color:var(--petrol);font-weight:500}
+  .invito-btn{padding:12px 22px;font-size:13px}
+
   footer{
     padding:24px;
     text-align:center;
@@ -187,7 +252,7 @@
 
 <header>
   <p class="brand-name">Cristian Bresadola</p>
-  <p class="brand-sub">Naturopata · Riflessologo</p>
+  <p class="brand-sub">Naturopata · Riflessologo · TN-1230-NA-P</p>
 </header>
 
 <main>
@@ -204,6 +269,33 @@
       <div class="cta-row">
         <a href="/bussola.html" class="btn btn-primary">Apri la Bussola di oggi</a>
         <a href="/" class="btn btn-ghost">Torna al sito</a>
+      </div>
+
+      <!-- L'invito alla Croce Maya sta SOLO qui, nello stato di conferma
+           riuscita. Non negli altri quattro: a chi ha sbagliato un collegamento
+           o è già iscritto si risponde alla sua domanda, non si vende altro.
+           E sta sotto i due bottoni, non sopra: chi arriva qui è venuto a
+           confermare, non a leggere una proposta. -->
+      <div class="invito">
+        <figure class="invito-figura">
+          <img src="/images/croce_maya_esempio.jpg"
+               alt="Esempio di copertina di una Lettura della Croce Maya: le cinque posizioni con i loro glifi."
+               width="1728" height="2464" loading="lazy" decoding="async">
+          <figcaption>Esempio di copertina · ogni lettura è unica</figcaption>
+        </figure>
+
+        <div class="invito-parole">
+          <p class="invito-occhiello">E se vuoi andare più a fondo</p>
+          <p class="invito-titolo">La Bussola ti dà il kin del <em>giorno</em>.<br>La Croce Maya è il kin del tuo <em>giorno di nascita</em>.</p>
+          <p class="invito-testo">
+            Cinque posizioni in relazione fra loro, dalle radici al destino, scritte
+            una per una per te in un documento che resta.
+            <strong>Non un oroscopo, non una previsione, non una diagnosi</strong>:
+            uno specchio costruito sul Tzolk'in, il calendario che le comunità
+            K'iche' del Guatemala usano ancora oggi.
+          </p>
+          <a href="/croce-maya.html" class="btn btn-primary invito-btn">Scopri la Croce Maya</a>
+        </div>
       </div>
     </div>
 
