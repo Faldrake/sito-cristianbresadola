@@ -251,13 +251,6 @@
     width:100%;max-width:1100px;
     text-align:center;
   }
-  .hero__eyebrow{
-    font-family:var(--display);
-    font-style:italic;font-weight:400;
-    font-size:1rem;
-    color:var(--gold);
-    margin-bottom:.75rem;
-  }
   .hero__date{
     font-family:var(--body);
     font-size:0.78rem;letter-spacing:0.32em;
@@ -432,6 +425,31 @@
   .hero__title em{
     font-style:italic;font-weight:500;
     color:var(--gold);
+  }
+  /* Il nome della pagina: testo statico, c'è anche prima che arrivino i dati. */
+  .hero__title-name{
+    display:block;
+    font-size:clamp(2rem, 4.4vw, 3rem);
+    line-height:1.1;
+    letter-spacing:-0.015em;
+  }
+  /* Il sottotitolo riprende la voce della data: maiuscoletto spaziato. */
+  .hero__title-sub{
+    display:block;
+    font-family:var(--body);
+    font-size:0.78rem;letter-spacing:0.32em;
+    text-transform:uppercase;color:var(--salt);
+    margin:.9rem 0 1.05rem;
+  }
+  /* Il titolo poetico del kin: lo riempie il JavaScript, e senza JS resta
+     soltanto la barra di caricamento, senza parole dentro il titolo. */
+  .hero__title-kin{
+    display:block;
+  }
+  .hero__title-kin .skeleton{
+    width:min(22ch, 80%);
+    height:1.15em;
+    vertical-align:-0.2em;
   }
   .hero__quote{
     font-family:var(--display);
@@ -1090,7 +1108,6 @@
 
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__inner">
-      <p class="hero__eyebrow">La Bussola dell'Anima</p>
       <p class="hero__date" id="hero-date" data-skel="true">
         <span class="skeleton">caricamento data</span>
       </p>
@@ -1112,8 +1129,10 @@
       </div>
 
       <h1 class="hero__title" id="hero-title">
-        <span id="kin-poetic-title" data-skel="true">
-          <span class="skeleton">titolo del kin in caricamento</span>
+        <span class="hero__title-name">La Bussola <em>dell'Anima</em></span>
+        <span class="hero__title-sub">Il kin Maya di oggi</span>
+        <span class="hero__title-kin" id="kin-poetic-title" data-skel="true">
+          <span class="skeleton"></span>
         </span>
       </h1>
 
