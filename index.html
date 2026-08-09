@@ -58,13 +58,6 @@
   "image": "https://cristianbresadola.com/images/og-image.jpg",
   "logo": "https://cristianbresadola.com/favicons/android-chrome-512x512.png",
   "priceRange": "€€",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "21",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Vicolo della Contrada Tedesca 9",
@@ -75,8 +68,8 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "46.0665",
-    "longitude": "11.1256"
+    "latitude": "46.0694",
+    "longitude": "11.1250"
   },
   "openingHoursSpecification": [
     {
@@ -92,7 +85,7 @@
     { "@type": "AdministrativeArea", "name": "Trentino-Alto Adige" }
   ],
   "sameAs": [
-    "https://share.google/Mw3aDYG9f26zGl0BX",
+    "https://g.page/r/CZZHpNsQiEf_EAE",
     "https://www.instagram.com/cristian_bresadola/",
     "https://www.facebook.com/cristian.bresadola",
     "https://it.linkedin.com/in/cristian-bresadola",
@@ -115,6 +108,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://cristianbresadola.com/#person",
   "name": "Cristian Bresadola",
   "jobTitle": "Naturopata, Riflessologo, Formatore",
   "description": "Naturopata ASPIN (codice TN-1230-NA-P), riflessologo plantare, titolare di Punto Riflesso. Cura una rubrica settimanale di benessere su UnserTirol24.",
@@ -136,7 +130,7 @@
   ],
   "knowsLanguage": ["it", "de"],
   "sameAs": [
-    "https://share.google/Mw3aDYG9f26zGl0BX",
+    "https://g.page/r/CZZHpNsQiEf_EAE",
     "https://www.instagram.com/cristian_bresadola/",
     "https://www.facebook.com/cristian.bresadola",
     "https://it.linkedin.com/in/cristian-bresadola",
@@ -554,7 +548,7 @@
 
     <!-- Logo + Nome -->
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
+      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" width="1395" height="1414" decoding="async" class="w-10 h-10 rounded-full">
       <div class="hidden sm:block">
         <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
         <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
@@ -719,7 +713,7 @@
   
   <!-- Decorative logo mark background -->
   <div class="absolute -top-20 -right-40 opacity-[0.04] pointer-events-none slow-float">
-    <img src="./images/logo.jpg" alt="" class="w-[600px] h-[600px] rounded-full">
+    <img src="./images/logo.jpg" alt="" width="1395" height="1414" decoding="async" class="w-[600px] h-[600px] rounded-full">
   </div>
 
   <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
@@ -762,7 +756,7 @@
           </div>
           <div>
             <span class="eyebrow block text-petrol mb-1">Recensioni Google</span>
-            <a href="https://share.google/Mw3aDYG9f26zGl0BX" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-gold transition" aria-label="Vedi la scheda Google con 21 recensioni a 5 stelle">⭐ 5.0 · 21 recensioni Google</a>
+            <a href="https://g.page/r/CZZHpNsQiEf_EAE" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-gold transition" aria-label="Vedi la scheda Google con 21 recensioni a 5 stelle">⭐ 5.0 · 21 recensioni Google</a>
           </div>
         </div>
       </div>
@@ -775,6 +769,7 @@
             <img src="./images/hero-cristian-2026.jpg"
                  alt="Cristian Bresadola seduto, con in mano un modello anatomico di colonna vertebrale"
                  width="853" height="1280"
+                 fetchpriority="high" decoding="async"
                  class="w-full h-full object-cover hero-ritratto">
           </div>
           <!-- Decorative corner quote -->
@@ -818,10 +813,11 @@
       
       <!-- 01 NATUROPATIA -->
       <a href="consulenze.html#naturopatia" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="https://images.pexels.com/photos/5480150/pexels-photo-5480150.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-             alt="Preparazione di erbe officinali nel mortaio" 
+        <img src="https://images.pexels.com/photos/5480150/pexels-photo-5480150.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Preparazione di erbe officinali nel mortaio"
+             width="1200" height="800"
              class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-             loading="lazy">
+             loading="lazy" decoding="async">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.65) 50%, rgba(18,40,43,0.35) 100%);"></div>
         <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
           <div class="flex items-start justify-between">
@@ -839,11 +835,12 @@
 
       <!-- 02 RIFLESSOLOGIA -->
       <a href="consulenze.html#riflessologia" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="./images/riflessologia-1.jpg" 
-             alt="Cristian mentre esegue trattamento di riflessologia plantare" 
+        <img src="./images/riflessologia-1.jpg"
+             alt="Cristian mentre esegue trattamento di riflessologia plantare"
+             width="1168" height="1526"
              class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
              style="object-position: center 35%;"
-             loading="lazy">
+             loading="lazy" decoding="async">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.65) 50%, rgba(18,40,43,0.35) 100%);"></div>
         <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
           <div class="flex items-start justify-between">
@@ -861,10 +858,11 @@
 
       <!-- 03 MASSAGGIO OLISTICO -->
       <a href="consulenze.html#massaggio" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="https://images.pexels.com/photos/6560280/pexels-photo-6560280.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-             alt="Trattamento olistico con essenze ed erbe" 
+        <img src="https://images.pexels.com/photos/6560280/pexels-photo-6560280.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Trattamento olistico con essenze ed erbe"
+             width="1200" height="1800"
              class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-             loading="lazy">
+             loading="lazy" decoding="async">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.65) 50%, rgba(18,40,43,0.35) 100%);"></div>
         <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
           <div class="flex items-start justify-between">
@@ -882,10 +880,11 @@
 
       <!-- 04 FLORITERAPIA -->
       <a href="consulenze.html#floriterapia" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="./images/preparazioni.jpg" 
-             alt="Boccette di preparazioni di Fiori di Bach" 
+        <img src="./images/preparazioni.jpg"
+             alt="Boccette di preparazioni di Fiori di Bach"
+             width="1350" height="1800"
              class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-             loading="lazy">
+             loading="lazy" decoding="async">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.6) 50%, rgba(18,40,43,0.3) 100%);"></div>
         <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
           <div class="flex items-start justify-between">
@@ -903,10 +902,11 @@
 
       <!-- 05 FITOTERAPIA -->
       <a href="consulenze.html#fitoterapia" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="https://images.pexels.com/photos/14379617/pexels-photo-14379617.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-             alt="Foglie di piante officinali in primo piano" 
+        <img src="https://images.pexels.com/photos/14379617/pexels-photo-14379617.jpeg?auto=compress&cs=tinysrgb&w=1200"
+             alt="Foglie di piante officinali in primo piano"
+             width="1200" height="1600"
              class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-             loading="lazy">
+             loading="lazy" decoding="async">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.65) 50%, rgba(18,40,43,0.35) 100%);"></div>
         <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
           <div class="flex items-start justify-between">
@@ -924,11 +924,12 @@
 
       <!-- 06 CROCE MAYA (servizio dedicato · copertina come sfondo) -->
       <a href="croce-maya.html" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="./images/croce_maya_esempio.jpg" 
-             alt="Esempio di copertina di una lettura della Croce Maya" 
+        <img src="./images/croce_maya_esempio.jpg"
+             alt="Esempio di copertina di una lettura della Croce Maya"
+             width="1728" height="2464"
              class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
              style="object-position: center 30%;"
-             loading="lazy">
+             loading="lazy" decoding="async">
         <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.95) 0%, rgba(18,40,43,0.7) 50%, rgba(18,40,43,0.45) 100%);"></div>
         <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
           <div class="flex items-start justify-between">
@@ -1260,11 +1261,12 @@
   
   <!-- Foto acqua di sfondo (Pexels) -->
   <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-    <img src="https://images.pexels.com/photos/9667516/pexels-photo-9667516.jpeg?auto=compress&cs=tinysrgb&w=2000&h=1000&fit=crop" 
-         alt="" 
+    <img src="https://images.pexels.com/photos/9667516/pexels-photo-9667516.jpeg?auto=compress&cs=tinysrgb&w=2000&h=1000&fit=crop"
+         alt=""
+         width="2000" height="1000"
          class="w-full h-full object-cover"
          style="opacity: 0.3;"
-         loading="lazy">
+         loading="lazy" decoding="async">
   </div>
   
   <!-- Overlay gradient per leggibilità -->
@@ -1326,8 +1328,9 @@
   
   <!-- Decorativo simbolo cerchio sullo sfondo -->
   <div class="absolute inset-0 z-0 opacity-10 pointer-events-none flex items-center justify-end">
-    <img src="./images/cerchio-master-clean.png" alt="" 
-         style="width:600px;height:600px;object-fit:contain;transform:translateX(15%);" 
+    <img src="./images/cerchio-logo-256.png" alt=""
+         width="256" height="256" loading="lazy" decoding="async"
+         style="width:600px;height:600px;object-fit:contain;transform:translateX(15%);"
          aria-hidden="true">
   </div>
 
@@ -1367,10 +1370,11 @@
            style="border: 1px solid rgba(212,165,91,0.3); box-shadow: 0 8px 24px rgba(27,58,62,0.08); border-radius: 12px; overflow: hidden;">
           
           <div style="aspect-ratio: 16/10; background: #1B3A3E; position: relative; overflow: hidden;">
-            <img src="./images/riflessologia-plantare-mappa.jpg" 
-                 alt="Riflessologia plantare - cosa aspettarsi dalla prima seduta" 
+            <img src="./images/riflessologia-plantare-mappa.jpg"
+                 alt="Riflessologia plantare - cosa aspettarsi dalla prima seduta"
+                 width="1200" height="1280"
                  style="width:100%; height:100%; object-fit:cover; object-position:center;"
-                 loading="lazy"
+                 loading="lazy" decoding="async"
                  draggable="false"
                  oncontextmenu="return false;">
           </div>
@@ -1408,7 +1412,7 @@
       <div class="lg:col-span-6 order-2 lg:order-1">
         <div class="relative">
           <div class="aspect-[4/3] image-frame overflow-hidden bg-petrol/5">
-            <img src="./images/riflessologia-1.jpg" alt="Cristian mentre esegue un trattamento di riflessologia plantare" class="w-full h-full object-cover" style="object-position: center 30%;">
+            <img src="./images/riflessologia-1.jpg" alt="Cristian mentre esegue un trattamento di riflessologia plantare" width="1168" height="1526" loading="lazy" decoding="async" class="w-full h-full object-cover" style="object-position: center 30%;">
           </div>
           <div class="hidden lg:block absolute -top-6 -right-6 bg-forest text-ivory px-5 py-3 text-xs tracking-wider uppercase font-medium">
             Il mio metodo
@@ -1498,10 +1502,11 @@
         <div class="relative max-w-xs mx-auto lg:max-w-none">
           <!-- Copertina con leggera ombra dorata -->
           <div class="relative" style="filter: drop-shadow(0 20px 40px rgba(229, 152, 86, 0.15)) drop-shadow(0 0 60px rgba(74, 95, 184, 0.3));">
-            <img src="./images/croce_maya_esempio.jpg" 
+            <img src="./images/croce_maya_esempio.jpg"
                  alt="Esempio di copertina di una lettura della Croce Maya"
+                 width="1728" height="2464"
                  class="w-full h-auto"
-                 loading="lazy">
+                 loading="lazy" decoding="async">
           </div>
           <!-- Caption sotto -->
           <p class="text-center text-[11px] uppercase tracking-[0.2em] opacity-50 mt-4">
@@ -1786,11 +1791,11 @@
     <div class="grid md:grid-cols-2 gap-5 mb-16">
       
       <div class="cromo-image aspect-[4/5] overflow-hidden">
-        <img src="./images/studio-accoglienza.jpg" alt="Studio di Trento, accoglienza" class="w-full h-full object-cover">
+        <img src="./images/studio-accoglienza.jpg" alt="Studio di Trento, accoglienza" width="1800" height="1350" loading="lazy" decoding="async" class="w-full h-full object-cover">
       </div>
 
       <div class="cromo-image aspect-[4/5] overflow-hidden">
-        <img src="./images/studio-lettino.jpg" alt="Studio di Trento, sala trattamenti con cromoterapia" class="w-full h-full object-cover">
+        <img src="./images/studio-lettino.jpg" alt="Studio di Trento, sala trattamenti con cromoterapia" width="1800" height="1350" loading="lazy" decoding="async" class="w-full h-full object-cover">
       </div>
 
     </div>
@@ -1860,7 +1865,7 @@
 <section class="py-24 lg:py-32 bg-petrol text-ivory on-dark relative overflow-hidden">
   
   <div class="absolute -right-40 top-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none">
-    <img src="./images/logo.jpg" alt="" class="w-[500px] h-[500px] rounded-full">
+    <img src="./images/logo.jpg" alt="" width="1395" height="1414" loading="lazy" decoding="async" class="w-[500px] h-[500px] rounded-full">
   </div>
 
   <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative">
@@ -1897,7 +1902,7 @@
       <!-- Col 1: Identity -->
       <div class="lg:col-span-4">
         <div class="flex items-center gap-3 mb-6">
-          <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
+          <img src="./images/logo.jpg" alt="Logo" width="1395" height="1414" loading="lazy" decoding="async" class="w-12 h-12 rounded-full">
           <div>
             <div class="font-display text-xl">Cristian Bresadola</div>
             <div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div>
@@ -1953,6 +1958,7 @@
             <div class="font-medium mb-1">Val di Sole</div>
             <div class="opacity-70">Studio in Val di Sole · Su appuntamento</div>
           </li>
+          <li><a href="dove-ricevo.html" class="link-underline opacity-90">Dove ricevo</a></li>
         </ul>
       </div>
 

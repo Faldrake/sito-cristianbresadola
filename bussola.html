@@ -16,6 +16,13 @@
 
 <link rel="canonical" href="https://cristianbresadola.com/bussola.html">
 
+<!-- FAVICON & PWA -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/favicons/site.webmanifest">
+
 <meta property="og:type" content="article">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
@@ -63,7 +70,7 @@
       "url": "https://cristianbresadola.com/images/logo.jpg"
     }
   },
-  "image": "https://cristianbresadola.com/images/og-bussola.jpg",
+  "image": "https://cristianbresadola.com/images/og-bussola.png",
   "mainEntityOfPage": "https://cristianbresadola.com/bussola.html",
   "inLanguage": "it-IT",
   "isPartOf": {
@@ -1090,7 +1097,7 @@
 
       <div class="glyph-wheel" id="glyph-wheel" role="img" aria-label="Cerchio dei venti glifi del Tzolk'in con il glifo di oggi al centro">
         <div class="glyph-wheel__ring" id="glyph-ring"></div>
-        <img class="glyph-wheel__hunab" src="images/hunab-ku.png" alt="" aria-hidden="true" loading="lazy">
+        <img class="glyph-wheel__hunab" src="images/hunab-ku.png" width="512" height="512" alt="" aria-hidden="true" loading="lazy">
         <div class="glyph-wheel__center">
           <div class="glyph-wheel__tone" id="kin-tone-num" data-skel="true">
             <span class="skeleton">--</span>
@@ -1232,7 +1239,7 @@
         La Bussola <em>nella tua casella</em>
       </h2>
       <p class="newsletter__lead">
-        Il kin del giorno con la sua pratica e il suo suono. Niente di piu, niente di meno. Solo l'essenziale, all'alba.
+        Il kin del giorno con la sua pratica e il suo suono. Niente di più, niente di meno. Solo l'essenziale, all'alba.
       </p>
 
       <form class="newsletter__form" id="newsletter-form" novalidate>
@@ -1424,7 +1431,7 @@
     (function(){
       'use strict';
       const SB_URL = 'https://okasxfvoyihovohlaypz.supabase.co';
-      // L'iscrizione passa dalla edge function, non piu' da un insert diretto in tabella:
+      // L'iscrizione passa dalla edge function, non più da un insert diretto in tabella:
       // nessuna chiave necessaria qui.
       const FN_URL = SB_URL + '/functions/v1/bussola-iscrizione';
 
@@ -1435,8 +1442,8 @@
       const feedback = document.getElementById('newsletter-feedback');
       const wrapper = document.querySelector('.newsletter__inner');
 
-      // Durata della compilazione (non un timestamp assoluto: cosi' l'orologio
-      // del dispositivo e' irrilevante). Un invio istantaneo indica un bot.
+      // Durata della compilazione (non un timestamp assoluto: così l'orologio
+      // del dispositivo è irrilevante). Un invio istantaneo indica un bot.
       let formTs = Date.now();
       let miniTs = Date.now();
       if(emailInput) emailInput.addEventListener('focus', function(){ formTs = Date.now(); });
@@ -1598,9 +1605,9 @@
       La Bussola dell'Anima è uno strumento di osservazione strutturata. Non un oroscopo, non una previsione, non un atto medico. Uno specchio fedele al ritmo del Tzolk'in. Non sostituisce il parere medico.
     </div>
     <nav class="page-footer__links" aria-label="Approfondimenti">
-      <a href="/cosa-e-la-bussola.html">Cosa è la Bussola dell'Anima</a>
       <a href="https://cristianbresadola.com/croce-maya">Lettura della Croce Maya</a>
       <a href="https://cristianbresadola.com/">Sito principale</a>
+      <a href="https://cristianbresadola.com/dove-ricevo">Dove ricevo</a>
       <a href="https://cristianbresadola.com/contatti">Scrivimi</a>
     </nav>
   </div>

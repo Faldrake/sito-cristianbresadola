@@ -32,10 +32,15 @@ netlify deploy --prod --dir=. --no-build --site=<site-id>
 *.html                  le pagine del sito, una per file
 cerchio-del-druido/     sezione dedicata
 bussola.html            La Bussola dell'Anima (newsletter)
+404.html                pagina non trovata: la serve Netlify da sola, senza
+                        configurarla, e i suoi percorsi sono assoluti perché
+                        può comparire sotto una cartella qualsiasi
 styles.css              design system: variabili colore e tipografia
 tailwind.css            utility
 ildegarda-widget.js     widget di chat (vedi sotto)
-netlify.toml            header di sicurezza, pretty URLs, cache
+netlify.toml            header di sicurezza, pretty URLs, cache, redirect 301
+sitemap.xml             solo le pagine indicizzabili; i lastmod seguono la data
+                        dell'ultimo commit che ha toccato il file
 images/ favicons/       risorse statiche
 ```
 
@@ -47,9 +52,17 @@ i font.
 
 ## Widget Ildegarda
 
-`ildegarda-widget.js` è il widget di chat dell'assistente. È **presente ma non
-attivo**: nessuna pagina lo include ancora. Per accenderlo su una pagina basta una
-riga prima di `</body>`:
+`ildegarda-widget.js` è il widget di chat dell'assistente. È **attivo su 13 pagine**
+(chi-sono, consulenze, contatti, cookie-policy, croce-maya, dove-ricevo, formazione,
+grazie, idroterapia, ildegarda, index, privacy-policy, rubrica), e assente sulle
+altre. Il conteggio si rifà senza fidarsi di questa riga:
+
+```bash
+grep -rl --include="*.html" 'ildegarda-widget.js' . | wc -l
+```
+
+Per accenderlo su una pagina che ancora non ce l'ha basta una riga prima di
+`</body>`:
 
 ```html
 <script src="/ildegarda-widget.js" defer></script>

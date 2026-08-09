@@ -43,6 +43,52 @@
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola · Naturopata, Riflessologo, Formatore">
 
+<!-- DATI STRUTTURATI
+     Lo studio è definito una volta sola (@id #business): qui lo si richiama e
+     si dichiarano soltanto indirizzo e orari, copiati dalla prosa qui sotto.
+     Della Val di Sole si dichiara l'area servita e non un indirizzo: la pagina
+     dice apertamente che la località precisa la ricevi alla conferma
+     dell'appuntamento, e un indirizzo inventato qui sarebbe una promessa che
+     nessuno ha fatto. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://cristianbresadola.com/dove-ricevo.html#pagina",
+  "url": "https://cristianbresadola.com/dove-ricevo.html",
+  "name": "Dove ricevo · Studi a Trento e in Val di Sole, Trentino",
+  "inLanguage": "it-IT",
+  "mainEntity": {
+    "@type": "HealthAndBeautyBusiness",
+    "@id": "https://cristianbresadola.com/#business",
+    "name": "Cristian Bresadola · Naturopata",
+    "url": "https://cristianbresadola.com",
+    "telephone": "+39-339-638-3790",
+    "email": "info@cristianbresadola.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Vicolo della Contrada Tedesca 9",
+      "addressLocality": "Trento",
+      "addressRegion": "TN",
+      "postalCode": "38122",
+      "addressCountry": "IT"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Wednesday",
+        "opens": "16:00",
+        "closes": "21:00"
+      }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Trento" },
+      { "@type": "AdministrativeArea", "name": "Val di Sole" }
+    ]
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
@@ -59,7 +105,7 @@
 
     <!-- Logo + Nome -->
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
+      <img src="./images/logo.jpg" width="1395" height="1414" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
       <div class="hidden sm:block">
         <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
         <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
@@ -235,10 +281,10 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="grid md:grid-cols-2 gap-5">
       <div class="cromo-image aspect-[4/5] overflow-hidden">
-        <img src="./images/studio-accoglienza.jpg" alt="Studio di Trento, sala di accoglienza" class="w-full h-full object-cover" loading="lazy">
+        <img src="./images/studio-accoglienza.jpg" width="1800" height="1350" alt="Studio di Trento, sala di accoglienza" class="w-full h-full object-cover" loading="lazy">
       </div>
       <div class="cromo-image aspect-[4/5] overflow-hidden">
-        <img src="./images/studio-lettino.jpg" alt="Studio di Trento, sala trattamenti con cromoterapia" class="w-full h-full object-cover" loading="lazy">
+        <img src="./images/studio-lettino.jpg" width="1800" height="1350" alt="Studio di Trento, sala trattamenti con cromoterapia" class="w-full h-full object-cover" loading="lazy">
       </div>
     </div>
   </div>
@@ -368,7 +414,7 @@
     <div class="grid lg:grid-cols-12 gap-10 mb-16">
       <div class="lg:col-span-4">
         <div class="flex items-center gap-3 mb-6">
-          <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
+          <img src="./images/logo.jpg" width="1395" height="1414" alt="Logo" class="w-12 h-12 rounded-full" loading="lazy">
           <div><div class="font-display text-xl">Cristian Bresadola</div><div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div></div>
         </div>
         <p class="text-sm opacity-70 leading-relaxed mb-6 max-w-sm">Iscritto al Registro ASPIN dei Naturopati con Livello Professionista.<br>Codice <strong>TN-1230-NA-P</strong></p>
@@ -393,6 +439,7 @@
         <ul class="space-y-5 text-sm">
           <li><div class="font-medium mb-1">Trento</div><div class="opacity-70">Vicolo della Contrada Tedesca 9</div></li>
           <li><div class="font-medium mb-1">Val di Sole</div><div class="opacity-70">Studio in Val di Sole · Su appuntamento</div></li>
+          <li><a href="dove-ricevo.html" class="link-underline opacity-90">Dove ricevo</a></li>
         </ul>
       </div>
       <div class="lg:col-span-2">

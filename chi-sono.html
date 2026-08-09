@@ -43,6 +43,31 @@
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola · Naturopata, Riflessologo, Formatore">
 
+<!-- DATI STRUTTURATI
+     La persona è definita una volta sola, sulla home (@id #person): qui la si
+     richiama, non la si ridefinisce. Due descrizioni della stessa persona in
+     due pagine diverse finirebbero per divergere, ed è la pagina "Chi sono"
+     quella che se ne accorgerebbe per ultima. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://cristianbresadola.com/chi-sono.html#profilo",
+  "url": "https://cristianbresadola.com/chi-sono.html",
+  "name": "Chi sono · Cristian Bresadola · Percorso e formazione",
+  "description": "Il percorso e la formazione di Cristian Bresadola: naturopata diplomato all'Accademia Ildegarda, riflessologo plantare, titolare di Punto Riflesso.",
+  "inLanguage": "it-IT",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Cristian Bresadola · Naturopata",
+    "url": "https://cristianbresadola.com"
+  },
+  "mainEntity": {
+    "@id": "https://cristianbresadola.com/#person"
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
@@ -270,7 +295,7 @@
 
     <!-- Logo + Nome -->
     <a href="index.html" class="flex items-center gap-3 group">
-      <img src="./images/logo.jpg" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
+      <img src="./images/logo.jpg" width="1395" height="1414" alt="Logo Cristian Bresadola" class="w-10 h-10 rounded-full">
       <div class="hidden sm:block">
         <div class="font-display text-[17px] text-petrol leading-tight">Cristian Bresadola</div>
         <div class="text-[10px] uppercase tracking-[0.2em] text-charcoal-soft">Naturopata · Riflessologo</div>
@@ -434,7 +459,7 @@
 <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
   
   <div class="absolute -top-20 -left-40 opacity-[0.04] pointer-events-none slow-float">
-    <img src="./images/logo.jpg" alt="" class="w-[500px] h-[500px] rounded-full">
+    <img src="./images/logo.jpg" width="1395" height="1414" alt="" class="w-[500px] h-[500px] rounded-full">
   </div>
 
   <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
@@ -473,7 +498,7 @@
       <div class="lg:col-span-6 reveal reveal-2">
         <div class="relative">
           <div class="image-frame aspect-[4/5] rounded-sm overflow-hidden bg-petrol/5">
-            <img src="./images/hero-cristian.jpg" alt="Cristian Bresadola" class="w-full h-full object-cover">
+            <img src="./images/hero-cristian.jpg" width="799" height="1270" alt="Cristian Bresadola" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
@@ -655,7 +680,7 @@
 
       <div class="lg:col-span-7 order-1 lg:order-2">
         <div class="image-frame aspect-[5/4] overflow-hidden bg-petrol/5">
-          <img src="./images/allievi.jpg" alt="Gruppo di allievi con attestati del corso di Riflessologia Plantare Punto Riflesso" class="w-full h-full object-cover">
+          <img src="./images/allievi.jpg" width="1280" height="960" alt="Gruppo di allievi con attestati del corso di Riflessologia Plantare Punto Riflesso" class="w-full h-full object-cover" loading="lazy">
         </div>
       </div>
 
@@ -763,7 +788,7 @@
 <section class="py-24 lg:py-32 bg-petrol text-ivory on-dark relative overflow-hidden">
   
   <div class="absolute -right-40 top-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none">
-    <img src="./images/logo.jpg" alt="" class="w-[500px] h-[500px] rounded-full">
+    <img src="./images/logo.jpg" width="1395" height="1414" alt="" class="w-[500px] h-[500px] rounded-full" loading="lazy">
   </div>
 
   <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative">
@@ -799,7 +824,7 @@
       
       <div class="lg:col-span-4">
         <div class="flex items-center gap-3 mb-6">
-          <img src="./images/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full">
+          <img src="./images/logo.jpg" width="1395" height="1414" alt="Logo" class="w-12 h-12 rounded-full" loading="lazy">
           <div>
             <div class="font-display text-xl">Cristian Bresadola</div>
             <div class="text-xs uppercase tracking-wider opacity-60">Naturopata · Riflessologo</div>
@@ -847,6 +872,7 @@
             <div class="font-medium mb-1">Val di Sole</div>
             <div class="opacity-70">Studio in Val di Sole · Su appuntamento</div>
           </li>
+          <li><a href="dove-ricevo.html" class="link-underline opacity-90">Dove ricevo</a></li>
         </ul>
       </div>
 

@@ -3,6 +3,7 @@
 # Aggiornamento 11/05/2026: CSP ampliato per Umami analytics (cloud.umami.is) + frame-src per Google Maps e YouTube
 # Aggiornamento 11/05/2026 20:45: aggiunto api-gateway.umami.dev (beacon API Umami)
 # Aggiornamento 02/08/2026: rimosso unpkg.com da script-src; Supabase ora si interroga via fetch sulle API REST, senza SDK esterno
+# Aggiornamento 09/08/2026: redirect 301 per la copia rimossa alla radice; X-Robots-Tag allargato alle due forme dei pretty URL
 
 [build]
   publish = "."
@@ -13,6 +14,28 @@
 
 [build.processing.html]
   pretty_urls = true
+
+# ============================================================
+# REDIRECT
+# ============================================================
+# Alla radice viveva una copia dell'indice del Cerchio del Druido con il nome
+# dell'articolo sulla prima seduta di riflessologia: il canonical puntava
+# all'indice, ma chi aveva condiviso quell'indirizzo cercava l'articolo. La
+# copia è stata rimossa e l'indirizzo porta all'articolo vero.
+# force = true perché il 301 deve reggere anche se il file dovesse ricomparire:
+# senza, un file omonimo tornerebbe a coprire la regola in silenzio.
+[[redirects]]
+  from = "/riflessologia-plantare-prima-seduta.html"
+  to = "/cerchio-del-druido/riflessologia-plantare-prima-seduta.html"
+  status = 301
+  force = true
+
+# Stessa rotta nella forma senza estensione servita dai pretty URL
+[[redirects]]
+  from = "/riflessologia-plantare-prima-seduta"
+  to = "/cerchio-del-druido/riflessologia-plantare-prima-seduta.html"
+  status = 301
+  force = true
 
 # ============================================================
 # SECURITY HEADERS - applicati a tutte le pagine
@@ -58,14 +81,35 @@
 # ============================================================
 # PAGES SPECIFICHE
 # ============================================================
-# Pagina disiscrizione: noindex
+# I pretty URL servono ogni pagina in due forme (/grazie e /grazie.html): una
+# regola scritta sul solo nome col suffisso lascia l'altra forma senza header,
+# e il noindex resta affidato al solo meta della pagina.
+#
+# LE DUE FORME SI SCRIVONO PER ESTESO, e non con un asterisco parziale: negli
+# header di Netlify i glob documentati sono `/*` o `/cartella/*`, e un
+# `/grazie*` (asterisco non preceduto da barra) non è una forma che la
+# documentazione mostra. Se il matcher non la accettasse, la regola tacerebbe
+# senza dirlo, che è il modo peggiore di sbagliare. Due blocchi espliciti
+# costano quattro righe e non lasciano dubbi.
+
+# Pagina disiscrizione: noindex (le due forme servite dai pretty URL)
 [[headers]]
   for = "/disiscritto.html"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# Pagina grazie post-form: noindex
+[[headers]]
+  for = "/disiscritto"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Pagina grazie post-form: noindex (idem)
 [[headers]]
   for = "/grazie.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/grazie"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"

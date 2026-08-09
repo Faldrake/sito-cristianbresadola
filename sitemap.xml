@@ -2,90 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cristianbresadola.com/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/chi-sono.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/consulenze.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/idroterapia.html</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/croce-maya.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/bussola.html</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/formazione.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/rubrica.html</loc>
-    <lastmod>2026-04-19</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/dove-ricevo.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/contatti.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/ildegarda.html</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/primo-contatto.html</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/richiedi-croce-maya.html</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/cerchio-del-druido/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cristianbresadola.com/cerchio-del-druido/riflessologia-plantare-prima-seduta.html</loc>
+    <!-- Qui il lastmod segue il dateModified dichiarato nell'articolo stesso
+         (2026-06-02): il testo non e' cambiato, sono cambiate cose tecniche
+         (una mappa della navigazione). Un lastmod che dice oggi su un articolo
+         fermo a giugno insegna a Google a non credere ai nostri lastmod. -->
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
