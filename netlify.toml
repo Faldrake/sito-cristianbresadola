@@ -4,6 +4,12 @@
 # Aggiornamento 11/05/2026 20:45: aggiunto api-gateway.umami.dev (beacon API Umami)
 # Aggiornamento 02/08/2026: rimosso unpkg.com da script-src; Supabase ora si interroga via fetch sulle API REST, senza SDK esterno
 # Aggiornamento 09/08/2026: redirect 301 per la copia rimossa alla radice; X-Robots-Tag allargato alle due forme dei pretty URL
+# Aggiornamento 09/08/2026 (secondo): aggiunto gateway.umami.is a connect-src. MISURATO in produzione, non dedotto: la
+#   console della pagina rifiutava «Connecting to https://gateway.umami.is/api/send violates ... connect-src», su ogni
+#   pagina, perche' questa intestazione vale per tutto il sito. Umami ha spostato il beacon e la CSP era rimasta ai due
+#   indirizzi vecchi: lo script si caricava (script-src lo consente), le visite non venivano contate. I due vecchi
+#   restano finche' non si sa quale versione dello script serve quale indirizzo: toglierli adesso, senza quella
+#   misura, rischierebbe di rompere di nuovo la stessa cosa dall'altro lato.
 
 [build]
   publish = "."
@@ -63,7 +69,7 @@
     Cross-Origin-Resource-Policy = "same-site"
     
     # Content Security Policy - permette: self, font Google, immagini, connect Supabase+Umami, script Umami, frame Maps+YouTube
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co https://cloud.umami.is https://api-gateway.umami.dev; frame-src https://www.google.com https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is; frame-src https://www.google.com https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com; object-src 'none'; upgrade-insecure-requests"
 
 # ============================================================
 # CACHE - asset statici cache lunga (immutable)
