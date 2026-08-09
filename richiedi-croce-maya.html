@@ -96,6 +96,18 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 }
 .field-error.show { display: block; }
 
+/* Esito della verifica del codice sconto. Tre stati, e nessun colore nuovo:
+   il rosso è quello di .field-error, il petrolio è quello dei titoli, il grigio
+   è quello di .form-help. Lo stato "incerto" è grigio apposta, perché una
+   verifica che non si è potuta fare non è una colpa di chi ha scritto il codice. */
+.field-esito {
+  display: none; font-size: 0.75rem; margin-top: 0.4rem; line-height: 1.5;
+}
+.field-esito.show { display: block; }
+.field-esito.esito-ok { color: var(--petrol, #1B3A3E); }
+.field-esito.esito-no { color: #b05226; }
+.field-esito.esito-incerto { color: var(--charcoal-soft, #4A4A4A); }
+
 .consent-block {
   display: flex; gap: 0.75rem; align-items: flex-start; padding: 1rem;
   background: rgba(238, 243, 246, 0.5); border-left: 3px solid transparent;
@@ -378,6 +390,27 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
             </span>
           </div>
 
+          <!-- ── Codice sconto · facoltativo ──────────────────────────────
+               Sta qui, fra l'intenzione e i consensi, e sta SOLO su questa pagina:
+               nella scheda del primo contatto sarebbe un campo morto, perché quel
+               modulo è gratuito e la prestazione non è ancora scelta.
+               Il campo non ha attributo name apposta: così un codice non può
+               viaggiare per sbaglio dentro una FormData, e l'unica strada verso
+               l'archivio resta il ramo che ha visto una verifica riuscita. -->
+          <div style="margin-bottom: 2rem;">
+            <label class="form-label" for="f-coupon">Codice sconto · facoltativo</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-start;">
+              <input type="text" id="f-coupon" maxlength="64" class="form-input"
+                style="flex: 1 1 14rem; width: auto;" placeholder="Se ne hai uno, scrivilo qui"
+                autocomplete="off" spellcheck="false" aria-describedby="coupon-aiuto coupon-esito">
+              <button type="button" id="btnVerificaCoupon" class="btn-secondary" style="flex: 0 0 auto;">Verifica</button>
+            </div>
+            <span class="form-help" id="coupon-aiuto">
+              Se hai un codice, lo controllo subito. Senza codice la richiesta parte lo stesso.
+            </span>
+            <span class="field-esito" id="coupon-esito" role="status" aria-live="polite"></span>
+          </div>
+
           <div style="display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.5rem;">
 
             <div class="consent-block">
@@ -477,6 +510,25 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   const SUPABASE_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
   const TOTAL_STEPS = 4;
 
+  // La verifica del codice sconto non passa dalle API REST come l'invio: passa da
+  // una edge function pubblica, che si chiama SENZA chiave e senza token (come
+  // l'iscrizione alla Bussola). La ragione sta più sotto, sopra il blocco del
+  // coupon, e in una riga è questa: il database sa rispondere solo alla chiave di
+  // servizio, e quella chiave nel browser non ci va mai.
+  const FUNZIONE_COUPON = SUPABASE_URL + '/functions/v1/sito-coupon';
+
+  // Si dichiara il MODULO da cui parte la richiesta, non l'ambito del coupon.
+  // L'ambito è metà del cancello: se lo scegliesse il browser, un codice valido
+  // per altro passerebbe come valido per la Croce Maya semplicemente dicendolo.
+  // La traduzione modulo -> ambito la fa la funzione, con una mappa sua.
+  const MODULO_DEL_COUPON = 'croce_maya';
+
+  // Oltre questo tempo si smette di aspettare. La funzione ha un tetto suo di 8
+  // secondi; questo sta sopra e copre il caso in cui la risposta non arrivi
+  // affatto. Un bottone spento che non si riaccende sarebbe un campo morto, ed è
+  // proprio ciò che qui non deve esistere.
+  const ATTESA_MASSIMA_COUPON_MS = 12000;
+
   // Niente SDK esterno: la pagina usa una sola rpc, basta una POST alle API REST.
   // Stessa interfaccia { data, error } del client Supabase, così il codice sotto non cambia.
   const supabase = {
@@ -507,6 +559,12 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   const form = document.getElementById('wizardForm');
   const stepPills = document.querySelectorAll('.steps-bar .step-pill');
   let currentStep = 1;
+
+  // Il contenuto vero del bottone di invio, preso dalla pagina invece che
+  // ricopiato a mano: adesso il bottone cambia scritta due volte (il codice, poi
+  // l'invio) e una copia della freccia scritta nel codice si sarebbe scostata dalla
+  // pagina alla prima modifica, senza che nessuno se ne accorgesse.
+  const HTML_BOTTONE_INVIO = document.getElementById('btnSubmit').innerHTML;
 
   function showStep(step) {
     document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('is-active'));
@@ -580,27 +638,332 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
     }
   });
 
+  // ════════════════════════════════════════════════════════
+  // IL CODICE SCONTO · o si verifica davvero, o non parte
+  // ════════════════════════════════════════════════════════
+  // La regola di questo blocco nasce da un errore pagato su un altro modulo di
+  // casa, dove il campo coupon accetta qualunque parola e la archivia come codice
+  // vero, scrivendoci accanto uno sconto che nessuno ha verificato. Due iscrizioni
+  // sono già in quello stato. Il difetto non è tecnico, è verso il cliente: uno
+  // scrive un codice, il modulo lo accetta senza batter ciglio, quello paga pieno,
+  // e ha ragione a contestare. Qui non deve poter succedere, e non c'è una via di
+  // mezzo: o il codice si verifica davvero, o non arriva all'archivio.
+  //
+  // Verificare davvero vuol dire chiedere al database, e da qui al database non si
+  // parla: la funzione che sa rispondere è eseguibile dal solo ruolo di servizio, e
+  // quella chiave nel browser non ci va mai, perché chi la possiede legge e scrive
+  // qualunque riga del progetto. Si chiede quindi alla edge function pubblica
+  // sito-coupon, che sta dalla parte del server.
+  //
+  // A schermo non compare nessuna cifra, per decisione di Cristian: qui si dice
+  // soltanto se il codice vale. Lo sconto nasce dopo, quando lo riscatta lui.
+  //
+  // E la terza regola, che vale quanto le altre due: MAI un campo morto. Se la
+  // verifica non si può fare (funzione irraggiungibile, rete caduta), il codice non
+  // viene accettato in silenzio: lo si dice, e la richiesta parte lo stesso senza
+  // codice, perché il campo è facoltativo e la lettura non dipende da lui.
+
+  const campoCoupon = document.getElementById('f-coupon');
+  const btnVerificaCoupon = document.getElementById('btnVerificaCoupon');
+  const esitoCoupon = document.getElementById('coupon-esito');
+
+  // Una frase sola, ripetuta in tutti i casi in cui il codice non parte: chi
+  // compila deve sapere che la richiesta non è bloccata, e deve saperlo con le
+  // stesse parole ogni volta.
+  const INVITO_A_PROSEGUIRE =
+    'Puoi inviare la richiesta lo stesso: partirà senza codice, e ne parliamo quando ti scrivo per il contributo.';
+
+  const MESSAGGIO_INCERTO =
+    'Non riesco a controllare il codice in questo momento, ed è un problema mio, non del codice che hai scritto. ' +
+    INVITO_A_PROSEGUIRE;
+
+  // La verifica FATTA, e insieme il testo per cui è stata fatta.
+  //
+  // Una verifica vale per IL codice che è stato verificato: se il testo del campo
+  // cambia dopo, la verifica conta come non data e il codice non parte. Non è un
+  // effetto che si ricorda di azzerarsi (quello si dimentica), è una derivazione:
+  // valore più la chiave a cui appartiene, e quando la chiave non torna il valore
+  // vale come non scritto.
+  //
+  // Nella chiave c'è anche l'email, e la ragione è cambiata il 09/08/2026: non è
+  // più l'attore del limitatore (adesso lo è l'indirizzo di chi chiama, che il
+  // visitatore non sceglie), quindi la risposta sul codice non dipende più da lei.
+  // Ci resta per il MESSAGGIO, che invece dipende eccome: col campo email vuoto
+  // questo blocco risponde «scrivi prima la tua email, al passo 2», e se l'email
+  // non stesse nella chiave quella frase resterebbe a schermo anche dopo che
+  // l'email è stata scritta, cioè esattamente il messaggio fermo che questo
+  // disegno esiste per non avere.
+  let verificaFatta = null;
+  // La richiesta IN CORSO, non il fatto che una richiesta sia partita: chi arriva
+  // mentre è in volo si attacca alla stessa promessa. Premere Verifica e poi subito
+  // Invia non deve contare due tentativi, perché dieci fallimenti chiudono la porta
+  // per un quarto d'ora, ed è giusto che li conti chi sbaglia il codice, non chi ha
+  // fretta.
+  let verificaInVolo = null;
+
+  // L'email si canonicalizza qui come la canonicalizza l'invio (spazi via, tutto
+  // minuscolo): la riga d'archivio e l'attore del limitatore devono essere la
+  // stessa persona, e due normalizzazioni diverse li farebbero divergere in
+  // silenzio.
+  function emailDelModulo() {
+    const campo = form.querySelector('[name="email"]');
+    return campo ? campo.value.trim().toLowerCase() : '';
+  }
+
+  function chiaveDi(testo, email) {
+    return testo + '\n' + email;
+  }
+
+  function esitoPer(testo, email) {
+    if (!verificaFatta) return null;
+    return verificaFatta.chiave === chiaveDi(testo, email) ? verificaFatta : null;
+  }
+
+  function scriviEsito(stato, testo) {
+    esitoCoupon.className = 'field-esito show esito-' + stato;
+    esitoCoupon.textContent = testo;
+  }
+
+  // Il messaggio a schermo si DERIVA dal testo che c'è adesso nel campo: cambiata
+  // una lettera, la verifica di prima non appartiene più a questo codice e sparisce
+  // da sola. Nessuno deve ricordarsi di spegnerla.
+  function aggiornaSchermoCoupon() {
+    const esito = esitoPer(campoCoupon.value.trim(), emailDelModulo());
+    if (!esito) {
+      esitoCoupon.className = 'field-esito';
+      esitoCoupon.textContent = '';
+      return;
+    }
+    scriviEsito(esito.stato, esito.mostrato);
+  }
+  campoCoupon.addEventListener('input', aggiornaSchermoCoupon);
+
+  function esitoIncerto() {
+    return { stato: 'incerto', mostrato: MESSAGGIO_INCERTO };
+  }
+
+  async function chiediAllaFunzione(testo, email) {
+    // AbortController e non AbortSignal.timeout: fa la stessa cosa e la fa anche
+    // sui browser un po' più vecchi, che qui arrivano davvero.
+    const taglio = new AbortController();
+    const timer = setTimeout(function () { taglio.abort(); }, ATTESA_MASSIMA_COUPON_MS);
+    let res;
+    try {
+      res = await fetch(FUNZIONE_COUPON, {
+        method: 'POST',
+        // Nessuna chiave e nessun token: la funzione è pubblica apposta, perché chi
+        // compila questo modulo è un visitatore anonimo.
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ modulo: MODULO_DEL_COUPON, codice: testo, email: email }),
+        signal: taglio.signal
+      });
+    } catch (e) {
+      // Rete caduta, attesa scaduta, funzione irraggiungibile: da qui non si
+      // distinguono, e non serve distinguerle. Nessuna delle tre autorizza ad
+      // accettare il codice.
+      return esitoIncerto();
+    } finally {
+      clearTimeout(timer);
+    }
+
+    let corpo = null;
+    try { corpo = await res.json(); } catch (e) { corpo = null; }
+    if (!corpo || typeof corpo !== 'object') return esitoIncerto();
+
+    // "ok" dice se la CHIAMATA ha funzionato, "valido" se il CODICE vale: sono due
+    // domande diverse e si leggono separate. Un guasto lascia partire lo stesso la
+    // richiesta, senza codice; un no impedisce che quel codice venga archiviato
+    // come verificato.
+    if (corpo.ok !== true) return esitoIncerto();
+
+    if (corpo.valido === true) {
+      // La nota d'archivio si scrive intera o non si scrive: senza il codice nella
+      // forma del listino o senza l'ambito sarebbe una nota che non dice quello che
+      // deve. Una risposta monca non è un rifiuto, è un guasto, e dire "codice non
+      // valido" a chi ne ha uno buono sarebbe l'errore di Punto Riflesso rovesciato,
+      // ingiusto allo stesso modo.
+      //
+      // `verificato_il` la funzione lo manda ancora e questa pagina non lo legge
+      // più, da quando la nota ha smesso di affermare una verifica che non può
+      // dimostrare. Non si pretende: un campo obbligatorio che nessuno usa è una
+      // trappola, perché il giorno in cui la funzione smettesse di mandarlo un
+      // codice buono diventerebbe «incerto» e nessuno collegherebbe la causa.
+      const codice = typeof corpo.codice === 'string' ? corpo.codice.trim() : '';
+      const ambito = typeof corpo.ambito === 'string' ? corpo.ambito.trim() : '';
+      if (codice === '' || ambito === '') return esitoIncerto();
+      return {
+        stato: 'ok',
+        mostrato: 'Il codice risulta valido adesso. Non resta bloccato da parte: lo applico quando concordiamo il contributo, e se nel frattempo cambiasse qualcosa te lo dico io.',
+        codice: codice,
+        ambito: ambito
+      };
+    }
+
+    if (corpo.valido === false) {
+      // Il messaggio è quello che ha scritto il database, e non se ne inventa un
+      // altro sopra: il motivo vero (inesistente, scaduto, esaurito, di un'altra
+      // persona) non si dice, perché sarebbe un oracolo che risponde gratis a chi
+      // tira a indovinare. E le parole non accusano nessuno: un codice può essere
+      // scaduto senza che sia colpa di chi lo ha in mano.
+      const dalDatabase = (typeof corpo.messaggio === 'string' && corpo.messaggio.trim() !== '')
+        ? corpo.messaggio.trim()
+        : 'Il codice inserito non è valido.';
+      return { stato: 'no', mostrato: dalDatabase + ' ' + INVITO_A_PROSEGUIRE };
+    }
+
+    // Una forma che non riconosciamo non è un no: è un guasto.
+    return esitoIncerto();
+  }
+
+  function verificaIlCodice(testo, email) {
+    const chiave = chiaveDi(testo, email);
+    if (verificaInVolo && verificaInVolo.chiave === chiave) return verificaInVolo.promessa;
+    const promessa = chiediAllaFunzione(testo, email)
+      .catch(function () { return esitoIncerto(); })
+      .then(function (esito) {
+        esito.chiave = chiave;
+        verificaFatta = esito;
+        if (verificaInVolo && verificaInVolo.chiave === chiave) verificaInVolo = null;
+        aggiornaSchermoCoupon();
+        return esito;
+      });
+    verificaInVolo = { chiave: chiave, promessa: promessa };
+    return promessa;
+  }
+
+  // Restituisce l'esito che vale per QUESTO testo e QUESTA email, chiamando la
+  // funzione solo se non c'è già. Una chiamata per gesto, mai una a ogni carattere
+  // digitato: un codice digitato a metà è un fallimento che il limitatore conta.
+  async function assicuraEsitoCoupon(testo, email) {
+    const gia = esitoPer(testo, email);
+    if (gia) return gia;
+    if (email === '') {
+      // Senza email la funzione rifiuterebbe comunque, perché senza attore il
+      // limitatore non conterebbe nessuno. Si risparmia il viaggio e si dice dove
+      // manca il dato. Sul modulo l'email si compila al passo 2, quindi per un
+      // visitatore vero questo caso non si presenta.
+      const senzaEmail = {
+        stato: 'incerto',
+        mostrato: 'Scrivi prima la tua email, al passo 2: senza non posso controllare il codice. ' + INVITO_A_PROSEGUIRE,
+        chiave: chiaveDi(testo, email)
+      };
+      verificaFatta = senzaEmail;
+      aggiornaSchermoCoupon();
+      return senzaEmail;
+    }
+    return await verificaIlCodice(testo, email);
+  }
+
+  // Invio dentro il campo del codice vuol dire "verifica", non "manda tutto".
+  //
+  // In un modulo il tasto Invio dentro un campo di testo a riga singola fa partire
+  // l'invio implicito, e questo campo è l'unico testo a riga singola del passo 4:
+  // senza questa riga, chi scrive il codice e preme Invio (il gesto più naturale
+  // del mondo) spedirebbe l'intera richiesta senza volerlo. Col campo vuoto invece
+  // non si ruba niente: senza codice da verificare il modulo si comporta come si
+  // comportava prima che questo campo esistesse.
+  campoCoupon.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || campoCoupon.value.trim() === '') return;
+    e.preventDefault();
+    btnVerificaCoupon.click();
+  });
+
+  btnVerificaCoupon.addEventListener('click', async function () {
+    const testo = campoCoupon.value.trim();
+    if (testo === '') {
+      // Il codice vuoto non parte verso il database: ogni chiamata lascia una riga
+      // nel registro dei tentativi, e un campo vuoto non è il tentativo di nessuno.
+      scriviEsito('incerto', 'Scrivi il codice sconto prima di premere Verifica.');
+      return;
+    }
+    btnVerificaCoupon.disabled = true;
+    btnVerificaCoupon.classList.add('btn-loading');
+    btnVerificaCoupon.textContent = 'Controllo...';
+    try {
+      await assicuraEsitoCoupon(testo, emailDelModulo());
+    } finally {
+      btnVerificaCoupon.disabled = false;
+      btnVerificaCoupon.classList.remove('btn-loading');
+      btnVerificaCoupon.textContent = 'Verifica';
+    }
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateStep(4)) return;
 
     const submitBtn = document.getElementById('btnSubmit');
+    const fd = new FormData(form);
+    const emailCanonica = emailDelModulo();
+
+    // ── Il codice sconto, prima di tutto il resto.
+    //
+    // Le due regole stanno insieme così. Un codice non verificato NON parte: è la
+    // regola di questa tappa. E un codice che non si è potuto verificare non blocca
+    // la richiesta, perché il campo è facoltativo e la lettura non dipende da lui.
+    // Quindi: se la verifica per questo testo non c'è ancora si fa adesso, una
+    // chiamata sola; se dice di sì la richiesta parte col codice; se dice di no, o
+    // se non si è potuta fare, il messaggio compare e QUESTO invio si ferma, perché
+    // è una notizia che chi compila non ha ancora letto. Premendo di nuovo la
+    // richiesta parte senza codice: chi la manda sa che cosa sta mandando, ed è il
+    // contrario dell'accettare in silenzio.
+    let couponDichiarato = null;
+    const testoCoupon = campoCoupon.value.trim();
+    if (testoCoupon !== '') {
+      const giaRisposto = esitoPer(testoCoupon, emailCanonica) !== null;
+      let esitoDelCoupon;
+      submitBtn.classList.add('btn-loading');
+      submitBtn.textContent = 'Controllo il codice...';
+      try {
+        esitoDelCoupon = await assicuraEsitoCoupon(testoCoupon, emailCanonica);
+      } finally {
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.innerHTML = HTML_BOTTONE_INVIO;
+      }
+      if (esitoDelCoupon.stato === 'ok') {
+        // La NOTA, e nota vuol dire nota: nessuno sconto le sta accanto, perché è
+        // lì che l'altro modulo ha sbagliato. E nessuna verifica le sta accanto,
+        // per la ragione scritta poco sopra: la porta che scrive l'archivio è
+        // aperta a chiunque abbia la chiave publishable di questa pagina, quindi
+        // qualunque campo scritto da qui è una dichiarazione e non una prova.
+        // Lo sconto nasce dal riscatto, altrove, ed è lì che la verifica conta.
+        //
+        // I nomi dei campi dicono quindi che cosa sono: una DICHIARAZIONE di chi
+        // compila, non un verdetto del sistema. Niente «verificato» e niente ora
+        // della verifica, che sarebbero due campi che questa pagina non può
+        // garantire; un nome che promette più di quanto mantiene è il difetto
+        // stesso da cui nasce questo blocco. Il codice è nella forma del listino
+        // perché è quella che Cristian avrà davanti in Cassa, e lì lo verifica
+        // per davvero.
+        couponDichiarato = {
+          codice_dichiarato: esitoDelCoupon.codice,
+          ambito: esitoDelCoupon.ambito,
+          da_verificare_in_cassa: true
+        };
+      } else if (!giaRisposto) {
+        campoCoupon.focus();
+        return;
+      }
+    }
+
     submitBtn.classList.add('btn-loading');
     submitBtn.textContent = 'Invio in corso...';
-
-    const fd = new FormData(form);
 
     const datiSpecifici = {
       ora_nascita: fd.get('ora_nascita') || null,
       intenzione: (fd.get('intenzione') || '').trim() || null,
       accettato_modello_pdf: !!document.getElementById('c-modello').checked
     };
+    if (couponDichiarato) datiSpecifici.coupon = couponDichiarato;
 
     const payload = {
       tipo_richiesta: 'croce_maya',
       nome: (fd.get('nome') || '').trim(),
       cognome: (fd.get('cognome') || '').trim(),
-      email: (fd.get('email') || '').trim().toLowerCase(),
+      // La stessa email che ha fatto da attore alla verifica del codice: una sola
+      // fonte, così la persona in archivio e quella contata dal limitatore non
+      // possono divergere.
+      email: emailCanonica,
       telefono: (fd.get('telefono') || '').trim() || null,
       data_nascita: fd.get('data_nascita') || null,
       luogo_nascita: (fd.get('luogo_nascita') || '').trim() || null,
@@ -646,7 +1009,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
       showStep('error');
     } finally {
       submitBtn.classList.remove('btn-loading');
-      submitBtn.innerHTML = 'Invia la richiesta <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+      submitBtn.innerHTML = HTML_BOTTONE_INVIO;
     }
   });
 })();
