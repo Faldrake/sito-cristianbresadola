@@ -10,6 +10,14 @@
 #   indirizzi vecchi: lo script si caricava (script-src lo consente), le visite non venivano contate. I due vecchi
 #   restano finche' non si sa quale versione dello script serve quale indirizzo: toglierli adesso, senza quella
 #   misura, rischierebbe di rompere di nuovo la stessa cosa dall'altro lato.
+# Aggiornamento 27/08/2026: aggiunta l'origine Supabase a form-action. MISURATO in produzione, non dedotto: la pagina
+#   di conferma iscrizione alla Bussola invia una POST di modulo vero verso bussola-conferma-iscrizione, e il browser
+#   la bloccava con violatedDirective «form-action» senza cambiare indirizzo: chi premeva «Confermo l'iscrizione» non
+#   vedeva accadere assolutamente niente. La lista era congelata a 7 confermati, tutti fra il 7 e il 20 maggio.
+#   L'origine era già in connect-src dal 2 agosto, ma un modulo che naviga non è una fetch e risponde a un'altra
+#   direttiva: elencarla in una non la elenca nell'altra. Aggiunta quella sola origine, mai un jolly su supabase.co.
+#   La POST resta com'è: è la difesa contro gli scanner di posta aziendali che seguono i collegamenti e
+#   confermerebbero al posto della persona, rendendo finto il doppio consenso.
 
 [build]
   publish = "."
@@ -69,7 +77,7 @@
     Cross-Origin-Resource-Policy = "same-site"
     
     # Content Security Policy - permette: self, font Google, immagini, connect Supabase+Umami, script Umami, frame Maps+YouTube
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is; frame-src https://www.google.com https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com; object-src 'none'; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://okasxfvoyihovohlaypz.supabase.co https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is; frame-src https://www.google.com https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://*.netlify.app https://cristianbresadola.com https://okasxfvoyihovohlaypz.supabase.co; object-src 'none'; upgrade-insecure-requests"
 
 # ============================================================
 # CACHE - asset statici cache lunga (immutable)
