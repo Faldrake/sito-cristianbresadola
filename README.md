@@ -9,16 +9,20 @@ che va online.
 
 ---
 
-## ⚠️ Il push pubblica
+## ⚠️ Il push NON pubblica
 
-Il repo è collegato a Netlify con il **deploy automatico attivo** su `main`.
-**Ogni `git push` va in produzione**, senza altri passaggi.
+**Misurato il 27 agosto 2026**, dopo che questo file per mesi ha sostenuto il
+contrario. Il deploy pubblicato porta `deploy_source: api` e `commit_ref: null`,
+cioè è un upload da riga di comando; e un `git push` su `main` fatto quel giorno
+**non ha innescato nessun deploy**: l'id del deploy in produzione è rimasto quello
+di prima. Chi si fida della riga vecchia pubblica per sbaglio, o peggio crede di
+aver pubblicato e non l'ha fatto.
 
-Prima di pushare conviene verificare che il deploy pubblicato corrisponda all'ultimo
-commit: se qualcosa è stato pubblicato a mano e non è in git, una ricostruzione da
-repo lo farebbe sparire.
+Ne segue la cosa che conta: **la produzione può essere PIÙ AVANTI di `origin/main`**,
+e a un certo punto lo è stata di due commit. Lo stato di ciò che è online non si
+deduce da git: si misura, con `curl` sul dominio o dal record del deploy su Netlify.
 
-Deploy manuale, se serve:
+Si pubblica a mano, sempre:
 
 ```bash
 netlify deploy --prod --dir=. --no-build --site=<site-id>
@@ -52,9 +56,10 @@ i font.
 
 ## Widget Ildegarda
 
-`ildegarda-widget.js` è il widget di chat dell'assistente. È **attivo su 13 pagine**
+`ildegarda-widget.js` è il widget di chat dell'assistente. È **attivo su 14 pagine**
 (chi-sono, consulenze, contatti, cookie-policy, croce-maya, dove-ricevo, formazione,
-grazie, idroterapia, ildegarda, index, privacy-policy, rubrica), e assente sulle
+grazie, idroterapia, ildegarda, index, privacy-policy, riflessologia-plantare,
+rubrica), e assente sulle
 altre. Il conteggio si rifà senza fidarsi di questa riga:
 
 ```bash
