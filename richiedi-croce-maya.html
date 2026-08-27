@@ -332,7 +332,12 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
             <div>
               <label class="form-label" for="f-data-nascita">Data di nascita *</label>
-              <input type="date" id="f-data-nascita" name="data_nascita" required class="form-input" min="1900-01-01" max="2026-12-31">
+              <!-- Il tetto scritto qui è grossolano, e va bene così: quello vero lo
+                   stringe a OGGI lo script (cerca «tetto della data di nascita»),
+                   perché una pagina statica non sa che giorno è e una data scritta
+                   a mano nel sorgente invecchia. Con lo script spento questo modulo
+                   non funziona comunque: i passi e l'invio li muove lui. -->
+              <input type="date" id="f-data-nascita" name="data_nascita" required class="form-input" min="1900-01-01" max="2026-08-27">
               <span class="field-error" data-error-for="data_nascita">Inserisci la tua data di nascita</span>
             </div>
             <div>
@@ -560,6 +565,35 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   const stepPills = document.querySelectorAll('.steps-bar .step-pill');
   let currentStep = 1;
 
+  // ── Il tetto della data di nascita ──────────────────────────────────────────
+  //
+  // MISURATO, non supposto. Il 26/05/2026 è arrivata una richiesta con data di
+  // nascita 03/06/2026: otto giorni nel futuro. Per la Croce Maya la data non è
+  // un dato anagrafico fra gli altri, è l'unico ingresso del calcolo dei kin.
+  // Quella richiesta non era lavorabile, ed è rimasta ferma tre mesi senza che il
+  // motivo fosse scritto da nessuna parte.
+  //
+  // DUE COSE L'HANNO LASCIATA PASSARE, e ripararne una sola non sarebbe bastato:
+  //   1. `max` valeva 2026-12-31, cioè la fine dell'anno e non oggi: una data
+  //      futura dentro l'anno in corso stava dentro il limite dichiarato;
+  //   2. il form porta `novalidate`, e allora il browser NON applica né `min` né
+  //      `max` all'invio. L'attributo restringe il calendario che si apre e
+  //      nient'altro: chi scrive la data a mano lo scavalca senza accorgersene.
+  //
+  // Qui si ripara la prima. La seconda la ripara `validateStep`, che i due limiti
+  // li rilegge da questo campo invece di ricopiarli: il limite resta scritto in un
+  // posto solo, e non ci sono due verità da tenere allineate.
+  const campoDataNascita = form.querySelector('[name="data_nascita"]');
+  if (campoDataNascita) {
+    const adesso = new Date();
+    const dueCifre = (n) => String(n).padStart(2, '0');
+    // A mano, e non con toISOString(): quella passa per UTC, e in Italia fra
+    // mezzanotte e le due di notte restituirebbe il giorno prima, lasciando il
+    // tetto indietro di un giorno proprio nelle ore in cui nessuno controlla.
+    campoDataNascita.max =
+      adesso.getFullYear() + '-' + dueCifre(adesso.getMonth() + 1) + '-' + dueCifre(adesso.getDate());
+  }
+
   // Il contenuto vero del bottone di invio, preso dalla pagina invece che
   // ricopiato a mano: adesso il bottone cambia scritta due volte (il codice, poi
   // l'invio) e una copia della freccia scritta nel codice si sarebbe scostata dalla
@@ -602,14 +636,33 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
     if (step === 3) {
       const input = form.querySelector('[name="data_nascita"]');
       const errorEl = form.querySelector('[data-error-for="data_nascita"]');
-      if (!input.value) {
-        if (errorEl) errorEl.classList.add('show');
+
+      // I limiti si leggono DAL CAMPO e non si riscrivono qui: `min` sta nell'HTML
+      // e `max` lo stringe a oggi il blocco in cima. Il confronto fra stringhe è
+      // corretto e non è una scorciatoia: il valore di un input `type="date"` è
+      // sempre YYYY-MM-DD, e in quella forma l'ordine alfabetico È quello
+      // cronologico.
+      const v = input.value;
+      const troppoAvanti = Boolean(v && input.max && v > input.max);
+      const troppoIndietro = Boolean(v && input.min && v < input.min);
+
+      if (!v || troppoAvanti || troppoIndietro) {
+        if (errorEl) {
+          // Il messaggio si riscrive a ogni giro: senza, quello di prima
+          // resterebbe a spiegare un errore diverso da quello che c'è adesso.
+          errorEl.textContent = troppoAvanti
+            ? 'Controlla la data di nascita: non può essere nel futuro.'
+            : troppoIndietro
+              ? "Controlla la data di nascita: l'anno sembra troppo indietro."
+              : 'Inserisci la tua data di nascita';
+          errorEl.classList.add('show');
+        }
         input.style.borderColor = 'var(--salt-glow, #E59856)';
         return false;
-      } else {
-        if (errorEl) errorEl.classList.remove('show');
-        input.style.borderColor = '';
       }
+
+      if (errorEl) errorEl.classList.remove('show');
+      input.style.borderColor = '';
       return true;
     }
     if (step === 4) {
