@@ -12,11 +12,9 @@
   --ivory: #EEF3F6;
   --ivory-warm: #C9DCE5;
   --frost: #DBE7EC;
-  --twilight: #6B8AA8;
   --petrol: #1B3A3E;
   --petrol-dark: #12282B;
-  --chrome-blue: #2A3166;
-  --chrome-blue-soft: #454B85;
+  --petrol-light: #2C5A5F;
   --forest: #2D5139;
   --forest-soft: #3F6B4D;
   --salt-glow: #E59856;
@@ -81,10 +79,9 @@ body {
 /* Colour utilities */
 .bg-petrol { background: var(--petrol); }
 .bg-petrol-dark { background: var(--petrol-dark); }
-.bg-chrome { background: var(--chrome-blue); }
+.bg-petrol-light { background: var(--petrol-light); }
 .bg-forest { background: var(--forest); }
 .bg-frost { background: var(--frost); }
-.bg-twilight { background: var(--twilight); }
 .bg-ivory { background: var(--ivory); }
 .bg-ivory-warm { background: var(--ivory-warm); }
 
@@ -95,7 +92,6 @@ body {
 .text-salt { color: var(--salt-glow); }
 .text-sage { color: var(--sage); }
 .text-forest { color: var(--forest); }
-.text-twilight { color: var(--twilight); }
 
 /* Utility palette acqua (pagina Idroterapia) */
 .bg-water-mist { background: var(--water-mist); }
@@ -219,7 +215,7 @@ nav.main-nav {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: rgba(219, 231, 236, 0.82);
-  border-bottom: 1px solid rgba(42, 49, 102, 0.12);
+  border-bottom: 1px solid rgba(27, 58, 62, 0.12);
 }
 
 /* Image frames */
@@ -228,7 +224,7 @@ nav.main-nav {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(245, 238, 223, 0.3);
+  border: 1px solid rgba(238, 243, 246, 0.3);
   pointer-events: none;
 }
 
@@ -348,7 +344,7 @@ blockquote.testimonial {
 /* Social icons */
 .social-icon {
   width: 36px; height: 36px;
-  border: 1px solid rgba(245, 238, 223, 0.3);
+  border: 1px solid rgba(238, 243, 246, 0.3);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -459,7 +455,7 @@ details.faq-item div.faq-answer {
   transform: translateX(-50%) translateY(-6px);
   min-width: 240px;
   background: var(--ivory, #EEF3F6);
-  border: 1px solid rgba(42, 49, 102, 0.12);
+  border: 1px solid rgba(27, 58, 62, 0.12);
   border-radius: 10px;
   box-shadow: 0 16px 40px rgba(18, 40, 43, 0.14), 0 2px 4px rgba(18, 40, 43, 0.04);
   padding: 0.6rem;
@@ -482,8 +478,8 @@ details.faq-item div.faq-answer {
   width: 12px;
   height: 12px;
   background: var(--ivory, #EEF3F6);
-  border-left: 1px solid rgba(42, 49, 102, 0.12);
-  border-top: 1px solid rgba(42, 49, 102, 0.12);
+  border-left: 1px solid rgba(27, 58, 62, 0.12);
+  border-top: 1px solid rgba(27, 58, 62, 0.12);
 }
 .nav-dropdown:hover .nav-dropdown__panel,
 .nav-dropdown:focus-within .nav-dropdown__panel,
@@ -526,7 +522,7 @@ details.faq-item div.faq-answer {
 }
 .nav-dropdown__divider {
   height: 1px;
-  background: rgba(42, 49, 102, 0.1);
+  background: rgba(27, 58, 62, 0.1);
   margin: 0.4rem 0.3rem;
 }
 .nav-dropdown__overview {
