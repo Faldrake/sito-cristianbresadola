@@ -22,11 +22,34 @@ Ne segue la cosa che conta: **la produzione può essere PIÙ AVANTI di `origin/m
 e a un certo punto lo è stata di due commit. Lo stato di ciò che è online non si
 deduce da git: si misura, con `curl` sul dominio o dal record del deploy su Netlify.
 
-Si pubblica a mano, sempre:
+Si pubblica a mano, sempre. **Prima**, se sono state toccate delle pagine:
 
 ```bash
-netlify deploy --prod --dir=. --no-build --site=<site-id>
+python strumenti/aggiorna-sitemap.py --scrivi
 ```
+
+**Poi** il deploy, dalla cartella del repo:
+
+```bash
+netlify deploy --prod --dir=. --no-build
+```
+
+⚠️ **Niente `--site=<id>`.** Fino al 28/08/2026 questa riga lo consigliava, e
+con netlify-cli 26.0.1 non funziona: risponde `Project not found. Please rerun
+"netlify link"`. Il flag esiste ancora nell'aiuto del comando, quindi il perche'
+non e' chiaro e non lo si inventa qui. Quello che e' verificato e' che la
+cartella e' **collegata** (`.netlify/state.json` porta
+`a5d1f71e-2030-4d1d-b634-394490a9fad6`) e che senza `--site` la CLI usa quel
+collegamento. `netlify status` deve rispondere `Current project:
+cristianbresadola`: se risponde altro, **non pubblicare**, perche' senza il
+flag l'errore non e' piu' «non parte» ma «parte verso il sito sbagliato».
+
+⚠️ **Se il deploy muore su `UNABLE_TO_VERIFY_LEAF_SIGNATURE`** non e' Netlify:
+e' l'antivirus di questa macchina che intercetta il TLS. Il guasto e'
+intermittente e colpisce le POST grosse, mentre le chiamate piccole passano.
+Riprovare due o tre volte prima di credergli; se insiste, `$env:NODE_OPTIONS =
+'--use-system-ca'` e in ultima istanza sospendere la scansione HTTPS per il
+tempo del deploy.
 
 ---
 
@@ -35,6 +58,7 @@ netlify deploy --prod --dir=. --no-build --site=<site-id>
 ```
 *.html                  le pagine del sito, una per file
 cerchio-del-druido/     sezione dedicata
+strumenti/              script di servizio, non fanno parte del sito
 bussola.html            La Bussola dell'Anima (newsletter)
 404.html                pagina non trovata: la serve Netlify da sola, senza
                         configurarla, e i suoi percorsi sono assoluti perché
