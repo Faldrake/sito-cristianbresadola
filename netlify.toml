@@ -38,6 +38,25 @@
 # copia è stata rimossa e l'indirizzo porta all'articolo vero.
 # force = true perché il 301 deve reggere anche se il file dovesse ricomparire:
 # senza, un file omonimo tornerebbe a coprire la regola in silenzio.
+# La cartella strumenti/ non e' il sito.
+#
+# Il sito si pubblica caricando la cartella intera (`netlify deploy --dir=.`),
+# quindi ci finisce anche cio' che serve solo a chi ci lavora. MISURATO il
+# 28/08/2026 dopo il primo deploy: /strumenti/aggiorna-sitemap.py rispondeva
+# 200. Non e' un segreto - questo repo e' pubblico su GitHub e quello script
+# legge la storia di git e riscrive un file gia' servito a tutti - ma un file
+# .py servito dal sito di un naturopata e' disordine, e quella cartella e' fatta
+# per crescere. Meglio la regola adesso che ricordarsene ogni volta.
+#
+# Qui il carattere jolly si puo' usare, perche' Netlify lo intende come «tutto
+# quello che segue»: e' esattamente il caso di una cartella. Diverso dal glob per
+# estensione, che invece non e' documentato (vedi il netlify.toml di Arkana).
+[[redirects]]
+  from = "/strumenti/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 [[redirects]]
   from = "/riflessologia-plantare-prima-seduta.html"
   to = "/cerchio-del-druido/riflessologia-plantare-prima-seduta.html"
