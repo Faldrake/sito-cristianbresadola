@@ -10,9 +10,12 @@
 <!-- La pagina veste gli articoli scritti da Arkana (tabella articoli_cerchio,
      letti con la chiave pubblicabile: l'anonimo vede SOLO il pubblicato).
      L'indirizzo canonico e' ?slug=...; senza slug o senza articolo la pagina
-     lo dice e riporta alla vetrina. I robot non la indicizzano a vuoto:
-     il noindex si toglie via JS quando l'articolo esiste davvero. -->
-<meta name="robots" content="noindex" id="meta-robots">
+     lo dice e riporta alla vetrina.
+     NIENTE noindex statico (revisione 30/08/2026): Googlebot lo legge nel
+     HTML grezzo e SALTA il rendering, quindi il JS che lo toglieva non
+     girava mai e nessun articolo sarebbe stato indicizzato. Il verso giusto
+     e' l'opposto: indicizzabile di default, e il noindex lo AGGIUNGE il JS
+     solo sulle pagine vuote (slug assente o articolo non trovato). -->
 
 <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
@@ -198,6 +201,12 @@
 
   const attesa = document.getElementById('articolo-attesa');
   const nonTrovato = (msg) => {
+    // La pagina vuota non va in indice: il noindex nasce QUI, via JS -
+    // Googlebot renderizza le pagine senza noindex statico e lo rispetta.
+    const robots = document.createElement('meta');
+    robots.name = 'robots';
+    robots.content = 'noindex';
+    document.head.appendChild(robots);
     attesa.innerHTML = '';
     const p = document.createElement('p');
     p.textContent = msg;
@@ -215,10 +224,16 @@
     return;
   }
 
+  // Il timeout c'e' apposta: una connessione appesa (TLS che non chiude,
+  // rete mobile instabile) lasciava il lettore su «Sto aprendo...» per
+  // minuti. Dove AbortSignal.timeout manca, si va senza: meglio lenti che
+  // rotti sui browser vecchi.
+  const segnale = (typeof AbortSignal !== 'undefined' && AbortSignal.timeout)
+    ? { signal: AbortSignal.timeout(15000) } : {};
   fetch(SB + '/rest/v1/articoli_cerchio'
       + '?slug=eq.' + encodeURIComponent(slug)
       + '&select=titolo,occhiello,estratto,contenuto,copertina_url,pubblicato_at&limit=1',
-    { headers: { apikey: CHIAVE } })
+    Object.assign({ headers: { apikey: CHIAVE } }, segnale))
     .then((r) => { if (!r.ok) throw new Error('lettura non riuscita'); return r.json(); })
     .then((righe) => {
       const a = righe && righe[0];
@@ -227,9 +242,6 @@
       document.title = a.titolo + ' · Il Cerchio del Druido · Cristian Bresadola';
       const descr = document.querySelector('meta[name="description"]');
       if (descr && a.estratto) descr.setAttribute('content', a.estratto.slice(0, 300));
-      // L'articolo esiste: la pagina puo' farsi indicizzare.
-      const robots = document.getElementById('meta-robots');
-      if (robots) robots.remove();
       const canon = document.createElement('link');
       canon.rel = 'canonical';
       canon.href = 'https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=' + encodeURIComponent(slug);
@@ -238,8 +250,10 @@
       if (a.occhiello) document.getElementById('art-occhiello').textContent = a.occhiello;
       document.getElementById('art-titolo').textContent = a.titolo;
       const quando = a.pubblicato_at ? new Date(a.pubblicato_at) : null;
+      // Europe/Rome esplicito: la data di pubblicazione e' quella dello
+      // studio, non quella del fuso di chi legge.
       document.getElementById('art-data').textContent = quando
-        ? quando.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })
+        ? quando.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Rome' })
         : '';
       const parole = (a.contenuto || '').split(/\s+/).filter(Boolean).length;
       document.getElementById('art-lettura').textContent =

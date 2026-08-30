@@ -629,13 +629,41 @@
   const SB = 'https://okasxfvoyihovohlaypz.supabase.co';
   const CHIAVE = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
 
+  // Lo stesso slug della barra delle categorie: minuscole e trattini.
+  const slugCat = function(s){
+    return String(s || '').toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  };
+  // Il filtro ?cat=... adesso filtra davvero (revisione 30/08/2026): prima
+  // i link della barra ricaricavano la pagina identica. Vale per le card
+  // dinamiche (per occhiello) e per quelle statiche (per __cat), e accende
+  // la pillola giusta.
+  const catScelta = new URLSearchParams(window.location.search).get('cat') || '';
+  if (catScelta) {
+    document.querySelectorAll('.cerchio-cat').forEach(function(p){
+      const sua = new URL(p.href, window.location.href).searchParams.get('cat') || '';
+      p.classList.toggle('is-active', sua === catScelta);
+    });
+    document.querySelectorAll('.cerchio-articoli__grid > a.cerchio-card').forEach(function(card){
+      const cat = card.querySelector('.cerchio-card__cat');
+      if (cat && slugCat(cat.textContent) !== catScelta) card.remove();
+    });
+  }
+
+  const segnale = (typeof AbortSignal !== 'undefined' && AbortSignal.timeout)
+    ? { signal: AbortSignal.timeout(15000) } : {};
   fetch(SB + '/rest/v1/articoli_cerchio'
       + '?select=slug,titolo,occhiello,estratto,contenuto,copertina_url,pubblicato_at'
       + '&order=pubblicato_at.desc&limit=60',
-    { headers: { apikey: CHIAVE } })
+    Object.assign({ headers: { apikey: CHIAVE } }, segnale))
     .then(function(r){ if(!r.ok) throw new Error('lettura non riuscita'); return r.json(); })
     .then(function(articoli){
-      if (!Array.isArray(articoli) || articoli.length === 0) return;
+      if (!Array.isArray(articoli)) return;
+      if (catScelta) {
+        articoli = articoli.filter(function(a){ return slugCat(a.occhiello) === catScelta; });
+      }
+      if (articoli.length === 0) return;
       const griglia = document.querySelector('.cerchio-articoli__grid');
       if (!griglia) return;
 
@@ -683,7 +711,7 @@
         meta.className = 'cerchio-card__meta';
         const dataEl = document.createElement('span');
         dataEl.textContent = a.pubblicato_at
-          ? new Date(a.pubblicato_at).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })
+          ? new Date(a.pubblicato_at).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Rome' })
           : '';
         const punto = document.createElement('span');
         punto.className = 'cerchio-card__meta-dot';
