@@ -618,6 +618,94 @@
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
+<script>
+/* Gli articoli scritti da Arkana (30/08/2026): la vetrina legge la tabella
+   articoli_cerchio con la chiave pubblicabile - l'anonimo vede SOLO il
+   pubblicato, per RLS - e antepone le card a quelle statiche. Se il
+   database tace, la pagina resta esattamente quella statica di prima:
+   niente errori in faccia a chi legge. Card costruite via textContent:
+   il testo resta testo. */
+(function(){
+  const SB = 'https://okasxfvoyihovohlaypz.supabase.co';
+  const CHIAVE = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
+
+  fetch(SB + '/rest/v1/articoli_cerchio'
+      + '?select=slug,titolo,occhiello,estratto,contenuto,copertina_url,pubblicato_at'
+      + '&order=pubblicato_at.desc&limit=60',
+    { headers: { apikey: CHIAVE } })
+    .then(function(r){ if(!r.ok) throw new Error('lettura non riuscita'); return r.json(); })
+    .then(function(articoli){
+      if (!Array.isArray(articoli) || articoli.length === 0) return;
+      const griglia = document.querySelector('.cerchio-articoli__grid');
+      if (!griglia) return;
+
+      // C'e' vita: i segnaposto «in arrivo» hanno finito il loro compito.
+      griglia.querySelectorAll('.cerchio-empty').forEach(function(v){ v.remove(); });
+
+      const schede = articoli.map(function(a){
+        const card = document.createElement('a');
+        card.className = 'cerchio-card';
+        card.href = './articolo.html?slug=' + encodeURIComponent(a.slug);
+
+        const cornice = document.createElement('div');
+        cornice.className = 'cerchio-card__image';
+        if (a.copertina_url && /^https:\/\/okasxfvoyihovohlaypz\.supabase\.co\//.test(a.copertina_url)) {
+          const img = document.createElement('img');
+          img.src = a.copertina_url;
+          img.alt = a.titolo;
+          img.loading = 'lazy';
+          cornice.appendChild(img);
+        } else {
+          const segnaposto = document.createElement('div');
+          segnaposto.className = 'cerchio-card__image-placeholder';
+          segnaposto.textContent = 'Il Cerchio del Druido';
+          cornice.appendChild(segnaposto);
+        }
+        card.appendChild(cornice);
+
+        const corpo = document.createElement('div');
+        corpo.className = 'cerchio-card__body';
+        const cat = document.createElement('div');
+        cat.className = 'cerchio-card__cat';
+        cat.textContent = a.occhiello || 'Note del Druido';
+        const titolo = document.createElement('h2');
+        titolo.className = 'cerchio-card__title';
+        titolo.textContent = a.titolo;
+        const estratto = document.createElement('p');
+        estratto.className = 'cerchio-card__excerpt';
+        estratto.textContent = a.estratto
+          || (a.contenuto || '').replace(/^## .*$/gm, '').replace(/\s+/g, ' ').trim().slice(0, 160);
+        corpo.appendChild(cat);
+        corpo.appendChild(titolo);
+        corpo.appendChild(estratto);
+
+        const meta = document.createElement('div');
+        meta.className = 'cerchio-card__meta';
+        const dataEl = document.createElement('span');
+        dataEl.textContent = a.pubblicato_at
+          ? new Date(a.pubblicato_at).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })
+          : '';
+        const punto = document.createElement('span');
+        punto.className = 'cerchio-card__meta-dot';
+        const lettura = document.createElement('span');
+        const parole = (a.contenuto || '').split(/\s+/).filter(Boolean).length;
+        lettura.textContent = Math.max(1, Math.round(parole / 200)) + ' min di lettura';
+        meta.appendChild(dataEl);
+        meta.appendChild(punto);
+        meta.appendChild(lettura);
+        corpo.appendChild(meta);
+        card.appendChild(corpo);
+        return card;
+      });
+
+      // In testa alla griglia, dal piu' recente: le statiche restano dopo.
+      for (let i = schede.length - 1; i >= 0; i--) {
+        griglia.insertBefore(schede[i], griglia.firstChild);
+      }
+    })
+    .catch(function(){ /* il database tace: la pagina statica basta a se stessa */ });
+})();
+</script>
 
 <script defer src="/noslab-badge.js"></script>
 </body>
