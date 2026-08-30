@@ -441,6 +441,32 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
               </label>
             </div>
 
+            <!-- Le due caselle che mancavano (30/08/2026). Il modulo
+                 registrava consenso_dati_salute e consenso_disclaimer_medico
+                 con un `true` scritto a mano nel codice: due consensi
+                 archiviati senza che nessuno li avesse mai spuntati. Ora la
+                 casella c'e' e il registro dice la verita', come nel modulo
+                 del primo contatto. -->
+            <div class="consent-block">
+              <input type="checkbox" id="c-salute" name="consenso_dati_salute" required>
+              <label for="c-salute">
+                <strong>Dati relativi alla salute · obbligatorio *</strong>
+                Acconsento al trattamento dei miei dati relativi alla salute (categorie particolari
+                ex art. 9 GDPR) che dovessi indicare nella mia intenzione o nelle note. I dati sono
+                trattati con misure di sicurezza adeguate e accessibili solo a Cristian Bresadola.
+              </label>
+            </div>
+
+            <div class="consent-block">
+              <input type="checkbox" id="c-medico" name="consenso_disclaimer_medico" required>
+              <label for="c-medico">
+                <strong>Ruolo del naturopata · obbligatorio *</strong>
+                Comprendo che la naturopatia in Italia non è una professione sanitaria regolamentata,
+                che il naturopata non diagnostica patologie, non prescrive farmaci e che le sue
+                indicazioni di benessere non sostituiscono il parere del medico curante.
+              </label>
+            </div>
+
           </div>
 
           <div class="wizard-nav">
@@ -1023,8 +1049,10 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
       motivazione: (fd.get('intenzione') || '').trim() || null,
       dati_specifici: datiSpecifici,
       consenso_privacy: !!document.getElementById('c-privacy').checked,
-      consenso_dati_salute: true,
-      consenso_disclaimer_medico: true,
+      // Letti dalle caselle, non scritti a mano: un consenso registrato
+      // senza il gesto della persona non e' un consenso (30/08/2026).
+      consenso_dati_salute: !!document.getElementById('c-salute').checked,
+      consenso_disclaimer_medico: !!document.getElementById('c-medico').checked,
       user_agent: navigator.userAgent,
       referrer: document.referrer || null,
       status: 'nuova'
