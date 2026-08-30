@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>La Bussola dell'Anima · Disiscrizione</title>
+<meta name="description" content="Conferma la disiscrizione dalla newsletter La Bussola dell'Anima di Cristian Bresadola.">
+<meta name="robots" content="noindex,nofollow">
+
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<style>
+  :root{ --display:'Fraunces','Iowan Old Style',Georgia,serif; --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{ font-family:var(--body); background:#0A1B1E; color:#F5EFE2; min-height:100vh;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    background-image:radial-gradient(1.5px 1.5px at 18% 22%, rgba(245,239,226,0.35), transparent 60%),radial-gradient(1px 1px at 78% 32%, rgba(212,165,91,0.4), transparent 60%),radial-gradient(1.5px 1.5px at 12% 68%, rgba(212,165,91,0.35), transparent 60%);
+  }
+  .card{ max-width:520px; width:100%; background:#102529; border:1px solid rgba(212,165,91,0.18);
+    border-radius:12px; padding:48px 40px; text-align:center; }
+  .eyebrow{ font-family:var(--display); font-style:italic; font-size:15px; color:#D4A55B; margin-bottom:14px; }
+  h1{ font-family:var(--display); font-weight:400; font-size:28px; line-height:1.25; margin-bottom:18px; }
+  h1 em{ font-style:italic; color:#D4A55B; }
+  p.lead{ font-size:14px; line-height:1.65; color:rgba(245,239,226,0.82); margin-bottom:30px; }
+  button{ font-family:var(--body); display:inline-block; padding:15px 34px; background:#D4A55B;
+    color:#0A1B1E; border:none; border-radius:8px; font-size:14px; font-weight:600;
+    letter-spacing:0.04em; cursor:pointer; transition:background .2s; }
+  button:hover{ background:#c89846; }
+  button:disabled{ opacity:.6; cursor:default; }
+  .resta{ display:block; margin-top:22px; font-size:13px; color:rgba(245,239,226,0.6); text-decoration:underline; text-underline-offset:3px; }
+  .errore{ color:#e8a598; font-size:14px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">La Bussola dell'Anima</div>
+    <div id="conferma">
+      <h1>Vuoi davvero <em>disiscriverti</em>?</h1>
+      <p class="lead">Non riceverai più il kin del giorno alle 06:00. Puoi sempre reiscriverti quando vuoi, con un clic.</p>
+      <!-- Form POST nativo: la disiscrizione avviene SOLO qui, mai su GET,
+           così gli scanner di posta non disiscrivono nessuno. Niente fetch,
+           niente CORS: il browser posta e segue il redirect finale. -->
+      <form id="modulo" method="POST" action="https://okasxfvoyihovohlaypz.supabase.co/functions/v1/bussola-disiscrivi">
+        <input type="hidden" name="token" id="token" value="">
+        <button type="submit" id="btn">Sì, disiscrivimi</button>
+      </form>
+      <a class="resta" href="/bussola.html">No, resto iscritto</a>
+    </div>
+    <div id="senza-token" style="display:none;">
+      <h1>Link non valido</h1>
+      <p class="lead errore">Questo indirizzo non contiene un codice di disiscrizione valido. Se sei arrivato da una newsletter, riprova dal link originale.</p>
+      <a class="resta" href="/bussola.html">Torna alla Bussola</a>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var token = new URLSearchParams(window.location.search).get('token') || '';
+      var valido = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(token);
+      if (valido) {
+        document.getElementById('token').value = token;
+      } else {
+        document.getElementById('conferma').style.display = 'none';
+        document.getElementById('senza-token').style.display = 'block';
+      }
+      // Un solo invio: niente doppio click.
+      document.getElementById('modulo').addEventListener('submit', function(){
+        document.getElementById('btn').disabled = true;
+        document.getElementById('btn').textContent = 'Un momento…';
+      });
+    })();
+  </script>
+</body>
+</html>
