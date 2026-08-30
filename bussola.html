@@ -1712,9 +1712,18 @@
     return Object.assign({}, overlay, { giorno: giornoRows[0] });
   }
 
+  // I VENTI GLIFI, non le duecentosessanta righe (30/08/2026).
+  // Prima si scaricava l'intera tabella - 260 righe, ~150 kB - per poi
+  // buttarne 240 con una Map lato client: ogni glifo compare tredici volte
+  // nel ciclo Tzolk'in. Nei primi venti kin ci sono TUTTI e venti i glifi,
+  // uno per kin (misurato sul database: numero_kin = numero_glifo per
+  // kin<=20, e i glifi distinti sono esattamente venti). Quindi si chiedono
+  // quelli: ~13 kB al posto di 150, a ogni apertura della pagina.
+  // La deduplica resta come cintura: se un giorno i dati cambiassero forma,
+  // la pagina si comporta come prima invece di mostrare doppioni.
   async function fetchAllGlyphs(){
     const rows = await sbFetch(
-      'bussola_anima_giorni?select=numero_glifo,nome_glifo_yucateco,nome_glifo_italiano,nome_glifo_kiche,nome_glifo_descrittivo,immagine_glifo_url,direzione,colore,elemento,totem,citazione_introduttiva&order=numero_glifo.asc'
+      'bussola_anima_giorni?numero_kin=lte.20&select=numero_glifo,nome_glifo_yucateco,nome_glifo_italiano,nome_glifo_kiche,nome_glifo_descrittivo,immagine_glifo_url,direzione,colore,elemento,totem,citazione_introduttiva&order=numero_glifo.asc'
     );
     const map = new Map();
     rows.forEach(r => { if(!map.has(r.numero_glifo)) map.set(r.numero_glifo, r); });
