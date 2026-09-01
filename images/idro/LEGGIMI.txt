@@ -1,0 +1,26 @@
+LE FOTOGRAFIE DI QUESTA CARTELLA
+================================
+
+Vengono tutte da Unsplash, dal dominio images.unsplash.com, che sta
+sotto la Unsplash License: uso commerciale permesso, nessun permesso
+da chiedere, nessun compenso, attribuzione non obbligatoria.
+
+NON sono state prese da plus.unsplash.com, che e' Unsplash+ (a
+abbonamento) e non sarebbe stato lecito usarle qui. Chi ne aggiunge
+altre controlli il dominio prima di scaricare: e' l'unica differenza
+visibile fra le due licenze, e non e' scritta sull'immagine.
+
+L'attribuzione non e' dovuta, ma la si scrive lo stesso: fra un anno
+nessuno si ricordera' da dove vengono, e chi dovesse ricontrollare la
+licenza deve poterlo fare senza indovinare.
+
+Ritagliate a 760x276 (il doppio della misura sulla pagina, per gli
+schermi a densita' doppia), desaturate al 55% e velate di turchese al
+20% perche' cinque fotografie di cinque autori diversi, senza quel
+passaggio, sembrano cinque cose prese in giro e incollate.
+
+impacchi.webp  Luca Laurence     https://unsplash.com/photos/FseXc3OsIic
+fango.webp  Michael           https://unsplash.com/photos/ox7RE-DWDyk
+argilla.webp  Wesley Tingey     https://unsplash.com/photos/TpjJ7ZtCqoM
+terra.webp  Seth Cottle       https://unsplash.com/photos/lyMZdag-zgQ
+casa.webp   Cici Hung         https://unsplash.com/photos/Ts_zPkMTU-U

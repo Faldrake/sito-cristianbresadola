@@ -203,6 +203,172 @@
     color: var(--water-light);
     opacity: 0.85;
   }
+
+  /* ═══════════════════════════════════════════════════════════════
+     LE SCENE DELLE PRATICHE · fotografia + movimento
+     ═══════════════════════════════════════════════════════════════
+     Una fascia per pratica: sotto una fotografia vera, sopra un disegno
+     che si muove. La fotografia porta la bellezza, il disegno porta il
+     tempo - le bolle che salgono, i cerchi che si aprono, la luce che
+     asciuga - che una fotografia ferma non puo' portare.
+
+     IL DISEGNO NON RIDISEGNA CIO' CHE LA FOTO GIA' MOSTRA. Sul lino non
+     ci sono strisce disegnate, sul fango non c'e' fango disegnato,
+     sull'argilla screpolata ci sono tre crepe sole e non una rete: due
+     linguaggi che dicono la stessa cosa insieme fanno rumore.
+
+     LE FOTOGRAFIE vengono da Unsplash, dal dominio images.unsplash.com,
+     che sta sotto la Unsplash License (uso commerciale libero). NON da
+     plus.unsplash.com, che e' Unsplash+ a abbonamento: la differenza sta
+     solo nel dominio e non e' scritta sull'immagine. Autori e indirizzi
+     in images/idro/LEGGIMI.txt. Desaturate al 55% e velate di turchese
+     al 20%: cinque foto di cinque autori diversi, senza quel passaggio,
+     sembrano cinque cose prese in giro e incollate.
+
+     LO STATO DI PARTENZA E' QUELLO FINITO: crepe disegnate, fili
+     cresciuti. L'animazione li nasconde e li rifa'. Al contrario, chi ha
+     chiesto meno movimento al sistema vedrebbe scene monche e non
+     saprebbe perche'. E' la lezione delle icone di «Chi sono».
+     ═══════════════════════════════════════════════════════════════ */
+
+  .scena-idro {
+    position: relative;
+    margin: -2rem -2rem 1.75rem;      /* esce dal padding della carta */
+    height: 132px;
+    overflow: hidden;
+    background: var(--water-deep, #1D5954);
+  }
+  .scena-idro-foto {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  /* Un velo che lega la fascia alla carta sotto, e che da' ai tratti
+     chiari del disegno qualcosa su cui staccare. */
+  .scena-idro::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background: linear-gradient(180deg,
+      rgba(15,58,55,.32) 0%, rgba(15,58,55,.10) 45%, rgba(217,232,230,.48) 100%);
+  }
+  .scena-idro-svg {
+    position: absolute; inset: 0; z-index: 2;
+    width: 100%; height: 100%; display: block;
+    filter: drop-shadow(0 1px 2px rgba(15,58,55,.45));
+  }
+
+  /* ── 01 impacchi · il calore che passa sul lino ────────────────── */
+  .i-calore { animation: i-passa 17s linear infinite; }
+  @keyframes i-passa { 0% { transform: translateX(0); } 100% { transform: translateX(460px); } }
+  .i-a { opacity: 0; transform-origin: 160px 74px; }
+  .i-a1 { animation: i-anello 15s ease-in-out 0.0s infinite; }
+  .i-a2 { animation: i-anello 15s ease-in-out 1.7s infinite; }
+  .i-a3 { animation: i-anello 15s ease-in-out 3.4s infinite; }
+  @keyframes i-anello {
+    0%   { opacity: 0;   transform: translateY(6px)   scale(.82); }
+    26%  { opacity: .75; }
+    64%, 100% { opacity: 0; transform: translateY(-14px) scale(1.16); }
+  }
+
+  /* ── 02 fango · le bolle salgono dal fango vero ────────────────── */
+  .f-b { opacity: 0; }
+  .f-b1 { animation: f-sale 17s ease-in-out 0.0s infinite; }
+  .f-b2 { animation: f-sale 17s ease-in-out 1.85s infinite; }
+  .f-b3 { animation: f-sale 17s ease-in-out 3.7s infinite; }
+  .f-b4 { animation: f-sale 17s ease-in-out 5.55s infinite; }
+  .f-b5 { animation: f-sale 17s ease-in-out 7.4s infinite; }
+  .f-b6 { animation: f-sale 17s ease-in-out 9.25s infinite; }
+  .f-b7 { animation: f-sale 17s ease-in-out 11.1s infinite; }
+  .f-b8 { animation: f-sale 17s ease-in-out 12.95s infinite; }
+  .f-b9 { animation: f-sale 17s ease-in-out 14.8s infinite; }
+  @keyframes f-sale {
+    0%   { opacity: 0;   transform: translateY(0)     scale(.5); }
+    14%  { opacity: .9; }
+    60%  { opacity: .35; transform: translateY(-54px) scale(1); }
+    78%, 100% { opacity: 0; transform: translateY(-76px) scale(1.15); }
+  }
+  .f-v { opacity: .5; }
+  .f-v1 { animation: f-vapore 19s ease-in-out 0.0s infinite; }
+  .f-v2 { animation: f-vapore 19s ease-in-out 4.6s infinite; }
+  .f-v3 { animation: f-vapore 19s ease-in-out 9.2s infinite; }
+  .f-v4 { animation: f-vapore 19s ease-in-out 13.8s infinite; }
+  @keyframes f-vapore {
+    0%   { opacity: 0;  transform: translateY(14px)  scaleY(.7); }
+    30%  { opacity: .6; }
+    70%, 100% { opacity: 0; transform: translateY(-20px) scaleY(1.25); }
+  }
+
+  /* ── 03 argilla · la luce lenta che asciuga, e tre crepe ───────── */
+  .a-luce { animation: a-passa 21s linear infinite; }
+  @keyframes a-passa { 0% { transform: translateX(0); } 100% { transform: translateX(500px); } }
+  .a-c { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .a-c1 { animation: a-crepa 20s ease-in-out 0.0s infinite; }
+  .a-c2 { animation: a-crepa 20s ease-in-out 1.6s infinite; }
+  .a-c3 { animation: a-crepa 20s ease-in-out 3.2s infinite; }
+  @keyframes a-crepa {
+    0%, 6%    { stroke-dashoffset: 1; }
+    42%, 78%  { stroke-dashoffset: 0; }
+    97%, 100% { stroke-dashoffset: 1; }
+  }
+
+  /* ── 04 terra · la microvita, e i fili che la collegano ────────── */
+  .t-v { opacity: .5; }
+  .t-v1 { animation: t-pulsa 9s ease-in-out 0.0s infinite; }
+  .t-v2 { animation: t-pulsa 9s ease-in-out 1.2s infinite; }
+  .t-v3 { animation: t-pulsa 9s ease-in-out 2.4s infinite; }
+  .t-v4 { animation: t-pulsa 9s ease-in-out 3.6s infinite; }
+  .t-v5 { animation: t-pulsa 9s ease-in-out 4.8s infinite; }
+  .t-v6 { animation: t-pulsa 9s ease-in-out 6.0s infinite; }
+  .t-v7 { animation: t-pulsa 9s ease-in-out 7.2s infinite; }
+  @keyframes t-pulsa {
+    0%, 100% { opacity: .18; transform: scale(.65); }
+    45%      { opacity: .9;  transform: scale(1.25); }
+  }
+  .t-r { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .t-r1 { animation: t-filo 22s ease-in-out 0.0s infinite; }
+  .t-r2 { animation: t-filo 22s ease-in-out 1.3s infinite; }
+  .t-r3 { animation: t-filo 22s ease-in-out 2.6s infinite; }
+  .t-r4 { animation: t-filo 22s ease-in-out 3.9s infinite; }
+  .t-r5 { animation: t-filo 22s ease-in-out 5.2s infinite; }
+  @keyframes t-filo {
+    0%, 6%    { stroke-dashoffset: 1; }
+    46%, 82%  { stroke-dashoffset: 0; }
+    98%, 100% { stroke-dashoffset: 1; }
+  }
+
+  /* ── 05 casa · i cerchi sull'acqua e il ritmo dei giorni ───────── */
+  .c-e { opacity: 0; transform-origin: 150px 96px; }
+  .c-e1 { animation: c-cerchio 5.1s ease-out infinite; }
+  .c-e2 { animation: c-cerchio 5.1s ease-out 1.7s infinite; }
+  .c-e3 { animation: c-cerchio 5.1s ease-out 3.4s infinite; }
+  @keyframes c-cerchio {
+    0%   { opacity: .8; transform: scale(.25); }
+    100% { opacity: 0;  transform: scale(1.8); }
+  }
+  .c-g { opacity: .3; }
+  .c-g1 { animation: c-giorno 14s ease-in-out 0.0s infinite; }
+  .c-g2 { animation: c-giorno 14s ease-in-out 0.85s infinite; }
+  .c-g3 { animation: c-giorno 14s ease-in-out 1.7s infinite; }
+  .c-g4 { animation: c-giorno 14s ease-in-out 2.55s infinite; }
+  .c-g5 { animation: c-giorno 14s ease-in-out 3.4s infinite; }
+  .c-g6 { animation: c-giorno 14s ease-in-out 4.25s infinite; }
+  .c-g7 { animation: c-giorno 14s ease-in-out 5.1s infinite; }
+  @keyframes c-giorno {
+    0%, 55%, 100% { opacity: .25; }
+    16%           { opacity: 1; }
+  }
+
+  /* Chi ha chiesto meno movimento vede le fotografie intere e i disegni
+     fermi, non fasce a meta'. */
+  @media (prefers-reduced-motion: reduce) {
+    .scena-idro-svg * { animation: none !important; }
+    .f-b, .c-e, .i-a { opacity: .5; }
+    .f-v, .t-v { opacity: .5; }
+    .i-calore, .a-luce { opacity: .45; transform: translateX(230px); }
+  }
+
+  @media (max-width: 640px) {
+    .scena-idro { height: 104px; margin: -2rem -2rem 1.5rem; }
+  }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
@@ -664,6 +830,7 @@
       <!-- 01 IMPACCHI -->
       <div class="pratica-card bg-water-mist p-8">
         <div class="pratica-numero">01</div>
+        <div class="scena-idro"><img class="scena-idro-foto" src="./images/idro/impacchi.webp" alt="Panno di lino piegato: il tessuto degli impacchi" width="760" height="276" loading="lazy" decoding="async"><svg viewBox="0 0 320 116" class="scena-idro-svg sc-impacchi" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="i-cal" x1="0" x2="1"><stop offset="0" stop-color="#EEF3F6" stop-opacity="0"/><stop offset=".45" stop-color="#EEF3F6" stop-opacity=".38"/><stop offset="1" stop-color="#EEF3F6" stop-opacity="0"/></linearGradient></defs><rect class="i-calore" x="-130" y="-6" width="130" height="128" fill="url(#i-cal)"/><g class="i-anelli" stroke="#EEF3F6" fill="none" stroke-linecap="round"><path class="i-a i-a1" d="M104 74 q56 -20 112 0" stroke-width="1.1"/><path class="i-a i-a2" d="M84 74 q76 -30 152 0" stroke-width=".9"/><path class="i-a i-a3" d="M64 74 q96 -40 192 0" stroke-width=".75"/></g></svg></div>
         <div class="eyebrow text-water-deep mb-4">Impacchi e bendaggi</div>
         <h3 class="font-display text-2xl text-water-deep mb-4">Il contatto lento.</h3>
         <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
@@ -675,6 +842,7 @@
       <!-- 02 FANGOTERAPIA -->
       <div class="pratica-card bg-water-mist p-8">
         <div class="pratica-numero">02</div>
+        <div class="scena-idro"><img class="scena-idro-foto" src="./images/idro/fango.webp" alt="Fango termale che ribolle in una sorgente calda" width="760" height="276" loading="lazy" decoding="async"><svg viewBox="0 0 320 116" class="scena-idro-svg sc-fango" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><g class="f-minerali" fill="#EEF3F6"><circle class="f-b f-b1" cx="22" cy="96" r="2.4" opacity=".85"/><circle class="f-b f-b2" cx="58" cy="92" r="1.5" opacity=".85"/><circle class="f-b f-b3" cx="94" cy="98" r="3" opacity=".85"/><circle class="f-b f-b4" cx="128" cy="90" r="1.8" opacity=".85"/><circle class="f-b f-b5" cx="162" cy="94" r="2.5" opacity=".85"/><circle class="f-b f-b6" cx="200" cy="90" r="1.6" opacity=".85"/><circle class="f-b f-b7" cx="236" cy="96" r="2.8" opacity=".85"/><circle class="f-b f-b8" cx="272" cy="92" r="1.9" opacity=".85"/><circle class="f-b f-b9" cx="306" cy="94" r="2.2" opacity=".85"/></g><g class="f-calore" stroke="#EEF3F6" stroke-width="1.1" stroke-linecap="round" opacity=".55"><path class="f-v f-v1" d="M48 74 q8 -14 0 -26 q-8 -13 0 -22"/><path class="f-v f-v2" d="M124 70 q8 -14 0 -26 q-8 -13 0 -22"/><path class="f-v f-v3" d="M204 72 q8 -14 0 -26 q-8 -13 0 -22"/><path class="f-v f-v4" d="M280 74 q8 -14 0 -26 q-8 -13 0 -22"/></g></svg></div>
         <div class="eyebrow text-water-deep mb-4">Fangoterapia naturale</div>
         <h3 class="font-display text-2xl text-water-deep mb-4">La piccola officina chimica.</h3>
         <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
@@ -686,6 +854,7 @@
       <!-- 03 ARGILLOTERAPIA -->
       <div class="pratica-card bg-water-mist p-8">
         <div class="pratica-numero">03</div>
+        <div class="scena-idro"><img class="scena-idro-foto" src="./images/idro/argilla.webp" alt="Terra screpolata dal sole: l'argilla che asciuga" width="760" height="276" loading="lazy" decoding="async"><svg viewBox="0 0 320 116" class="scena-idro-svg sc-argilla" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="a-luce-g" x1="0" x2="1"><stop offset="0" stop-color="#EEF3F6" stop-opacity="0"/><stop offset=".45" stop-color="#EEF3F6" stop-opacity=".30"/><stop offset="1" stop-color="#EEF3F6" stop-opacity="0"/></linearGradient></defs><rect class="a-luce" x="-160" y="-6" width="160" height="128" fill="url(#a-luce-g)"/><g class="a-crepe" stroke="#EEF3F6" fill="none" stroke-linecap="round" opacity=".7"><path class="a-c a-c1" d="M46 -4 l10 32 l-8 26 l14 30" stroke-width="1" pathLength="1"/><path class="a-c a-c2" d="M172 -4 l-8 34 l12 24 l-6 32" stroke-width=".9" pathLength="1"/><path class="a-c a-c3" d="M262 -4 l9 30 l-11 28 l8 28" stroke-width="1" pathLength="1"/></g></svg></div>
         <div class="eyebrow text-water-deep mb-4">Argilloterapia</div>
         <h3 class="font-display text-2xl text-water-deep mb-4">La pratica più antica.</h3>
         <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
@@ -697,6 +866,7 @@
       <!-- 04 TERRA VERGINE -->
       <div class="pratica-card bg-water-mist p-8">
         <div class="pratica-numero">04</div>
+        <div class="scena-idro"><img class="scena-idro-foto" src="./images/idro/terra.webp" alt="Mani che raccolgono terra scura e viva" width="760" height="276" loading="lazy" decoding="async"><svg viewBox="0 0 320 116" class="scena-idro-svg sc-terra" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><g class="t-vita" fill="#EEF3F6"><circle class="t-v t-v1" cx="44" cy="30" r="1.9"/><circle class="t-v t-v2" cx="86" cy="22" r="1.9"/><circle class="t-v t-v3" cx="132" cy="34" r="1.9"/><circle class="t-v t-v4" cx="186" cy="20" r="1.9"/><circle class="t-v t-v5" cx="232" cy="30" r="1.9"/><circle class="t-v t-v6" cx="274" cy="24" r="1.9"/><circle class="t-v t-v7" cx="302" cy="36" r="1.9"/></g><g class="t-fili" stroke="#A8CFC9" fill="none" stroke-linecap="round" opacity=".5"><path class="t-r t-r1" d="M44 30 q22 -6 42 -8" stroke-width=".8" pathLength="1"/><path class="t-r t-r2" d="M86 22 q24 8 46 12" stroke-width=".8" pathLength="1"/><path class="t-r t-r3" d="M132 34 q28 -12 54 -14" stroke-width=".8" pathLength="1"/><path class="t-r t-r4" d="M186 20 q24 6 46 10" stroke-width=".8" pathLength="1"/><path class="t-r t-r5" d="M232 30 q22 -4 42 -6" stroke-width=".8" pathLength="1"/></g></svg></div>
         <div class="eyebrow text-water-deep mb-4">Terra vergine</div>
         <h3 class="font-display text-2xl text-water-deep mb-4">Quello che il fango industriale non ha.</h3>
         <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
@@ -708,6 +878,7 @@
       <!-- 05 EDUCAZIONE A CASA -->
       <div class="pratica-card bg-water-mist p-8">
         <div class="pratica-numero">05</div>
+        <div class="scena-idro"><img class="scena-idro-foto" src="./images/idro/casa.webp" alt="Acqua che scorre sulle mani: il gesto quotidiano" width="760" height="276" loading="lazy" decoding="async"><svg viewBox="0 0 320 116" class="scena-idro-svg sc-casa" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><g class="c-cerchi" stroke="#EEF3F6" fill="none"><ellipse class="c-e c-e1" cx="150" cy="96" rx="26" ry="7" stroke-width="1.2"/><ellipse class="c-e c-e2" cx="150" cy="96" rx="26" ry="7" stroke-width="1"/><ellipse class="c-e c-e3" cx="150" cy="96" rx="26" ry="7" stroke-width=".85"/></g><g class="c-giorni" stroke="#EEF3F6" stroke-width="2.2" stroke-linecap="round"><path class="c-g c-g1" d="M32 16 v20"/><path class="c-g c-g2" d="M70 16 v20"/><path class="c-g c-g3" d="M108 16 v20"/><path class="c-g c-g4" d="M146 16 v20"/><path class="c-g c-g5" d="M184 16 v20"/><path class="c-g c-g6" d="M222 16 v20"/><path class="c-g c-g7" d="M260 16 v20"/></g></svg></div>
         <div class="eyebrow text-water-deep mb-4">Pratiche casalinghe</div>
         <h3 class="font-display text-2xl text-water-deep mb-4">Il gesto quotidiano.</h3>
         <p class="text-sm text-charcoal-soft leading-relaxed mb-5">
