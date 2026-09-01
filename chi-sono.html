@@ -277,6 +277,72 @@
     .display-title { letter-spacing: -0.02em; }
     .big-quote-mark { font-size: 5rem; }
   }
+
+/* ===== I SEGNI DELLE PRATICHE =====================================
+   Dieci disegni al posto di dieci rombi uguali. Il movimento e' quello
+   di una mano che traccia: il segno si disegna da solo quando arriva
+   sotto gli occhi, una volta sola, e poi sta fermo. Niente che pulsi,
+   niente che giri: qui dentro l'animazione serve a far notare un segno,
+   non a chiedere attenzione.
+   Il tratto e' lungo diversamente in ogni disegno, e la lunghezza vera
+   non la sappiamo: 120 e' un valore piu' lungo del piu' lungo dei dieci,
+   quindi ogni tratto arriva in fondo. Chi finisce prima resta fermo ad
+   aspettare gli altri, ed e' esattamente quello che si vuole vedere. */
+.segno-pratica {
+  display: inline-block;
+  vertical-align: -0.35em;
+  overflow: visible;
+}
+/* IL SEGNO SI VEDE PER NATURA. Il tratto nascosto lo mette il JavaScript
+   aggiungendo .js-anima, e solo dopo aver verificato di saperlo rimettere:
+   se l'animazione non parte - un osservatore che non scatta, uno script che
+   non gira - resta un disegno fermo, che e' esattamente quello che serve.
+   Nasconderlo col CSS e riaccenderlo col JavaScript vuol dire che il primo
+   inciampo lascia dieci buchi nella riga. */
+.segno-pratica * { stroke-dasharray: 120; }
+.js-anima .segno-pratica * {
+  stroke-dashoffset: 120;
+  opacity: 0;
+}
+.js-anima .segno-visibile .segno-pratica * {
+  animation: segno-si-traccia 1.15s cubic-bezier(.33,.68,.36,1) forwards;
+}
+/* Le parti di uno stesso segno partono a rincorsa, non tutte insieme. */
+.js-anima .segno-visibile .segno-pratica *:nth-child(2) { animation-delay: .10s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(3) { animation-delay: .20s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(4) { animation-delay: .30s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(5) { animation-delay: .38s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(6) { animation-delay: .46s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(7) { animation-delay: .54s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(8) { animation-delay: .60s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(9) { animation-delay: .66s; }
+.js-anima .segno-visibile .segno-pratica *:nth-child(10) { animation-delay: .72s; }
+@keyframes segno-si-traccia {
+  from { stroke-dashoffset: 120; opacity: 0; }
+  25%  { opacity: 1; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+/* Sfiorando la voce il segno si scalda appena: un quarto di secondo, e
+   nessuno spostamento che faccia ballare il testo accanto. */
+.flex.gap-3:hover .segno-pratica {
+  transform: scale(1.12) rotate(-2deg);
+  transition: transform .25s ease;
+}
+.segno-pratica { transition: transform .25s ease; }
+
+/* CHI NON VUOLE MOVIMENTO NON NE HA. I segni ci sono lo stesso, gia'
+   disegnati: si toglie l'animazione, non il disegno. */
+@media (prefers-reduced-motion: reduce) {
+  .segno-pratica *, .js-anima .segno-visibile .segno-pratica * {
+    stroke-dashoffset: 0; opacity: 1; animation: none;
+  }
+  .flex.gap-3:hover .segno-pratica { transform: none; }
+}
+
+/* E se il JavaScript non gira, i segni non restano invisibili per sempre:
+   dopo un secondo si mostrano comunque. Un disegno che non compare e' un
+   buco nella riga, e sarebbe peggio di nessun disegno. */
+.nessun-js .segno-pratica * { stroke-dashoffset: 0; opacity: 1; }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
@@ -616,16 +682,16 @@
             Ogni percorso ha aggiunto qualcosa a come guardo le persone oggi. Di seguito i principali:
           </p>
           <div class="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-charcoal-soft">
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Reiki</strong> (3 livelli)<br><span class="text-xs italic opacity-70">con Jilenia Adain Rodolfi</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Tecnica Metamorfica</strong> (3 livelli)</div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Tantra gestaltico</strong><br><span class="text-xs italic opacity-70">con Ornella Marini</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Sciamanesimo amazzonico</strong></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Riflessologia Antica: le 9 chiavi</strong><br><span class="text-xs italic opacity-70">con Andrea Navoni</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Idroterapia</strong><br><span class="text-xs italic opacity-70">con Corrado Tanzi</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Metamedicina</strong> (1° livello)<br><span class="text-xs italic opacity-70">con Maria Gabriella Bardelli</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Cosmologia Maya</strong><br><span class="text-xs italic opacity-70">con Marco Fardin</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Enneagramma</strong> (1° livello)<br><span class="text-xs italic opacity-70">con Stefano Graticola</span></div></div>
-            <div class="flex gap-3 items-start"><span class="text-salt">◆</span><div><strong class="text-petrol font-medium">Lettura intuitiva dei Tarocchi</strong><br><span class="text-xs italic opacity-70">metodo Jodorowski con E. Cappelletti e C. Cocco</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Reiki</title><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="7.7"/></svg></span><div><strong class="text-petrol font-medium">Reiki</strong> (3 livelli)<br><span class="text-xs italic opacity-70">con Jilenia Adain Rodolfi</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Tecnica Metamorfica</title><path d="M12 12a2 2 0 1 1 2 2 3.4 3.4 0 0 1-3.4-3.4 5 5 0 0 1 5-5 6.8 6.8 0 0 1 6.8 6.8"/><path d="M12 12a2 2 0 1 0-2-2 3.4 3.4 0 0 0 3.4 3.4"/></svg></span><div><strong class="text-petrol font-medium">Tecnica Metamorfica</strong> (3 livelli)</div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Tantra gestaltico</title><circle cx="9" cy="12" r="5.4"/><circle cx="15" cy="12" r="5.4"/></svg></span><div><strong class="text-petrol font-medium">Tantra gestaltico</strong><br><span class="text-xs italic opacity-70">con Ornella Marini</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Sciamanesimo amazzonico</title><path d="M12 3.5c5 3 7 7.4 5.6 11.3-1.2 3.4-5.6 5.4-5.6 5.4s-4.4-2-5.6-5.4C5 10.9 7 6.5 12 3.5Z"/><path d="M12 20.2V7.4"/><path d="M12 12.6 8.7 9.8"/><path d="m12 15.4 3.3-2.8"/></svg></span><div><strong class="text-petrol font-medium">Sciamanesimo amazzonico</strong></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Le nove chiavi</title><circle cx="6.5" cy="6.5" r="1"/><circle cx="12" cy="6.5" r="1"/><circle cx="17.5" cy="6.5" r="1"/><circle cx="6.5" cy="12" r="1"/><circle cx="12" cy="12" r="2.1"/><circle cx="17.5" cy="12" r="1"/><circle cx="6.5" cy="17.5" r="1"/><circle cx="12" cy="17.5" r="1"/><circle cx="17.5" cy="17.5" r="1"/></svg></span><div><strong class="text-petrol font-medium">Riflessologia Antica: le 9 chiavi</strong><br><span class="text-xs italic opacity-70">con Andrea Navoni</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Idroterapia</title><path d="M12 3.2s4.6 5 4.6 8.1a4.6 4.6 0 1 1-9.2 0C7.4 8.2 12 3.2 12 3.2Z"/><path d="M3 19.4c1.8-1.4 3.6-1.4 5.4 0s3.6 1.4 5.4 0 3.6-1.4 5.4 0"/></svg></span><div><strong class="text-petrol font-medium">Idroterapia</strong><br><span class="text-xs italic opacity-70">con Corrado Tanzi</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Metamedicina</title><circle cx="12" cy="5.6" r="2.6"/><path d="M12 8.2v4"/><path d="M12 20.4s-4.2-2.5-4.2-5.3a2.4 2.4 0 0 1 4.2-1.6 2.4 2.4 0 0 1 4.2 1.6c0 2.8-4.2 5.3-4.2 5.3Z"/></svg></span><div><strong class="text-petrol font-medium">Metamedicina</strong> (1° livello)<br><span class="text-xs italic opacity-70">con Maria Gabriella Bardelli</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Cosmologia Maya</title><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="1.7"/><path d="M12 3.4v4"/><path d="M12 16.6v4"/><path d="M3.4 12h4"/><path d="M16.6 12h4"/></svg></span><div><strong class="text-petrol font-medium">Cosmologia Maya</strong><br><span class="text-xs italic opacity-70">con Marco Fardin</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Enneagramma</title><circle cx="12" cy="12" r="8.6"/><path d="M12 3.4 4.6 16.6h14.8Z"/><circle cx="12" cy="3.4" r=".7"/><circle cx="17.5" cy="5.1" r=".7"/><circle cx="20.4" cy="9.9" r=".7"/><circle cx="19.4" cy="15.6" r=".7"/><circle cx="14.9" cy="19.4" r=".7"/><circle cx="9.1" cy="19.4" r=".7"/><circle cx="4.6" cy="15.6" r=".7"/><circle cx="3.6" cy="9.9" r=".7"/><circle cx="6.5" cy="5.1" r=".7"/></svg></span><div><strong class="text-petrol font-medium">Enneagramma</strong> (1° livello)<br><span class="text-xs italic opacity-70">con Stefano Graticola</span></div></div>
+            <div class="flex gap-3 items-start"><span class="text-salt"><svg class="segno-pratica" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><title>Tarocchi</title><rect x="9.4" y="4" width="5.2" height="16" rx="1"/><path d="M8.2 5.6 4.6 7a1 1 0 0 0-.6 1.3l3.6 10.1"/><path d="m15.8 5.6 3.6 1.4a1 1 0 0 1 .6 1.3l-3.6 10.1"/></svg></span><div><strong class="text-petrol font-medium">Lettura intuitiva dei Tarocchi</strong><br><span class="text-xs italic opacity-70">metodo Jodorowski con E. Cappelletti e C. Cocco</span></div></div>
           </div>
         </div>
 
@@ -947,5 +1013,36 @@
 
 <!-- Ildegarda - assistente AI -->
 <script src="/ildegarda-widget.js" defer></script>
+
+<script>
+// I SEGNI SI DISEGNANO QUANDO ARRIVANO SOTTO GLI OCCHI, e una volta sola.
+// Senza questo, chi apre la pagina e scorre subito troverebbe l'animazione
+// gia' finita, e chi non scorre affatto non la vedrebbe mai.
+(function () {
+  var voci = document.querySelectorAll('.segno-pratica');
+  if (!voci.length) return;
+  // Senza osservatore non si tocca niente: i segni sono gia' visibili.
+  if (!('IntersectionObserver' in window)) return;
+  // Da qui in poi si sa rimetterli: solo adesso li si puo' nascondere.
+  document.documentElement.classList.add('js-anima');
+  // E una rete: se dopo tre secondi qualcuno non e' ancora stato acceso
+  // (un osservatore che non scatta, una pagina mai scorsa), si smette di
+  // nasconderli. Meglio un disegno comparso senza grazia che un buco.
+  setTimeout(function () {
+    document.documentElement.classList.remove('js-anima');
+  }, 3000);
+  var occhio = new IntersectionObserver(function (righe) {
+    righe.forEach(function (r) {
+      if (!r.isIntersecting) return;
+      r.target.classList.add('segno-visibile');
+      occhio.unobserve(r.target);   // una volta sola
+    });
+  }, { threshold: 0.35 });
+  voci.forEach(function (v) {
+    var riga = v.closest('.flex.gap-3') || v.parentElement;
+    occhio.observe(riga);
+  });
+})();
+</script>
 </body>
 </html>
