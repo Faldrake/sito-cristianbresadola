@@ -79,6 +79,11 @@
 </style>
 
 <!-- STRUCTURED DATA - ContactPage + LocalBusiness reference -->
+<!-- Il venerdi' e' stato tolto dal blocco qui sotto l'1/09/2026: apparteneva
+     all'indirizzo di Trento, ma il venerdi' e' la Val di Sole, che ora ha
+     un nodo suo in index.html (@id #studio-val-di-sole). Il markup diceva
+     che lo studio di Vicolo della Contrada Tedesca 9 apre il venerdi', e
+     non e' vero. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,18 +105,12 @@
       "postalCode": "38122",
       "addressCountry": "IT"
     },
-    "openingHoursSpecification": [
+  "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Tuesday",
         "opens": "16:00",
         "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Friday",
-        "opens": "17:30",
-        "closes": "20:30"
       }
     ],
     "sameAs": [

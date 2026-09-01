@@ -51,6 +51,129 @@
 <link rel="stylesheet" href="styles.css">
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
+
+<!-- DATI STRUTTURATI (aggiunti l'1/09/2026)
+     Fino a oggi questa pagina non ne aveva nessuno: per un motore di ricerca
+     era muta. Non sapeva che qui c'e' un servizio, non sapeva che le sette
+     domande in fondo sono domande, non sapeva dove sta nel sito.
+
+     LE SETTE DOMANDE SONO COPIATE DAL TESTO VISIBILE, parola per parola, e
+     vanno tenute cosi'. Google pretende la corrispondenza letterale: un
+     FAQPage che dice cose diverse da quelle a schermo non e' un'ottimizzazione,
+     e' una dichiarazione falsa. Chi cambia una domanda qui sotto la cambi
+     anche sopra, e viceversa. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://cristianbresadola.com/croce-maya.html#servizio",
+      "name": "Lettura della Croce Maya",
+      "alternateName": "Lettura del calendario maya Tzolk'in",
+      "serviceType": "Lettura simbolica del calendario maya Tzolk'in",
+      "description": "Lettura personale costruita sul calendario maya Tzolk'in a partire dalla data di nascita: i cinque kin della Croce Maya, raccolti in un documento scritto. Servizio interamente a distanza.",
+      "url": "https://cristianbresadola.com/croce-maya.html",
+      "provider": {
+        "@id": "https://cristianbresadola.com/#person"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Italia"
+      },
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://cristianbresadola.com/richiedi-croce-maya.html",
+        "name": "Richiesta online"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Persone adulte"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://cristianbresadola.com/croce-maya.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quanto costa una lettura della Croce Maya?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Il costo è personalizzato in base alla modalità (singola, sinastria di coppia, familiare) e alla profondità dell'accompagnamento richiesto. Scrivimi o chiamami e ne parliamo direttamente: ti do un preventivo chiaro senza impegno."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisogna venire in studio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La Croce Maya è un servizio interamente a distanza: mi mandi i dati di nascita, elaboro il documento, te lo invio in PDF via email. Non c'è un appuntamento da fissare di persona."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Non conosco l'ora esatta di nascita, è un problema?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non è un problema insormontabile. L'ora permette una maggiore precisione su alcune sfumature, ma la lettura fondamentale si basa su giorno, mese, anno e luogo. Parliamone: spesso si trova una strada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come si differenzia dall'astrologia occidentale?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Il sistema Maya non si basa sui pianeti né sul percorso del sole nello zodiaco: lavora su una matrice di 260 giorni che intreccia 20 glifi con 13 toni. È un linguaggio simbolico diverso. Un punto di vista in più, non in contraddizione con altri."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "In quanto tempo arriva il documento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Il tempo di elaborazione è di 2–3 settimane dalla conferma della prenotazione e del pagamento. È un lavoro manuale, scritto a partire dai tuoi dati: ha bisogno del suo tempo. Quando è pronto te lo invio via email in alta qualità, pronto per essere stampato."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Come avviene il pagamento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quando ricevo i tuoi dati ti contatto personalmente per confermare la presa in carico e accordarci sul pagamento. Solo dopo la conferma del pagamento parte l'elaborazione del documento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La lettura contiene informazioni che mi metteranno in ansia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La lettura non contiene \"presagi negativi\" né previsioni minacciose. Descrive energie archetipiche, modalità, tendenze: tutti elementi che ti appartengono e che puoi riconoscere. Se dopo aver letto il documento senti il bisogno di un confronto su un passaggio specifico, possiamo organizzare una consulenza dedicata."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://cristianbresadola.com/croce-maya.html#briciole",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://cristianbresadola.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "La Croce Maya",
+          "item": "https://cristianbresadola.com/croce-maya.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body class="paper-bg">
 
@@ -238,7 +361,7 @@
       </div>
       <div class="lg:col-span-5 reveal reveal-2">
         <div class="relative" style="filter: drop-shadow(0 20px 40px rgba(229, 152, 86, 0.2)) drop-shadow(0 0 60px rgba(74, 95, 184, 0.35));">
-          <img src="./images/croce_maya_esempio.jpg" width="1728" height="2464" alt="Esempio di copertina della Lettura della Croce Maya" class="w-full h-auto">
+          <img src="./images/croce_maya_esempio.jpg" width="1240" height="1768" alt="Esempio di copertina della Lettura della Croce Maya" class="w-full h-auto">
         </div>
         <p class="text-center text-[11px] uppercase tracking-[0.2em] opacity-50 mt-4">Esempio di copertina · Ogni lettura è unica</p>
       </div>
@@ -525,7 +648,7 @@
 <!-- CTA FINALE -->
 <section class="py-24 lg:py-32 bg-petrol text-ivory on-dark relative overflow-hidden">
   <div class="absolute -right-40 top-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none">
-    <img src="./images/logo.jpg" width="1395" height="1414" alt="" class="w-[500px] h-[500px] rounded-full" loading="lazy">
+    <img src="./images/logo.jpg" width="1200" height="1216" alt="" class="w-[500px] h-[500px] rounded-full" loading="lazy">
   </div>
   <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative">
     <div class="flex justify-center mb-8"><div class="separator-line"></div></div>

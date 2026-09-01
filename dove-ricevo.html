@@ -50,6 +50,11 @@
      dice apertamente che la località precisa la ricevi alla conferma
      dell'appuntamento, e un indirizzo inventato qui sarebbe una promessa che
      nessuno ha fatto. -->
+<!-- Il venerdi' e' stato tolto dal blocco qui sotto l'1/09/2026: apparteneva
+     all'indirizzo di Trento, ma il venerdi' e' la Val di Sole, che ora ha
+     un nodo suo in index.html (@id #studio-val-di-sole). Il markup diceva
+     che lo studio di Vicolo della Contrada Tedesca 9 apre il venerdi', e
+     non e' vero. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -73,18 +78,12 @@
       "postalCode": "38122",
       "addressCountry": "IT"
     },
-    "openingHoursSpecification": [
+  "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": "Tuesday",
         "opens": "16:00",
         "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Friday",
-        "opens": "17:30",
-        "closes": "20:30"
       }
     ],
     "areaServed": [
@@ -287,10 +286,10 @@
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="grid md:grid-cols-2 gap-5">
       <div class="cromo-image aspect-[4/5] overflow-hidden">
-        <img src="./images/studio-accoglienza.jpg" width="1800" height="1350" alt="Studio di Trento, sala di accoglienza" class="w-full h-full object-cover" loading="lazy">
+        <img src="./images/studio-accoglienza.jpg" width="1400" height="1050" alt="Studio di Trento, sala di accoglienza" class="w-full h-full object-cover" loading="lazy">
       </div>
       <div class="cromo-image aspect-[4/5] overflow-hidden">
-        <img src="./images/studio-lettino.jpg" width="1800" height="1350" alt="Studio di Trento, sala trattamenti con cromoterapia" class="w-full h-full object-cover" loading="lazy">
+        <img src="./images/studio-lettino.jpg" width="1400" height="1050" alt="Studio di Trento, sala trattamenti con cromoterapia" class="w-full h-full object-cover" loading="lazy">
       </div>
     </div>
   </div>
