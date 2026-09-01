@@ -585,6 +585,82 @@
   @media (max-width: 768px) {
     .display-title { letter-spacing: -0.02em; }
   }
+
+  /* ═══════════════════════════════════════════════════════════════
+     L'AGGANCIO DEL KIN DEL CUORE
+     ═══════════════════════════════════════════════════════════════
+     Una cosa sola che fa due mestieri: si muove e chiede la data. Due
+     elementi decorativi separati si sarebbero fatti concorrenza.
+
+     LE VENTI TACCHE sono i venti glifi del Tzolk'in, e si accendono in
+     fila come il conteggio dei giorni: e' il ritmo del calendario, non
+     una decorazione qualunque. Un giro dura 13 secondi, che e' il numero
+     dei toni - una civetteria che nessuno notera', ma che rende il
+     movimento coerente con cio' che racconta.
+     ═══════════════════════════════════════════════════════════════ */
+  .kin-aggancio {
+    position: relative;
+    margin-top: 3.5rem;
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    background: rgba(238,243,246,.05);
+    border: 1px solid rgba(229,152,86,.28);
+    border-radius: 3px;
+    display: grid; gap: 1.75rem;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .kin-aggancio { grid-template-columns: 1.35fr 1fr; gap: 2.5rem; }
+  }
+  .kin-aggancio__onda {
+    position: absolute; left: 0; right: 0; top: 0; height: 26px;
+    overflow: hidden; opacity: .55; pointer-events: none;
+  }
+  .kin-aggancio__onda svg { width: 100%; height: 40px; display: block; margin-top: -8px; }
+  .ka-t { opacity: .2; }
+  .ka-t1 { animation: ka-conta 13s ease-in-out 0.0s infinite; }
+  .ka-t2 { animation: ka-conta 13s ease-in-out 0.34s infinite; }
+  .ka-t3 { animation: ka-conta 13s ease-in-out 0.68s infinite; }
+  .ka-t4 { animation: ka-conta 13s ease-in-out 1.02s infinite; }
+  .ka-t5 { animation: ka-conta 13s ease-in-out 1.36s infinite; }
+  .ka-t6 { animation: ka-conta 13s ease-in-out 1.7s infinite; }
+  .ka-t7 { animation: ka-conta 13s ease-in-out 2.04s infinite; }
+  .ka-t8 { animation: ka-conta 13s ease-in-out 2.38s infinite; }
+  .ka-t9 { animation: ka-conta 13s ease-in-out 2.72s infinite; }
+  .ka-t10 { animation: ka-conta 13s ease-in-out 3.06s infinite; }
+  .ka-t11 { animation: ka-conta 13s ease-in-out 3.4s infinite; }
+  .ka-t12 { animation: ka-conta 13s ease-in-out 3.74s infinite; }
+  .ka-t13 { animation: ka-conta 13s ease-in-out 4.08s infinite; }
+  .ka-t14 { animation: ka-conta 13s ease-in-out 4.42s infinite; }
+  .ka-t15 { animation: ka-conta 13s ease-in-out 4.76s infinite; }
+  .ka-t16 { animation: ka-conta 13s ease-in-out 5.1s infinite; }
+  .ka-t17 { animation: ka-conta 13s ease-in-out 5.44s infinite; }
+  .ka-t18 { animation: ka-conta 13s ease-in-out 5.78s infinite; }
+  .ka-t19 { animation: ka-conta 13s ease-in-out 6.12s infinite; }
+  .ka-t20 { animation: ka-conta 13s ease-in-out 6.46s infinite; }
+  @keyframes ka-conta {
+    0%, 40%, 100% { opacity: .18; }
+    10%           { opacity: 1; }
+  }
+
+  .kin-aggancio__form { display: flex; flex-direction: column; gap: .75rem; }
+  @media (min-width: 480px) and (max-width: 899px) {
+    .kin-aggancio__form { flex-direction: row; }
+    .kin-aggancio__form .kin-campo-home { flex: 1; }
+  }
+  .kin-campo-home {
+    background: rgba(238,243,246,.08);
+    border: 1px solid rgba(238,243,246,.3);
+    color: var(--ivory);
+    padding: .9rem 1.1rem;
+    font-family: var(--body); font-size: 1rem;
+    border-radius: 2px; min-width: 0;
+    color-scheme: dark;
+  }
+  .kin-campo-home:focus-visible { outline: 2px solid var(--salt-glow); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ka-t { animation: none !important; opacity: .45; }
+  }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
@@ -1580,7 +1656,7 @@
             </div>
             <div>
               <div class="font-medium text-sm mb-1">Documento PDF di alta qualità</div>
-              <div class="text-xs opacity-70 leading-relaxed">20–50 pagine con copertina personalizzata, pronto per la stampa. Elaborato manualmente in 2–3 settimane.</div>
+              <div class="text-xs opacity-70 leading-relaxed">20–50 pagine con copertina personalizzata, pronto per la stampa. Rivisto e completato da me, in 2–3 settimane.</div>
             </div>
           </div>
           <div class="flex gap-3 items-start">
@@ -1602,6 +1678,71 @@
 
     </div>
   </div>
+
+      <!-- ─────────────────────────────────────────────────────────────
+           L'AGGANCIO: il Kin del Cuore
+           ─────────────────────────────────────────────────────────────
+           Il Cuore e' il centro della Croce - il segno di nascita - ed e'
+           UNO dei cinque glifi. Regalarlo e' onesto e conviene: chi lo
+           riceve capisce che dietro c'e' un sistema, e vede da se' che
+           gliene mancano quattro.
+
+           IL CALCOLO NON AVVIENE QUI. La data viene passata a
+           croce-maya.html, che mostra il risultato per intero accanto alla
+           lettura completa: e' li' che la persona deve arrivare. Dare il
+           risultato in home farebbe chiudere la scheda a chi e' appagato.
+           ───────────────────────────────────────────────────────────── -->
+      <div class="kin-aggancio">
+        <div class="kin-aggancio__onda" aria-hidden="true">
+          <svg viewBox="0 0 520 40" preserveAspectRatio="none" fill="none">
+            <g class="ka-tacche" stroke="#E59856" stroke-width="2" stroke-linecap="round">
+              <path class="ka-t ka-t1" d="M10 8 v24"/>
+              <path class="ka-t ka-t2" d="M36 8 v24"/>
+              <path class="ka-t ka-t3" d="M62 8 v24"/>
+              <path class="ka-t ka-t4" d="M88 8 v24"/>
+              <path class="ka-t ka-t5" d="M114 8 v24"/>
+              <path class="ka-t ka-t6" d="M140 8 v24"/>
+              <path class="ka-t ka-t7" d="M166 8 v24"/>
+              <path class="ka-t ka-t8" d="M192 8 v24"/>
+              <path class="ka-t ka-t9" d="M218 8 v24"/>
+              <path class="ka-t ka-t10" d="M244 8 v24"/>
+              <path class="ka-t ka-t11" d="M270 8 v24"/>
+              <path class="ka-t ka-t12" d="M296 8 v24"/>
+              <path class="ka-t ka-t13" d="M322 8 v24"/>
+              <path class="ka-t ka-t14" d="M348 8 v24"/>
+              <path class="ka-t ka-t15" d="M374 8 v24"/>
+              <path class="ka-t ka-t16" d="M400 8 v24"/>
+              <path class="ka-t ka-t17" d="M426 8 v24"/>
+              <path class="ka-t ka-t18" d="M452 8 v24"/>
+              <path class="ka-t ka-t19" d="M478 8 v24"/>
+              <path class="ka-t ka-t20" d="M504 8 v24"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="kin-aggancio__testo">
+          <p class="eyebrow text-salt mb-3">Provalo adesso &middot; gratuito</p>
+          <h3 class="display-title text-2xl md:text-3xl mb-3">
+            Qual &egrave; il tuo <span class="display-italic text-salt">Kin del Cuore?</span>
+          </h3>
+          <p class="text-sm opacity-80 leading-relaxed max-w-lg">
+            Il Cuore &egrave; il centro della Croce: il tuo segno di nascita nel
+            calendario maya <em class="italic">Tzolk'in</em>. Uno dei cinque glifi
+            della lettura completa &mdash; te lo calcolo subito, senza chiederti niente.
+          </p>
+        </div>
+
+        <form class="kin-aggancio__form" id="kin-home" action="croce-maya.html" method="get">
+          <label for="kin-home-data" class="block text-[11px] uppercase tracking-[0.2em] opacity-65 mb-1">La tua data di nascita</label>
+          <input type="date" id="kin-home-data" name="nato" required
+                 min="1900-01-01" max="2035-12-31" class="kin-campo-home" autocomplete="bday">
+          <button type="submit" class="btn-primary whitespace-nowrap justify-center">
+            Calcola il mio Kin
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════

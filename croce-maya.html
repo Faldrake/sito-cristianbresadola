@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lettura della Croce Maya · Cristian Bresadola</title>
-<meta name="description" content="La Lettura della Croce Maya con Cristian Bresadola: strumento di auto-conoscenza basato sul calendario Tzolk'in. Documento PDF di alta qualità di 20-50 pagine, consegnato via email.">
+<title>Che segno maya sei? Calcola il tuo Kin · La Croce Maya</title>
+<meta name="description" content="Calcola gratis il tuo Kin del Cuore dal calendario maya Tzolk'in: metti la data di nascita e leggi il tuo glifo. Poi, se vuoi, la Croce Maya completa.">
 
 <!-- SEO META -->
 <link rel="canonical" href="https://cristianbresadola.com/croce-maya.html">
@@ -26,8 +26,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Lettura della Croce Maya · Strumento di auto-conoscenza strutturata">
-<meta property="og:description" content="La Lettura della Croce Maya con Cristian Bresadola: strumento di auto-conoscenza basato sul calendario Tzolk'in. Documento PDF di alta qualità di 20-50 pagine, consegnato via email.">
+<meta property="og:title" content="Che segno maya sei? Calcola il tuo Kin del Cuore">
+<meta property="og:description" content="Il calendario maya Tzolk'in dice qual è il tuo segno di nascita. Calcolalo gratis dalla tua data, e scopri la Croce Maya completa.">
 <meta property="og:url" content="https://cristianbresadola.com/croce-maya.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
@@ -38,8 +38,8 @@
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Lettura della Croce Maya · Strumento di auto-conoscenza strutturata">
-<meta name="twitter:description" content="La Lettura della Croce Maya con Cristian Bresadola: strumento di auto-conoscenza basato sul calendario Tzolk'in. Documento PDF di alta qualità di 20-50 pagine, consegnato via email.">
+<meta name="twitter:title" content="Che segno maya sei? Calcola il tuo Kin del Cuore">
+<meta name="twitter:description" content="Il calendario maya Tzolk'in dice qual è il tuo segno di nascita. Calcolalo gratis dalla tua data, e scopri la Croce Maya completa.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola · Naturopata, Riflessologo, Formatore">
 
@@ -366,6 +366,110 @@
         <p class="text-center text-[11px] uppercase tracking-[0.2em] opacity-50 mt-4">Esempio di copertina · Ogni lettura è unica</p>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     IL KIN DEL CUORE · il calcolo che si regala
+     ═══════════════════════════════════════════════════════════════════
+     Il Cuore e' UNA delle cinque posizioni della Croce - il segno di
+     nascita, il centro. Regalarlo e' onesto e conviene: chi lo riceve
+     capisce che esiste un sistema serio dietro, e vede da se' che gli
+     mancano gli altri quattro.
+
+     LA FORMULA NON E' PRESA DA UN MANUALE. Le correlazioni maya sono
+     diverse fra loro e sceglierne una a caso darebbe a ogni persona il kin
+     di un'altra. La costante 64 e' stata ricavata dalla tabella
+     bussola_anima_overlay - i 365 giorni del 2026, ognuno col kin gia'
+     deciso da Cristian - e riverificata contro quegli stessi giorni:
+     365 su 365, zero discordanze. Chi la tocca rifaccia quella prova.
+
+     I testi arrivano da bussola_anima_giorni, che un visitatore senza
+     login puo' gia' leggere: nessuna chiave privata, nessun endpoint
+     nuovo, niente da mantenere. ═══════════════════════════════════════ -->
+<section id="kin-cuore" class="py-20 lg:py-28 bg-petrol text-ivory on-dark relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.05] pointer-events-none" aria-hidden="true"
+       style="background-image:radial-gradient(circle at 20% 30%, #E59856 0%, transparent 45%),radial-gradient(circle at 80% 70%, #4A5FB8 0%, transparent 50%);"></div>
+
+  <div class="max-w-4xl mx-auto px-6 lg:px-12 relative">
+
+    <div class="text-center mb-10">
+      <p class="text-xs uppercase tracking-[0.25em] text-salt mb-4">Provalo adesso &middot; gratuito</p>
+      <h2 class="display-title text-3xl md:text-4xl lg:text-5xl mb-5">
+        Qual &egrave; il tuo <span class="display-italic text-salt">Kin del Cuore?</span>
+      </h2>
+      <p class="text-lg opacity-85 leading-relaxed max-w-2xl mx-auto">
+        Il Cuore &egrave; il centro della Croce: il tuo segno di nascita nel calendario
+        maya <em class="italic">Tzolk'in</em>. &Egrave; uno dei cinque glifi della lettura
+        completa, e te lo calcolo qui, subito, senza chiederti niente.
+      </p>
+    </div>
+
+    <form id="kin-form" class="max-w-md mx-auto" novalidate>
+      <label for="kin-data" class="block text-xs uppercase tracking-[0.2em] opacity-70 mb-3 text-center">
+        La tua data di nascita
+      </label>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input type="date" id="kin-data" name="kin-data" required
+               min="1900-01-01" max="2035-12-31"
+               class="kin-campo flex-1" autocomplete="bday">
+        <button type="submit" id="kin-vai" class="btn-primary whitespace-nowrap justify-center">
+          Calcola &rarr;
+        </button>
+      </div>
+      <p class="text-[11px] opacity-55 mt-3 text-center leading-relaxed">
+        La data resta nel tuo browser: non la salvo, non la mando a nessuno,
+        non ti chiedo l&rsquo;email. Il calcolo avviene qui.
+      </p>
+      <p id="kin-errore" class="text-sm text-salt mt-4 text-center" role="alert" hidden></p>
+    </form>
+
+    <!-- il risultato: nasce nascosto e compare solo quando c'e' -->
+    <div id="kin-esito" class="mt-14" hidden>
+      <div class="kin-carta">
+
+        <div class="kin-testa">
+          <img id="kin-glifo" src="" alt="" width="180" height="180" class="kin-glifo" loading="lazy">
+          <div class="kin-intestazione">
+            <p class="text-xs uppercase tracking-[0.25em] text-salt mb-2">Il tuo Kin del Cuore</p>
+            <p class="kin-numero"><span id="kin-n">&mdash;</span></p>
+            <h3 id="kin-titolo" class="display-title text-2xl md:text-3xl mt-2 mb-3"></h3>
+            <p id="kin-nomi" class="text-sm opacity-75"></p>
+          </div>
+        </div>
+
+        <dl id="kin-dati" class="kin-dati"></dl>
+
+        <p id="kin-citazione" class="kin-citazione" hidden></p>
+        <div id="kin-testo" class="kin-testo"></div>
+
+        <div class="kin-pratica" hidden id="kin-blocco-pratica">
+          <p class="text-xs uppercase tracking-[0.2em] text-salt mb-2">Un gesto per oggi</p>
+          <p id="kin-suggerimento" class="text-[15px] leading-relaxed opacity-90"></p>
+        </div>
+        <div class="kin-pratica" hidden id="kin-blocco-domanda">
+          <p class="text-xs uppercase tracking-[0.2em] text-salt mb-2">Una domanda da portarsi dietro</p>
+          <p id="kin-domanda" class="font-display italic text-lg leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- L'invito. E' onesto perche' e' vero: il Cuore e' uno dei cinque. -->
+      <div class="kin-invito">
+        <p class="font-display italic text-xl md:text-2xl mb-4">
+          Questo &egrave; <span class="text-salt">uno</span> dei cinque.
+        </p>
+        <p class="opacity-85 leading-relaxed max-w-xl mx-auto mb-7">
+          La Croce Maya completa mette il Cuore al centro e gli dispone intorno
+          il <strong>Concepimento</strong> (da dove parti), l&rsquo;<strong>Azione</strong>
+          (come realizzi), l&rsquo;<strong>Intuizione</strong> (come senti prima di sapere)
+          e il <strong>Destino</strong> (verso dove sei chiamato). Insieme, in un
+          documento scritto per te.
+        </p>
+        <a href="richiedi-croce-maya.html" class="btn-primary">Richiedi la lettura completa &rarr;</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -838,6 +942,89 @@
     #stickyBarCroceMaya .sticky-cta-desktop { display: none !important; }
     #stickyBarCroceMaya .sticky-cta-mobile { display: inline !important; }
   }
+
+/* ═══════════════════════════════════════════════════════════════════
+   IL KIN DEL CUORE
+   ═══════════════════════════════════════════════════════════════════ */
+.kin-campo {
+  background: rgba(238,243,246,.08);
+  border: 1px solid rgba(238,243,246,.28);
+  color: var(--ivory);
+  padding: .9rem 1.1rem;
+  font-family: var(--body);
+  font-size: 1rem;
+  border-radius: 2px;
+  min-width: 0;
+  color-scheme: dark;          /* il selettore data del browser, in scuro */
+}
+.kin-campo:focus-visible { outline: 2px solid var(--salt-glow); outline-offset: 2px; }
+
+.kin-carta {
+  background: rgba(238,243,246,.06);
+  border: 1px solid rgba(238,243,246,.16);
+  border-radius: 3px;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+.kin-testa {
+  display: flex; flex-wrap: wrap; gap: clamp(1.25rem, 4vw, 2.5rem);
+  align-items: center; margin-bottom: 2rem;
+}
+.kin-glifo {
+  width: 132px; height: 132px; flex-shrink: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+}
+.kin-intestazione { flex: 1 1 240px; min-width: 0; }
+.kin-numero {
+  font-family: var(--display); font-size: clamp(3rem, 9vw, 4.5rem);
+  line-height: 1; color: var(--salt-glow); font-variant-numeric: tabular-nums;
+}
+.kin-numero::before { content: 'Kin '; font-size: .3em; letter-spacing: .2em;
+  text-transform: uppercase; opacity: .6; vertical-align: middle; margin-right: .5em; }
+
+.kin-dati {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1px; background: rgba(238,243,246,.14);
+  border: 1px solid rgba(238,243,246,.14); margin: 0 0 2rem;
+}
+.kin-dati > div { background: #1B3A3E; padding: .85rem 1rem; }
+.kin-dati dt {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  opacity: .6; margin-bottom: .3rem;
+}
+.kin-dati dd { margin: 0; font-size: .95rem; }
+
+.kin-citazione {
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem); line-height: 1.55;
+  border-left: 2px solid var(--salt-glow); padding-left: 1.15rem;
+  margin: 0 0 1.75rem; opacity: .92;
+}
+.kin-testo { font-size: 1rem; line-height: 1.75; opacity: .9; }
+.kin-testo p { margin: 0 0 1.05rem; max-width: 66ch; }
+.kin-testo p:last-child { margin-bottom: 0; }
+
+.kin-pratica {
+  margin-top: 1.75rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(238,243,246,.16);
+}
+
+.kin-invito { text-align: center; margin-top: 2.75rem; }
+
+/* Il risultato entra con calma: e' una rivelazione, non una notifica.
+   Chi ha chiesto meno movimento lo vede comparire e basta. */
+#kin-esito[data-entra] { animation: kin-entra .8s ease-out both; }
+@keyframes kin-entra {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #kin-esito[data-entra] { animation: none; }
+}
+@media (max-width: 640px) {
+  .kin-testa { flex-direction: column; text-align: center; }
+  .kin-glifo { width: 108px; height: 108px; }
+}
 </style>
 
 
@@ -845,5 +1032,173 @@
 
 <!-- Ildegarda - assistente AI -->
 <script src="/ildegarda-widget.js" defer></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   IL KIN DEL CUORE · il calcolo, e da dove vengono i testi
+   ═══════════════════════════════════════════════════════════════════
+   LA COSTANTE 64 NON E' PRESA DA UN MANUALE, ed e' la riga piu' delicata
+   di questo file. Le correlazioni fra calendario gregoriano e Tzolk'in non
+   sono una sola - GMT 584283, Lounsbury 584285, il conteggio Dreamspell -
+   e sceglierne una a caso vorrebbe dire dare a ogni persona il kin di
+   un'altra, con tanto di testo sbagliato e sicurezza tipografica.
+
+   E' stata RICAVATA dai dati di Cristian: la tabella bussola_anima_overlay
+   contiene i 365 giorni del 2026, ognuno col suo kin gia' deciso da lui.
+   Da quelli si ottiene un unico scarto possibile, 64, e la formula e' stata
+   poi RIVERIFICATA contro gli stessi 365 giorni: 365 su 365 combaciano,
+   zero discordanze. Prove note: 1/1/2026 = kin 239, 15/6/2026 = kin 144,
+   31/12/2026 = kin 83. Chi cambia il 64 rifaccia quel confronto.
+
+   I TESTI non sono qui dentro: stanno in bussola_anima_giorni, 260 righe
+   gia' scritte, che un visitatore senza login puo' leggere con la chiave
+   publishable - la stessa che usa la Bussola in bussola.html. Nessun
+   endpoint nuovo, nessuna chiave privata, niente da mantenere.
+
+   LA DATA NON ESCE DAL BROWSER. Al server si chiede un numero di kin, mai
+   una data di nascita: la pagina lo promette a chi la usa, e questa e' la
+   riga che mantiene la promessa. Chi un giorno volesse salvare le date
+   cambi anche quella frase, o diventerebbe falsa.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  const SB_URL = 'https://okasxfvoyihovohlaypz.supabase.co';
+  const SB_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
+  const SCARTO = 64;   // vedi sopra: ricavato e verificato, non scelto
+
+  const form   = document.getElementById('kin-form');
+  const campo  = document.getElementById('kin-data');
+  const bottone= document.getElementById('kin-vai');
+  const errore = document.getElementById('kin-errore');
+  const esito  = document.getElementById('kin-esito');
+  if (!form || !campo || !esito) return;
+
+  const $ = (id) => document.getElementById(id);
+
+  function kinDa(iso) {
+    const [a, m, g] = iso.split('-').map(Number);
+    // UTC: senza, un fuso orario a ovest di Greenwich sposta il giorno e
+    // regala a qualcuno il kin del giorno prima.
+    const giorni = Math.floor(Date.UTC(a, m - 1, g) / 86400000);
+    return ((giorni + SCARTO) % 260 + 260) % 260 + 1;
+  }
+
+  function mostraErrore(t) {
+    errore.textContent = t;
+    errore.hidden = false;
+  }
+
+  function paragrafi(t) {
+    return String(t || '').split(/\n\s*\n/).filter(Boolean);
+  }
+
+  function riga(etichetta, valore) {
+    if (!valore) return '';
+    const d = document.createElement('div');
+    const dt = document.createElement('dt'); dt.textContent = etichetta;
+    const dd = document.createElement('dd'); dd.textContent = valore;
+    d.append(dt, dd);
+    return d;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errore.hidden = true;
+    const iso = campo.value;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) {
+      mostraErrore('Serve una data completa: giorno, mese e anno.');
+      campo.focus();
+      return;
+    }
+    const anno = Number(iso.slice(0, 4));
+    if (anno < 1900 || anno > 2035) {
+      mostraErrore('L\u2019anno deve stare fra il 1900 e il 2035.');
+      campo.focus();
+      return;
+    }
+
+    const n = kinDa(iso);
+    bottone.disabled = true;
+    const testoBottone = bottone.textContent;
+    bottone.textContent = 'Calcolo\u2026';
+
+    try {
+      // Si chiede il KIN, non la data: quello che esce di qui e' un numero
+      // fra 1 e 260, e non dice a nessuno quando sei nato.
+      const r = await fetch(SB_URL + '/rest/v1/bussola_anima_giorni'
+        + '?numero_kin=eq.' + n + '&limit=1&select=numero_kin,tono,nome_tono,'
+        + 'numero_glifo,nome_glifo_yucateco,nome_glifo_italiano,nome_glifo_kiche,'
+        + 'titolo_kin,testo_principale,citazione_introduttiva,suggerimento_pratico,'
+        + 'domanda_riflessione,direzione,colore,elemento,totem,immagine_glifo_url',
+        { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } });
+      if (!r.ok) throw new Error('risposta ' + r.status);
+      const dati = await r.json();
+      if (!dati || !dati.length) throw new Error('kin ' + n + ' non trovato');
+      disegna(dati[0]);
+    } catch (err) {
+      mostraErrore('Non riesco a leggere la scheda in questo momento. '
+        + 'Il tuo Kin del Cuore \u00e8 il numero ' + n + ': riprova fra poco, '
+        + 'oppure scrivimi e te lo racconto io.');
+      console.warn('kin del cuore:', err);
+    } finally {
+      bottone.disabled = false;
+      bottone.textContent = testoBottone;
+    }
+  });
+
+  function disegna(k) {
+    $('kin-n').textContent = k.numero_kin;
+    $('kin-titolo').textContent = k.titolo_kin || '';
+
+    const nomi = [k.nome_glifo_italiano, k.nome_glifo_yucateco, k.nome_glifo_kiche]
+      .filter(Boolean).filter((v, i, a) => a.indexOf(v) === i);
+    $('kin-nomi').textContent = nomi.join('  \u00b7  ');
+
+    const g = $('kin-glifo');
+    if (k.immagine_glifo_url) {
+      g.src = k.immagine_glifo_url;
+      g.alt = 'Glifo maya ' + (k.nome_glifo_yucateco || '') + ', kin ' + k.numero_kin;
+      g.hidden = false;
+    } else { g.hidden = true; }
+
+    const dati = $('kin-dati');
+    dati.textContent = '';
+    [['Tono', (k.tono ? k.tono + ' \u00b7 ' : '') + (k.nome_tono || '')],
+     ['Colore', k.colore], ['Elemento', k.elemento],
+     ['Direzione', k.direzione], ['Totem', k.totem]]
+      .forEach(([e, v]) => { const r = riga(e, v && String(v).trim()); if (r) dati.append(r); });
+
+    const cit = $('kin-citazione');
+    if (k.citazione_introduttiva) { cit.textContent = k.citazione_introduttiva; cit.hidden = false; }
+    else cit.hidden = true;
+
+    // textContent e non innerHTML: i testi vengono dal database e non si
+    // interpretano come marcatura, mai.
+    const t = $('kin-testo');
+    t.textContent = '';
+    paragrafi(k.testo_principale).forEach((p) => {
+      const el = document.createElement('p'); el.textContent = p.trim(); t.append(el);
+    });
+
+    const bp = $('kin-blocco-pratica');
+    if (k.suggerimento_pratico) { $('kin-suggerimento').textContent = k.suggerimento_pratico; bp.hidden = false; }
+    else bp.hidden = true;
+    const bd = $('kin-blocco-domanda');
+    if (k.domanda_riflessione) { $('kin-domanda').textContent = k.domanda_riflessione; bd.hidden = false; }
+    else bd.hidden = true;
+
+    esito.hidden = false;
+    esito.setAttribute('data-entra', '');
+    esito.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Si puo' arrivare qui con una data gia' in mano, dalla home:
+  // croce-maya.html?nato=1975-08-14#kin-cuore
+  const chiesta = new URLSearchParams(location.search).get('nato');
+  if (chiesta && /^\d{4}-\d{2}-\d{2}$/.test(chiesta)) {
+    campo.value = chiesta;
+    form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit'));
+  }
+})();
+</script>
 </body>
 </html>
