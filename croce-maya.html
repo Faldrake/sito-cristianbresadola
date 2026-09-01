@@ -418,7 +418,17 @@
           Calcola &rarr;
         </button>
       </div>
-      <p class="text-[11px] opacity-55 mt-3 text-center leading-relaxed">
+      <label for="kin-prima7" class="kin-prima7-riga">
+        <input type="checkbox" id="kin-prima7" name="kin-prima7">
+        <span>
+          Sono nato/a <strong>prima delle 7:00</strong> del mattino
+          <span class="kin-prima7-nota">Nel conteggio maya il giorno comincia all&rsquo;alba, non a mezzanotte:
+          chi nasce prima delle sette appartiene ancora al giorno precedente. Se non sai
+          l&rsquo;ora, lascia la casella vuota &mdash; è il caso più frequente.</span>
+        </span>
+      </label>
+
+      <p class="text-[11px] opacity-55 mt-4 text-center leading-relaxed">
         La data resta nel tuo browser: non la salvo, non la mando a nessuno,
         non ti chiedo l&rsquo;email. Il calcolo avviene qui.
       </p>
@@ -1025,6 +1035,21 @@
   .kin-testa { flex-direction: column; text-align: center; }
   .kin-glifo { width: 108px; height: 108px; }
 }
+
+/* La casella della regola delle 7:00: e' una domanda, non un dettaglio,
+   e deve avere lo spazio di una domanda. */
+.kin-prima7-riga {
+  display: flex; gap: .8rem; align-items: flex-start;
+  margin-top: 1.1rem; padding: .9rem 1.05rem;
+  background: rgba(238,243,246,.06);
+  border: 1px solid rgba(238,243,246,.16);
+  border-radius: 2px; cursor: pointer;
+  font-size: .92rem; line-height: 1.5;
+}
+.kin-prima7-riga input { margin-top: .28rem; flex-shrink: 0; accent-color: var(--salt-glow); }
+.kin-prima7-riga:hover { border-color: rgba(229,152,86,.4); }
+.kin-prima7-riga:focus-within { outline: 2px solid var(--salt-glow); outline-offset: 2px; }
+.kin-prima7-nota { display: block; font-size: .82rem; opacity: .68; margin-top: .35rem; }
 </style>
 
 
@@ -1070,15 +1095,27 @@
   const bottone= document.getElementById('kin-vai');
   const errore = document.getElementById('kin-errore');
   const esito  = document.getElementById('kin-esito');
+  const prima7 = document.getElementById('kin-prima7');
   if (!form || !campo || !esito) return;
 
   const $ = (id) => document.getElementById(id);
 
-  function kinDa(iso) {
+  // LA REGOLA DELLE 7:00. Nel conteggio maya il giorno comincia all'alba e
+  // non a mezzanotte: chi nasce prima delle sette del mattino (ora europea)
+  // appartiene ancora al giorno precedente, ed e' QUELLA la croce giusta.
+  // Alle 7:00 in punto vale gia' il giorno stesso.
+  //
+  // Non l'ho dedotta: e' chiarita da Cristian e fissata in un test il
+  // 21/07/2026 nel repo prototipo (commit da9e707), insieme alla controprova
+  // esterna su mayancross.com che conferma la correlazione e gli offset.
+  // Sono circa una nascita su cinque: senza questa riga ricevevano il kin di
+  // un altro, e con tutta la sicurezza tipografica del caso.
+  function kinDa(iso, primaDelleSette) {
     const [a, m, g] = iso.split('-').map(Number);
     // UTC: senza, un fuso orario a ovest di Greenwich sposta il giorno e
     // regala a qualcuno il kin del giorno prima.
-    const giorni = Math.floor(Date.UTC(a, m - 1, g) / 86400000);
+    let giorni = Math.floor(Date.UTC(a, m - 1, g) / 86400000);
+    if (primaDelleSette) giorni -= 1;
     return ((giorni + SCARTO) % 260 + 260) % 260 + 1;
   }
 
@@ -1116,7 +1153,7 @@
       return;
     }
 
-    const n = kinDa(iso);
+    const n = kinDa(iso, prima7.checked);
     bottone.disabled = true;
     const testoBottone = bottone.textContent;
     bottone.textContent = 'Calcolo\u2026';
@@ -1193,9 +1230,11 @@
 
   // Si puo' arrivare qui con una data gia' in mano, dalla home:
   // croce-maya.html?nato=1975-08-14#kin-cuore
-  const chiesta = new URLSearchParams(location.search).get('nato');
+  const parametri = new URLSearchParams(location.search);
+  const chiesta = parametri.get('nato');
   if (chiesta && /^\d{4}-\d{2}-\d{2}$/.test(chiesta)) {
     campo.value = chiesta;
+    if (parametri.get('alba') === '1') prima7.checked = true;
     form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit'));
   }
 })();

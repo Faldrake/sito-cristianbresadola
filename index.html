@@ -661,6 +661,15 @@
   @media (prefers-reduced-motion: reduce) {
     .ka-t { animation: none !important; opacity: .45; }
   }
+
+  /* La regola delle 7:00 vale anche qui: la casella viaggia con la data,
+     o chi arriva dalla home la perderebbe per strada. */
+  .kin-alba {
+    display: flex; gap: .6rem; align-items: flex-start;
+    font-size: .84rem; line-height: 1.45; opacity: .8; cursor: pointer;
+  }
+  .kin-alba input { margin-top: .2rem; flex-shrink: 0; accent-color: var(--salt-glow); }
+  .kin-alba:hover { opacity: 1; }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
@@ -1736,6 +1745,10 @@
           <label for="kin-home-data" class="block text-[11px] uppercase tracking-[0.2em] opacity-65 mb-1">La tua data di nascita</label>
           <input type="date" id="kin-home-data" name="nato" required
                  min="1900-01-01" max="2035-12-31" class="kin-campo-home" autocomplete="bday">
+          <label for="kin-home-alba" class="kin-alba">
+            <input type="checkbox" id="kin-home-alba" name="alba" value="1">
+            <span>Sono nato/a prima delle 7:00 del mattino</span>
+          </label>
           <button type="submit" class="btn-primary whitespace-nowrap justify-center">
             Calcola il mio Kin
             <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
