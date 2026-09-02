@@ -155,3 +155,13 @@
   for = "/grazie"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# La card per Instagram (2/09/2026): Arkana la disegna su un canvas nel
+# browser e ci mette il cerchio del Druido preso da qui. Un'immagine di
+# un'altra origine «sporca» il canvas e impedisce di esportarlo, a meno che
+# l'origine non la conceda: questa intestazione la concede, per quel solo
+# file. Nessun dato, nessun rischio: e' il logo pubblico del sito.
+[[headers]]
+  for = "/images/cerchio-logo-256.png"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
