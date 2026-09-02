@@ -606,11 +606,9 @@
      classi Tailwind: il foglio compilato ha solo le classi che le pagine
      usavano quando e' stato generato, e pt-24 / pt-28 / pt-16 non ci sono
      (verificato il 02/09/2026 con grep su tailwind.css). */
-  .kin-sezione-alta { padding-top: 6rem; padding-bottom: 3rem; }
-  .hero-sotto-kin { padding-top: 3rem; }
+  .kin-sezione-sotto { padding-top: 3rem; padding-bottom: 3rem; }
   @media (min-width: 1024px) {
-    .kin-sezione-alta { padding-top: 7rem; padding-bottom: 4rem; }
-    .hero-sotto-kin { padding-top: 5rem; }
+    .kin-sezione-sotto { padding-top: 4rem; padding-bottom: 4rem; }
   }
 
   .kin-aggancio {
@@ -865,87 +863,9 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════
-     IL KIN DEL CUORE, la prima cosa sotto l'header (02/09/2026, in due
-     mosse nella stessa giornata: prima sotto l'hero, poi sopra). Era in
-     fondo alla sezione Croce Maya: era il gancio migliore del sito e lo
-     vedeva solo chi scorreva fin laggiù. E' QUESTA sezione a lasciare lo
-     spazio all'header fisso (.kin-sezione-alta): l'hero non ne ha più
-     bisogno, e ha perso i suoi pt-32/lg:pt-44.
-═══════════════════════════════════════════════ -->
-<section class="kin-sezione-alta bg-petrol-dark text-ivory on-dark relative overflow-hidden">
-      <!-- ─────────────────────────────────────────────────────────────
-           L'AGGANCIO: il Kin del Cuore
-           ─────────────────────────────────────────────────────────────
-           Il Cuore e' il centro della Croce - il segno di nascita - ed e'
-           UNO dei cinque glifi. Regalarlo e' onesto e conviene: chi lo
-           riceve capisce che dietro c'e' un sistema, e vede da se' che
-           gliene mancano quattro.
-
-           IL CALCOLO NON AVVIENE QUI. La data viene passata a
-           croce-maya.html, che mostra il risultato per intero accanto alla
-           lettura completa: e' li' che la persona deve arrivare. Dare il
-           risultato in home farebbe chiudere la scheda a chi e' appagato.
-           ───────────────────────────────────────────────────────────── -->
-      <div class="kin-aggancio" style="margin-top:0">
-        <div class="kin-aggancio__onda" aria-hidden="true">
-          <svg viewBox="0 0 520 40" preserveAspectRatio="none" fill="none">
-            <g class="ka-tacche" stroke="#E59856" stroke-width="2" stroke-linecap="round">
-              <path class="ka-t ka-t1" d="M10 8 v24"/>
-              <path class="ka-t ka-t2" d="M36 8 v24"/>
-              <path class="ka-t ka-t3" d="M62 8 v24"/>
-              <path class="ka-t ka-t4" d="M88 8 v24"/>
-              <path class="ka-t ka-t5" d="M114 8 v24"/>
-              <path class="ka-t ka-t6" d="M140 8 v24"/>
-              <path class="ka-t ka-t7" d="M166 8 v24"/>
-              <path class="ka-t ka-t8" d="M192 8 v24"/>
-              <path class="ka-t ka-t9" d="M218 8 v24"/>
-              <path class="ka-t ka-t10" d="M244 8 v24"/>
-              <path class="ka-t ka-t11" d="M270 8 v24"/>
-              <path class="ka-t ka-t12" d="M296 8 v24"/>
-              <path class="ka-t ka-t13" d="M322 8 v24"/>
-              <path class="ka-t ka-t14" d="M348 8 v24"/>
-              <path class="ka-t ka-t15" d="M374 8 v24"/>
-              <path class="ka-t ka-t16" d="M400 8 v24"/>
-              <path class="ka-t ka-t17" d="M426 8 v24"/>
-              <path class="ka-t ka-t18" d="M452 8 v24"/>
-              <path class="ka-t ka-t19" d="M478 8 v24"/>
-              <path class="ka-t ka-t20" d="M504 8 v24"/>
-            </g>
-          </svg>
-        </div>
-
-        <div class="kin-aggancio__testo">
-          <p class="eyebrow text-salt mb-3">Provalo adesso &middot; gratuito</p>
-          <h3 class="display-title text-2xl md:text-3xl mb-3">
-            Qual &egrave; il tuo <span class="display-italic text-salt">Kin del Cuore?</span>
-          </h3>
-          <p class="text-sm opacity-80 leading-relaxed max-w-lg">
-            Il Cuore &egrave; il centro della Croce: il tuo segno di nascita nel
-            calendario maya <em class="italic">Tzolk'in</em>. Uno dei cinque glifi
-            della lettura completa &mdash; te lo calcolo subito, senza chiederti niente.
-          </p>
-        </div>
-
-        <form class="kin-aggancio__form" id="kin-home" action="croce-maya.html#kin-cuore" method="get">
-          <label for="kin-home-data" class="block text-[11px] uppercase tracking-[0.2em] opacity-65 mb-1">La tua data di nascita</label>
-          <input type="date" id="kin-home-data" name="nato" required
-                 min="1900-01-01" max="2035-12-31" class="kin-campo-home" autocomplete="bday">
-          <label for="kin-home-alba" class="kin-alba">
-            <input type="checkbox" id="kin-home-alba" name="alba" value="1">
-            <span>Sono nato/a prima delle 7:00 del mattino</span>
-          </label>
-          <button type="submit" class="btn-primary whitespace-nowrap justify-center">
-            Calcola il mio Kin
-            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </button>
-        </form>
-      </div>
-</section>
-<!-- ═══════════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════════ -->
-<section class="hero-sotto-kin relative pb-20 lg:pb-32 overflow-hidden">
+<section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
   
   <!-- Decorative logo mark background -->
   <div class="absolute -top-20 -right-40 opacity-[0.04] pointer-events-none slow-float">
@@ -1020,6 +940,84 @@
 
     </div>
   </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     IL KIN DEL CUORE, subito sotto l'hero (02/09/2026, terza mossa nella
+     stessa giornata: era in fondo alla Croce Maya, poi sopra l'hero, e
+     Cristian l'ha voluto qui: «il widget del kin mettilo sotto la hero»).
+     E' il gancio migliore del sito e lo si vede senza scorrere molto;
+     l'hero ha ripreso il suo spazio sotto l'header fisso (pt-32/lg:pt-44).
+═══════════════════════════════════════════════ -->
+<section class="kin-sezione-sotto bg-petrol-dark text-ivory on-dark relative overflow-hidden">
+      <!-- ─────────────────────────────────────────────────────────────
+           L'AGGANCIO: il Kin del Cuore
+           ─────────────────────────────────────────────────────────────
+           Il Cuore e' il centro della Croce - il segno di nascita - ed e'
+           UNO dei cinque glifi. Regalarlo e' onesto e conviene: chi lo
+           riceve capisce che dietro c'e' un sistema, e vede da se' che
+           gliene mancano quattro.
+
+           IL CALCOLO NON AVVIENE QUI. La data viene passata a
+           croce-maya.html, che mostra il risultato per intero accanto alla
+           lettura completa: e' li' che la persona deve arrivare. Dare il
+           risultato in home farebbe chiudere la scheda a chi e' appagato.
+           ───────────────────────────────────────────────────────────── -->
+      <div class="kin-aggancio" style="margin-top:0">
+        <div class="kin-aggancio__onda" aria-hidden="true">
+          <svg viewBox="0 0 520 40" preserveAspectRatio="none" fill="none">
+            <g class="ka-tacche" stroke="#E59856" stroke-width="2" stroke-linecap="round">
+              <path class="ka-t ka-t1" d="M10 8 v24"/>
+              <path class="ka-t ka-t2" d="M36 8 v24"/>
+              <path class="ka-t ka-t3" d="M62 8 v24"/>
+              <path class="ka-t ka-t4" d="M88 8 v24"/>
+              <path class="ka-t ka-t5" d="M114 8 v24"/>
+              <path class="ka-t ka-t6" d="M140 8 v24"/>
+              <path class="ka-t ka-t7" d="M166 8 v24"/>
+              <path class="ka-t ka-t8" d="M192 8 v24"/>
+              <path class="ka-t ka-t9" d="M218 8 v24"/>
+              <path class="ka-t ka-t10" d="M244 8 v24"/>
+              <path class="ka-t ka-t11" d="M270 8 v24"/>
+              <path class="ka-t ka-t12" d="M296 8 v24"/>
+              <path class="ka-t ka-t13" d="M322 8 v24"/>
+              <path class="ka-t ka-t14" d="M348 8 v24"/>
+              <path class="ka-t ka-t15" d="M374 8 v24"/>
+              <path class="ka-t ka-t16" d="M400 8 v24"/>
+              <path class="ka-t ka-t17" d="M426 8 v24"/>
+              <path class="ka-t ka-t18" d="M452 8 v24"/>
+              <path class="ka-t ka-t19" d="M478 8 v24"/>
+              <path class="ka-t ka-t20" d="M504 8 v24"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="kin-aggancio__testo">
+          <p class="eyebrow text-salt mb-3">Provalo adesso &middot; gratuito</p>
+          <h3 class="display-title text-2xl md:text-3xl mb-3">
+            Qual &egrave; il tuo <span class="display-italic text-salt">Kin del Cuore?</span>
+          </h3>
+          <p class="text-sm opacity-80 leading-relaxed max-w-lg">
+            Il Cuore &egrave; il centro della Croce: il tuo segno di nascita nel
+            calendario maya <em class="italic">Tzolk'in</em>. Uno dei cinque glifi
+            della lettura completa &mdash; te lo calcolo subito, senza chiederti niente.
+          </p>
+        </div>
+
+        <form class="kin-aggancio__form" id="kin-home" action="croce-maya.html#kin-cuore" method="get">
+          <label for="kin-home-data" class="block text-[11px] uppercase tracking-[0.2em] opacity-65 mb-1">La tua data di nascita</label>
+          <input type="date" id="kin-home-data" name="nato" required
+                 min="1900-01-01" max="2035-12-31" class="kin-campo-home" autocomplete="bday">
+          <label for="kin-home-alba" class="kin-alba">
+            <input type="checkbox" id="kin-home-alba" name="alba" value="1">
+            <span>Sono nato/a prima delle 7:00 del mattino</span>
+          </label>
+          <button type="submit" class="btn-primary whitespace-nowrap justify-center">
+            Calcola il mio Kin
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
 </section>
 <!-- ═══════════════════════════════════════════════
      DISCIPLINE
