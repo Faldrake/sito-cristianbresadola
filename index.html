@@ -600,7 +600,11 @@
      ═══════════════════════════════════════════════════════════════ */
   .kin-aggancio {
     position: relative;
-    margin-top: 3.5rem;
+    /* Sta FUORI dal div.max-w-7xl (chiuso prima): si allinea da solo alla
+       stessa gabbia - larghezza 80rem meno il padding laterale della sezione. */
+    margin: 3.5rem auto 0;
+    width: calc(100% - 3rem);
+    max-width: calc(80rem - 3rem);
     padding: clamp(1.75rem, 4vw, 2.5rem);
     background: rgba(238,243,246,.05);
     border: 1px solid rgba(229,152,86,.28);
@@ -610,6 +614,9 @@
   }
   @media (min-width: 900px) {
     .kin-aggancio { grid-template-columns: 1.35fr 1fr; gap: 2.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .kin-aggancio { width: calc(100% - 6rem); max-width: calc(80rem - 6rem); }
   }
   .kin-aggancio__onda {
     position: absolute; left: 0; right: 0; top: 0; height: 26px;
@@ -672,7 +679,7 @@
   .kin-alba:hover { opacity: 1; }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
 </head>
 <body class="paper-bg">
 
@@ -1741,7 +1748,7 @@
           </p>
         </div>
 
-        <form class="kin-aggancio__form" id="kin-home" action="croce-maya.html" method="get">
+        <form class="kin-aggancio__form" id="kin-home" action="croce-maya.html#kin-cuore" method="get">
           <label for="kin-home-data" class="block text-[11px] uppercase tracking-[0.2em] opacity-65 mb-1">La tua data di nascita</label>
           <input type="date" id="kin-home-data" name="nato" required
                  min="1900-01-01" max="2035-12-31" class="kin-campo-home" autocomplete="bday">
@@ -2261,5 +2268,26 @@
 
 
 <script defer src="/noslab-badge.js"></script>
+<script>
+// LA DATA DI NASCITA NON VIAGGIA NELL'URL (2/09/2026). Il form e' un GET verso
+// croce-maya.html, e senza questo script la data finirebbe nella query string:
+// nella cronologia, nei log di Netlify, e in cio' che Umami manda ai suoi
+// server. Con JavaScript la data passa per sessionStorage, che resta nel
+// browser; il GET resta come ripiego per chi non ha JavaScript.
+(function () {
+  var form = document.getElementById('kin-home');
+  if (!form || !window.sessionStorage) return;
+  form.addEventListener('submit', function (ev) {
+    var data = document.getElementById('kin-home-data').value;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) return;
+    try {
+      sessionStorage.setItem('kin-cuore-nato', data);
+      sessionStorage.setItem('kin-cuore-alba', document.getElementById('kin-home-alba').checked ? '1' : '0');
+    } catch (e) { return; }
+    ev.preventDefault();
+    location.href = 'croce-maya.html#kin-cuore';
+  });
+})();
+</script>
 </body>
 </html>

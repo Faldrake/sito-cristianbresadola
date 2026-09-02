@@ -340,9 +340,9 @@
 }
 
 /* E se il JavaScript non gira, i segni non restano invisibili per sempre:
-   dopo un secondo si mostrano comunque. Un disegno che non compare e' un
-   buco nella riga, e sarebbe peggio di nessun disegno. */
-.nessun-js .segno-pratica * { stroke-dashoffset: 0; opacity: 1; }
+   le icone sono visibili senza script, e lo script che le anima ha un
+   timeout di tre secondi che le mostra comunque. (Una classe .nessun-js
+   che stava qui non veniva applicata da nessuno: tolta il 2/09/2026.) */
 
 /* ===== IL NASTRO DEI SIMBOLI ======================================
    Un fregio che scorre piano, non una giostra. Ottanta secondi per un
@@ -417,11 +417,14 @@
    corsa no. E siccome ferme se ne vedono solo le prime, si centrano. */
 @media (prefers-reduced-motion: reduce) {
   .nastro-fila { animation: none; justify-content: center; width: 100%; flex-wrap: wrap; gap: .4rem 0; }
+  /* La fila e' scritta due volte per la corsa continua: da ferma, la
+     seconda copia mostrerebbe ogni figura due volte. */
+  .nastro-fila > .passo-nastro:nth-child(n+21) { display: none; }
   .nastro-simboli { -webkit-mask-image: none; mask-image: none; }
 }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
 </head>
 <body class="paper-bg">
 

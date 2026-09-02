@@ -50,7 +50,7 @@
 <link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="styles.css">
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
 
 <!-- DATI STRUTTURATI (aggiunti l'1/09/2026)
      Fino a oggi questa pagina non ne aveva nessuno: per un motore di ricerca
@@ -75,7 +75,10 @@
       "description": "Lettura personale costruita sul calendario maya Tzolk'in a partire dalla data di nascita: i cinque kin della Croce Maya, raccolti in un documento scritto. Servizio interamente a distanza.",
       "url": "https://cristianbresadola.com/croce-maya.html",
       "provider": {
-        "@id": "https://cristianbresadola.com/#person"
+        "@type": "Person",
+        "@id": "https://cristianbresadola.com/#person",
+        "name": "Cristian Bresadola",
+        "url": "https://cristianbresadola.com"
       },
       "areaServed": {
         "@type": "Country",
@@ -429,8 +432,9 @@
       </label>
 
       <p class="text-[11px] opacity-55 mt-4 text-center leading-relaxed">
-        La data resta nel tuo browser: non la salvo, non la mando a nessuno,
-        non ti chiedo l&rsquo;email. Il calcolo avviene qui.
+        La data resta nel tuo browser: non la salvo e non ti chiedo l&rsquo;email.
+        Il calcolo avviene qui; al mio archivio chiedo solo la scheda del Kin,
+        un numero da 1 a 260.
       </p>
       <p id="kin-errore" class="text-sm text-salt mt-4 text-center" role="alert" hidden></p>
     </form>
@@ -1120,8 +1124,11 @@
   }
 
   function mostraErrore(t) {
-    errore.textContent = t;
+    // Prima si scopre, poi si scrive: cosi' role="alert" viene annunciato.
+    // E si porta in vista: chi arriva dalla home e' ancora in cima alla pagina.
     errore.hidden = false;
+    errore.textContent = t;
+    errore.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function paragrafi(t) {
@@ -1228,13 +1235,26 @@
     esito.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Si puo' arrivare qui con una data gia' in mano, dalla home:
-  // croce-maya.html?nato=1975-08-14#kin-cuore
+  // Si puo' arrivare qui con una data gia' in mano, dalla home. Con
+  // JavaScript la home la lascia in sessionStorage (e l'URL resta pulito);
+  // senza, arriva come ?nato=1975-08-14&alba=1: in quel caso la si legge e
+  // si toglie subito dall'URL, che non deve restare nella cronologia.
   const parametri = new URLSearchParams(location.search);
-  const chiesta = parametri.get('nato');
+  let chiesta = parametri.get('nato');
+  let alba = parametri.get('alba') === '1';
+  if (chiesta) {
+    try { history.replaceState(null, '', location.pathname + '#kin-cuore'); } catch (e) { /* pazienza */ }
+  } else {
+    try {
+      chiesta = sessionStorage.getItem('kin-cuore-nato');
+      alba = sessionStorage.getItem('kin-cuore-alba') === '1';
+      sessionStorage.removeItem('kin-cuore-nato');
+      sessionStorage.removeItem('kin-cuore-alba');
+    } catch (e) { chiesta = null; }
+  }
   if (chiesta && /^\d{4}-\d{2}-\d{2}$/.test(chiesta)) {
     campo.value = chiesta;
-    if (parametri.get('alba') === '1') prima7.checked = true;
+    if (alba) prima7.checked = true;
     form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit'));
   }
 })();

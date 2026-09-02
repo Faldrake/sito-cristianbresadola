@@ -88,7 +88,9 @@
     opacity: 0.25;
     line-height: 1;
     position: absolute;
-    top: 1rem;
+    /* Sotto la fascia fotografica (132px, 104px da telefono), che viene
+       dopo nel DOM e altrimenti lo copre per intero. */
+    top: calc(132px + 0.75rem);
     right: 1.5rem;
     pointer-events: none;
   }
@@ -368,10 +370,11 @@
 
   @media (max-width: 640px) {
     .scena-idro { height: 104px; margin: -2rem -2rem 1.5rem; }
+    .pratica-numero { top: calc(104px + 0.75rem); }
   }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
 </head>
 <body class="paper-bg">
 
