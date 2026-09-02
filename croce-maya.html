@@ -1354,7 +1354,12 @@
         const hp = f.querySelector('.ns-hp');
         const r = await fetch(SB_URL + '/functions/v1/bussola-iscrizione', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: v, consenso: true, source: 'bussola_pagina', hp: hp ? hp.value : '', t: Date.now() - t0 })
+          // source «kin_cuore» (02/09/2026): terzo valore ammesso dalla edge function
+          // bussola-iscrizione (whitelist, non passthrough). Prima mandava
+          // «bussola_pagina» e chi arrivava dal Kin si confondeva con chi si
+          // iscrive dalla pagina della Bussola: non si poteva dire quale
+          // ingresso porta persone.
+          body: JSON.stringify({ email: v, consenso: true, source: 'kin_cuore', hp: hp ? hp.value : '', t: Date.now() - t0 })
         });
         const d = await r.json().catch(() => ({}));
         if (d && d.ok) {

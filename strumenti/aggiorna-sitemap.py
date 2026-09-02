@@ -31,6 +31,16 @@ DUE REGOLE, e sono il motivo per cui questo script e' corto:
     nel blocco marcato CERCHIO-DINAMICO, che questo script rigenera per intero
     a ogni corsa. Dentro il blocco comanda il database; fuori, le regole sopra.
 
+    UNA SECONDA decisione, il 02/09/2026, per le 260 pagine del Kin del Cuore
+    (kin/<tono>-<glifo>.html, generate da strumenti/genera-kin.mjs): entrano
+    nel blocco KIN-DINAMICO, rigenerato a ogni corsa dai file che ESISTONO su
+    disco in kin/. Non dal database e non da un elenco scritto a mano: se una
+    pagina c'e' si indicizza, se sparisce esce dal sitemap da sola. L'indirizzo
+    e' quello «pulito» (/kin/9-ix, senza .html), lo stesso del canonical e
+    dell'og:url dentro la pagina: quando i due divergono, il primo a non essere
+    creduto e' il nostro. Il lastmod e' l'ultimo commit del file, con la regola
+    1 che vale anche qui.
+
 Quando lanciarlo: prima di pubblicare, se sono state toccate delle pagine. Vedi
 la sezione «Il push NON pubblica» del README.
 
@@ -61,6 +71,11 @@ SB_URL = 'https://okasxfvoyihovohlaypz.supabase.co'
 SB_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS'
 INIZIO_CERCHIO = '  <!-- CERCHIO-DINAMICO inizio: blocco rigenerato da strumenti/aggiorna-sitemap.py -->'
 FINE_CERCHIO = '  <!-- CERCHIO-DINAMICO fine -->'
+
+# Il blocco delle pagine del Kin del Cuore: comanda la cartella kin/ su disco.
+CARTELLA_KIN = 'kin'
+INIZIO_KIN = '  <!-- KIN-DINAMICO inizio: le pagine del Kin del Cuore, blocco rigenerato da strumenti/aggiorna-sitemap.py -->'
+FINE_KIN = '  <!-- KIN-DINAMICO fine -->'
 
 
 def articoli_cerchio():
@@ -133,6 +148,53 @@ def aggiorna_cerchio(testo):
     return nuovo, len(voci)
 
 
+def pagine_kin():
+    """Le pagine del Kin presenti su disco, [(slug, lastmod)], in ordine di nome."""
+    if not os.path.isdir(CARTELLA_KIN):
+        return []
+    voci = []
+    for nome in sorted(os.listdir(CARTELLA_KIN)):
+        if not nome.endswith('.html'):
+            continue
+        percorso = CARTELLA_KIN + '/' + nome
+        voci.append((nome[:-5], ultimo_commit(percorso)))
+    return voci
+
+
+def blocco_kin(voci):
+    righe = [INIZIO_KIN]
+    for slug, quando in voci:
+        righe.append('  <url>')
+        righe.append('    <loc>https://cristianbresadola.com/kin/%s</loc>' % slug)
+        if quando:
+            righe.append('    <lastmod>%s</lastmod>' % quando)
+        righe.append('    <changefreq>yearly</changefreq>')
+        righe.append('    <priority>0.5</priority>')
+        righe.append('  </url>')
+    righe.append(FINE_KIN)
+    return '\n'.join(righe)
+
+
+def aggiorna_kin(testo):
+    """Sostituisce (o inserisce) il blocco KIN. Torna (testo, quante_voci)."""
+    voci = pagine_kin()
+    blocco = blocco_kin(voci)
+    if INIZIO_KIN in testo and FINE_KIN in testo:
+        vecchio = re.search(re.escape(INIZIO_KIN) + '.*?' + re.escape(FINE_KIN), testo, re.S).group(0)
+        # Regola 1 anche qui: una voce che nel sitemap ha gia' una data piu'
+        # avanti di git (non dovrebbe succedere, ma il file e' scritto a mano
+        # da chiunque) non torna indietro.
+        for slug, quando in voci:
+            m = re.search(r'<loc>https://cristianbresadola\.com/kin/%s</loc>\s*<lastmod>([^<]+)</lastmod>' % re.escape(slug), vecchio)
+            if m and quando and m.group(1)[:10] > quando:
+                blocco = blocco.replace('/kin/%s</loc>\n    <lastmod>%s</lastmod>' % (slug, quando),
+                                        '/kin/%s</loc>\n    <lastmod>%s</lastmod>' % (slug, m.group(1)))
+        nuovo = testo.replace(vecchio, blocco)
+    else:
+        nuovo = testo.replace('</urlset>', blocco + '\n</urlset>')
+    return nuovo, len(voci)
+
+
 def ultimo_commit(percorso):
     """La data dell'ultimo commit che ha toccato quel file, in formato ISO."""
     r = subprocess.run(
@@ -165,6 +227,10 @@ def main():
         # nel passaggio dedicato qui sotto.
         if 'articolo.html?slug=' in indirizzo:
             continue
+        # Idem per le pagine del Kin: l'indirizzo e' pulito (senza .html) e
+        # il blocco si rigenera per intero dalla cartella, piu' sotto.
+        if 'cristianbresadola.com/kin/' in indirizzo:
+            continue
         percorso = MAPPA.get(indirizzo) or indirizzo.replace('https://cristianbresadola.com/', '')
 
         if not os.path.exists(percorso):
@@ -195,6 +261,10 @@ def main():
     nuovo, voci_cerchio = aggiorna_cerchio(nuovo)
     if voci_cerchio is not None:
         print('Articoli del Cerchio nel blocco dinamico: %d' % voci_cerchio)
+
+    # Il blocco del Kin: la verita' la dice la cartella kin/.
+    nuovo, voci_kin = aggiorna_kin(nuovo)
+    print('Pagine del Kin del Cuore nel blocco dinamico: %d' % voci_kin)
 
     if not cambi and nuovo == testo:
         print('Tutte le date sono gia\' allineate e il blocco Cerchio non cambia. Niente da fare.')
