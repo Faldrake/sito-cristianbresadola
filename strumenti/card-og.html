@@ -1,0 +1,172 @@
+<!--
+  TEMPLATE DELLA CARD OG DEI 260 KIN (02/09/2026)
+  Questa pagina disegna UNA card 1200x630 leggendo i dati del kin dalla
+  tabella bussola_anima_giorni (?kin=N). Le 260 immagini in /kin/og/ sono
+  fotografie di questa pagina fatte con Chrome headless e poi ridotte da
+  strumenti/genera-kin.mjs --og <cartella>.
+
+  PER RIGENERARLE (solo se cambia il disegno):
+    1. servi la radice del sito in locale, es.  python3 -m http.server 8081
+    2. per ogni kin:
+       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+         --headless=new --disable-gpu --hide-scrollbars \
+         --window-size=1200,630 --force-device-scale-factor=2 --virtual-time-budget=8000 \
+         --screenshot=<cartella>/kin-N.png "http://localhost:8081/strumenti/card-og.html?kin=N"
+    3. node strumenti/genera-kin.mjs --og <cartella>
+  La cartella strumenti/ non e' servita in produzione (netlify.toml).
+-->
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --petrol:#1B3A3E; --petrol-dark:#12282B; --forest:#2D5139;
+    --salt:#E59856; --ivory:#EEF3F6; --frost:#DBE7EC; --sage:#8A9B86;
+    --display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --body:'DM Sans',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  .card{
+    position:relative; width:1200px; height:630px; overflow:hidden;
+    background:
+      radial-gradient(680px 560px at 68% 44%, rgba(45,81,57,.5), transparent 60%),
+      linear-gradient(158deg, var(--petrol) 0%, var(--petrol-dark) 82%);
+    color:var(--ivory); font-family:var(--body);
+  }
+  .shaft{
+    position:absolute; top:-8%; left:70%; width:240px; height:130%;
+    transform:translateX(-50%) rotate(6deg);
+    background:linear-gradient(to bottom, rgba(229,152,86,.24), rgba(219,231,236,.05) 42%, transparent 72%);
+    filter:blur(20px); opacity:.75;
+  }
+  .alone{
+    position:absolute; top:50%; left:72%; width:470px; height:470px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(219,231,236,.16) 0%, rgba(229,152,86,.10) 36%, transparent 62%);
+  }
+  .portale{
+    position:absolute; top:47%; left:72%; width:392px; height:392px;
+    transform:translate(-50%,-50%); border-radius:50%; overflow:hidden;
+    display:grid; place-items:center;
+    background:radial-gradient(circle at 50% 42%, #16332F 0%, #0C1F22 66%, #08181A 100%);
+    box-shadow:0 0 0 2px rgba(229,152,86,.75), 0 0 0 11px rgba(18,40,43,.7),
+               0 24px 70px rgba(0,0,0,.45), inset 0 0 60px rgba(0,0,0,.45);
+  }
+  .portale::before{content:''; position:absolute; inset:20px; border-radius:50%;
+    border:1px solid rgba(219,231,236,.12)}
+  .portale img{
+    width:300px; height:300px; object-fit:contain;
+    filter:invert(1) brightness(1.4); mix-blend-mode:screen;
+  }
+
+  .contenuto{position:absolute; inset:0; padding:64px 76px; display:flex; flex-direction:column; z-index:3}
+  .eyebrow{
+    font-family:var(--body); font-weight:500; font-size:18px;
+    letter-spacing:.32em; text-transform:uppercase; color:var(--salt);
+  }
+  .blocco-centro{margin-top:auto; margin-bottom:auto; max-width:540px}
+  .kin{
+    font-family:var(--display); font-weight:330; font-size:116px; line-height:.9;
+    letter-spacing:-.01em; color:var(--ivory); margin-bottom:10px;
+  }
+  .kin em{font-style:italic; color:var(--salt)}
+  .meta{
+    font-family:var(--body); font-size:18px; letter-spacing:.04em;
+    color:var(--frost); opacity:.8; margin-bottom:28px;
+  }
+  /* la frase = il titolo poetico del kin. Si adatta se è lungo. */
+  .titolo{
+    font-family:var(--display); font-style:italic; font-weight:330;
+    font-size:37px; line-height:1.2; color:var(--ivory); max-width:520px;
+    position:relative; padding-left:24px;
+  }
+  .titolo.lungo{font-size:31px}
+  .titolo.lunghissimo{font-size:27px}
+  .titolo::before{content:''; position:absolute; left:0; top:5px; bottom:5px;
+    width:3px; background:var(--salt); border-radius:3px}
+  .gancio{
+    margin-top:18px; font-family:var(--body); font-size:17px; letter-spacing:.02em;
+    color:var(--sage); max-width:500px; line-height:1.45;
+  }
+  .gancio b{color:var(--frost); font-weight:500}
+
+  .footer{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    font-family:var(--body); font-size:19px; letter-spacing:.04em;
+  }
+  .footer .marchio{color:var(--frost); opacity:.82; line-height:1.4}
+  .footer .marchio b{color:var(--ivory); font-weight:500}
+  .footer .marchio small{display:block; font-size:14px; opacity:.72; letter-spacing:.02em}
+  .footer .cta{
+    font-weight:500; font-size:20px; color:var(--petrol-dark);
+    background:var(--salt); padding:14px 30px; border-radius:100px;
+    box-shadow:0 10px 34px rgba(0,0,0,.32); white-space:nowrap;
+  }
+  .err{position:absolute; inset:0; display:grid; place-items:center; color:#d09383; font-family:var(--body)}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="shaft" aria-hidden="true"></div>
+    <div class="alone" aria-hidden="true"></div>
+    <div class="portale"><img id="glifo" alt=""></div>
+    <div class="contenuto">
+      <div class="eyebrow">Il tuo Kin del Cuore</div>
+      <div class="blocco-centro">
+        <div class="kin" id="kin"></div>
+        <div class="meta" id="meta"></div>
+        <div class="titolo" id="titolo"></div>
+        <div class="gancio"><b>Uno dei cinque glifi</b> della tua Croce Maya. Gli altri quattro ti aspettano.</div>
+      </div>
+      <div class="footer">
+        <span class="marchio"><b>Cristian Bresadola</b> · Croce Maya<small>cristianbresadola.com</small></span>
+        <span class="cta">Scopri gratis il tuo Kin →</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+(async function(){
+  const SB='https://okasxfvoyihovohlaypz.supabase.co';
+  const KEY='sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
+  const kin = new URLSearchParams(location.search).get('kin') || '74';
+
+  // Il titolo poetico che compare sulla card è la parte dopo il "·".
+  function descrittore(titolo){
+    const i = (titolo||'').indexOf('·');
+    let t = i>=0 ? titolo.slice(i+1).trim() : (titolo||'').trim();
+    if(t && !/[.!?…]$/.test(t)) t += '.';
+    return t;
+  }
+
+  try{
+    const r = await fetch(SB+'/rest/v1/bussola_anima_giorni?numero_kin=eq.'+kin+
+      '&select=tono,nome_tono,nome_glifo_yucateco,nome_glifo_kiche,direzione,elemento,titolo_kin,immagine_glifo_url&limit=1',
+      {headers:{apikey:KEY,Authorization:'Bearer '+KEY,Accept:'application/json'}});
+    const row = (await r.json())[0];
+    if(!row) throw new Error('kin '+kin+' non trovato');
+
+    document.getElementById('kin').innerHTML = row.tono+' <em>'+row.nome_glifo_yucateco+'</em>';
+    document.getElementById('meta').textContent =
+      [row.nome_glifo_kiche, row.direzione, row.elemento, 'Tono '+row.tono+' '+row.nome_tono].join('  ·  ');
+    const desc = descrittore(row.titolo_kin);
+    const tit = document.getElementById('titolo');
+    tit.textContent = desc;
+    if(desc.length>58) tit.classList.add('lunghissimo');
+    else if(desc.length>42) tit.classList.add('lungo');
+    const g = document.getElementById('glifo');
+    if(row.immagine_glifo_url){ await new Promise((ok)=>{ g.onload=ok; g.onerror=ok; g.src=row.immagine_glifo_url; }); }
+    document.documentElement.dataset.pronto = '1';
+  }catch(e){
+    document.body.innerHTML = '<div class="err">'+e.message+'</div>';
+    document.documentElement.dataset.pronto = 'errore';
+  }
+})();
+</script>
+</body>
+</html>

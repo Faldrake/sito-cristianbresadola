@@ -468,6 +468,57 @@
         </div>
       </div>
 
+      <!-- CONDIVIDI + BUSSOLA (02/09/2026)
+           Il link porta a /kin/<slug>: una pagina per kin con la sua card OG
+           (generate da strumenti/genera-kin.mjs), cosi' chi lo apre su
+           WhatsApp o Facebook vede IL glifo di chi condivide, e trova il
+           modulo per calcolare il proprio. E' il motore virale della cosa.
+           L'email e' FACOLTATIVA e va nella Bussola dell'Anima, che ha gia'
+           consenso, doppio opt-in e anti-bot: nessun secondo elenco. -->
+      <style>
+        .kin-condividi, .kin-bussola { margin-top: 2rem; padding: 1.5rem 1.6rem; border: 1px solid rgba(229,152,86,.28); border-radius: 3px; background: rgba(238,243,246,.04); }
+        .kin-condividi__azioni { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+        .kin-condividi__azioni button, .kin-condividi__azioni a { font-family: var(--body); font-size: .85rem; letter-spacing: .04em; padding: .6rem 1.1rem; border-radius: 100px; border: 1px solid rgba(229,152,86,.6); color: var(--salt); background: transparent; cursor: pointer; text-decoration: none; }
+        .kin-condividi__azioni button:hover, .kin-condividi__azioni a:hover { background: rgba(229,152,86,.12); }
+        .kin-condividi__link { font-size: .8rem; opacity: .65; word-break: break-all; margin-top: .75rem; }
+        .kin-bussola__form { display: flex; flex-direction: column; gap: .7rem; margin-top: 1rem; }
+        .kin-bussola__riga { display: flex; flex-direction: column; gap: .6rem; }
+        @media (min-width: 560px) { .kin-bussola__riga { flex-direction: row; } .kin-bussola__riga input[type=email] { flex: 1; } }
+        .kin-bussola input[type=email] { background: rgba(238,243,246,.08); border: 1px solid rgba(238,243,246,.3); color: var(--ivory); padding: .85rem 1rem; font-family: var(--body); font-size: 1rem; border-radius: 3px; width: 100%; }
+        .kin-bussola input[type=email]:focus { outline: none; border-color: var(--salt); }
+        .kin-bussola label.consenso { display: flex; gap: .6rem; align-items: flex-start; font-size: .8rem; opacity: .8; cursor: pointer; }
+        .kin-bussola label.consenso input { accent-color: var(--salt); margin-top: .2rem; flex-shrink: 0; }
+        .kin-bussola__esito { font-size: .85rem; margin-top: .25rem; min-height: 1.2em; }
+        .kin-bussola__esito.is-ok { color: #a9c095; } .kin-bussola__esito.is-ko { color: #e0a08e; }
+        .ns-hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+      </style>
+      <div class="kin-condividi" id="kin-condividi">
+        <p class="text-xs uppercase tracking-[0.25em] text-salt mb-2">Condividi il tuo Kin</p>
+        <p class="text-sm opacity-80 mb-4">Il link mostra la tua card con il glifo. Chi lo apre pu&ograve; calcolare il proprio, gratis.</p>
+        <div class="kin-condividi__azioni">
+          <button type="button" id="kin-share-btn">Condividi</button>
+          <a id="kin-share-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a id="kin-share-fb" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button type="button" id="kin-share-copia">Copia il link</button>
+          <span id="kin-share-ok" class="text-sm opacity-80" hidden>Link copiato.</span>
+        </div>
+        <p class="kin-condividi__link"><a id="kin-share-url" href="#" target="_blank" rel="noopener"></a></p>
+      </div>
+
+      <div class="kin-bussola" id="kin-bussola">
+        <p class="text-xs uppercase tracking-[0.25em] text-salt mb-2">Vuoi il kin di ogni giorno?</p>
+        <p class="text-sm opacity-80">Ogni mattina alle 6 ti arriva il kin del giorno con una domanda da portarti dietro: la <a href="bussola.html" class="text-salt underline">Bussola dell&rsquo;Anima</a>. Gratuita, doppio consenso, disiscrizione con un clic.</p>
+        <form id="kin-bussola-form" class="kin-bussola__form" novalidate>
+          <div class="kin-bussola__riga">
+            <input type="email" id="kin-bussola-email" name="email" placeholder="La tua email" autocomplete="email" inputmode="email" required>
+            <button type="submit" id="kin-bussola-invia" class="btn-primary whitespace-nowrap justify-center">Iscrivimi</button>
+          </div>
+          <input type="text" class="ns-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="consenso"><input type="checkbox" id="kin-bussola-consenso"><span>Acconsento al trattamento dei dati per ricevere la Bussola (<a href="privacy-policy.html" class="underline">informativa</a>).</span></label>
+          <p id="kin-bussola-esito" class="kin-bussola__esito" role="status"></p>
+        </form>
+      </div>
+
       <!-- L'invito. E' onesto perche' e' vero: il Cuore e' uno dei cinque. -->
       <div class="kin-invito">
         <p class="font-display italic text-xl md:text-2xl mb-4">
@@ -1230,10 +1281,93 @@
     if (k.domanda_riflessione) { $('kin-domanda').textContent = k.domanda_riflessione; bd.hidden = false; }
     else bd.hidden = true;
 
+    aggiornaCondividi(k);
     esito.hidden = false;
     esito.setAttribute('data-entra', '');
     esito.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // ------------------------------------------------------------------------
+  //  CONDIVIDI (02/09/2026). Lo slug e' IDENTICO a slugKin() in
+  //  strumenti/genera-kin.mjs, parola per parola: e' quello che nomina le 260
+  //  pagine in /kin/. Se cambia uno dei due, cambia anche l'altro.
+  // ------------------------------------------------------------------------
+  function slugKin(tono, yucateco) {
+    const nome = String(yucateco || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/['’`]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return tono + '-' + nome;
+  }
+
+  let condivisione = null;
+  function aggiornaCondividi(k) {
+    const url = 'https://cristianbresadola.com/kin/' + slugKin(k.tono, k.nome_glifo_yucateco);
+    const titolo = String(k.titolo_kin || '').split('·').pop().trim();
+    const testo = k.tono + ' ' + k.nome_glifo_yucateco + ': ' + titolo + '. Scopri gratis il tuo Kin di nascita.';
+    condivisione = { url: url, testo: testo };
+    const a = $('kin-share-url'); if (a) { a.href = url; a.textContent = url.replace(/^https:\/\//, ''); }
+    const wa = $('kin-share-wa'); if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent(testo + ' ' + url);
+    const fb = $('kin-share-fb'); if (fb) fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  }
+
+  const shareBtn = $('kin-share-btn'), copiaBtn = $('kin-share-copia'), shareOk = $('kin-share-ok');
+  async function copiaLink() {
+    if (!condivisione) return;
+    try {
+      await navigator.clipboard.writeText(condivisione.url);
+      shareOk.hidden = false; setTimeout(() => { shareOk.hidden = true; }, 2500);
+    } catch (e) { window.prompt('Copia il link:', condivisione.url); }
+  }
+  if (shareBtn) shareBtn.addEventListener('click', async () => {
+    if (!condivisione) return;
+    // Sul telefono si apre il foglio di condivisione di sistema (WhatsApp,
+    // Messenger, ...); sul computer si ripiega sulla copia del link.
+    if (navigator.share) {
+      try { await navigator.share({ title: document.title, text: condivisione.testo, url: condivisione.url }); return; }
+      catch (e) { /* annullato dalla persona */ }
+    }
+    copiaLink();
+  });
+  if (copiaBtn) copiaBtn.addEventListener('click', copiaLink);
+
+  // BUSSOLA: stessa edge function e stesse difese (honeypot, tempo di
+  // compilazione, consenso esplicito) del modulo su bussola.html.
+  (function () {
+    const f = $('kin-bussola-form'); if (!f) return;
+    const email = $('kin-bussola-email'), consenso = $('kin-bussola-consenso');
+    const invia = $('kin-bussola-invia'), esitoB = $('kin-bussola-esito');
+    let t0 = Date.now();
+    email.addEventListener('focus', () => { t0 = Date.now(); });
+    const dire = (m, ok) => { esitoB.textContent = m; esitoB.className = 'kin-bussola__esito ' + (ok ? 'is-ok' : 'is-ko'); };
+
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const v = (email.value || '').trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { dire('Inserisci un indirizzo email valido.', false); email.focus(); return; }
+      if (!consenso.checked) { dire('Per iscriverti devi accettare il trattamento dei dati.', false); consenso.focus(); return; }
+      invia.disabled = true;
+      dire('Iscrizione in corso…', true);
+      try {
+        const hp = f.querySelector('.ns-hp');
+        const r = await fetch(SB_URL + '/functions/v1/bussola-iscrizione', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: v, consenso: true, source: 'bussola_pagina', hp: hp ? hp.value : '', t: Date.now() - t0 })
+        });
+        const d = await r.json().catch(() => ({}));
+        if (d && d.ok) {
+          dire(d.messaggio || 'Ti ho mandato una mail. Apri il link per attivare l\'iscrizione.', true);
+          f.querySelector('.kin-bussola__riga').hidden = true;
+          return;
+        }
+        dire((d && d.messaggio) || 'Qualcosa non ha funzionato. Riprova o scrivimi a info@cristianbresadola.com', false);
+      } catch (err) {
+        dire('Qualcosa non ha funzionato. Riprova fra un momento o scrivimi a info@cristianbresadola.com', false);
+      } finally { invia.disabled = false; }
+    });
+  })();
 
   // Si puo' arrivare qui con una data gia' in mano, dalla home. Con
   // JavaScript la home la lascia in sessionStorage (e l'URL resta pulito);

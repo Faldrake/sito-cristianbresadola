@@ -111,6 +111,15 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Le card OG dei 260 kin (02/09/2026). Si rigenerano solo se cambia il
+# disegno, e i crawler dei social le scaricano a ogni condivisione: la
+# cache lunga qui pesa davvero. Se un giorno il disegno cambia, si cambia
+# anche il nome del file, non si conta sulla scadenza.
+[[headers]]
+  for = "/kin/og/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # ============================================================
 # PAGES SPECIFICHE
 # ============================================================
