@@ -28,8 +28,19 @@ function esc(s: string): string {
 
 export default async (request: Request, context: Context) => {
   const slug = new URL(request.url).searchParams.get("slug") || "";
-  const pagina = await context.next();
-  if (!/^[a-z0-9][a-z0-9-]{0,118}$/.test(slug)) return pagina;
+  const originale = await context.next();
+  // La risposta di context.next() ha le intestazioni immutabili: se ne fa
+  // una copia scrivibile. E la riscrittura e' su testo, non con HTMLRewriter,
+  // che sul bordo di Netlify non e' un globale (lo e' su Cloudflare): la
+  // prima versione, che lo dava per scontato, rispondeva 500 a ogni articolo.
+  const copia = (corpo: BodyInit | null, perche: string) => {
+    const h = new Headers(originale.headers);
+    h.delete("content-length");
+    h.delete("content-encoding");
+    h.set("x-cerchio-og", perche);
+    return new Response(corpo, { status: originale.status, headers: h });
+  };
+  if (!/^[a-z0-9][a-z0-9-]{0,118}$/.test(slug)) return copia(originale.body, "senza-slug");
 
   let a: Articolo | null = null;
   try {
@@ -39,10 +50,10 @@ export default async (request: Request, context: Context) => {
       { headers: { apikey: CHIAVE }, signal: AbortSignal.timeout(4000) },
     );
     if (r.ok) a = ((await r.json()) as Articolo[])[0] ?? null;
-  } catch {
-    a = null;
+  } catch (e) {
+    return copia(originale.body, "errore:" + String((e as Error)?.message || e).slice(0, 60));
   }
-  if (!a || !a.titolo) return pagina;
+  if (!a || !a.titolo) return copia(originale.body, "non-trovato");
 
   const titolo = `${a.titolo} · Il Cerchio del Druido · Cristian Bresadola`;
   const descrizione = (a.estratto || (a.contenuto || "").replace(/\s+/g, " ").slice(0, 200) || "Un articolo del Cerchio del Druido, la rubrica di Cristian Bresadola, naturopata in Trentino.").slice(0, 300);
@@ -66,11 +77,12 @@ export default async (request: Request, context: Context) => {
     `<meta name="twitter:image" content="${esc(immagine)}">`,
   ].filter(Boolean).join("\n");
 
-  return new HTMLRewriter()
-    .on("title", { element(e) { e.setInnerContent(titolo); } })
-    .on('meta[name="description"]', { element(e) { e.setAttribute("content", descrizione); } })
-    .on("head", { element(e) { e.append(meta, { html: true }); } })
-    .transform(pagina);
+  let html = await originale.text();
+  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(titolo)}</title>`);
+  html = html.replace(/<meta name="description" content="[^"]*">/i,
+    `<meta name="description" content="${esc(descrizione)}">`);
+  html = html.replace(/<\/head>/i, meta + "\n</head>");
+  return copia(html, "riscritta");
 };
 
 export const config: Config = {
