@@ -79,6 +79,37 @@
   }
   .articolo-galleria img:only-child{grid-column:1/-1;aspect-ratio:16/10;}
   @media (max-width:520px){.articolo-galleria{grid-template-columns:1fr;}}
+  /* Condividi (2/09/2026, Cristian: «i pulsanti di condivisione nei
+     social, completi»). Link puri: nessuno script di terzi, niente tracciamento. */
+  .articolo-condividi{margin-top:44px;padding-top:22px;border-top:1px solid rgba(212,165,91,0.35);}
+  .articolo-condividi__titolo{
+    font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#D4A55B;margin:0 0 12px 0;
+  }
+  .articolo-condividi__lista{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0;}
+  .articolo-condividi__lista a,.articolo-condividi__lista button{
+    display:inline-flex;align-items:center;gap:8px;padding:9px 14px 9px 10px;border-radius:999px;
+    border:1px solid rgba(27,58,62,0.18);background:#fff;color:#1B3A3E;font:inherit;font-size:13px;
+    text-decoration:none;cursor:pointer;line-height:1;transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .articolo-condividi__lista a:hover,.articolo-condividi__lista button:hover{
+    transform:translateY(-1px);box-shadow:0 6px 18px rgba(27,58,62,0.12);
+  }
+  .articolo-condividi__lista i{
+    display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+    color:#fff;font-style:normal;font-weight:700;font-size:13px;font-family:Arial,Helvetica,sans-serif;
+  }
+  .articolo-condividi__lista i svg{width:14px;height:14px;}
+  .articolo-condividi [data-social="whatsapp"] i{background:#25D366;}
+  .articolo-condividi [data-social="facebook"] i{background:#1877F2;}
+  .articolo-condividi [data-social="instagram"] i{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF);}
+  .articolo-condividi [data-social="linkedin"] i{background:#0A66C2;font-size:11px;}
+  .articolo-condividi [data-social="x"] i{background:#000;}
+  .articolo-condividi [data-social="telegram"] i{background:#229ED9;}
+  .articolo-condividi [data-social="threads"] i{background:#000;font-family:var(--display);font-weight:400;font-size:15px;}
+  .articolo-condividi [data-social="email"] i{background:#1B3A3E;}
+  .articolo-condividi [data-social="copia"] i{background:#D4A55B;color:#0A1B1E;}
+  .articolo-condividi [data-social="nativo"] i{background:#0A1B1E;}
+  .articolo-condividi [hidden]{display:none;}
   .articolo-firma{
     margin-top:48px;padding-top:24px;border-top:1px solid rgba(212,165,91,0.35);
     font-family:var(--display);font-style:italic;color:rgba(27,58,62,0.6);
@@ -171,6 +202,22 @@
     <div class="articolo-corpo__inner">
       <div id="art-corpo"></div>
       <div class="articolo-galleria" id="art-galleria" hidden></div>
+      <div class="articolo-condividi" id="art-condividi">
+        <p class="articolo-condividi__titolo">Condividi questo articolo</p>
+        <ul class="articolo-condividi__lista">
+          <li hidden id="art-share-nativo-li"><button type="button" data-social="nativo" id="art-share-nativo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></i>Condividi</button></li>
+          <li><a data-social="whatsapp" id="art-share-whatsapp" href="#" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg></i>WhatsApp</a></li>
+          <li><a data-social="facebook" id="art-share-facebook" href="#" target="_blank" rel="noopener"><i>f</i>Facebook</a></li>
+          <li><button type="button" data-social="instagram" id="art-share-instagram"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></i>Instagram</button></li>
+          <li><a data-social="linkedin" id="art-share-linkedin" href="#" target="_blank" rel="noopener"><i>in</i>LinkedIn</a></li>
+          <li><a data-social="telegram" id="art-share-telegram" href="#" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></i>Telegram</a></li>
+          <li><a data-social="x" id="art-share-x" href="#" target="_blank" rel="noopener"><i>X</i>X</a></li>
+          <li><a data-social="threads" id="art-share-threads" href="#" target="_blank" rel="noopener"><i>@</i>Threads</a></li>
+          <li><a data-social="email" id="art-share-email" href="#"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></i>Email</a></li>
+          <li><button type="button" data-social="copia" id="art-share-copia"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></i><span>Copia il link</span></button></li>
+        </ul>
+        <p class="articolo-condividi__nota" id="art-condividi-nota" style="font-size:12px;color:rgba(27,58,62,0.6);margin:10px 0 0 0;" hidden></p>
+      </div>
       <div class="articolo-firma">Cristian Bresadola · naturopata e riflessologo</div>
       <a class="articolo-ritorno" href="./">&larr; Torna al Cerchio del Druido</a>
     </div>
@@ -303,6 +350,41 @@
         galleria.appendChild(im);
       }
       if (foto.length) galleria.hidden = false;
+
+      // I pulsanti di condivisione: link puri verso le pagine ufficiali di
+      // condivisione, con l'indirizzo canonico (l'anteprima la fa la edge
+      // function cerchio-og). Instagram e Threads non hanno una pagina di
+      // condivisione per link: Instagram copia il link e apre l'app (si
+      // incolla in una storia o nella bio), Threads apre la composizione.
+      const urlArt = canon.href;
+      const testoArt = a.titolo + ' · Il Cerchio del Druido';
+      const enc = encodeURIComponent;
+      const nota = document.getElementById('art-condividi-nota');
+      const diNota = (t) => { nota.textContent = t; nota.hidden = false; setTimeout(() => { nota.hidden = true; }, 4000); };
+      document.getElementById('art-share-whatsapp').href = 'https://wa.me/?text=' + enc(testoArt + '\n' + urlArt);
+      document.getElementById('art-share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(urlArt);
+      document.getElementById('art-share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(urlArt);
+      document.getElementById('art-share-telegram').href = 'https://t.me/share/url?url=' + enc(urlArt) + '&text=' + enc(testoArt);
+      document.getElementById('art-share-x').href = 'https://twitter.com/intent/tweet?text=' + enc(testoArt) + '&url=' + enc(urlArt);
+      document.getElementById('art-share-threads').href = 'https://www.threads.net/intent/post?text=' + enc(testoArt + '\n' + urlArt);
+      document.getElementById('art-share-email').href = 'mailto:?subject=' + enc(testoArt)
+        + '&body=' + enc('Ti passo questo articolo di Cristian Bresadola:\n' + urlArt);
+      const copia = () => (navigator.clipboard && navigator.clipboard.writeText)
+        ? navigator.clipboard.writeText(urlArt) : Promise.reject(new Error('niente appunti'));
+      document.getElementById('art-share-copia').addEventListener('click', () => {
+        copia().then(() => diNota('Link copiato.')).catch(() => diNota(urlArt));
+      });
+      document.getElementById('art-share-instagram').addEventListener('click', () => {
+        copia().then(() => diNota('Link copiato: incollalo in una storia o nella bio. Apro Instagram.'))
+          .catch(() => diNota(urlArt));
+        setTimeout(() => { window.open('https://www.instagram.com/', '_blank', 'noopener'); }, 300);
+      });
+      if (navigator.share) {
+        document.getElementById('art-share-nativo-li').hidden = false;
+        document.getElementById('art-share-nativo').addEventListener('click', () => {
+          navigator.share({ title: a.titolo, text: testoArt, url: urlArt }).catch(() => {});
+        });
+      }
 
       attesa.hidden = true;
       document.getElementById('articolo').hidden = false;
