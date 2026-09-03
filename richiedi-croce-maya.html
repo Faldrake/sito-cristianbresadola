@@ -305,6 +305,22 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
             </div>
           </div>
 
+          <!-- AGGIUNTO IL 3/09/2026. Questo modulo non chiedeva niente, e la Croce
+               Maya e' la porta da cui entrano piu' persone nuove: finivano in
+               archivio senza provenienza, e nel conteggio erano un vuoto che non
+               voleva dire niente. Le voci arrivano dalla tabella `provenienze`, le
+               stesse che vedono il primo contatto e Arkana: nessuna quarta copia
+               scritta a mano. Obbligatoria, e puo' esserlo perche' fra le risposte
+               c'e' «Non saprei dire». -->
+          <div style="margin-top: 1.25rem;">
+            <label class="form-label" for="f-segnalato">Come ci siamo conosciuti? *</label>
+            <select id="f-segnalato" name="segnalato_da" class="form-input" required>
+              <option value="">Seleziona una risposta</option>
+            </select>
+            <span class="form-help">Mi aiuta a capire dove incontro le persone. Se non ricordi, c'è «Non saprei dire».</span>
+            <span class="field-error" data-error-for="segnalato_da">Scegli una risposta: se non ricordi c'è «Non saprei dire»</span>
+          </div>
+
           <div class="wizard-nav">
             <button type="button" class="btn-ghost" data-action="prev">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
@@ -541,6 +557,36 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   const SUPABASE_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
   const TOTAL_STEPS = 4;
 
+  // Le risposte di «come ci siamo conosciuti» vivono in un posto solo, la tabella
+  // `provenienze`. Se la lettura non riesce (rete lenta, database fermo) la tendina
+  // resta con le due voci di scorta: meglio un modulo che si puo' mandare lo stesso
+  // che un modulo bloccato da una tendina vuota e da un campo obbligatorio.
+  (async function caricaProvenienze() {
+    var sel = document.getElementById('f-segnalato');
+    if (!sel) return;
+    try {
+      var r = await fetch(SUPABASE_URL + '/rest/v1/provenienze'
+        + '?select=codice,etichetta_pubblica&attiva=eq.true&order=ordine',
+        { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } });
+      if (!r.ok) throw new Error(r.status);
+      var voci = await r.json();
+      if (!Array.isArray(voci) || !voci.length) throw new Error('vuoto');
+      for (var i = 0; i < voci.length; i++) {
+        var o = document.createElement('option');
+        o.value = voci[i].codice;
+        o.textContent = voci[i].etichetta_pubblica;
+        sel.appendChild(o);
+      }
+    } catch (e) {
+      var scorta = [['non_ricordo', 'Non saprei dire'], ['altro', 'In un altro modo']];
+      for (var k = 0; k < scorta.length; k++) {
+        var s2 = document.createElement('option');
+        s2.value = scorta[k][0]; s2.textContent = scorta[k][1];
+        sel.appendChild(s2);
+      }
+    }
+  })();
+
   // La verifica del codice sconto non passa dalle API REST come l'invio: passa da
   // una edge function pubblica, che si chiama SENZA chiave e senza token (come
   // l'iscrizione alla Bussola). La ragione sta più sotto, sopra il blocco del
@@ -643,7 +689,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 
   function validateStep(step) {
     if (step === 2) {
-      const requiredFields = ['nome', 'cognome', 'email'];
+      const requiredFields = ['nome', 'cognome', 'email', 'segnalato_da'];
       let valid = true;
       requiredFields.forEach(name => {
         const input = form.querySelector(`[name="${name}"]`);
@@ -1044,6 +1090,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
       // possono divergere.
       email: emailCanonica,
       telefono: (fd.get('telefono') || '').trim() || null,
+      segnalato_da: fd.get('segnalato_da') || null,
       data_nascita: fd.get('data_nascita') || null,
       luogo_nascita: (fd.get('luogo_nascita') || '').trim() || null,
       motivazione: (fd.get('intenzione') || '').trim() || null,
@@ -1065,6 +1112,7 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         p_cognome: payload.cognome,
         p_email: payload.email,
         p_telefono: payload.telefono,
+        p_segnalato_da: payload.segnalato_da,
         p_data_nascita: payload.data_nascita,
         p_luogo_nascita: payload.luogo_nascita,
         p_motivazione: payload.motivazione,
