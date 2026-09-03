@@ -250,8 +250,9 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
               così possiamo arrivare al colloquio con un quadro chiaro.
             </p>
             <p style="margin-bottom: 1rem;">
-              Compilarla richiede circa 5–7 minuti. Niente è obbligatorio oltre i campi essenziali (nome,
-              cognome, email): tutto il resto puoi lasciarlo in bianco se preferisci raccontarlo a voce.
+              Compilarla richiede circa 5–7 minuti. Sono obbligatori solo nome, cognome, email
+              e una riga: come ci siamo conosciuti. Tutto il resto puoi lasciarlo in bianco, se
+              preferisci raccontarlo a voce.
             </p>
             <p>
               <strong class="text-petrol">Riservatezza:</strong> i dati che condividi qui restano tra me
@@ -385,16 +386,16 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
           </div>
 
           <div>
-            <label class="form-label" for="f-segnalato">Come ci siamo conosciuti?</label>
-            <select id="f-segnalato" name="segnalato_da" class="form-input">
-              <option value="">Seleziona (facoltativo)</option>
-              <option value="passaparola">Passaparola</option>
-              <option value="instagram">Instagram</option>
-              <option value="facebook">Facebook</option>
-              <option value="google">Ricerca Google</option>
-              <option value="rubrica_unsertirol24">Rubrica UnserTirol24</option>
-              <option value="evento">A un evento o corso</option>
-              <option value="altro">Altro</option>
+            <label class="form-label" for="f-segnalato">Come ci siamo conosciuti? *</label>
+            <!-- LE VOCI ARRIVANO DAL DATABASE (3/09/2026). Erano scritte qui a
+                 mano, ed erano una di tre copie che divergevano gia': qui «A un
+                 evento o corso», in Arkana «Evento o corso». Ora stanno nella
+                 tabella provenienze e le legge chiunque le mostri.
+                 La domanda e' obbligatoria, e puo' esserlo perche' fra le
+                 risposte c'e' «Non saprei dire»: nessuno e' costretto a
+                 inventare, e il vuoto smette di essere ambiguo. -->
+            <select id="f-segnalato" name="segnalato_da" class="form-input" required>
+              <option value="">Seleziona una risposta</option>
             </select>
           </div>
 
@@ -593,6 +594,36 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   const SUPABASE_URL = 'https://okasxfvoyihovohlaypz.supabase.co';
   const SUPABASE_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
   const TOTAL_STEPS = 5;
+
+  // Le risposte di «come ci siamo conosciuti» vivono in un posto solo. Se la
+  // lettura non riesce (rete lenta, database fermo) la tendina resta con le
+  // due voci di scorta: meglio un modulo che si puo' mandare lo stesso che un
+  // modulo bloccato da una tendina vuota.
+  (async function caricaProvenienze() {
+    var sel = document.getElementById('f-segnalato');
+    if (!sel) return;
+    try {
+      var r = await fetch(SUPABASE_URL + '/rest/v1/provenienze'
+        + '?select=codice,etichetta_pubblica&attiva=eq.true&order=ordine',
+        { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } });
+      if (!r.ok) throw new Error(r.status);
+      var voci = await r.json();
+      if (!Array.isArray(voci) || !voci.length) throw new Error('vuoto');
+      for (var i = 0; i < voci.length; i++) {
+        var o = document.createElement('option');
+        o.value = voci[i].codice;
+        o.textContent = voci[i].etichetta_pubblica;
+        sel.appendChild(o);
+      }
+    } catch (e) {
+      var scorta = [['non_ricordo', 'Non saprei dire'], ['altro', 'In un altro modo']];
+      for (var k = 0; k < scorta.length; k++) {
+        var s2 = document.createElement('option');
+        s2.value = scorta[k][0]; s2.textContent = scorta[k][1];
+        sel.appendChild(s2);
+      }
+    }
+  })();
 
   // Niente SDK esterno: la pagina usa una sola rpc, basta una POST alle API REST.
   // Stessa interfaccia { data, error } del client Supabase, così il codice sotto non cambia.
