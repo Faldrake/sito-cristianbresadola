@@ -387,7 +387,57 @@
 .sede .arrow { display: inline-block; transition: transform 0.3s ease; }
 .sede:hover .arrow { transform: translateX(4px); }
 
+/* ── L'apertura in video ───────────────────────────────────────── */
+.apertura { position: relative; width: 100%; overflow: hidden; background: var(--petrol-dark); }
+.apertura__video {
+  display: block; width: 100%; height: clamp(320px, 52vh, 560px);
+  object-fit: cover; object-position: center 42%;
+}
+/* Il velo esiste per una ragione sola: il testo sopra deve restare leggibile
+   qualunque fotogramma passi sotto. Senza, in un anello di undici secondi c'e'
+   sempre un momento in cui il bianco su chiaro sparisce. */
+.apertura__velo {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(18,40,43,0.85) 0%, rgba(18,40,43,0.35) 45%, rgba(18,40,43,0.12) 100%);
+}
+.apertura__testo {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 2rem 1.5rem 2.25rem;
+  max-width: 80rem; margin: 0 auto;
+}
+@media (min-width: 1024px) { .apertura__testo { padding: 3rem 3rem 3.25rem; } }
+.apertura__pausa {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 34px; height: 34px; display: grid; place-items: center;
+  background: rgba(18,40,43,0.55); color: var(--ivory);
+  border: 1px solid rgba(238,243,246,0.3); border-radius: 999px;
+  cursor: pointer; transition: background 0.25s ease;
+}
+.apertura__pausa:hover { background: rgba(18,40,43,0.85); }
+.apertura__pausa:focus-visible { outline: 2px solid var(--salt-glow); outline-offset: 2px; }
+
+/* ── Le foto nelle schede ──────────────────────────────────────── */
+/* La scheda diventa: foto, poi il testo. La foto e' a filo dei bordi e ha
+   un rapporto fisso, cosi' le quattordici schede restano una riga sola anche
+   quando i titoli vanno a capo in modo diverso. */
+.corso { padding: 0; overflow: hidden; }
+.corso__foto { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--frost); }
+.corso__foto img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.corso:hover .corso__foto img { transform: scale(1.04); }
+.corso__liv  { margin: 1.35rem 1.5rem 0.9rem; }
+.corso__nome { margin: 0 1.5rem 0.7rem; }
+.corso__frase{ margin: 0 1.5rem 1.4rem; }
+.corso__meta { margin: auto 1.5rem 1.35rem; }
+
+.sede__foto { display: block; aspect-ratio: 3 / 2; overflow: hidden; margin: -2.25rem -2rem 1.75rem; background: var(--petrol); }
+.sede__foto img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; transition: opacity 0.3s ease, transform 0.5s ease; }
+.sede:hover .sede__foto img { opacity: 1; transform: scale(1.03); }
+
 @media (prefers-reduced-motion: reduce) {
+  .corso:hover .corso__foto img, .sede:hover .sede__foto img { transform: none; }
   .bivio-passo { animation: none; }
   .corso, .sede, .riga-data, .bivio-scelta { transition: none; }
   .corso:hover, .sede:hover, .bivio-scelta:hover { transform: none; }
@@ -461,6 +511,36 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ L'APERTURA ═══
+     Undici secondi di mani al lavoro, muti e in anello. Una scuola che
+     insegna il tocco e non lo mostra si racconta a meta'.
+     Il video parte da solo ma e' MUTO e senza controlli invadenti: c'e' un
+     bottone per fermarlo, e chi ha chiesto al sistema meno animazioni se lo
+     ritrova gia' fermo sul fotogramma (lo decide lo script in fondo alla
+     pagina). Senza JavaScript resta l'attributo autoplay, che e' il caso
+     comune; se anche quello non parte si vede il poster, che e' un'immagine
+     buona e non un rettangolo nero. -->
+<section class="py-0 bg-petrol-dark">
+  <div class="apertura">
+    <video id="apertura-video" class="apertura__video"
+           autoplay muted loop playsinline preload="metadata"
+           poster="images/formazione/apertura-poster.webp"
+           aria-label="Le mani di Cristian Bresadola lavorano la pianta di un piede durante una seduta di riflessologia">
+      <source src="video/formazione-apertura.mp4" type="video/mp4">
+    </video>
+    <div class="apertura__velo"></div>
+    <div class="apertura__testo">
+      <div class="eyebrow text-salt-glow mb-3">Punto Riflesso · Trento</div>
+      <p class="display-title text-3xl md:text-4xl lg:text-5xl text-ivory">
+        Questo è il mestiere.<br>Il resto è <span class="display-italic">conseguenza.</span>
+      </p>
+    </div>
+    <button type="button" id="apertura-pausa" class="apertura__pausa" aria-label="Metti in pausa il video">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    </button>
   </div>
 </section>
 
@@ -682,6 +762,7 @@
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="griglia-corsi">
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/riflessologia" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/riflessologia.webp" alt="Le mani del riflessologo lavorano la pianta di un piede" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti · il più strutturato</span>
         <span class="corso__nome">Riflessologia Plantare<br>+ Metodo Punto Riflesso</span>
         <span class="corso__frase">Imparare a leggere un piede come una mappa antica</span>
@@ -689,6 +770,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/operatore-olistico-benessere-integrato" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/operatore-integrato.webp" alt="Le mani sostengono il piede di una persona distesa" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti · modulare</span>
         <span class="corso__nome">Operatore Olistico del Benessere Integrato</span>
         <span class="corso__frase">Il percorso che integra mani, cuore e sapere</span>
@@ -696,6 +778,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/metamorfico" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/metamorfico.webp" alt="Un'operatrice tiene le mani appoggiate leggere sulla schiena" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti · percorso d'anima</span>
         <span class="corso__nome">Massaggio Metamorfico dell'Incarnazione</span>
         <span class="corso__frase">Una mano leggera sul tempo che ci ha formati</span>
@@ -703,6 +786,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/breuss" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/breuss.webp" alt="Le mani scorrono lungo la colonna nel massaggio Breuss" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti · tocco essenziale</span>
         <span class="corso__nome">Massaggio Breuss</span>
         <span class="corso__frase">Un allungamento dolce della colonna, che crea spazio e alleggerisce</span>
@@ -710,6 +794,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/massaggio-classico" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/classico-base.webp" alt="Le mani lavorano la parte alta della schiena" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti</span>
         <span class="corso__nome">Massaggio Classico Base</span>
         <span class="corso__frase">Le mani come strumento di ascolto, tecnica e cura</span>
@@ -717,6 +802,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/massaggio-classico-avanzato" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/classico-avanzato.webp" alt="Le mani impastano la spalla di una persona distesa" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti · secondo passo</span>
         <span class="corso__nome">Massaggio Classico Avanzato</span>
         <span class="corso__frase">Il Metodo Punto Riflesso: da tecnica appresa a tocco proprio</span>
@@ -724,6 +810,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/californiano" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/californiano.webp" alt="L'olio versato sulle mani prima delle manovre lunghe" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti</span>
         <span class="corso__nome">Massaggio Californiano</span>
         <span class="corso__frase">Un abbraccio lungo che attraversa tutto il corpo</span>
@@ -731,6 +818,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/decontratturante" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/decontratturante.webp" alt="Una coppetta di vetro appoggiata sulla schiena" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti</span>
         <span class="corso__nome">Massaggio Decontratturante<br>+ Cupping Therapy</span>
         <span class="corso__frase">Tocco intenzionale e arte millenaria delle coppette</span>
@@ -738,6 +826,7 @@
       </a>
 
       <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/drenante-base" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/drenante-base.webp" alt="Mani leggere sul collo nel drenaggio linfatico" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Fondamenti</span>
         <span class="corso__nome">Massaggio Drenante Base</span>
         <span class="corso__frase">Mani che accompagnano la linfa nel suo cammino</span>
@@ -745,6 +834,7 @@
       </a>
 
       <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/drenante-sudamericano" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/drenante-sudamericano.webp" alt="Manovre di drenaggio sulla schiena" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Specializzazione</span>
         <span class="corso__nome">Massaggio Drenante Sudamericano</span>
         <span class="corso__frase">Il drenaggio che parla la lingua dei tropici</span>
@@ -752,6 +842,7 @@
       </a>
 
       <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/viso-giapponese" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/viso-giapponese.webp" alt="Le mani lavorano gli zigomi nel massaggio giapponese al viso" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Specializzazione</span>
         <span class="corso__nome">Massaggio Giapponese Viso</span>
         <span class="corso__frase">Il lifting naturale di tradizione giapponese</span>
@@ -759,6 +850,7 @@
       </a>
 
       <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/sportivo" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/sportivo.webp" alt="Le mani lavorano il braccio di una persona distesa" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Specializzazione</span>
         <span class="corso__nome">Massaggio Sportivo</span>
         <span class="corso__frase">Il tocco che prepara, sostiene, ripara il corpo atletico</span>
@@ -766,6 +858,7 @@
       </a>
 
       <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/fiori-bach" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/fiori-bach.webp" alt="Le mani ferme in ascolto sopra il corpo" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Specializzazione</span>
         <span class="corso__nome">Floriterapia e i 38 Fiori di Bach</span>
         <span class="corso__frase">Trentotto fiori per le emozioni che chiedono ascolto</span>
@@ -773,6 +866,7 @@
       </a>
 
       <a class="corso corso--master" data-livello="master" href="https://puntoriflesso.com/corsi/master-mtc" target="_blank" rel="noopener">
+        <span class="corso__foto"><img src="images/formazione/master-mtc.webp" alt="Il sigaro di moxa acceso sopra un punto della schiena" loading="lazy" decoding="async" width="600" height="400"></span>
         <span class="corso__liv">Il master · il completamento</span>
         <span class="corso__nome">Master in Medicina Cinese e Riflessologia</span>
         <span class="corso__frase">Completare il cerchio: dal piede al sistema vivo della MTC</span>
@@ -797,6 +891,7 @@
     </div>
     <div class="grid lg:grid-cols-2 gap-6">
       <a href="https://puntoriflesso.com/corsi/riflessologia-plantare-trento" target="_blank" rel="noopener" class="sede">
+        <span class="sede__foto"><img src="images/formazione/aula-trento.webp" alt="L'aula di Punto Riflesso a Trento: sedie in semicerchio davanti a uno schermo, il modello dei meridiani sulla scrivania" loading="lazy" decoding="async" width="1200" height="800"></span>
         <div class="eyebrow text-salt-glow mb-3">Trentino · dove la scuola è nata</div>
         <h3 class="font-display text-3xl mb-4">Trento</h3>
         <p class="opacity-80 leading-relaxed mb-6">
@@ -1053,6 +1148,42 @@
       });
     }
   }
+
+  /* ── L'APERTURA IN VIDEO ──────────────────────────────────────── */
+  (function () {
+    var v = document.getElementById('apertura-video');
+    var b = document.getElementById('apertura-pausa');
+    if (!v || !b) return;
+
+    // CHI HA CHIESTO MENO ANIMAZIONI LE HA CHIESTE ANCHE QUI. L'attributo
+    // autoplay sta nell'HTML perche' e' il caso comune e deve funzionare anche
+    // senza questo script; se pero' il sistema dice «meno movimento», il video
+    // si ferma subito sul fotogramma e resta un'immagine.
+    var fermo = false;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.pause(); v.removeAttribute('autoplay'); fermo = true;
+    }
+
+    var PLAY  = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+    var PAUSA = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+
+    function dipingi() {
+      b.innerHTML = fermo ? PLAY : PAUSA;
+      b.setAttribute('aria-label', fermo ? 'Riprendi il video' : 'Metti in pausa il video');
+    }
+    dipingi();
+
+    b.addEventListener('click', function () {
+      fermo = !fermo;
+      if (fermo) v.pause(); else v.play();
+      dipingi();
+    });
+
+    // Se il browser rifiuta l'autoplay (succede, ed e' legittimo) il bottone
+    // deve dire la verita': play, non pausa.
+    var promessa = v.play && v.play();
+    if (promessa && promessa.catch) promessa.catch(function () { fermo = true; dipingi(); });
+  })();
 
   /* ── IL FILTRO ────────────────────────────────────────────────── */
   function avviaFiltro() {
