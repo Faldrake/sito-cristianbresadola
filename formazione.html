@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formazione · Corsi di Riflessologia in Trentino · Punto Riflesso</title>
-<meta name="description" content="Corsi di Riflessologia, Master in Medicina Tradizionale Cinese, Metodo Breuss, Metamorfico e il nuovo Metodo Punto Riflesso. Formazione per operatori olistici in Trentino.">
+<title>Formazione · 14 corsi olistici a Trento e Fiumicino · Punto Riflesso</title>
+<meta name="description" content="Quattordici percorsi accreditati ASPIN a Trento e Fiumicino: riflessologia plantare, massaggi olistici, floriterapia, master in Medicina Cinese. Rispondi a tre domande e scopri da dove cominciare.">
 
 <!-- SEO META -->
 <link rel="canonical" href="https://cristianbresadola.com/formazione.html">
@@ -26,8 +26,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
-<meta property="og:title" content="Formazione · Corsi di Riflessologia, MTC, Metodo Breuss · Punto Riflesso">
-<meta property="og:description" content="Corsi di Riflessologia, Master in Medicina Tradizionale Cinese, Metodo Breuss, Metamorfico e il nuovo Metodo Punto Riflesso. Formazione per operatori olistici in Trentino.">
+<meta property="og:title" content="Formazione · I corsi di Punto Riflesso con Cristian Bresadola">
+<meta property="og:description" content="Quattordici percorsi accreditati ASPIN a Trento e Fiumicino: riflessologia plantare, massaggi olistici, floriterapia, master in Medicina Cinese. Rispondi a tre domande e scopri da dove cominciare.">
 <meta property="og:url" content="https://cristianbresadola.com/formazione.html">
 <meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta property="og:image:secure_url" content="https://cristianbresadola.com/images/og-image.jpg">
@@ -38,8 +38,8 @@
 
 <!-- TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Formazione · Corsi di Riflessologia, MTC, Metodo Breuss · Punto Riflesso">
-<meta name="twitter:description" content="Corsi di Riflessologia, Master in Medicina Tradizionale Cinese, Metodo Breuss, Metamorfico e il nuovo Metodo Punto Riflesso. Formazione per operatori olistici in Trentino.">
+<meta name="twitter:title" content="Formazione · I corsi di Punto Riflesso con Cristian Bresadola">
+<meta name="twitter:description" content="Quattordici percorsi accreditati ASPIN a Trento e Fiumicino: riflessologia plantare, massaggi olistici, floriterapia, master in Medicina Cinese. Rispondi a tre domande e scopri da dove cominciare.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Cristian Bresadola · Naturopata, Riflessologo, Formatore">
 
@@ -218,151 +218,868 @@
 </script>
 
 <!-- HERO -->
-<section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-ivory">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   FORMAZIONE · componenti di questa pagina sola (4/09/2026)
+   Stanno qui e non in styles.css perche' non li usa nessun'altra
+   pagina: metterli nel foglio globale vorrebbe dire farli scaricare a
+   tutte e 272. Tutti i colori escono dai token del sito, nessuno
+   inventato.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Due utility che al sito mancavano e che qui servono. */
+.text-salt-glow { color: var(--salt-glow); }
+.border-frost   { border-color: var(--frost); }
+
+/* ── Il bivio ──────────────────────────────────────────────────── */
+.bivio-tacca {
+  width: 34px; height: 3px; background: var(--frost);
+  transition: background 0.4s ease;
+}
+.bivio-tacca.is-on { background: var(--petrol); }
+
+.bivio-passo { animation: bivio-entra 0.45s ease both; }
+@keyframes bivio-entra {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.bivio-scelta {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  text-align: left; width: 100%;
+  padding: 1.15rem 1.25rem;
+  background: var(--ivory);
+  border: 1px solid var(--frost);
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.bivio-scelta:hover { border-color: var(--petrol); background: #fff; transform: translateY(-2px); }
+.bivio-scelta:focus-visible { outline: 2px solid var(--petrol); outline-offset: 2px; }
+.bivio-scelta__t {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 500;
+  color: var(--petrol); line-height: 1.25;
+}
+.bivio-scelta__d { font-size: 0.83rem; color: var(--charcoal-soft); line-height: 1.5; }
+
+/* L'esito: l'unico punto della sezione in cui si spende l'arancio. */
+.bivio-alt {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding: 0.7rem 0; border-top: 1px solid var(--frost);
+  color: var(--charcoal-soft); font-size: 0.9rem; text-decoration: none;
+  transition: color 0.25s ease;
+}
+.bivio-alt:hover { color: var(--petrol); }
+.bivio-alt b { font-weight: 500; color: var(--petrol); }
+.bivio-alt span { margin-left: auto; color: var(--sage); font-size: 0.8rem; white-space: nowrap; }
+
+/* ── Le righe delle date ───────────────────────────────────────── */
+.riga-data {
+  display: grid;
+  grid-template-columns: 150px 1fr 110px 24px;
+  gap: 1.25rem; align-items: center;
+  padding: 1.15rem 0.5rem 1.15rem 0;
+  border-bottom: 1px solid var(--frost);
+  text-decoration: none; color: inherit;
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+.riga-data:hover { background: #fff; padding-left: 0.75rem; }
+.riga-data:focus-visible { outline: 2px solid var(--petrol); outline-offset: -2px; }
+.riga-data__quando {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 500;
+  color: var(--petrol); font-variant-numeric: tabular-nums;
+}
+.riga-data__cosa { display: flex; flex-direction: column; gap: 0.15rem; }
+.riga-data__cosa strong { font-weight: 500; color: var(--charcoal); }
+.riga-data__cosa em { font-style: normal; font-size: 0.82rem; color: var(--charcoal-soft); }
+.riga-data__dove {
+  font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--sage);
+}
+.riga-data__freccia { color: var(--frost); transition: color 0.25s ease, transform 0.25s ease; }
+.riga-data:hover .riga-data__freccia { color: var(--petrol); transform: translateX(3px); }
+/* La riga del percorso lungo pesa piu' delle altre, e si vede. */
+.riga-data--forte { border-left: 2px solid var(--salt-glow); padding-left: 1rem; }
+.riga-data--forte:hover { padding-left: 1.25rem; }
+@media (max-width: 767px) {
+  .riga-data { grid-template-columns: 1fr auto; gap: 0.35rem 1rem; }
+  .riga-data__quando { grid-column: 1; }
+  .riga-data__dove   { grid-column: 2; text-align: right; }
+  .riga-data__cosa   { grid-column: 1 / -1; }
+  .riga-data__freccia { display: none; }
+}
+
+/* ── Il filtro ─────────────────────────────────────────────────── */
+.filtro {
+  padding: 0.55rem 1.1rem;
+  font-family: var(--body); font-size: 0.88rem; font-weight: 500;
+  color: var(--charcoal-soft);
+  background: transparent; border: 1px solid var(--frost);
+  border-radius: 999px; cursor: pointer;
+  transition: all 0.25s ease;
+}
+.filtro:hover { border-color: var(--petrol); color: var(--petrol); }
+.filtro:focus-visible { outline: 2px solid var(--petrol); outline-offset: 2px; }
+.filtro.is-on { background: var(--petrol); border-color: var(--petrol); color: var(--ivory); }
+
+/* ── Le schede dei corsi ───────────────────────────────────────── */
+/* Ogni scheda ha lo stesso scheletro e la riga dei dati sempre in
+   fondo, alla stessa altezza: cosi' l'occhio confronta ore e quote
+   scorrendo in verticale invece di cercarle ogni volta. */
+.corso {
+  display: flex; flex-direction: column;
+  padding: 1.6rem 1.5rem 1.35rem;
+  background: #fff; border: 1px solid var(--frost);
+  text-decoration: none; color: inherit;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.corso:hover {
+  transform: translateY(-4px);
+  border-color: var(--petrol);
+  box-shadow: 0 12px 28px -18px rgba(27, 58, 62, 0.55);
+}
+.corso:focus-visible { outline: 2px solid var(--petrol); outline-offset: 2px; }
+.corso__liv {
+  font-family: var(--body); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--forest); margin-bottom: 0.9rem;
+}
+.corso__nome {
+  font-family: var(--display); font-size: 1.35rem; font-weight: 500;
+  line-height: 1.2; color: var(--petrol); margin-bottom: 0.7rem;
+  text-wrap: balance;
+}
+.corso__frase {
+  font-size: 0.9rem; line-height: 1.55; color: var(--charcoal-soft);
+  margin-bottom: 1.4rem;
+}
+.corso__meta {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  margin-top: auto; padding-top: 0.9rem;
+  border-top: 1px solid var(--frost);
+  font-size: 0.82rem; font-variant-numeric: tabular-nums;
+}
+.corso__meta b { font-weight: 500; color: var(--petrol); }
+.corso__meta i { font-style: normal; color: var(--charcoal-soft); }
+.corso__meta i::before { content: '· '; color: var(--frost); }
+.corso__meta u {
+  text-decoration: none; margin-left: auto;
+  font-size: 0.65rem; letter-spacing: 0.16em; color: var(--sage);
+}
+/* Il master e' uno solo, e in una griglia di quattordici deve trovarsi. */
+.corso--master { border-color: var(--salt-glow); background: #FFFCF8; }
+.corso--master .corso__liv { color: var(--salt-glow); }
+
+/* ── Le due sedi, sul fondo scuro ──────────────────────────────── */
+.sede {
+  display: block; padding: 2.25rem 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(238,243,246,0.16);
+  text-decoration: none; color: inherit;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.sede:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(238,243,246,0.35);
+  transform: translateY(-3px);
+}
+.sede:focus-visible { outline: 2px solid var(--salt-glow); outline-offset: 2px; }
+.sede--nuova { border-left: 2px solid var(--salt-glow); }
+.sede .arrow { display: inline-block; transition: transform 0.3s ease; }
+.sede:hover .arrow { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bivio-passo { animation: none; }
+  .corso, .sede, .riga-data, .bivio-scelta { transition: none; }
+  .corso:hover, .sede:hover, .bivio-scelta:hover { transform: none; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FORMAZIONE · rifatta il 4/09/2026
+     La pagina vecchia elencava cinque corsi scritti a mano, senza date,
+     senza ore, senza prezzi e senza un link che portasse da qualche parte.
+     Punto Riflesso ne ha quattordici, accreditati, con un calendario vivo.
+     Questa pagina non li ricopia: li racconta e ci porta dentro.
+     I dati (ore, prezzi, date) sono quelli di puntoriflesso.com al 4/09/2026
+     e la pagina lo DICHIARA, perche' un prezzo che invecchia in silenzio su
+     un sito che non e' quello della scuola e' una promessa che si rompe da
+     sola. I posti disponibili non si scrivono qui apposta: quelli cambiano
+     ogni giorno e stanno solo sulla fonte.
+     ═══════════════════════════════════════════════════════════════════ -->
+
+<!-- HERO -->
+<section class="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-ivory">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-10 items-end">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-end">
       <div class="lg:col-span-7">
         <div class="eyebrow text-forest mb-6">Formazione · Punto Riflesso</div>
         <h1 class="display-title text-5xl md:text-6xl lg:text-7xl text-petrol mb-8">
-          I corsi <span class="display-italic">di Punto Riflesso.</span>
+          L'arte del tocco<br>si impara <span class="display-italic">a quattro mani.</span>
         </h1>
-        <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
-          Dal <strong class="text-petrol font-medium">2022</strong> conduco percorsi formativi nelle discipline olistiche che ho studiato a fondo negli anni. Ogni corso è pensato per chi vuole imparare a lavorare davvero sulle persone, con basi solide e tempi rispettati.
+        <p class="text-lg lg:text-xl text-charcoal-soft leading-relaxed max-w-2xl mb-6">
+          Sono <strong class="text-petrol font-medium">Cristian Bresadola</strong>, naturopata e riflessologo, e
+          insegno queste discipline nella scuola di cui sono titolare a Trento:
+          <strong class="text-petrol font-medium">Punto Riflesso</strong>, attiva dal 2022. Quattordici percorsi accreditati, dal
+          primo weekend al master. La teoria si studia da casa; le mani si formano solo in aula.
         </p>
+        <p class="text-base text-charcoal-soft leading-relaxed max-w-2xl mb-10">
+          Se sei arrivato qui senza sapere da dove si comincia, è normale — ed è la domanda
+          giusta. <a href="#il-bivio" class="link-underline text-petrol font-medium">Rispondi a tre domande</a>
+          e ti dico io da dove partirei al posto tuo.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#il-bivio" class="btn-primary">
+            Da dove comincio?
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+          <a href="#catalogo" class="btn-secondary">Vedi i quattordici percorsi</a>
+        </div>
       </div>
+
+      <!-- I numeri che dicono qualcosa, non quattro riquadri decorativi:
+           quanto dura il piu' lungo, quanto costa il piu' corto, chi accredita,
+           dove si tiene. Sono le quattro cose che chiede chiunque stia
+           davvero valutando. -->
       <div class="lg:col-span-5">
-        <div class="bg-frost p-8 border-l-4 border-forest">
-          <div class="eyebrow text-forest mb-3">Il metodo</div>
-          <h2 class="font-display text-2xl text-petrol mb-3">Metodo Punto Riflesso</h2>
-          <p class="text-sm text-charcoal-soft leading-relaxed">Un approccio integrato che unisce <strong class="text-petrol font-medium">riflessologia plantare, massaggio Breuss, Medicina Tradizionale Cinese</strong> e discipline olistiche in un lavoro coerente sulla persona. Lo insegno progressivamente lungo tutti i corsi. Se prima di iscriverti vuoi vedere come si traduce in pratica, guarda la pagina della <a href="riflessologia-plantare.html" class="link-underline text-petrol font-medium">riflessologia plantare a Trento</a>: c'è una seduta raccontata passo per passo.</p>
+        <div class="border-l border-frost pl-8 lg:pl-10 space-y-7">
+          <div>
+            <div class="display-title text-4xl lg:text-5xl text-petrol">14</div>
+            <div class="text-sm text-charcoal-soft mt-1">percorsi, dal weekend singolo<br>al master da 186 ore</div>
+          </div>
+          <div>
+            <div class="display-title text-4xl lg:text-5xl text-petrol">ASPIN</div>
+            <div class="text-sm text-charcoal-soft mt-1">tutti i corsi sono accreditati<br>dalla scuola presso ASPIN</div>
+          </div>
+          <div>
+            <div class="display-title text-4xl lg:text-5xl text-petrol">2</div>
+            <div class="text-sm text-charcoal-soft mt-1">sedi: Trento in centro storico<br>e, dal 2026, Fiumicino (Roma)</div>
+          </div>
+          <div>
+            <div class="display-title text-4xl lg:text-5xl text-petrol">2022</div>
+            <div class="text-sm text-charcoal-soft mt-1">l'anno da cui la scuola<br>insegna a Trento</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CORSI -->
-<section class="py-20 lg:py-28 bg-frost">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="mb-14">
-      <div class="flex items-center gap-4 mb-6">
-        <span class="section-number">· Corsi attivi</span>
-      </div>
-      <h2 class="display-title text-4xl md:text-5xl text-petrol">
-        Cinque percorsi, <span class="display-italic">un metodo.</span>
+<!-- ═══ IL BIVIO · il selettore guidato ═══
+     E' il cuore della pagina. Chi arriva non cerca un catalogo: cerca il
+     permesso di cominciare da qualche parte. Tre domande, una risposta con
+     un nome e un link vero.
+     Funziona anche senza JavaScript: la prima domanda e' gia' visibile e in
+     fondo c'e' comunque il link al catalogo completo. -->
+<section id="il-bivio" class="py-20 lg:py-28 bg-frost">
+  <div class="max-w-5xl mx-auto px-6 lg:px-12">
+    <div class="text-center mb-14">
+      <div class="eyebrow text-forest mb-4">Il bivio</div>
+      <h2 class="display-title text-4xl md:text-5xl text-petrol mb-5">
+        Da dove <span class="display-italic">cominci?</span>
       </h2>
+      <p class="text-lg text-charcoal-soft max-w-2xl mx-auto leading-relaxed">
+        Tre domande, trenta secondi. Non è un test e non raccoglie niente:
+        serve solo a togliere di mezzo i dodici percorsi che non fanno per te.
+      </p>
     </div>
 
-    <div class="space-y-5">
+    <div id="bivio" class="bg-white border border-frost p-8 lg:p-12">
+      <!-- barra di avanzamento: tre segni, non una percentuale -->
+      <div class="flex items-center gap-2 mb-10" aria-hidden="true">
+        <span class="bivio-tacca is-on" data-tacca="1"></span>
+        <span class="bivio-tacca" data-tacca="2"></span>
+        <span class="bivio-tacca" data-tacca="3"></span>
+        <span class="ml-auto text-xs text-sage tracking-widest uppercase" id="bivio-conta">Domanda 1 di 3</span>
+      </div>
 
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display text-7xl text-forest opacity-40">01</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Percorso base · 3 livelli</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Riflessologia Plantare</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Il percorso più importante: tre livelli progressivi per imparare la riflessologia come pratica completa. Dall'anatomia del piede alle zone riflesse, dall'approccio alla persona alla costruzione di trattamenti coerenti.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Weekend intensivi</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Operatori olistici, appassionati motivati</div></div>
+      <div class="bivio-passo is-active" data-passo="1">
+        <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-2">A che punto sei con le mani?</h3>
+        <p class="text-sm text-charcoal-soft mb-8">Non serve un titolo per iscriversi ai corsi base: la maggior parte di chi comincia non ha mai lavorato nel settore.</p>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <button type="button" class="bivio-scelta" data-campo="livello" data-valore="zero">
+            <span class="bivio-scelta__t">Parto da zero</span>
+            <span class="bivio-scelta__d">Non ho mai fatto un corso di queste discipline</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="livello" data-valore="qualcosa">
+            <span class="bivio-scelta__t">Qualcosa ho fatto</span>
+            <span class="bivio-scelta__d">Un corso, un po' di pratica, basi non sistematiche</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="livello" data-valore="operatore">
+            <span class="bivio-scelta__t">Lavoro già così</span>
+            <span class="bivio-scelta__d">Sono operatore e voglio specializzarmi</span>
+          </button>
         </div>
       </div>
 
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display text-7xl text-forest opacity-40">02</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Perfezionamento</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Master in Riflessologia e MTC</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Il livello successivo. Si integra la Medicina Tradizionale Cinese (meridiani, cinque elementi, diagnostica energetica) con la riflessologia plantare. Riservato a chi ha già un percorso base.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Weekend + lavoro personale</div></div>
-          <div><span class="eyebrow text-petrol">Prerequisiti</span><div>Percorso base o equivalente</div></div>
-        </div>
-      </div>
-
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display text-7xl text-forest opacity-40">03</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Tecnica specifica</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Tecnica Breuss</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Il massaggio Breuss nella trasmissione con <strong class="text-petrol font-medium">discendenza diretta dagli allievi di Rudolf Breuss</strong>. Una tecnica precisa per la colonna vertebrale, che insegno con il rispetto per la catena di trasmissione originale.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Workshop intensivo</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Operatori e naturopati</div></div>
+      <div class="bivio-passo" data-passo="2" hidden>
+        <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-2">Che cosa ti tira di più?</h3>
+        <p class="text-sm text-charcoal-soft mb-8">Rispondi di pancia: è la parte che ti farà studiare anche quando sarai stanco.</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <button type="button" class="bivio-scelta" data-campo="anima" data-valore="mappa">
+            <span class="bivio-scelta__t">Leggere il corpo</span>
+            <span class="bivio-scelta__d">Il piede come mappa, i punti, i sistemi, la cartografia</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="anima" data-valore="tocco">
+            <span class="bivio-scelta__t">Il tocco che scioglie</span>
+            <span class="bivio-scelta__d">Manualità, muscoli, tensioni, il corpo che si lascia andare</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="anima" data-valore="interiore">
+            <span class="bivio-scelta__t">La persona dentro</span>
+            <span class="bivio-scelta__d">Emozioni, storia, crescita interiore, ascolto profondo</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="anima" data-valore="energia">
+            <span class="bivio-scelta__t">L'energia e i meridiani</span>
+            <span class="bivio-scelta__d">Medicina cinese, elementi, il sistema vivo dietro il sintomo</span>
+          </button>
         </div>
       </div>
 
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display text-7xl text-forest opacity-40">04</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Percorso evolutivo</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Metamorfico dell'Incarnazione</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">La Tecnica Metamorfica applicata al percorso di incarnazione della persona. Un lavoro sottile, profondo, che unisce competenza tecnica e capacità di ascolto.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Percorso in più weekend</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Operatori, appassionati di discipline olistiche</div></div>
-        </div>
-      </div>
-
-      <div class="bg-ivory p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-3"><div class="font-display text-7xl text-forest opacity-40">05</div></div>
-        <div class="lg:col-span-6">
-          <div class="eyebrow text-forest mb-2">Corso online</div>
-          <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-3">Medicina Tradizionale Cinese</h3>
-          <p class="text-charcoal-soft leading-relaxed text-sm">Corso interamente online per scoprire le fondamenta della MTC: i cinque elementi, i meridiani, la diagnosi energetica. Accessibile anche da chi non ha una formazione precedente.</p>
-        </div>
-        <div class="lg:col-span-3 text-sm">
-          <div class="mb-2"><span class="eyebrow text-petrol">Formato</span><div>Online · Moduli registrati</div></div>
-          <div><span class="eyebrow text-petrol">A chi è rivolto</span><div>Aperto a tutti</div></div>
+      <div class="bivio-passo" data-passo="3" hidden>
+        <h3 class="font-display text-2xl lg:text-3xl text-petrol mb-2">Quanto tempo puoi darci?</h3>
+        <p class="text-sm text-charcoal-soft mb-8">Onestamente. I corsi si frequentano lavorando, ma un percorso da 186 ore resta un impegno lungo.</p>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <button type="button" class="bivio-scelta" data-campo="tempo" data-valore="weekend">
+            <span class="bivio-scelta__t">Un weekend</span>
+            <span class="bivio-scelta__d">Voglio provare, senza impegnarmi per mesi</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="tempo" data-valore="mesi">
+            <span class="bivio-scelta__t">Qualche mese</span>
+            <span class="bivio-scelta__d">Un percorso vero, ma contenuto</span>
+          </button>
+          <button type="button" class="bivio-scelta" data-campo="tempo" data-valore="anno">
+            <span class="bivio-scelta__t">Un anno</span>
+            <span class="bivio-scelta__d">Voglio uscirne operatore, non curioso</span>
+          </button>
         </div>
       </div>
 
+      <!-- L'esito. Non "hai vinto questo corso": una frase che spiega PERCHE',
+           e due alternative, perche' un consiglio che non ammette alternative
+           e' una vendita. -->
+      <div class="bivio-passo" data-passo="esito" hidden>
+        <div class="eyebrow text-salt-glow mb-4">Partirei da qui</div>
+        <h3 class="font-display text-3xl lg:text-4xl text-petrol mb-4" id="esito-nome">—</h3>
+        <p class="text-lg text-charcoal-soft leading-relaxed mb-6" id="esito-perche">—</p>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-charcoal-soft mb-8 pb-8 border-b border-frost" id="esito-meta"></div>
+        <div class="flex flex-wrap gap-4 mb-10">
+          <a href="#" id="esito-link" class="btn-primary" target="_blank" rel="noopener">
+            Vedi il percorso
+            <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button type="button" class="btn-secondary" id="bivio-ricomincia">Ricomincio</button>
+        </div>
+        <div id="esito-alternative"></div>
+      </div>
+    </div>
+
+    <p class="text-center text-sm text-charcoal-soft mt-8">
+      Preferisci parlarne? <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="link-underline text-petrol font-medium">Scrivimi su WhatsApp</a>: scegliere il percorso è una conversazione, non un click.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ LE PROSSIME EDIZIONI ═══
+     La cosa che fa muovere davvero: una data vicina. I POSTI non si scrivono
+     qui - cambiano ogni giorno e stanno solo su puntoriflesso.com, che e' la
+     fonte. Scrivere «3 posti su 10» su questa pagina vuol dire mentire alla
+     prima iscrizione. -->
+<section class="py-20 lg:py-28 bg-ivory">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-4">
+      <div>
+        <div class="eyebrow text-forest mb-4">Iscrizioni aperte</div>
+        <h2 class="display-title text-4xl md:text-5xl text-petrol">
+          Le prossime <span class="display-italic">partenze.</span>
+        </h2>
+      </div>
+      <a href="https://puntoriflesso.com/corsi" target="_blank" rel="noopener" class="btn-ghost">
+        Calendario completo
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <p class="text-sm text-sage mb-10">Date aggiornate al 4 settembre 2026. I posti rimasti si vedono solo sulla scheda del corso, dove il numero è vivo.</p>
+
+    <div class="border-t border-frost">
+      <a href="https://puntoriflesso.com/corsi/breuss#iscriviti" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">12–13 set 2026</span>
+        <span class="riga-data__cosa"><strong>Massaggio Breuss</strong><em>21 ore · 300 €</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/riflessologia-plantare-fiumicino" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">dal 25 set 2026</span>
+        <span class="riga-data__cosa"><strong>Riflessologia Plantare</strong><em>186 ore · prima edizione sul litorale romano</em></span>
+        <span class="riga-data__dove">Fiumicino</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/massaggio-classico#iscriviti" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">10–11 ott 2026</span>
+        <span class="riga-data__cosa"><strong>Massaggio Classico Base</strong><em>21 ore · 300 €</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/californiano#iscriviti" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">24–25 ott 2026</span>
+        <span class="riga-data__cosa"><strong>Massaggio Californiano</strong><em>21 ore · 300 €</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/drenante-base#iscriviti" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">7–8 nov 2026</span>
+        <span class="riga-data__cosa"><strong>Massaggio Drenante Base</strong><em>21 ore · 300 €</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/riflessologia-plantare-trento" target="_blank" rel="noopener" class="riga-data riga-data--forte">
+        <span class="riga-data__quando">dal 14 nov 2026</span>
+        <span class="riga-data__cosa"><strong>Riflessologia Plantare + Metodo Punto Riflesso</strong><em>186 ore · 1500 € · IV edizione, sei weekend fino ad aprile</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/massaggio-classico-avanzato#iscriviti" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">28–29 nov 2026</span>
+        <span class="riga-data__cosa"><strong>Massaggio Classico Avanzato</strong><em>21 ore · 300 €</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/master-mtc#iscriviti" target="_blank" rel="noopener" class="riga-data">
+        <span class="riga-data__quando">dal 30 gen 2027</span>
+        <span class="riga-data__cosa"><strong>Master in Medicina Cinese e Riflessologia</strong><em>186 ore · 1500 €</em></span>
+        <span class="riga-data__dove">Trento</span>
+        <span class="riga-data__freccia" aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ALLIEVI -->
+<!-- ═══ IL CATALOGO ═══
+     Quattordici schede vere, scritte in HTML e non generate da JavaScript:
+     senza script restano tutte visibili e Google le legge. Il filtro toglie,
+     non aggiunge. I tre livelli non sono etichette decorative - sono una
+     catena di prerequisiti, e per questo sono l'asse del filtro. -->
+<section id="catalogo" class="py-20 lg:py-28 bg-frost">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="mb-12">
+      <div class="eyebrow text-forest mb-4">Il catalogo</div>
+      <h2 class="display-title text-4xl md:text-5xl text-petrol mb-5">
+        Quattordici percorsi,<br>una <span class="display-italic">scuola sola.</span>
+      </h2>
+      <p class="text-lg text-charcoal-soft max-w-2xl leading-relaxed">
+        Ognuno ha la sua durata e la sua materia. Tutti condividono la stessa convinzione:
+        la pratica si trasmette in presenza, una mano alla volta. La teoria si studia da casa,
+        con tutoraggio diretto.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3 mb-10" role="group" aria-label="Filtra per livello">
+      <button type="button" class="filtro is-on" data-filtro="tutti">Tutti</button>
+      <button type="button" class="filtro" data-filtro="base">I fondamenti</button>
+      <button type="button" class="filtro" data-filtro="avanzato">Le specializzazioni</button>
+      <button type="button" class="filtro" data-filtro="master">Il master</button>
+      <span class="text-sm text-sage ml-auto" id="filtro-conta"></span>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="griglia-corsi">
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/riflessologia" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti · il più strutturato</span>
+        <span class="corso__nome">Riflessologia Plantare<br>+ Metodo Punto Riflesso</span>
+        <span class="corso__frase">Imparare a leggere un piede come una mappa antica</span>
+        <span class="corso__meta"><b>186 ore</b><i>1500 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/operatore-olistico-benessere-integrato" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti · modulare</span>
+        <span class="corso__nome">Operatore Olistico del Benessere Integrato</span>
+        <span class="corso__frase">Il percorso che integra mani, cuore e sapere</span>
+        <span class="corso__meta"><b>Modulare</b><i>su misura</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/metamorfico" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti · percorso d'anima</span>
+        <span class="corso__nome">Massaggio Metamorfico dell'Incarnazione</span>
+        <span class="corso__frase">Una mano leggera sul tempo che ci ha formati</span>
+        <span class="corso__meta"><b>42 ore</b><i>595 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/breuss" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti · tocco essenziale</span>
+        <span class="corso__nome">Massaggio Breuss</span>
+        <span class="corso__frase">Un allungamento dolce della colonna, che crea spazio e alleggerisce</span>
+        <span class="corso__meta"><b>21 ore</b><i>300 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/massaggio-classico" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti</span>
+        <span class="corso__nome">Massaggio Classico Base</span>
+        <span class="corso__frase">Le mani come strumento di ascolto, tecnica e cura</span>
+        <span class="corso__meta"><b>21 ore</b><i>300 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/massaggio-classico-avanzato" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti · secondo passo</span>
+        <span class="corso__nome">Massaggio Classico Avanzato</span>
+        <span class="corso__frase">Il Metodo Punto Riflesso: da tecnica appresa a tocco proprio</span>
+        <span class="corso__meta"><b>21 ore</b><i>300 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/californiano" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti</span>
+        <span class="corso__nome">Massaggio Californiano</span>
+        <span class="corso__frase">Un abbraccio lungo che attraversa tutto il corpo</span>
+        <span class="corso__meta"><b>21 ore</b><i>300 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/decontratturante" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti</span>
+        <span class="corso__nome">Massaggio Decontratturante<br>+ Cupping Therapy</span>
+        <span class="corso__frase">Tocco intenzionale e arte millenaria delle coppette</span>
+        <span class="corso__meta"><b>21 ore</b><i>300 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="base" href="https://puntoriflesso.com/corsi/drenante-base" target="_blank" rel="noopener">
+        <span class="corso__liv">Fondamenti</span>
+        <span class="corso__nome">Massaggio Drenante Base</span>
+        <span class="corso__frase">Mani che accompagnano la linfa nel suo cammino</span>
+        <span class="corso__meta"><b>21 ore</b><i>300 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/drenante-sudamericano" target="_blank" rel="noopener">
+        <span class="corso__liv">Specializzazione</span>
+        <span class="corso__nome">Massaggio Drenante Sudamericano</span>
+        <span class="corso__frase">Il drenaggio che parla la lingua dei tropici</span>
+        <span class="corso__meta"><b>21 ore</b><i>450 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/viso-giapponese" target="_blank" rel="noopener">
+        <span class="corso__liv">Specializzazione</span>
+        <span class="corso__nome">Massaggio Giapponese Viso</span>
+        <span class="corso__frase">Il lifting naturale di tradizione giapponese</span>
+        <span class="corso__meta"><b>21 ore</b><i>450 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/sportivo" target="_blank" rel="noopener">
+        <span class="corso__liv">Specializzazione</span>
+        <span class="corso__nome">Massaggio Sportivo</span>
+        <span class="corso__frase">Il tocco che prepara, sostiene, ripara il corpo atletico</span>
+        <span class="corso__meta"><b>21 ore</b><i>450 €</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso" data-livello="avanzato" href="https://puntoriflesso.com/corsi/fiori-bach" target="_blank" rel="noopener">
+        <span class="corso__liv">Specializzazione</span>
+        <span class="corso__nome">Floriterapia e i 38 Fiori di Bach</span>
+        <span class="corso__frase">Trentotto fiori per le emozioni che chiedono ascolto</span>
+        <span class="corso__meta"><b>24 ore</b><i>—</i><u>ASPIN</u></span>
+      </a>
+
+      <a class="corso corso--master" data-livello="master" href="https://puntoriflesso.com/corsi/master-mtc" target="_blank" rel="noopener">
+        <span class="corso__liv">Il master · il completamento</span>
+        <span class="corso__nome">Master in Medicina Cinese e Riflessologia</span>
+        <span class="corso__frase">Completare il cerchio: dal piede al sistema vivo della MTC</span>
+        <span class="corso__meta"><b>186 ore</b><i>1500 €</i><u>ASPIN</u></span>
+      </a>
+
+    </div>
+    <p class="text-sm text-sage mt-8">Ore e quote aggiornate al 4 settembre 2026. Le condizioni valide sono sempre quelle sulla scheda del corso.</p>
+  </div>
+</section>
+
+<!-- ═══ LE DUE SEDI ═══ -->
+<section class="py-20 lg:py-28 bg-petrol text-ivory on-dark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="mb-14 max-w-2xl">
+      <div class="eyebrow text-salt-glow mb-4">Dove si insegna</div>
+      <h2 class="display-title text-4xl md:text-5xl mb-5">Due sedi, <span class="display-italic">un metodo solo.</span></h2>
+      <p class="text-lg opacity-80 leading-relaxed">
+        La scuola è nata a Trento e da qui continua a insegnare. Dal 2026 il percorso più lungo
+        che facciamo si tiene anche alle porte di Roma.
+      </p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-6">
+      <a href="https://puntoriflesso.com/corsi/riflessologia-plantare-trento" target="_blank" rel="noopener" class="sede">
+        <div class="eyebrow text-salt-glow mb-3">Trentino · dove la scuola è nata</div>
+        <h3 class="font-display text-3xl mb-4">Trento</h3>
+        <p class="opacity-80 leading-relaxed mb-6">
+          Vicolo della Contrada Tedesca 9, in centro storico — lo stesso indirizzo in cui ricevo
+          il martedì. IV edizione della riflessologia plantare: sei weekend fra sabato e domenica,
+          da novembre 2026 ad aprile 2027.
+        </p>
+        <span class="btn-ghost text-ivory">Date e sede <span class="arrow">→</span></span>
+      </a>
+      <a href="https://puntoriflesso.com/corsi/riflessologia-plantare-fiumicino" target="_blank" rel="noopener" class="sede sede--nuova">
+        <div class="eyebrow text-salt-glow mb-3">Litorale romano · prima edizione</div>
+        <h3 class="font-display text-3xl mb-4">Fiumicino</h3>
+        <p class="opacity-80 leading-relaxed mb-6">
+          Presso il Centro Olistico Erba Sacra, Via Passo Buole 117. Quattro weekend lunghi dal
+          venerdì alla domenica, da settembre a dicembre 2026, con tutoraggio online fra un
+          incontro e l'altro. Stesso metodo e stesso attestato, senza dover salire al Nord.
+        </p>
+        <span class="btn-ghost text-ivory">Date e sede <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PERCHÉ QUI ═══ -->
 <section class="py-20 lg:py-28 bg-ivory">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-6">
-        <div class="image-frame aspect-[5/4] overflow-hidden">
-          <img src="./images/allievi.jpg" width="1100" height="825" alt="Gruppo di allievi con attestati del corso di Riflessologia Plantare Punto Riflesso" class="w-full h-full object-cover" loading="lazy">
-        </div>
+    <div class="max-w-2xl mb-14">
+      <div class="eyebrow text-forest mb-4">Come insegno</div>
+      <h2 class="display-title text-4xl md:text-5xl text-petrol mb-5">
+        Nessuno esce di qui<br>e resta <span class="display-italic">da solo.</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10 lg:gap-14">
+      <div>
+        <div class="separator-line mb-6"></div>
+        <h3 class="font-display text-2xl text-petrol mb-3">Si impara sul corpo</h3>
+        <p class="text-charcoal-soft leading-relaxed">
+          La pratica è solo in presenza, perché un tocco non si trasmette da uno schermo: serve
+          qualcuno che ti guardi le mani e te le corregga. La teoria invece si studia da casa,
+          con i tuoi tempi, e chi lavora riesce a seguire.
+        </p>
       </div>
-      <div class="lg:col-span-6">
-        <div class="eyebrow text-petrol mb-6">· Gli allievi</div>
-        <h2 class="display-title text-4xl md:text-5xl text-petrol mb-8">
-          Una <span class="display-italic">comunità</span> in cammino.
-        </h2>
-        <div class="space-y-4 text-charcoal-soft leading-relaxed">
-          <p>Chi arriva a Punto Riflesso non cerca solo "una tecnica": cerca uno spazio dove imparare a lavorare con le persone, con i tempi giusti e con strumenti solidi.</p>
-          <p>Gli allievi diventano nel tempo una rete di professionisti e appassionati che continuano a confrontarsi tra loro, a tornare per perfezionamenti, a collaborare. È una delle cose più belle di questo lavoro.</p>
-        </div>
+      <div>
+        <div class="separator-line mb-6"></div>
+        <h3 class="font-display text-2xl text-petrol mb-3">Puoi rifare i moduli</h3>
+        <p class="text-charcoal-soft leading-relaxed">
+          Gratuitamente. Se un weekend non l'hai assorbito, o se dopo sei mesi vuoi rivederlo con
+          altre mani in aula, torni. È la differenza fra aver comprato un corso e aver imparato
+          un mestiere.
+        </p>
       </div>
+      <div>
+        <div class="separator-line mb-6"></div>
+        <h3 class="font-display text-2xl text-petrol mb-3">Il dopo è previsto</h3>
+        <p class="text-charcoal-soft leading-relaxed">
+          Tutoraggio prima, durante e dopo. Poi la community degli operatori, l'app con le
+          videolezioni e i materiali, e l'assistenza per chi vuole davvero avviarsi alla
+          professione.
+        </p>
+      </div>
+    </div>
+    <div class="mt-14 p-8 lg:p-10 bg-frost border-l-2 border-forest max-w-3xl">
+      <div class="eyebrow text-forest mb-3">Il metodo</div>
+      <h3 class="font-display text-2xl text-petrol mb-3">Metodo Punto Riflesso</h3>
+      <p class="text-charcoal-soft leading-relaxed">
+        Un approccio integrato che unisce <strong class="text-petrol font-medium">riflessologia plantare,
+        massaggio Breuss, Medicina Tradizionale Cinese</strong> e discipline olistiche in un lavoro
+        coerente sulla persona. Lo insegno progressivamente lungo tutti i corsi. Se prima di
+        iscriverti vuoi vedere come si traduce in pratica, guarda la pagina della
+        <a href="riflessologia-plantare.html" class="link-underline text-petrol font-medium">riflessologia plantare a Trento</a>:
+        c'è una seduta raccontata passo per passo.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-20 lg:py-28 bg-petrol text-ivory on-dark">
-  <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-    <h2 class="display-title text-4xl md:text-5xl mb-8">
-      Vuoi iscriverti <span class="display-italic text-salt">a un corso?</span>
+<!-- ═══ CHIUSURA ═══ -->
+<section class="py-20 lg:py-28 bg-petrol-dark text-ivory on-dark">
+  <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+    <div class="eyebrow text-salt-glow mb-6">Prima di decidere</div>
+    <h2 class="display-title text-4xl md:text-5xl mb-6">
+      Scegliere il percorso<br>è una <span class="display-italic">conversazione.</span>
     </h2>
-    <p class="opacity-80 mb-10 max-w-2xl mx-auto leading-relaxed">
-      Per date, iscrizioni, quote e calendari aggiornati il canale più veloce è WhatsApp o email. Rispondo personalmente e costruiamo insieme il percorso più adatto a te.
+    <p class="text-lg opacity-80 leading-relaxed mb-10">
+      Non serve esperienza per cominciare, e non serve decidere tutto subito. Scrivimi dove sei
+      e dove vorresti arrivare: ti dico io da dove partirei, anche se la risposta è «aspetta».
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
-      <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="btn-primary">Scrivimi su WhatsApp</a>
-      <a href="mailto:info@cristianbresadola.com" class="btn-secondary">Scrivimi via email</a>
+      <a href="https://wa.me/393396383790" target="_blank" rel="noopener" class="btn-primary">
+        Scrivimi su WhatsApp
+        <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="https://puntoriflesso.com/corsi" target="_blank" rel="noopener" class="btn-secondary">Il catalogo su Punto Riflesso</a>
     </div>
-    <p class="mt-10 text-xs opacity-60">Sito Punto Riflesso: <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="underline">puntoriflesso.com</a></p>
+    <p class="mt-10 text-xs opacity-60">
+      Punto Riflesso è la scuola di cui sono titolare e formatore: iscrizioni, quote e attestati si gestiscono su
+      <a href="https://puntoriflesso.com" target="_blank" rel="noopener" class="underline">puntoriflesso.com</a>.
+    </p>
   </div>
 </section>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   FORMAZIONE · il bivio e il filtro (4/09/2026)
+
+   DUE REGOLE che questo file rispetta e che vale la pena dichiarare.
+
+   1. NIENTE QUI E' NECESSARIO PER LEGGERE LA PAGINA. Le quattordici
+      schede sono scritte in HTML: senza JavaScript restano tutte
+      visibili e il filtro semplicemente non compare all'opera. Il
+      bivio mostra gia' la prima domanda, e sotto c'e' comunque il
+      link al catalogo. Una pagina che si vede solo se lo script parte
+      e' una pagina che a volte non esiste.
+
+   2. IL CONSIGLIO NON MENTE. Il bivio non e' un imbuto travestito da
+      quiz: ogni esito porta a un corso che esiste davvero, spiega
+      PERCHE' e mostra due alternative. Un consiglio che non ammette
+      alternative e' una vendita.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  var BASE = 'https://puntoriflesso.com/corsi/';
+
+  // I quattordici percorsi, con le etichette su cui si ragiona.
+  // livello: da chi puo' partirci · anima: che cosa ci si cerca · tempo: quanto dura
+  var CORSI = [
+    { id: 'riflessologia', nome: 'Riflessologia Plantare + Metodo Punto Riflesso',
+      ore: '186 ore', quota: '1500 €', liv: ['zero','qualcosa'], anima: ['mappa'], tempo: ['anno'],
+      perche: 'È il percorso più strutturato che facciamo, ed è quello da cui è nata la scuola. Sei weekend per imparare a leggere un piede come una mappa: si parte dal principio, non servono prerequisiti, e alla fine hai un mestiere fra le mani, non una tecnica in più.' },
+    { id: 'operatore-olistico-benessere-integrato', nome: 'Operatore Olistico del Benessere Integrato',
+      ore: 'Modulare', quota: 'su misura', liv: ['zero','qualcosa'], anima: ['mappa','tocco','interiore'], tempo: ['anno'],
+      perche: 'È modulare apposta: costruiamo insieme il tuo piano di studio partendo da dove sei. Se vuoi arrivare a lavorare in proprio ma non sai ancora in quale direzione specializzarti, è il modo di cominciare senza doverlo decidere adesso.' },
+    { id: 'metamorfico', nome: "Massaggio Metamorfico dell'Incarnazione",
+      ore: '42 ore', quota: '595 €', liv: ['zero','qualcosa'], anima: ['interiore'], tempo: ['mesi'],
+      perche: 'Una mano leggera sul tempo che ci ha formati. È il percorso d’anima della scuola: si lavora sul periodo prenatale e su ciò che quel tempo ha lasciato. Molti lo scelgono per sé prima ancora che per gli altri, e va benissimo così.' },
+    { id: 'breuss', nome: 'Massaggio Breuss',
+      ore: '21 ore', quota: '300 €', liv: ['zero','qualcosa','operatore'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'Un weekend solo, e ne esci con una tecnica intera che puoi usare da subito: un allungamento dolce della colonna che crea spazio e alleggerisce. È il modo meno impegnativo di scoprire se questo lavoro ti appartiene.' },
+    { id: 'massaggio-classico', nome: 'Massaggio Classico Base',
+      ore: '21 ore', quota: '300 €', liv: ['zero'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'È l’alfabeto. Prima di qualsiasi specializzazione servono le mani che sanno ascoltare, e questo weekend te le mette in ordine: appoggio, pressione, ritmo, respiro. Da qui in poi ogni altra tecnica ha un fondamento su cui posarsi.' },
+    { id: 'massaggio-classico-avanzato', nome: 'Massaggio Classico Avanzato',
+      ore: '21 ore', quota: '300 €', liv: ['qualcosa','operatore'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'È qui che il Metodo Punto Riflesso entra davvero: si passa dalla tecnica imparata al tocco proprio. Ha senso se le basi le hai già e senti che ti manca qualcosa di tuo nel gesto.' },
+    { id: 'californiano', nome: 'Massaggio Californiano',
+      ore: '21 ore', quota: '300 €', liv: ['zero','qualcosa'], anima: ['tocco','interiore'], tempo: ['weekend'],
+      perche: 'Un abbraccio lungo che attraversa tutto il corpo: manovre ampie, continue, molto accoglienti. È il massaggio che sceglie chi vuole lavorare sulla persona più che sul muscolo, e si impara in un weekend.' },
+    { id: 'decontratturante', nome: 'Massaggio Decontratturante + Cupping Therapy',
+      ore: '21 ore', quota: '300 €', liv: ['qualcosa','operatore'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'Tocco intenzionale e coppette: due strumenti che lavorano dove il corpo si è irrigidito. Conviene averci già un po’ di mano, perché qui la pressione va dosata e la dosi solo se sai sentire.' },
+    { id: 'drenante-base', nome: 'Massaggio Drenante Base',
+      ore: '21 ore', quota: '300 €', liv: ['zero','qualcosa'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'Mani che accompagnano la linfa nel suo cammino: pressioni leggerissime, ritmo lento, molta precisione. È fra i più richiesti da chi riceve, e in un weekend è tuo.' },
+    { id: 'drenante-sudamericano', nome: 'Massaggio Drenante Sudamericano',
+      ore: '21 ore', quota: '450 €', liv: ['operatore'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'Il drenaggio che parla la lingua dei tropici: più vigoroso, più ritmico. È una specializzazione vera, e presuppone che il drenaggio classico tu lo abbia già nelle mani.' },
+    { id: 'viso-giapponese', nome: 'Massaggio Giapponese Viso',
+      ore: '21 ore', quota: '450 €', liv: ['operatore'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'Il lifting naturale di tradizione giapponese. È la specializzazione che apre un ambito professionale preciso e molto richiesto, se hai già una pratica avviata a cui aggiungerla.' },
+    { id: 'sportivo', nome: 'Massaggio Sportivo',
+      ore: '21 ore', quota: '450 €', liv: ['operatore'], anima: ['tocco'], tempo: ['weekend'],
+      perche: 'Il tocco che prepara, sostiene e ripara il corpo atletico. Contesto definito, gesti specifici: ha senso se lavori già col corpo e vuoi entrare in quel mondo.' },
+    { id: 'fiori-bach', nome: 'Floriterapia e i 38 Fiori di Bach',
+      ore: '24 ore', quota: null, liv: ['zero','qualcosa','operatore'], anima: ['interiore'], tempo: ['mesi','weekend'],
+      perche: 'Trentotto fiori per le emozioni che chiedono ascolto. Non si lavora con le mani ma con la parola e l’osservazione: è il complemento naturale di chi tocca, e sta in piedi anche da solo.' },
+    { id: 'master-mtc', nome: 'Master in Medicina Cinese e Riflessologia',
+      ore: '186 ore', quota: '1500 €', liv: ['operatore','qualcosa'], anima: ['energia','mappa'], tempo: ['anno'],
+      perche: 'Non è una tecnica in più: è un cambio di prospettiva. Si entra nel sistema vivo della Medicina Tradizionale Cinese e si chiude il cerchio, dal piede ai meridiani. Presuppone che le fondamenta ci siano già.' }
+  ];
+
+  var bivio = document.getElementById('bivio');
+  if (bivio) avviaBivio();
+  avviaFiltro();
+
+  /* ── IL BIVIO ─────────────────────────────────────────────────── */
+  function avviaBivio() {
+    var risposte = {};
+    var passoCorrente = 1;
+
+    var passi   = bivio.querySelectorAll('.bivio-passo');
+    var tacche  = bivio.querySelectorAll('.bivio-tacca');
+    var conta   = document.getElementById('bivio-conta');
+
+    bivio.addEventListener('click', function (e) {
+      var b = e.target.closest('.bivio-scelta');
+      if (!b) return;
+      risposte[b.dataset.campo] = b.dataset.valore;
+      passoCorrente++;
+      if (passoCorrente <= 3) mostra(String(passoCorrente));
+      else { decidi(risposte); mostra('esito'); }
+    });
+
+    var ricomincia = document.getElementById('bivio-ricomincia');
+    if (ricomincia) ricomincia.addEventListener('click', function () {
+      risposte = {}; passoCorrente = 1; mostra('1');
+    });
+
+    function mostra(quale) {
+      passi.forEach(function (p) { p.hidden = (p.dataset.passo !== quale); });
+      var n = parseInt(quale, 10);
+      tacche.forEach(function (t, i) {
+        t.classList.toggle('is-on', quale === 'esito' || i < n);
+      });
+      if (conta) conta.textContent = (quale === 'esito') ? 'Ecco' : 'Domanda ' + n + ' di 3';
+      // Il fuoco segue la domanda, altrimenti chi naviga da tastiera resta
+      // indietro di un passo e non sa che la pagina e' cambiata.
+      var attivo = bivio.querySelector('.bivio-passo:not([hidden]) h3');
+      if (attivo && quale !== '1') { attivo.setAttribute('tabindex', '-1'); attivo.focus(); }
+    }
+
+    function decidi(r) {
+      // UN CORSO APERTO A TUTTI E' UNA RISPOSTA PIU' DEBOLE di uno pensato
+      // apposta per te. Senza questa correzione i punteggi pareggiavano e
+      // vinceva chi capitava prima nell'elenco: a un operatore che chiedeva
+      // una specializzazione corta usciva il Breuss, che e' un corso base.
+      // Quindi piu' e' stretta la platea di un corso, piu' vale quando ti
+      // comprende: 1 solo livello vale 2 in piu', 2 livelli 1, 3 livelli 0.
+      var punteggi = CORSI.map(function (c) {
+        var p = 0;
+        if (c.liv.indexOf(r.livello) > -1)   p += 2 + (3 - c.liv.length);
+        if (c.anima.indexOf(r.anima) > -1)   p += 3;
+        if (c.tempo.indexOf(r.tempo) > -1)   p += 2;
+        return { c: c, p: p };
+      }).sort(function (a, b) { return b.p - a.p; });
+
+      var primo = punteggi[0].c;
+      document.getElementById('esito-nome').textContent = primo.nome;
+      document.getElementById('esito-perche').textContent = primo.perche;
+
+      var meta = document.getElementById('esito-meta');
+      meta.innerHTML = '';
+      [primo.ore, primo.quota, 'Accreditato ASPIN'].forEach(function (t) {
+        if (!t) return;
+        var s = document.createElement('span');
+        s.textContent = t;
+        meta.appendChild(s);
+      });
+
+      document.getElementById('esito-link').href = BASE + primo.id;
+
+      // Le due alternative piu' vicine: un consiglio senza alternative
+      // e' una vendita, non un consiglio.
+      var alt = document.getElementById('esito-alternative');
+      alt.innerHTML = '<div class="eyebrow text-forest mb-3" style="font-size:.68rem">Se non ti convince</div>';
+      punteggi.slice(1, 3).forEach(function (v) {
+        var a = document.createElement('a');
+        a.className = 'bivio-alt';
+        a.href = BASE + v.c.id;
+        a.target = '_blank'; a.rel = 'noopener';
+        a.innerHTML = '<b></b><span></span>';
+        a.querySelector('b').textContent = v.c.nome;
+        a.querySelector('span').textContent = v.c.ore + (v.c.quota ? ' · ' + v.c.quota : '');
+        alt.appendChild(a);
+      });
+    }
+  }
+
+  /* ── IL FILTRO ────────────────────────────────────────────────── */
+  function avviaFiltro() {
+    var bottoni = document.querySelectorAll('.filtro');
+    var schede  = document.querySelectorAll('#griglia-corsi .corso');
+    var conta   = document.getElementById('filtro-conta');
+    if (!bottoni.length || !schede.length) return;
+
+    function applica(quale) {
+      var visibili = 0;
+      schede.forEach(function (s) {
+        var mostra = (quale === 'tutti' || s.dataset.livello === quale);
+        s.hidden = !mostra;
+        if (mostra) visibili++;
+      });
+      bottoni.forEach(function (b) { b.classList.toggle('is-on', b.dataset.filtro === quale); });
+      if (conta) conta.textContent = visibili === 1 ? '1 percorso' : visibili + ' percorsi';
+    }
+
+    bottoni.forEach(function (b) {
+      b.addEventListener('click', function () { applica(b.dataset.filtro); });
+    });
+    applica('tutti');
+  }
+})();
+</script>
+
 
 <!-- FOOTER -->
 <footer class="bg-petrol-dark text-ivory on-dark pt-20 pb-8">
