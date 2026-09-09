@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prenota una seduta · Cristian Bresadola</title>
+<meta name="description" content="Prenota una seduta di riflessologia plantare o un massaggio olistico a Trento, il martedì. Se sei già stato in studio, il tuo link ti riconosce.">
+<link rel="canonical" href="https://cristianbresadola.com/prenota.html">
+<meta name="robots" content="index, follow">
+
+<!-- L'ANTEPRIMA DEL LINK. Come per consenso.html: questo link arriva quasi
+     sempre su WhatsApp, e senza queste righe comparirebbe un'anteprima nuda -
+     che sembra un link sospetto proprio nel messaggio in cui si chiede fiducia.
+     og:url e' l'indirizzo SENZA il token, cosi' l'anteprima non lo ripete. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cristian Bresadola">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://cristianbresadola.com/prenota.html">
+<meta property="og:title" content="Prenota una seduta · Cristian Bresadola">
+<meta property="og:description" content="Scegli il giorno e l'ora. Se ci siamo già visti, non devi ricompilare niente.">
+<meta property="og:image" content="https://cristianbresadola.com/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prenota una seduta · Cristian Bresadola">
+<meta name="twitter:description" content="Scegli il giorno e l'ora. Se ci siamo già visti, non devi ricompilare niente.">
+<meta name="twitter:image" content="https://cristianbresadola.com/images/og-image.jpg">
+
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<meta name="theme-color" content="#1B3A3E">
+
+<!--
+  LA SECONDA PORTA.
+
+  Il bottone «Prenota» del sito portava a primo-contatto.html: cinque tappe, tre
+  consensi, la domanda su come ci si e' conosciuti. E' la porta giusta per chi
+  arriva e quella sbagliata per chi e' venuto ieri. Misurato il 9/09/2026: 25
+  clienti su 47 sono gia' tornati almeno una volta.
+
+  UNA PORTA SOLA, DUE STATI. Col token la pagina saluta per nome e mostra gli
+  appuntamenti gia' presi; senza token, o con un token che non vale piu', NON
+  mostra nessun errore: diventa il bivio e prenota lo stesso. Un vicolo cieco
+  per chi ha cambiato telefono sarebbe la cosa peggiore che questa pagina possa
+  fare.
+
+  QUELLO CHE NON DICE, di proposito: mai la tipologia di una seduta (e' un dato
+  sul corpo di quella persona), mai l'indirizzo dello studio negli appuntamenti
+  ma solo la citta', mai l'email nemmeno mascherata. Il presupposto dichiarato
+  e' che il link possa finire alla persona sbagliata.
+
+  DA QUI NON SI DISDICE E NON SI SPOSTA, e c'e' scritto. Un link permanente e
+  girabile che cancella appuntamenti sarebbe un'arma silenziosa: Cristian
+  vedrebbe solo uno slot vuoto.
+-->
+<style>
+  :root{
+    --petrol:#1B3A3E; --petrol-dark:#12282B; --salt-glow:#E59856;
+    --salt-glow-deep:#A65D22; --sage:#8A9B86; --forest:#2D5139;
+    --ivory:#EEF3F6; --frost:#DBE7EC; --charcoal:#2A2A2A; --charcoal-soft:#4A4A4A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    background:var(--ivory); color:var(--charcoal); line-height:1.65;
+    padding:2rem 1rem 4rem;
+  }
+  .foglio{max-width:560px;margin:0 auto;background:#fff;border-radius:10px;
+    padding:2rem 1.6rem 2.2rem;border:1px solid var(--frost)}
+  .marchio{text-align:center;margin-bottom:1.6rem}
+  .marchio img{width:64px;height:auto;display:block;margin:0 auto .7rem}
+  .marchio .mestiere{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage)}
+  h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:1.65rem;
+    line-height:1.25;color:var(--petrol);margin-bottom:1rem}
+  h2{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--charcoal-soft);margin:1.8rem 0 .7rem;font-weight:600}
+  p{margin-bottom:.9rem}
+  .fine{font-size:.9rem;color:var(--charcoal-soft)}
+
+  /* Gli appuntamenti gia' presi: TUTTI, non «il prossimo». Misurato che una
+     cliente ne ha due lo stesso giorno; al singolare gliene nasconderemmo uno. */
+  .gia{background:var(--ivory);border-left:3px solid var(--forest);
+    padding:.85rem 1rem;border-radius:0 8px 8px 0;margin-bottom:1.2rem}
+  .gia .voce{font-size:.95rem;color:var(--petrol);font-weight:600}
+  .gia .voce+.voce{margin-top:.35rem}
+  .gia .cappello{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--forest);margin-bottom:.45rem;font-weight:600}
+
+  .dove{background:#F4F8F9;border:1px solid var(--frost);border-radius:8px;
+    padding:.8rem 1rem;font-size:.9rem;color:var(--charcoal-soft);margin-bottom:1.4rem}
+  .dove b{color:var(--petrol)}
+
+  a.scelta{display:flex;gap:.9rem;align-items:center;padding:1rem 1.1rem;
+    border:1px solid var(--frost);border-radius:8px;margin-bottom:.7rem;
+    text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
+  a.scelta:hover,a.scelta:focus-visible{border-color:var(--salt-glow);transform:translateY(-1px)}
+  a.scelta:focus-visible{outline:2px solid var(--petrol);outline-offset:2px}
+  a.scelta .testo{flex:1}
+  a.scelta .testo strong{display:block;color:var(--petrol);font-size:1.02rem}
+  a.scelta .testo span{font-size:.87rem;color:var(--charcoal-soft)}
+  a.scelta .freccia{color:var(--salt-glow);font-size:1.2rem;flex-shrink:0}
+
+  .avvertenza{background:#FFF7EF;border-left:3px solid var(--salt-glow);
+    padding:.85rem 1rem;border-radius:0 8px 8px 0;font-size:.9rem;
+    color:var(--charcoal-soft);margin:1.2rem 0}
+  .avvertenza b{color:var(--petrol-dark)}
+
+  .bivio-nota{font-size:.88rem;color:var(--charcoal-soft);
+    background:var(--ivory);border-radius:8px;padding:.8rem 1rem;margin-bottom:1.2rem}
+
+  .coda{margin-top:1.8rem;padding-top:1.1rem;border-top:1px solid var(--frost);
+    font-size:.85rem;color:var(--charcoal-soft)}
+  .coda a{color:var(--salt-glow-deep)}
+  .coda p{margin-bottom:.6rem}
+  #caricamento{text-align:center;color:var(--charcoal-soft);padding:2rem 0}
+  @media (prefers-reduced-motion:reduce){a.scelta{transition:none}a.scelta:hover{transform:none}}
+</style>
+</head>
+
+<body>
+<div class="foglio">
+  <div class="marchio">
+    <img src="/images/cerchio-logo-256.png" alt="Cristian Bresadola">
+    <div class="mestiere">Naturopata &middot; Riflessologo</div>
+  </div>
+
+  <div id="caricamento">Un momento…</div>
+
+  <div id="pagina" hidden>
+    <h1 id="saluto">Prenota una seduta</h1>
+    <p id="apertura">Scegli il trattamento, poi il giorno e l'ora che ti vanno meglio.</p>
+
+    <!-- Solo per chi non e' stato riconosciuto. Non e' un errore e non lo si
+         racconta come tale: e' un'informazione, e sotto si prenota lo stesso. -->
+    <!-- Chi aveva un token che non vale piu': si dice, senza drammi, e si
+         prenota lo stesso due centimetri piu' sotto. -->
+    <div id="bivio-nota" class="bivio-nota" hidden>
+      Non ti riconosco da questo link — può essere vecchio, o copiato a metà.
+      <b>Puoi prenotare lo stesso</b>: qui sotto trovi tutto.
+    </div>
+
+    <!-- NON E' LA STESSA COSA, e dirlo uguale sarebbe una bugia comoda: «non ti
+         riconosco» dà la colpa al link della persona, quando invece è il
+         collegamento che non ha risposto. È lo stesso difetto che questo
+         sistema ha già corretto altrove: un guasto travestito da risposta
+         sicura e sbagliata. -->
+    <div id="rete-nota" class="bivio-nota" hidden>
+      Non riesco a collegarmi per riconoscerti — sarà un momento di rete.
+      <b>Puoi prenotare lo stesso</b>: il link qui sotto funziona.
+    </div>
+
+    <!-- IL BIVIO PER CHI ARRIVA SENZA LINK, cioè da «Prenota» nel menù.
+         Qui sta il conto che il piano ha misurato e accettato: chi è nuovo paga
+         un tocco in più. Lo paga perché subito dopo gli si chiedono cinque
+         tappe e tre consensi, e in quel contesto un tocco non è il suo
+         problema. Se un giorno i nuovi diventassero la maggioranza, questo
+         bivio va rovesciato. -->
+    <div id="prima-volta" hidden>
+      <h2>È la prima volta?</h2>
+      <a class="scelta" href="primo-contatto.html">
+        <span class="testo">
+          <strong>Sì, non ci siamo mai visti</strong>
+          <span>Partiamo da una scheda: mi dici cosa cerchi e ci conosciamo prima
+                di vederci. Serve una volta sola.</span>
+        </span>
+        <span class="freccia" aria-hidden="true">→</span>
+      </a>
+      <h2>Ci siamo già visti</h2>
+    </div>
+
+    <!-- Gli appuntamenti che ha gia': tutti, con giorno, ora e citta'. -->
+    <div id="gia" class="gia" hidden>
+      <div class="cappello">Ti aspetto già</div>
+      <div id="gia-elenco"></div>
+    </div>
+
+    <!-- LA RIGA DELLA VAL DI SOLE, SEMPRE E PER TUTTI. Il disegno la
+         condizionava a chi ha sede_preferita = val_di_sole: sono 2 clienti su
+         72, mentre 12 sono venuti in valle almeno una volta. Una regola così
+         avviserebbe due persone su dodici. È la verità per tutti, quindi si
+         dice a tutti. -->
+    <div class="dove">
+      In questo periodo ricevo <b>solo a Trento, il martedì</b> — Vicolo della
+      Contrada Tedesca 9. In Val di Sole le prenotazioni sono sospese: sto
+      cercando un nuovo spazio.
+    </div>
+
+    <h2 id="titolo-offerte">Cosa prenoti</h2>
+    <div id="offerte"></div>
+
+    <!-- La frase che nessun disegno aveva il coraggio di mettere prima del
+         secondo schermo. Google chiede nome e indirizzo ogni volta e non si
+         puo' precompilare (provato il 9/09/2026: ignora i parametri
+         nell'indirizzo). Dirlo prima e' l'unica difesa contro la scheda doppia
+         che costi zero righe di codice. -->
+    <div class="avvertenza">
+      Sulla pagina che si apre, Google ti chiederà <b>nome e indirizzo email</b>.
+      Usa sempre lo stesso indirizzo: è così che ti ritrovo e non ti creo una
+      scheda nuova ogni volta.
+    </div>
+
+    <div class="coda">
+      <p><b>Da qui si prenota soltanto.</b> Se devi spostare o disdire, o se non
+         trovi un orario che ti va, scrivimi: rispondo io.</p>
+      <p>
+        <a href="https://wa.me/393396383790">WhatsApp</a> &middot;
+        <a href="tel:+393396383790">339 638 3790</a> &middot;
+        <a href="mailto:info@cristianbresadola.com">info@cristianbresadola.com</a>
+      </p>
+      <p class="fine" style="margin-top:.9rem">
+        E se preferisci non passare da nessuna pagina: scrivimi
+        «va bene martedì alle 16» e per me è una prenotazione, non un errore.
+      </p>
+      <p class="fine"><a href="/">Torna al sito</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var FUNZIONE = 'https://okasxfvoyihovohlaypz.supabase.co/functions/v1/prenota-cliente';
+
+  var caricamento = document.getElementById('caricamento');
+  var pagina      = document.getElementById('pagina');
+
+  function param(nome) {
+    try { return new URLSearchParams(location.search).get(nome) || ''; }
+    catch (e) { return ''; }
+  }
+
+  // Giorno e ora in lettere, senza libreria: «martedì 13 ottobre alle 16:00».
+  function quando(iso) {
+    try {
+      var d = new Date(iso);
+      var giorno = d.toLocaleDateString('it-IT', {
+        weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Rome' });
+      var ora = d.toLocaleTimeString('it-IT', {
+        hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
+      return giorno + ' alle ' + ora;
+    } catch (e) { return ''; }
+  }
+
+  function testo(el, t) { el.textContent = t; }
+
+  function disegna(d) {
+    // IL SALUTO. Solo il nome di battesimo: e' gia' il massimo che questa
+    // pagina dice di una persona.
+    if (d.riconosciuto && d.nome) {
+      testo(document.getElementById('saluto'), 'Ciao ' + d.nome);
+      testo(document.getElementById('apertura'),
+        'Bentornata o bentornato. Scegli il trattamento e poi il giorno che ti va: '
+        + 'non devi ricompilare niente.');
+    } else if (eGuasto) {
+      // La lettura non e' riuscita: non si dice «non ti riconosco», perche' non
+      // e' vero e la colpa non e' sua.
+      document.getElementById('rete-nota').hidden = false;
+      document.getElementById('prima-volta').hidden = false;
+    } else if (param('t')) {
+      // Aveva un token e non e' stato riconosciuto: si dice, senza drammi, e
+      // sotto si prenota lo stesso.
+      document.getElementById('bivio-nota').hidden = false;
+      document.getElementById('prima-volta').hidden = false;
+    } else {
+      // Nessun token: arriva dal menù del sito. Va offerta anche la porta dei
+      // nuovi, altrimenti chi non ci è mai stato prenota una seduta senza aver
+      // mai detto chi è né dato un consenso.
+      document.getElementById('prima-volta').hidden = false;
+    }
+
+    // Gli appuntamenti gia' presi.
+    var futuri = Array.isArray(d.appuntamenti) ? d.appuntamenti : [];
+    if (futuri.length) {
+      var box = document.getElementById('gia-elenco');
+      box.innerHTML = '';
+      futuri.forEach(function (a) {
+        var r = document.createElement('div');
+        r.className = 'voce';
+        r.textContent = quando(a.data_ora) + (a.citta ? ' · ' + a.citta : '');
+        box.appendChild(r);
+      });
+      document.getElementById('gia').hidden = false;
+    }
+
+    // I bottoni: uno per trattamento, verso la pagina di Google.
+    // «Ci siamo già visti» fa già da titolo a questi bottoni: due intestazioni
+    // di fila direbbero la stessa cosa due volte.
+    if (!document.getElementById('prima-volta').hidden) {
+      document.getElementById('titolo-offerte').hidden = true;
+    }
+    var dove = document.getElementById('offerte');
+    dove.innerHTML = '';
+    (d.offerte || []).forEach(function (o) {
+      var a = document.createElement('a');
+      a.className = 'scelta';
+      a.href = o.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      var t = document.createElement('span');
+      t.className = 'testo';
+      var s = document.createElement('strong');
+      s.textContent = o.etichetta || o.chiave;
+      var p = document.createElement('span');
+      p.textContent = (o.durata_minuti ? o.durata_minuti + ' minuti' : '')
+        + (o.descrizione ? ' · ' + o.descrizione : '');
+      t.appendChild(s); t.appendChild(p);
+      var f = document.createElement('span');
+      f.className = 'freccia'; f.textContent = '→'; f.setAttribute('aria-hidden', 'true');
+      a.appendChild(t); a.appendChild(f);
+      dove.appendChild(a);
+    });
+
+    caricamento.hidden = true;
+    pagina.hidden = false;
+
+    // IL TOKEN ESCE DALLA BARRA DELL'INDIRIZZO. Resta nella chat da cui e'
+    // arrivato, ma non piu' sullo schermo: schermate condivise, telefoni
+    // prestati, cronologie. La pagina resta funzionante perche' i dati sono
+    // gia' stati letti.
+    if (param('t') && window.history && history.replaceState) {
+      try { history.replaceState({}, '', location.pathname); } catch (e) {}
+    }
+  }
+
+  // SE LA LETTURA NON RIESCE, LA PAGINA PRENOTA LO STESSO. La rete puo'
+  // cadere; la persona che vuole prenotare no. Si mostrano le due strade
+  // possibili con gli indirizzi scritti qui, invece di una schermata di errore.
+  var eGuasto = false;
+  function ripiego() {
+    eGuasto = true;
+    disegna({ riconosciuto: false, offerte: [{
+      chiave: 'riflessologia',
+      etichetta: 'Prenota una seduta',
+      descrizione: 'a Trento, il martedì',
+      durata_minuti: 60,
+      url: 'https://calendar.app.google/TfHZvNmBCscrPou58'
+    }] });
+  }
+
+  var t = param('t');
+  fetch(FUNZIONE + (t ? '?t=' + encodeURIComponent(t) : ''), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error(r.status)); })
+    .then(function (d) { if (d && d.ok) { disegna(d); } else { ripiego(); } })
+    .catch(function () { ripiego(); });
+})();
+</script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
+</body>
+</html>
