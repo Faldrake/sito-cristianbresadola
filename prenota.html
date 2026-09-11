@@ -112,12 +112,28 @@
   .coda a{color:var(--salt-glow-deep)}
   .coda p{margin-bottom:.6rem}
   #caricamento{text-align:center;color:var(--charcoal-soft);padding:2rem 0}
+
+  /* LE IMMAGINI (11/09/2026). Solo mani, mai volti: su una pagina che dice
+     «prenota con me» la faccia di un'altra persona sarebbe fuorviante, e quella
+     di chi riceve il trattamento non la si mette dove lei non sa di esserci.
+     Sono decorative - il testo dice gia' tutto - quindi alt vuoto: chi usa un
+     lettore di schermo non deve ascoltare la descrizione di una foto
+     d'atmosfera prima di arrivare al bottone. */
+  .foglio{overflow:hidden}
+  .copertina{margin:-2rem -1.6rem 1.6rem;aspect-ratio:16/7;background:var(--frost)}
+  .copertina img{width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block}
+  a.scelta .foto{width:60px;height:60px;border-radius:8px;overflow:hidden;
+    flex-shrink:0;background:var(--frost)}
+  a.scelta .foto img{width:100%;height:100%;object-fit:cover;display:block}
   @media (prefers-reduced-motion:reduce){a.scelta{transition:none}a.scelta:hover{transform:none}}
 </style>
 </head>
 
 <body>
 <div class="foglio">
+  <div class="copertina">
+    <img src="/images/formazione/apertura-poster.webp" alt="" width="1280" height="720" decoding="async">
+  </div>
   <div class="marchio">
     <img src="/images/cerchio-logo-256.png" alt="Cristian Bresadola">
     <div class="mestiere">Naturopata &middot; Riflessologo</div>
@@ -220,6 +236,14 @@
   'use strict';
   var FUNZIONE = 'https://okasxfvoyihovohlaypz.supabase.co/functions/v1/prenota-cliente';
 
+  // Una foto per trattamento, scelta a mano fra quelle dove si vedono SOLO le
+  // mani. Un trattamento senza foto qui semplicemente non ne ha: meglio un
+  // bottone senza immagine che un'immagine sbagliata.
+  var FOTO = {
+    riflessologia:      '/images/formazione/riflessologia.webp',
+    massaggio_olistico: '/images/formazione/breuss.webp'
+  };
+
   var caricamento = document.getElementById('caricamento');
   var pagina      = document.getElementById('pagina');
 
@@ -295,6 +319,17 @@
       a.href = o.url;
       a.target = '_blank';
       a.rel = 'noopener';
+      if (FOTO[o.chiave]) {
+        var fs = document.createElement('span');
+        fs.className = 'foto';
+        var im = document.createElement('img');
+        im.src = FOTO[o.chiave];
+        im.alt = '';
+        im.loading = 'lazy';
+        im.decoding = 'async';
+        fs.appendChild(im);
+        a.appendChild(fs);
+      }
       var t = document.createElement('span');
       t.className = 'testo';
       var s = document.createElement('strong');
