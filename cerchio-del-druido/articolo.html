@@ -110,6 +110,28 @@
   .articolo-condividi [data-social="copia"] i{background:#D4A55B;color:#0A1B1E;}
   .articolo-condividi [data-social="nativo"] i{background:#0A1B1E;}
   .articolo-condividi [hidden]{display:none;}
+  /* L'invito alla miscela (11/09/2026): compare solo sotto gli articoli con
+     occhiello «Fiori di Bach». Stessa carta e stesso oro della pagina.
+     L'anello del fuoco del bottone pero' e' petrolio, non oro: sul bianco del
+     riquadro l'oro arrivava a 2,25:1 e da tastiera quasi non si vedeva; il
+     petrolio fa 12,2:1, e l'offset lo stacca dal bottone, che e' petrolio. */
+  .articolo-invito{
+    margin:44px 0 0 0;padding:22px 24px;border-radius:14px;background:#fff;
+    border:1px solid rgba(212,165,91,0.45);box-shadow:0 10px 30px rgba(27,58,62,0.08);
+  }
+  .articolo-invito[hidden]{display:none;}
+  .articolo-corpo__inner .articolo-invito__titolo{
+    font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#D4A55B;margin:0 0 10px 0;
+  }
+  .articolo-corpo__inner .articolo-invito p.articolo-invito__testo{
+    font-size:16px;line-height:1.65;margin:0 0 16px 0;
+  }
+  .articolo-invito__link{
+    display:inline-block;padding:11px 20px;border-radius:8px;background:#1B3A3E;color:#F5EFE2;
+    font-size:13px;font-weight:600;letter-spacing:0.04em;text-decoration:none;
+  }
+  .articolo-invito__link:hover{background:#12282B;}
+  .articolo-invito__link:focus-visible{outline:2px solid #1B3A3E;outline-offset:2px;}
   .articolo-firma{
     margin-top:48px;padding-top:24px;border-top:1px solid rgba(212,165,91,0.35);
     font-family:var(--display);font-style:italic;color:rgba(27,58,62,0.6);
@@ -202,6 +224,17 @@
     <div class="articolo-corpo__inner">
       <div id="art-corpo"></div>
       <div class="articolo-galleria" id="art-galleria" hidden></div>
+      <!-- L'INVITO ALLA MISCELA (11/09/2026). Il testo sta qui, scritto nella
+           pagina, e non nel database: il corpo dell'articolo e' reso con
+           textContent, quindi un link scritto nel testo non diventerebbe mai
+           cliccabile, ed e' giusto cosi'. Un solo riquadro vale per tutti gli
+           articoli sui fiori, presenti e futuri; lo script lo accende solo
+           quando l'occhiello e' «Fiori di Bach». -->
+      <aside class="articolo-invito" id="art-invito-miscela" aria-labelledby="art-invito-miscela-titolo" hidden>
+        <p class="articolo-invito__titolo" id="art-invito-miscela-titolo">La tua miscela</p>
+        <p class="articolo-invito__testo">Vuoi una miscela di fiori di Bach composta per te? Mi bastano nome, cognome e data di nascita, e con la miscela ricevi un documento scritto per te.</p>
+        <a class="articolo-invito__link" href="../miscela-fiori-di-bach.html">Chiedi la tua miscela &rarr;</a>
+      </aside>
       <div class="articolo-condividi" id="art-condividi">
         <p class="articolo-condividi__titolo">Condividi questo articolo</p>
         <ul class="articolo-condividi__lista">
@@ -304,6 +337,13 @@
       document.head.appendChild(canon);
 
       if (a.occhiello) document.getElementById('art-occhiello').textContent = a.occhiello;
+      // L'invito alla miscela si accende solo sotto gli articoli sui fiori.
+      // L'occhiello si scrive a mano in Arkana (la lista e' solo un
+      // suggerimento): si confronta senza badare a maiuscole e spazi. Nessun
+      // dato dell'articolo entra nel riquadro, che e' tutto scritto qui sopra.
+      if (typeof a.occhiello === 'string' && a.occhiello.trim().toLowerCase() === 'fiori di bach') {
+        document.getElementById('art-invito-miscela').hidden = false;
+      }
       document.getElementById('art-titolo').textContent = a.titolo;
       const quando = a.pubblicato_at ? new Date(a.pubblicato_at) : null;
       // Europe/Rome esplicito: la data di pubblicazione e' quella dello

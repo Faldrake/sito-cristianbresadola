@@ -95,7 +95,7 @@
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Riflessologia plantare" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio olistico" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Idroterapia e fangoterapia" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Floriterapia di Bach" } },
+    { "@type": "Offer", "url": "https://cristianbresadola.com/miscela-fiori-di-bach.html", "itemOffered": { "@type": "Service", "name": "Floriterapia di Bach" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fitoterapia" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lettura della Croce Maya" } }
   ]
@@ -241,7 +241,7 @@
       "name": "Vivo lontano da Trento, posso comunque iniziare un percorso?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sì. Naturopatia, floriterapia, fitoterapia e Croce Maya si possono fare anche interamente online. Solo riflessologia plantare e massaggio olistico richiedono la presenza in studio per la natura del lavoro corporeo."
+        "text": "Sì. Naturopatia, floriterapia, fitoterapia e Croce Maya si possono fare anche interamente online. Anche la miscela personalizzata di fiori di Bach si può chiedere a distanza: mi bastano nome, cognome e data di nascita; la ritiri in studio a Trento il martedì, oppure ci accordiamo. Solo riflessologia plantare e massaggio olistico richiedono la presenza in studio per la natura del lavoro corporeo."
       }
     }
   ]
@@ -463,6 +463,41 @@
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(18, 40, 43, 0.18);
   }
+
+  /* L'invito alla miscela posato sulla card Floriterapia (11/09/2026): un link
+     suo, fratello della card e non figlio, per la ragione scritta accanto alla
+     card. Chiaro sul fondo scuro della foto.
+     L'anello del fuoco e' doppio, petrolio dentro e avorio fuori. L'angolo in
+     alto a destra e' la zona piu' chiara della card (li' il velo e' leggero e
+     la foto ha il fondo chiaro), e un anello tutto avorio ci si perdeva: su
+     meta' del giro stava sotto il 3:1. Il petrolio si stacca dal pill avorio,
+     l'avorio dalla foto dove e' scura: si vede su qualunque fondo. */
+  .invito-miscela {
+    position: absolute; top: 1.6rem; right: 1.6rem; z-index: 2;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.45rem 0.9rem; border-radius: 999px;
+    background: rgba(238, 243, 246, 0.94); color: var(--petrol, #1B3A3E);
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em;
+    text-decoration: none; transition: background 0.3s ease, color 0.3s ease, transform 0.4s ease;
+  }
+  .invito-miscela:hover { background: var(--salt-glow, #E59856); color: var(--petrol-dark, #12282B); }
+  .invito-miscela:focus-visible {
+    outline: 2px solid var(--petrol-dark, #12282B); outline-offset: 0;
+    box-shadow: 0 0 0 4px var(--ivory, #EEF3F6);
+  }
+  /* Il contenitore della card e dell'invito. Senza queste regole, quando il
+     puntatore passava dalla card all'invito la card perdeva :hover proprio
+     mentre si stava per cliccare: ricadeva di 3 px, perdeva l'ombra e la foto
+     tornava dallo zoom, a ogni passaggio uno sfarfallio. Qui la card resta
+     «accesa» finche' il puntatore e' nel contenitore, e l'invito sale e scende
+     con lei (per questo anima anche transform, con la durata della card). La
+     classe group sul contenitore fa lo stesso per lo zoom della foto e per la
+     freccia di «Scopri di piu'» (classi group-hover del Tailwind precompilato). */
+  .card-invito:hover > .discipline-card {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(18, 40, 43, 0.18);
+  }
+  .card-invito:hover .invito-miscela { transform: translateY(-3px); }
 
   /* Maya section glow */
   .maya-glow {
@@ -1098,27 +1133,38 @@
         </div>
       </a>
 
-      <!-- 04 FLORITERAPIA -->
-      <a href="consulenze.html#floriterapia" class="discipline-card relative aspect-square overflow-hidden group block">
-        <img src="./images/floriterapia-fiori-quadrata.webp"
-             alt="Fiori di campo su fondo chiaro"
-             width="1800" height="1800"
-             class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-             loading="lazy" decoding="async">
-        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.6) 50%, rgba(18,40,43,0.3) 100%);"></div>
-        <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
-          <div class="flex items-start justify-between">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <circle cx="12" cy="12" r="3"/><path d="M12 6c-2-2-4-2-4 0s2 2 4 2 4 0 4-2-2-2-4 0zM12 18c-2 2-4 2-4 0s2-2 4-2 4 0 4 2-2 2-4 0zM6 12c-2-2-2-4 0-4s2 2 2 4 0 4-2 4-2-2 0-4zM18 12c2-2 2-4 0-4s-2 2-2 4 0 4 2 4 2-2 0-4z"/>
-            </svg>
+      <!-- 04 FLORITERAPIA
+           L'invito alla richiesta della miscela (11/09/2026) sta FUORI dalla
+           card, non dentro: la card e' gia' tutta un link verso la sezione di
+           Consulenze, e un <a> dentro un <a> e' HTML non valido, che i browser
+           «riparano» spezzando la card. Qui la card resta identica; il
+           contenitore e' della stessa misura della card, quindi la griglia non
+           cambia, e l'invito si posa nell'angolo in alto a destra, che e' vuoto.
+           Le classi group e card-invito tengono card e invito come una cosa
+           sola al passaggio del puntatore (vedi .card-invito nello stile). -->
+      <div class="relative group card-invito">
+        <a href="consulenze.html#floriterapia" class="discipline-card relative aspect-square overflow-hidden group block">
+          <img src="./images/floriterapia-fiori-quadrata.webp"
+               alt="Fiori di campo su fondo chiaro"
+               width="1800" height="1800"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+               loading="lazy" decoding="async">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(18,40,43,0.92) 0%, rgba(18,40,43,0.6) 50%, rgba(18,40,43,0.3) 100%);"></div>
+          <div class="relative h-full p-8 flex flex-col justify-between text-ivory">
+            <div class="flex items-start justify-between">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="12" cy="12" r="3"/><path d="M12 6c-2-2-4-2-4 0s2 2 4 2 4 0 4-2-2-2-4 0zM12 18c-2 2-4 2-4 0s2-2 4-2 4 0 4 2-2 2-4 0zM6 12c-2-2-2-4 0-4s2 2 2 4 0 4-2 4-2-2 0-4zM18 12c2-2 2-4 0-4s-2 2-2 4 0 4 2 4 2-2 0-4z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-2xl mb-3">Floriterapia</h3>
+              <p class="text-sm opacity-90 leading-relaxed mb-4">I 38 Fiori di Bach. Una miscela personalizzata composta dopo l'ascolto del tuo momento e delle dinamiche che ti porti dietro.</p>
+              <span class="inline-flex items-center gap-2 text-xs font-medium">Scopri di più <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:translate-x-1 transition"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
           </div>
-          <div>
-            <h3 class="font-display text-2xl mb-3">Floriterapia</h3>
-            <p class="text-sm opacity-90 leading-relaxed mb-4">I 38 Fiori di Bach. Una miscela personalizzata composta dopo l'ascolto del tuo momento e delle dinamiche che ti porti dietro.</p>
-            <span class="inline-flex items-center gap-2 text-xs font-medium">Scopri di più <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:translate-x-1 transition"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-          </div>
-        </div>
-      </a>
+        </a>
+        <a href="miscela-fiori-di-bach.html" class="invito-miscela">Chiedi la tua miscela <span aria-hidden="true">→</span></a>
+      </div>
 
       <!-- 05 FITOTERAPIA -->
       <a href="consulenze.html#fitoterapia" class="discipline-card relative aspect-square overflow-hidden group block">
@@ -2077,9 +2123,14 @@
         <summary>Da quale disciplina è meglio iniziare?</summary>
         <div class="faq-answer">Non c'è una risposta uguale per tutti. Nel primo colloquio guardiamo insieme cosa ti serve davvero: spesso la strada giusta emerge da sé, a partire dal momento che stai attraversando. Anche se hai un'idea iniziale, possiamo verificarla insieme.</div>
       </details>
+      <!-- 11/09/2026: la frase sulla miscela dice anche il ritiro in studio,
+           perche' la legge proprio chi vive lontano, e non deve pensare a una
+           spedizione che non promettiamo (come in dove-ricevo.html). Il testo e'
+           identico nel JSON-LD FAQPage in testa alla pagina: chi cambia l'uno
+           cambi anche l'altro. -->
       <details class="faq-item">
         <summary>Vivo lontano da Trento, posso comunque iniziare un percorso?</summary>
-        <div class="faq-answer">Sì. <strong>Naturopatia, floriterapia, fitoterapia e Croce Maya</strong> si possono fare anche interamente online. Solo riflessologia plantare e massaggio olistico richiedono la presenza in studio per la natura del lavoro corporeo.</div>
+        <div class="faq-answer">Sì. <strong>Naturopatia, floriterapia, fitoterapia e Croce Maya</strong> si possono fare anche interamente online. Anche la <a href="miscela-fiori-di-bach.html" class="underline">miscela personalizzata di fiori di Bach</a> si può chiedere a distanza: mi bastano nome, cognome e data di nascita; la ritiri in studio a Trento il martedì, oppure ci accordiamo. Solo riflessologia plantare e massaggio olistico richiedono la presenza in studio per la natura del lavoro corporeo.</div>
       </details>
     </div>
   </div>

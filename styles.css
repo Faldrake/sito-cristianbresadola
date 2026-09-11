@@ -32,6 +32,16 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* Chi ha chiesto al sistema meno movimento non vede la pagina scorrere da
+   sola: ne' sui link alle ancore, ne' quando uno script chiama scrollTo con
+   behavior 'auto', che eredita proprio questo valore. Senza questa regola il
+   modulo della miscela (11/09/2026), che per queste persone contava su 'auto'
+   per un salto istantaneo, scorreva animato lo stesso. Attenzione: una pagina
+   che ripete html { scroll-behavior: smooth } nel suo <style>, caricato dopo
+   questo file, scavalca anche questa regola (oggi index, chi-sono, bussola). */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
 body {
   font-family: var(--body);
