@@ -160,6 +160,13 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
   font-family:var(--body); font-weight: 500; font-size: 0.75rem;
   letter-spacing: 0.22em; text-transform: uppercase;
 }
+/* La barra in alto: il ritorno a casa sempre, la Croce Maya solo dove c'e'
+   spazio (vedi il commento sopra la nav). Gemella di miscela-fiori-di-bach. */
+.nav-ritorni { display: flex; align-items: center; gap: 1.25rem; flex-shrink: 0; }
+.nav-ritorni a { font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none; white-space: nowrap; }
+.nav-ritorni a:hover { text-decoration: underline; }
+.nav-ritorni a:focus-visible { outline: 2px solid var(--petrol, #1B3A3E); outline-offset: 3px; border-radius: 4px; }
+@media (max-width: 560px) { .nav-secondario { display: none; } }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
@@ -176,7 +183,14 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         <div style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);">Naturopata · Riflessologo</div>
       </div>
     </a>
-    <a href="croce-maya.html" style="font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none;">← Torna a Croce Maya</a>
+    <!-- IL RITORNO A CASA (12/09/2026). Cristian: «metti il ritorno alla home
+         anche nella pagina della Croce Maya». Stessa soluzione della pagina
+         della miscela: «← Torna al sito» sempre; «Croce Maya» accanto sullo
+         schermo largo, nascosto sul telefono per non affollare la barra. -->
+    <div class="nav-ritorni">
+      <a href="croce-maya.html" class="nav-secondario">La Croce Maya</a>
+      <a href="index.html">← Torna al sito</a>
+    </div>
   </div>
 </nav>
 
