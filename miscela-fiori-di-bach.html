@@ -267,6 +267,13 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
 @media (prefers-reduced-motion: reduce) {
   .wizard-step.is-active { animation: none; }
 }
+/* La barra in alto: il ritorno a casa sempre, i Fiori di Bach solo dove c'e'
+   spazio (vedi il commento sopra la nav). */
+.nav-ritorni { display: flex; align-items: center; gap: 1.25rem; flex-shrink: 0; }
+.nav-ritorni a { font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none; white-space: nowrap; }
+.nav-ritorni a:hover { text-decoration: underline; }
+.nav-ritorni a:focus-visible { outline: 2px solid var(--petrol, #1B3A3E); outline-offset: 3px; border-radius: 4px; }
+@media (max-width: 560px) { .nav-secondario { display: none; } }
 </style>
   <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
@@ -309,7 +316,15 @@ textarea.form-input { resize: vertical; min-height: 6rem; font-family: inherit; 
         <div style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--charcoal-soft, #4A4A4A);">Naturopata · Riflessologo</div>
       </div>
     </a>
-    <a href="consulenze.html#floriterapia" style="font-size: 0.85rem; color: var(--petrol, #1B3A3E); text-decoration: none;">← Torna ai Fiori di Bach</a>
+    <!-- IL RITORNO A CASA (12/09/2026). Cristian: «metti il ritorno alla home
+         anche nella pagina della miscela». Il logo ci portava gia', ma non si
+         capiva: ora c'e' scritto, come nel primo contatto. Il link ai Fiori di
+         Bach resta accanto sullo schermo largo; sul telefono si nasconde per
+         non affollare la barra, e i Fiori di Bach restano linkati nel passo 1. -->
+    <div class="nav-ritorni">
+      <a href="consulenze.html#floriterapia" class="nav-secondario">I fiori di Bach</a>
+      <a href="index.html">← Torna al sito</a>
+    </div>
   </div>
 </nav>
 
