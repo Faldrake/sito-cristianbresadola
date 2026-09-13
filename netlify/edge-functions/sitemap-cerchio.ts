@@ -11,7 +11,8 @@
 // Questa funzione scrive la sitemap a ogni richiesta, leggendo il database
 // con la chiave pubblicabile (la stessa delle pagine: l'anonimo vede solo il
 // pubblicato). Dentro: la vetrina, col lastmod dell'articolo toccato per
-// ultimo, e ogni articolo, con l'indirizzo nella stessa forma del canonical
+// ultimo o del suo file, se e' piu' recente (vedi VETRINA_FILE), e ogni
+// articolo, con l'indirizzo nella stessa forma del canonical
 // che scrive cerchio-og.ts e il lastmod preso da updated_at. robots.txt la
 // dichiara accanto a sitemap.xml.
 //
@@ -27,6 +28,16 @@ const SITO = "https://cristianbresadola.com";
 // alla vetrina non si elenca.
 const SLUG_VALIDO = /^[a-z0-9][a-z0-9-]{0,118}$/;
 
+// L'ULTIMA MODIFICA DEL FILE DELLA VETRINA, cerchio-del-druido/index.html
+// (revisione di A8, 13/09/2026). La vetrina non cambia solo quando esce un
+// articolo: cambiano anche la sua descrizione, le schede statiche, le
+// categorie, e quello lo sa solo git. Questa data la riscrive
+// strumenti/aggiorna-sitemap.py dall'ultimo commit del file, come fa per le
+// pagine di sitemap.xml e con la stessa regola: mai all'indietro. Non va
+// toccata a mano; la riga deve restare in questa forma, perche' lo script la
+// cerca cosi'.
+const VETRINA_FILE = "2026-09-13";
+
 type Voce = { slug: string | null; pubblicato_at: string | null; updated_at: string | null };
 
 function xml(s: string): string {
@@ -40,6 +51,15 @@ function xml(s: string): string {
 function quando(v: Voce): string {
   const d = new Date(v.updated_at || v.pubblicato_at || "");
   return isNaN(d.getTime()) ? "" : d.toISOString();
+}
+
+// La piu' recente fra due date, confrontate come date e non come testo: una
+// e' un giorno (AAAA-MM-GG), l'altra un istante. Quella illeggibile non conta.
+function piuRecente(a: string, b: string): string {
+  const ta = new Date(a).getTime(), tb = new Date(b).getTime();
+  if (isNaN(ta)) return isNaN(tb) ? "" : b;
+  if (isNaN(tb)) return a;
+  return tb > ta ? b : a;
 }
 
 function nonAdesso(perche: string): Response {
@@ -81,10 +101,14 @@ export default async (): Promise<Response> => {
   }
 
   const articoli = righe.filter((v) => typeof v.slug === "string" && SLUG_VALIDO.test(v.slug));
-  // La vetrina cambia quando esce o si corregge un articolo: il suo lastmod e'
-  // quello dell'articolo toccato per ultimo. Le date ISO in UTC si ordinano
-  // come testo.
-  const ultima = articoli.map(quando).filter(Boolean).sort().pop() || "";
+  // La vetrina cambia quando esce o si corregge un articolo, e quando si
+  // tocca il suo file: il suo lastmod e' il piu' recente fra l'articolo
+  // toccato per ultimo e VETRINA_FILE. Contando solo gli articoli, il 13/09
+  // tornava all'11/09, due giorni indietro rispetto a sitemap.xml, e nessuna
+  // modifica alla vetrina l'avrebbe piu' spostato. Fra gli articoli le date
+  // ISO in UTC si ordinano come testo.
+  const ultimoArticolo = articoli.map(quando).filter(Boolean).sort().pop() || "";
+  const ultima = piuRecente(ultimoArticolo, VETRINA_FILE);
   const voci = [
     url(SITO + "/cerchio-del-druido/", ultima, "weekly", "0.9"),
     ...articoli.map((v) => url(

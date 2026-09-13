@@ -45,6 +45,14 @@ DUE REGOLE, e sono il motivo per cui questo script e' corto:
     netlify/edge-functions/sitemap-cerchio.ts scrive a ogni richiesta, ed e'
     dichiarata in robots.txt. Qui non vanno rimessi.
 
+    Resta qui UNA cosa sola del Cerchio (revisione di A8, 13/09/2026): la data
+    dell'ultimo commit di cerchio-del-druido/index.html. La funzione sa quando
+    e' uscito l'ultimo articolo, ma non quando si e' toccata la vetrina (la
+    descrizione, le schede statiche, le categorie): senza questa data il
+    lastmod della vetrina tornava indietro di due giorni e poi non si muoveva
+    piu'. Lo script la scrive nella costante VETRINA_FILE della funzione, con
+    la regola 1: mai all'indietro.
+
 Quando lanciarlo: prima di pubblicare, se sono state toccate delle pagine. Vedi
 la sezione «Il push NON pubblica» del README.
 
@@ -65,6 +73,11 @@ MAPPA = {
 }
 
 SITEMAP = 'sitemap.xml'
+
+# La data del file della vetrina del Cerchio, che vive nella funzione sul bordo.
+FUNZIONE_CERCHIO = 'netlify/edge-functions/sitemap-cerchio.ts'
+FILE_VETRINA = 'cerchio-del-druido/index.html'
+COSTANTE_VETRINA = re.compile(r'^const VETRINA_FILE = "(\d{4}-\d{2}-\d{2})";', re.M)
 
 # Il blocco delle pagine del Kin del Cuore: comanda la cartella kin/ su disco.
 CARTELLA_KIN = 'kin'
@@ -117,6 +130,23 @@ def aggiorna_kin(testo):
     else:
         nuovo = testo.replace('</urlset>', blocco + '\n</urlset>')
     return nuovo, len(voci)
+
+
+def aggiorna_vetrina_cerchio():
+    """La costante VETRINA_FILE della funzione. Torna (testo, prima, dopo), o None se resta com'e'."""
+    if not os.path.exists(FUNZIONE_CERCHIO):
+        print('  ATTENZIONE  %s: non lo trovo, data della vetrina del Cerchio lasciata com\'era' % FUNZIONE_CERCHIO)
+        return None
+    testo = io.open(FUNZIONE_CERCHIO, encoding='utf-8', newline='').read()
+    m = COSTANTE_VETRINA.search(testo)
+    if not m:
+        print('  ATTENZIONE  %s: non trovo la riga const VETRINA_FILE = "AAAA-MM-GG", data della vetrina lasciata com\'era' % FUNZIONE_CERCHIO)
+        return None
+    vera = ultimo_commit(FILE_VETRINA)
+    scritta = m.group(1)
+    if not vera or vera <= scritta:
+        return None     # regola 1: mai all'indietro
+    return testo[:m.start(1)] + vera + testo[m.end(1):], scritta, vera
 
 
 def ultimo_commit(percorso):
@@ -182,6 +212,11 @@ def main():
     nuovo, voci_kin = aggiorna_kin(nuovo)
     print('Pagine del Kin del Cuore nel blocco dinamico: %d' % voci_kin)
 
+    # La vetrina del Cerchio: la sua data sta nella funzione sul bordo.
+    vetrina = aggiorna_vetrina_cerchio()
+    if vetrina:
+        cambi.append((FILE_VETRINA + ' (in sitemap-cerchio.ts)', vetrina[1], vetrina[2]))
+
     if not cambi and nuovo == testo:
         print('Tutte le date sono gia\' allineate e il blocco Kin non cambia. Niente da fare.')
         return 0
@@ -196,10 +231,16 @@ def main():
         print('\nNiente e\' stato scritto. Rilancia con --scrivi per applicare.')
         return 0
 
-    io.open(SITEMAP, 'w', encoding='utf-8', newline='').write(nuovo)
+    scritti = []
+    if nuovo != testo:
+        io.open(SITEMAP, 'w', encoding='utf-8', newline='').write(nuovo)
+        scritti.append(SITEMAP)
+    if vetrina:
+        io.open(FUNZIONE_CERCHIO, 'w', encoding='utf-8', newline='').write(vetrina[0])
+        scritti.append(FUNZIONE_CERCHIO)
     # Il vecchio messaggio diceva «il push NON pubblica»: e' superato. Il
     # push su main pubblica il sito, quindi il sitemap va online col push.
-    print('\n%s aggiornato. Resta il commit: il push su main pubblica il sito.' % SITEMAP)
+    print('\n%s aggiornato. Resta il commit: il push su main pubblica il sito.' % ' e '.join(scritti))
     return 0
 
 

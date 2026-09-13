@@ -642,6 +642,15 @@
   const SB = 'https://okasxfvoyihovohlaypz.supabase.co';
   const CHIAVE = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
 
+  // Svuota e riempie (revisione di A8, 13/09/2026). Element.replaceChildren
+  // farebbe lo stesso, ma manca in Safari e iOS prima della 14, in Chrome
+  // prima della 86 e in Firefox prima della 78: li' le schede dal database
+  // non comparivano piu'. Resta una sostituzione: niente schede doppie.
+  const sostituisci = function(el, figli){
+    el.textContent = '';
+    figli.forEach(function(f){ el.appendChild(f); });
+  };
+
   // Lo stesso slug della barra delle categorie: minuscole e trattini.
   const slugCat = function(s){
     return String(s || '').toLowerCase()
@@ -699,7 +708,7 @@
       if (!griglia || !contenitore) return;
       if (articoli.length === 0) {
         // Il database dice che non ce ne sono: via anche quelle del bordo.
-        contenitore.replaceChildren();
+        sostituisci(contenitore, []);
         // Una categoria senza articoli, ne' dal database ne' fra le card
         // statiche: senza questa riga la griglia resterebbe vuota. Niente
         // date promesse, perche' i segnaposto datati erano gia' scaduti.
@@ -771,7 +780,7 @@
       // In testa alla griglia, dal piu' recente: le statiche restano dopo,
       // perche' il contenitore sta prima di loro. Si SOSTITUISCE quello che
       // ha scritto il bordo, non ci si aggiunge.
-      contenitore.replaceChildren(...schede);
+      sostituisci(contenitore, schede);
     })
     .catch(function(){
       // Il database tace: la pagina statica basta a se stessa, e se il

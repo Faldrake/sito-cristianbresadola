@@ -242,7 +242,10 @@
         <p class="articolo-invito__testo">Vuoi una miscela di fiori di Bach composta per te? Mi bastano nome, cognome e data di nascita, e con la miscela ricevi un documento scritto per te.</p>
         <a class="articolo-invito__link" href="../miscela-fiori-di-bach.html">Chiedi la tua miscela &rarr;</a>
       </aside>
-      <div class="articolo-condividi" id="art-condividi">
+      <!-- Il blocco nasce chiuso e lo apre lo script solo dopo aver collegato
+           i tasti (revisione di A8, 13/09/2026): chi non esegue il JavaScript
+           non deve vedere tasti che non portano da nessuna parte. -->
+      <div class="articolo-condividi" id="art-condividi" hidden>
         <p class="articolo-condividi__titolo">Condividi questo articolo</p>
         <ul class="articolo-condividi__lista">
           <li hidden id="art-share-nativo-li"><button type="button" data-social="nativo" id="art-share-nativo"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></i>Condividi</button></li>
@@ -297,6 +300,16 @@
 
   const attesa = document.getElementById('articolo-attesa');
   const articolo = document.getElementById('articolo');
+  // Svuota e riempie (revisione di A8, 13/09/2026). Element.replaceChildren
+  // farebbe lo stesso, ma manca in Safari e iOS prima della 14 (i vecchi iPad
+  // fermi a iOS 12), in Chrome prima della 86 e in Firefox prima della 78: li'
+  // lo script si fermava a meta', senza galleria e senza condivisione, e nel
+  // ripiego la pagina restava su «Sto aprendo l'articolo...». Resta sempre una
+  // sostituzione, mai un'aggiunta: niente paragrafi doppi.
+  const sostituisci = (el, figli) => {
+    el.textContent = '';
+    figli.forEach((f) => el.appendChild(f));
+  };
   // Il messaggio al posto dell'articolo, senza toccare i meta robots.
   const avviso = (msg) => {
     const p = document.createElement('p');
@@ -305,7 +318,7 @@
     a.href = './';
     a.className = 'articolo-ritorno';
     a.textContent = '← Torna al Cerchio del Druido';
-    attesa.replaceChildren(p, a);
+    sostituisci(attesa, [p, a]);
     attesa.hidden = false;
     articolo.hidden = true;
   };
@@ -329,6 +342,56 @@
     nonTrovato('Questo indirizzo non porta a nessun articolo.');
     return;
   }
+
+  // I pulsanti di condivisione: link puri verso le pagine ufficiali di
+  // condivisione, con l'indirizzo canonico (l'anteprima la fa la edge
+  // function cerchio-og). Instagram e Threads non hanno una pagina di
+  // condivisione per link: Instagram copia il link e apre l'app (si
+  // incolla in una storia o nella bio), Threads apre la composizione.
+  // IN UNA FUNZIONE (revisione di A8, 13/09/2026): da quando il bordo apre
+  // l'articolo nell'HTML, il blocco compariva subito ma i tasti restavano
+  // «#» finche' non arrivava la lettura del browser, e per sempre se quella
+  // non riusciva. L'indirizzo viene dallo slug, quindi basta il titolo: qui
+  // sotto quello dell'h1 scritto dal bordo, subito, e poi quello del
+  // database. I gestori sono onclick e non addEventListener: la funzione
+  // gira due volte, e il secondo giro sostituisce il primo, non lo raddoppia.
+  const collegaCondivisione = (titolo) => {
+    const urlArt = 'https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=' + encodeURIComponent(slug);
+    const testoArt = titolo + ' · Il Cerchio del Druido';
+    const enc = encodeURIComponent;
+    const nota = document.getElementById('art-condividi-nota');
+    const diNota = (t) => { nota.textContent = t; nota.hidden = false; setTimeout(() => { nota.hidden = true; }, 4000); };
+    document.getElementById('art-share-whatsapp').href = 'https://wa.me/?text=' + enc(testoArt + '\n' + urlArt);
+    document.getElementById('art-share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(urlArt);
+    document.getElementById('art-share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(urlArt);
+    document.getElementById('art-share-telegram').href = 'https://t.me/share/url?url=' + enc(urlArt) + '&text=' + enc(testoArt);
+    document.getElementById('art-share-x').href = 'https://twitter.com/intent/tweet?text=' + enc(testoArt) + '&url=' + enc(urlArt);
+    document.getElementById('art-share-threads').href = 'https://www.threads.net/intent/post?text=' + enc(testoArt + '\n' + urlArt);
+    document.getElementById('art-share-email').href = 'mailto:?subject=' + enc(testoArt)
+      + '&body=' + enc('Ti passo questo articolo di Cristian Bresadola:\n' + urlArt);
+    const copia = () => (navigator.clipboard && navigator.clipboard.writeText)
+      ? navigator.clipboard.writeText(urlArt) : Promise.reject(new Error('niente appunti'));
+    document.getElementById('art-share-copia').onclick = () => {
+      copia().then(() => diNota('Link copiato.')).catch(() => diNota(urlArt));
+    };
+    document.getElementById('art-share-instagram').onclick = () => {
+      copia().then(() => diNota('Link copiato: incollalo in una storia o nella bio. Apro Instagram.'))
+        .catch(() => diNota(urlArt));
+      setTimeout(() => { window.open('https://www.instagram.com/', '_blank', 'noopener'); }, 300);
+    };
+    if (navigator.share) {
+      document.getElementById('art-share-nativo-li').hidden = false;
+      document.getElementById('art-share-nativo').onclick = () => {
+        navigator.share({ title: titolo, text: testoArt, url: urlArt }).catch(() => {});
+      };
+    }
+    // Solo adesso, a tasti collegati, il blocco si vede.
+    document.getElementById('art-condividi').hidden = false;
+  };
+  // L'articolo scritto dal bordo e' gia' aperto: la condivisione si collega
+  // subito, senza aspettare una lettura che potrebbe anche non arrivare.
+  const titoloDalBordo = document.getElementById('art-titolo').textContent;
+  if (!articolo.hidden && titoloDalBordo) collegaCondivisione(titoloDalBordo);
 
   // Il timeout c'e' apposta: una connessione appesa (TLS che non chiude,
   // rete mobile instabile) lasciava il lettore su «Sto aprendo...» per
@@ -387,8 +450,8 @@
       // Il corpo: paragrafi separati da riga vuota, «## » per i titoli.
       // Tutto via textContent: il testo resta testo, sempre. Le stesse
       // regole le usa il bordo, che il corpo l'ha gia' scritto: qui si
-      // SOSTITUISCE (replaceChildren), altrimenti i paragrafi uscirebbero
-      // due volte.
+      // SOSTITUISCE (sostituisci, in cima allo script), altrimenti i
+      // paragrafi uscirebbero due volte.
       const corpo = document.getElementById('art-corpo');
       const blocchi = [];
       for (const blocco of (a.contenuto || '').split(/\n\s*\n/)) {
@@ -404,7 +467,7 @@
           blocchi.push(p);
         }
       }
-      corpo.replaceChildren(...blocchi);
+      sostituisci(corpo, blocchi);
 
       // Le altre foto: solo URL del nostro bucket, come la copertina. Le
       // mette solo lo script (il bordo non legge «immagini»), ma si
@@ -413,47 +476,16 @@
       const foto = Array.isArray(a.immagini)
         ? a.immagini.filter((u) => typeof u === 'string' && /^https:\/\/okasxfvoyihovohlaypz\.supabase\.co\//.test(u)).slice(0, 4)
         : [];
-      galleria.replaceChildren(...foto.map((u) => {
+      sostituisci(galleria, foto.map((u) => {
         const im = document.createElement('img');
         im.src = u; im.alt = a.titolo; im.loading = 'lazy';
         return im;
       }));
       galleria.hidden = foto.length === 0;
 
-      // I pulsanti di condivisione: link puri verso le pagine ufficiali di
-      // condivisione, con l'indirizzo canonico (l'anteprima la fa la edge
-      // function cerchio-og). Instagram e Threads non hanno una pagina di
-      // condivisione per link: Instagram copia il link e apre l'app (si
-      // incolla in una storia o nella bio), Threads apre la composizione.
-      const urlArt = canon.href;
-      const testoArt = a.titolo + ' · Il Cerchio del Druido';
-      const enc = encodeURIComponent;
-      const nota = document.getElementById('art-condividi-nota');
-      const diNota = (t) => { nota.textContent = t; nota.hidden = false; setTimeout(() => { nota.hidden = true; }, 4000); };
-      document.getElementById('art-share-whatsapp').href = 'https://wa.me/?text=' + enc(testoArt + '\n' + urlArt);
-      document.getElementById('art-share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + enc(urlArt);
-      document.getElementById('art-share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(urlArt);
-      document.getElementById('art-share-telegram').href = 'https://t.me/share/url?url=' + enc(urlArt) + '&text=' + enc(testoArt);
-      document.getElementById('art-share-x').href = 'https://twitter.com/intent/tweet?text=' + enc(testoArt) + '&url=' + enc(urlArt);
-      document.getElementById('art-share-threads').href = 'https://www.threads.net/intent/post?text=' + enc(testoArt + '\n' + urlArt);
-      document.getElementById('art-share-email').href = 'mailto:?subject=' + enc(testoArt)
-        + '&body=' + enc('Ti passo questo articolo di Cristian Bresadola:\n' + urlArt);
-      const copia = () => (navigator.clipboard && navigator.clipboard.writeText)
-        ? navigator.clipboard.writeText(urlArt) : Promise.reject(new Error('niente appunti'));
-      document.getElementById('art-share-copia').addEventListener('click', () => {
-        copia().then(() => diNota('Link copiato.')).catch(() => diNota(urlArt));
-      });
-      document.getElementById('art-share-instagram').addEventListener('click', () => {
-        copia().then(() => diNota('Link copiato: incollalo in una storia o nella bio. Apro Instagram.'))
-          .catch(() => diNota(urlArt));
-        setTimeout(() => { window.open('https://www.instagram.com/', '_blank', 'noopener'); }, 300);
-      });
-      if (navigator.share) {
-        document.getElementById('art-share-nativo-li').hidden = false;
-        document.getElementById('art-share-nativo').addEventListener('click', () => {
-          navigator.share({ title: a.titolo, text: testoArt, url: urlArt }).catch(() => {});
-        });
-      }
+      // La condivisione si ricollega col titolo del database: e' lo stesso
+      // che ha scritto il bordo, e nel ripiego e' il primo collegamento.
+      collegaCondivisione(a.titolo);
 
       attesa.hidden = true;
       articolo.hidden = false;

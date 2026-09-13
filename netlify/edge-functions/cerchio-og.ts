@@ -251,6 +251,11 @@ async function articolo(indirizzo: URL, context: Context): Promise<Response> {
   // descrizione che il database non abbia. L'autore porta name e url oltre
   // all'@id, perche' la persona e' definita per intero in un'altra pagina
   // (chi-sono.html). Niente publisher: e' la decisione B16, ancora aperta.
+  // La description e' l'estratto INTERO (revisione di A8, 13/09/2026): il
+  // taglio a 300 caratteri serve ai meta, qui no, e l'estratto dell'acqua
+  // d'autunno (316) finiva a meta' parola, «alle se». Senza estratto niente
+  // description: un pezzo del testo tagliato non e' una descrizione che il
+  // database abbia.
   const persona = { "@type": "Person", "@id": SITO + "/#person", name: "Cristian Bresadola", url: SITO + "/chi-sono.html" };
   const ld = {
     "@context": "https://schema.org",
@@ -258,7 +263,7 @@ async function articolo(indirizzo: URL, context: Context): Promise<Response> {
       {
         "@type": "BlogPosting", "@id": url + "#articolo", mainEntityOfPage: url, url,
         headline: a.titolo, inLanguage: "it-IT",
-        ...(dalDatabase ? { description: dalDatabase } : {}),
+        ...(a.estratto ? { description: a.estratto } : {}),
         ...(copertina ? { image: [copertina] } : {}),
         ...(a.pubblicato_at ? { datePublished: a.pubblicato_at } : {}),
         ...((a.updated_at || a.pubblicato_at) ? { dateModified: a.updated_at || a.pubblicato_at } : {}),
