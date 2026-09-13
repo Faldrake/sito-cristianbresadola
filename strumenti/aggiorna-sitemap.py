@@ -25,21 +25,25 @@ DUE REGOLE, e sono il motivo per cui questo script e' corto:
     togliere pagine dal sitemap e' una decisione, non un'operazione meccanica,
     e questo script non la prende.
 
-    UNA decisione pero' e' stata presa, il 30/08/2026, e sta qui codificata:
-    gli articoli PUBBLICATI del Cerchio del Druido (tabella articoli_cerchio,
-    letti col la chiave pubblicabile: solo cio' che il mondo gia' vede) entrano
-    nel blocco marcato CERCHIO-DINAMICO, che questo script rigenera per intero
-    a ogni corsa. Dentro il blocco comanda il database; fuori, le regole sopra.
+    UNA decisione pero' e' stata presa, il 02/09/2026, e sta qui codificata:
+    le 260 pagine del Kin del Cuore (kin/<tono>-<glifo>.html, generate da
+    strumenti/genera-kin.mjs) entrano nel blocco KIN-DINAMICO, rigenerato a
+    ogni corsa dai file che ESISTONO su disco in kin/. Non dal database e non
+    da un elenco scritto a mano: se una pagina c'e' si indicizza, se sparisce
+    esce dal sitemap da sola. L'indirizzo e' quello «pulito» (/kin/9-ix, senza
+    .html), lo stesso del canonical e dell'og:url dentro la pagina: quando i
+    due divergono, il primo a non essere creduto e' il nostro. Il lastmod e'
+    l'ultimo commit del file, con la regola 1 che vale anche qui.
 
-    UNA SECONDA decisione, il 02/09/2026, per le 260 pagine del Kin del Cuore
-    (kin/<tono>-<glifo>.html, generate da strumenti/genera-kin.mjs): entrano
-    nel blocco KIN-DINAMICO, rigenerato a ogni corsa dai file che ESISTONO su
-    disco in kin/. Non dal database e non da un elenco scritto a mano: se una
-    pagina c'e' si indicizza, se sparisce esce dal sitemap da sola. L'indirizzo
-    e' quello «pulito» (/kin/9-ix, senza .html), lo stesso del canonical e
-    dell'og:url dentro la pagina: quando i due divergono, il primo a non essere
-    creduto e' il nostro. Il lastmod e' l'ultimo commit del file, con la regola
-    1 che vale anche qui.
+    IL CERCHIO DEL DRUIDO NON PASSA PIU' DA QUI (13/09/2026). Dal 30/08 questo
+    script rigenerava anche un blocco CERCHIO-DINAMICO con gli articoli
+    pubblicati, letti dal database. Ma un articolo esce da Arkana quando
+    Cristian lo pubblica, e nel sitemap entrava solo se dopo qualcuno lanciava
+    questo script: il blocco e' rimasto vuoto dal primo articolo (2/09) fino
+    al 13/09. Adesso la vetrina del Cerchio e i suoi articoli stanno in
+    /sitemap-cerchio.xml, che la funzione sul bordo
+    netlify/edge-functions/sitemap-cerchio.ts scrive a ogni richiesta, ed e'
+    dichiarata in robots.txt. Qui non vanno rimessi.
 
 Quando lanciarlo: prima di pubblicare, se sono state toccate delle pagine. Vedi
 la sezione «Il push NON pubblica» del README.
@@ -49,103 +53,23 @@ storia di git e riscrive un file che e' gia' servito a tutti.
 """
 
 import io
-import json
 import os
 import re
 import subprocess
 import sys
-import urllib.request
 
-# Gli indirizzi che non corrispondono a un file con lo stesso nome.
+# Gli indirizzi che non corrispondono a un file con lo stesso nome. (La
+# vetrina del Cerchio del Druido non c'e' piu': sta in /sitemap-cerchio.xml.)
 MAPPA = {
     'https://cristianbresadola.com/': 'index.html',
-    'https://cristianbresadola.com/cerchio-del-druido/': 'cerchio-del-druido/index.html',
 }
 
 SITEMAP = 'sitemap.xml'
-
-# Il blocco degli articoli del Cerchio, rigenerato a ogni corsa. La chiave e'
-# quella PUBBLICABILE (sta gia' in ogni pagina del sito) e la RLS fa vedere
-# all'anonimo solo il pubblicato: il sitemap non puo' dire piu' del sito.
-SB_URL = 'https://okasxfvoyihovohlaypz.supabase.co'
-SB_KEY = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS'
-INIZIO_CERCHIO = '  <!-- CERCHIO-DINAMICO inizio: blocco rigenerato da strumenti/aggiorna-sitemap.py -->'
-FINE_CERCHIO = '  <!-- CERCHIO-DINAMICO fine -->'
 
 # Il blocco delle pagine del Kin del Cuore: comanda la cartella kin/ su disco.
 CARTELLA_KIN = 'kin'
 INIZIO_KIN = '  <!-- KIN-DINAMICO inizio: le pagine del Kin del Cuore, blocco rigenerato da strumenti/aggiorna-sitemap.py -->'
 FINE_KIN = '  <!-- KIN-DINAMICO fine -->'
-
-
-def articoli_cerchio():
-    """Gli articoli pubblicati, [(slug, data)], o None se il database tace.
-
-    Doppia strada di proposito: urllib prima, curl poi. Su questo PC Norton
-    si mette in mezzo al TLS e Python non si fida del suo certificato
-    (errore intermittente, storia nota); curl usa il magazzino certificati
-    di Windows e passa. Meglio due strade che un sitemap muto.
-    """
-    url = (SB_URL + '/rest/v1/articoli_cerchio'
-           + '?select=slug,pubblicato_at,updated_at&order=pubblicato_at.desc&limit=200')
-    grezzo = None
-    try:
-        richiesta = urllib.request.Request(url, headers={'apikey': SB_KEY})
-        with urllib.request.urlopen(richiesta, timeout=15) as r:
-            grezzo = r.read().decode('utf-8')
-    except Exception as e:
-        try:
-            esito = subprocess.run(
-                ['curl', '-s', '--max-time', '15', '-H', 'apikey: ' + SB_KEY, url],
-                capture_output=True, text=True, timeout=25,
-            )
-            if esito.returncode == 0 and esito.stdout.strip():
-                grezzo = esito.stdout
-        except Exception:
-            pass
-        if grezzo is None:
-            print('  ATTENZIONE  il database non risponde (%s): blocco Cerchio lasciato com\'era' % e)
-            return None
-    try:
-        righe = json.loads(grezzo)
-    except Exception:
-        print('  ATTENZIONE  risposta del database illeggibile: blocco Cerchio lasciato com\'era')
-        return None
-    voci = []
-    for a in righe:
-        quando = (a.get('updated_at') or a.get('pubblicato_at') or '')[:10]
-        if a.get('slug'):
-            voci.append((a['slug'], quando))
-    return voci
-
-
-def blocco_cerchio(voci):
-    righe = [INIZIO_CERCHIO]
-    for slug, quando in voci:
-        righe.append('  <url>')
-        righe.append('    <loc>https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=%s</loc>'
-                     % urllib.request.quote(slug, safe=''))
-        if quando:
-            righe.append('    <lastmod>%s</lastmod>' % quando)
-        righe.append('    <changefreq>monthly</changefreq>')
-        righe.append('    <priority>0.6</priority>')
-        righe.append('  </url>')
-    righe.append(FINE_CERCHIO)
-    return '\n'.join(righe)
-
-
-def aggiorna_cerchio(testo):
-    """Sostituisce (o inserisce) il blocco marcato. Torna (testo, quante_voci|None)."""
-    voci = articoli_cerchio()
-    if voci is None:
-        return testo, None
-    blocco = blocco_cerchio(voci)
-    if INIZIO_CERCHIO in testo and FINE_CERCHIO in testo:
-        nuovo = re.sub(re.escape(INIZIO_CERCHIO) + '.*?' + re.escape(FINE_CERCHIO),
-                       blocco.replace('\\', '\\\\'), testo, flags=re.S)
-    else:
-        nuovo = testo.replace('</urlset>', blocco + '\n</urlset>')
-    return nuovo, len(voci)
 
 
 def pagine_kin():
@@ -223,12 +147,9 @@ def main():
             continue
 
         indirizzo = loc.group(1)
-        # Le voci del blocco Cerchio non sono file: le governa il database,
-        # nel passaggio dedicato qui sotto.
-        if 'articolo.html?slug=' in indirizzo:
-            continue
-        # Idem per le pagine del Kin: l'indirizzo e' pulito (senza .html) e
-        # il blocco si rigenera per intero dalla cartella, piu' sotto.
+        # Le pagine del Kin non si guardano una per una: l'indirizzo e' pulito
+        # (senza .html) e il blocco si rigenera per intero dalla cartella,
+        # piu' sotto.
         if 'cristianbresadola.com/kin/' in indirizzo:
             continue
         percorso = MAPPA.get(indirizzo) or indirizzo.replace('https://cristianbresadola.com/', '')
@@ -257,17 +178,12 @@ def main():
     for indirizzo, percorso in mancanti:
         print('  ATTENZIONE  %s -> %s: non lo trovo, lasciata com\'era' % (indirizzo, percorso))
 
-    # Il blocco del Cerchio: la verita' la dice il database.
-    nuovo, voci_cerchio = aggiorna_cerchio(nuovo)
-    if voci_cerchio is not None:
-        print('Articoli del Cerchio nel blocco dinamico: %d' % voci_cerchio)
-
     # Il blocco del Kin: la verita' la dice la cartella kin/.
     nuovo, voci_kin = aggiorna_kin(nuovo)
     print('Pagine del Kin del Cuore nel blocco dinamico: %d' % voci_kin)
 
     if not cambi and nuovo == testo:
-        print('Tutte le date sono gia\' allineate e il blocco Cerchio non cambia. Niente da fare.')
+        print('Tutte le date sono gia\' allineate e il blocco Kin non cambia. Niente da fare.')
         return 0
 
     print('Date da aggiornare: %d' % len(cambi))
@@ -281,7 +197,9 @@ def main():
         return 0
 
     io.open(SITEMAP, 'w', encoding='utf-8', newline='').write(nuovo)
-    print('\n%s aggiornato. Ricordarsi che il push NON pubblica: serve il deploy.' % SITEMAP)
+    # Il vecchio messaggio diceva «il push NON pubblica»: e' superato. Il
+    # push su main pubblica il sito, quindi il sitemap va online col push.
+    print('\n%s aggiornato. Resta il commit: il push su main pubblica il sito.' % SITEMAP)
     return 0
 
 

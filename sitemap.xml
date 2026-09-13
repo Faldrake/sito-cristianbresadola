@@ -96,12 +96,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://cristianbresadola.com/cerchio-del-druido/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- La vetrina del Cerchio del Druido e gli articoli scritti da Arkana
+       stanno in /sitemap-cerchio.xml (13/09/2026), che la funzione sul bordo
+       netlify/edge-functions/sitemap-cerchio.ts scrive a ogni richiesta dal
+       database. Qui non si rimettono: due sitemap con la stessa voce e due
+       lastmod diversi, e il primo a non essere creduto e' il nostro. -->
   <url>
     <loc>https://cristianbresadola.com/cerchio-del-druido/riflessologia-plantare-prima-seduta.html</loc>
     <!-- Il 09/08/2026 l'articolo e' cambiato DAVVERO: titolo, descrizione e
@@ -115,26 +114,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- CERCHIO-DINAMICO inizio: blocco rigenerato da strumenti/aggiorna-sitemap.py -->
-  <url>
-    <loc>https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=acqua-d-autunno-idroterapia-ritmi-e-cammino-maya</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=impatiens-e-la-fretta-di-settembre-quando-il-calendario-riparte-prima-di-noi</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=la-potenza-degli-archetipi-dei-tarocchi</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <!-- CERCHIO-DINAMICO fine -->
   <!-- KIN-DINAMICO inizio: le pagine del Kin del Cuore, blocco rigenerato da strumenti/aggiorna-sitemap.py -->
   <url>
     <loc>https://cristianbresadola.com/kin/1-ajaw</loc>

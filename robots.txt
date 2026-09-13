@@ -14,3 +14,8 @@ Disallow: /node_modules/
 
 # Sitemap
 Sitemap: https://cristianbresadola.com/sitemap.xml
+
+# Il Cerchio del Druido ha una sitemap sua (13/09/2026): la scrive la
+# funzione sul bordo a ogni richiesta, leggendo gli articoli pubblicati,
+# quindi un articolo nuovo ci entra senza deploy e senza script.
+Sitemap: https://cristianbresadola.com/sitemap-cerchio.xml
