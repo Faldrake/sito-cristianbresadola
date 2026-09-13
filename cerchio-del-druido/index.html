@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Il Cerchio del Druido · Cristian Bresadola</title>
-<meta name="description" content="Il Cerchio del Druido raccoglie i miei articoli su naturopatia, fiori di Bach, fitoterapia, riflessologia, idroterapia, Medicina Cinese e saggezza Maya.">
+<meta name="description" content="Il Cerchio del Druido è la mia rubrica di naturopatia: articoli su riflessologia, fiori di Bach, idroterapia, saggezza Maya, tradizione e mito.">
 
 <meta name="author" content="Cristian Bresadola">
 <meta name="theme-color" content="#1B3A3E">
@@ -24,7 +24,7 @@
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="Cristian Bresadola · Naturopata">
 <meta property="og:title" content="Il Cerchio del Druido · Cristian Bresadola">
-<meta property="og:description" content="Il Cerchio del Druido raccoglie i miei articoli su naturopatia, fiori di Bach, fitoterapia, riflessologia, idroterapia, Medicina Cinese e saggezza Maya.">
+<meta property="og:description" content="Il Cerchio del Druido è la mia rubrica di naturopatia: articoli su riflessologia, fiori di Bach, idroterapia, saggezza Maya, tradizione e mito.">
 <meta property="og:url" content="https://cristianbresadola.com/cerchio-del-druido/">
 <meta property="og:image" content="https://cristianbresadola.com/images/cerchio-og.png">
 <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Il Cerchio del Druido · Cristian Bresadola">
-<meta name="twitter:description" content="Il Cerchio del Druido raccoglie i miei articoli su naturopatia, fiori di Bach, fitoterapia, riflessologia, idroterapia, Medicina Cinese e saggezza Maya.">
+<meta name="twitter:description" content="Il Cerchio del Druido è la mia rubrica di naturopatia: articoli su riflessologia, fiori di Bach, idroterapia, saggezza Maya, tradizione e mito.">
 <meta name="twitter:image" content="https://cristianbresadola.com/images/cerchio-og.png">
 
 <!-- JSON-LD Blog -->
@@ -354,6 +354,12 @@
     font-family:var(--display);
     font-style:italic;
   }
+  /* Il rimando alla vetrina quando il database non risponde: il reset di
+     Tailwind toglie la sottolineatura, e un link deve sembrare un link. */
+  .cerchio-empty a{
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
 </style>
 
 </head>
@@ -551,7 +557,7 @@
     <a href="./?cat=medicina-cinese" class="cerchio-cat">Medicina Cinese</a>
     <a href="./?cat=idroterapia" class="cerchio-cat">Idroterapia</a>
     <a href="./?cat=saggezza-maya" class="cerchio-cat">Saggezza Maya</a>
-    <a href="./?cat=tradizione-mito" class="cerchio-cat">Tradizione e mito</a>
+    <a href="./?cat=tradizione-e-mito" class="cerchio-cat">Tradizione e mito</a>
   </div>
 </section>
 
@@ -643,6 +649,24 @@
     });
   }
 
+  // Se il database non risponde (fermo, oltre i 15 secondi, bloccato da
+  // un'estensione) e la categoria scelta non ha card statiche, la griglia
+  // resterebbe vuota: fino al 13/09/2026 la tenevano piena i due segnaposto
+  // datati. Qui non si dice che gli articoli mancano, perche' non lo
+  // sappiamo, e non si mostra un errore: si rimanda alla vetrina intera.
+  const rimando = function(){
+    if (!catScelta) return;
+    const g = document.querySelector('.cerchio-articoli__grid');
+    if (!g || g.querySelector('.cerchio-card, .cerchio-empty')) return;
+    const r = document.createElement('div');
+    r.className = 'cerchio-empty';
+    const a = document.createElement('a');
+    a.href = './';
+    a.textContent = 'Tutti gli articoli del Cerchio';
+    r.appendChild(a);
+    g.appendChild(r);
+  };
+
   const segnale = (typeof AbortSignal !== 'undefined' && AbortSignal.timeout)
     ? { signal: AbortSignal.timeout(15000) } : {};
   fetch(SB + '/rest/v1/articoli_cerchio'
@@ -651,7 +675,7 @@
     Object.assign({ headers: { apikey: CHIAVE } }, segnale))
     .then(function(r){ if(!r.ok) throw new Error('lettura non riuscita'); return r.json(); })
     .then(function(articoli){
-      if (!Array.isArray(articoli)) return;
+      if (!Array.isArray(articoli)) { rimando(); return; }
       if (catScelta) {
         articoli = articoli.filter(function(a){ return slugCat(a.occhiello) === catScelta; });
       }
@@ -731,7 +755,11 @@
         griglia.insertBefore(schede[i], griglia.firstChild);
       }
     })
-    .catch(function(){ /* il database tace: la pagina statica basta a se stessa */ });
+    .catch(function(){
+      // Il database tace: la pagina statica basta a se stessa, e se il
+      // filtro l'ha svuotata resta almeno la strada per tornare alla vetrina.
+      rimando();
+    });
 })();
 </script>
 

@@ -52,10 +52,13 @@
      dichiarava una persona senza nemmeno il nome, e il diploma stava su una
      pagina che non lo nomina mai.
      La home tiene una versione corta della stessa persona, con lo stesso @id:
-     nome, url, foto, mestiere, profili. Sono le sole righe che esistono in
+     nome, url, foto, mestiere, profili. Della persona sono le sole righe in
      due copie, e chi cambia jobTitle o sameAs qui li cambi anche in
      index.html, e viceversa. Il resto vive solo qui, e va tenuto uguale al
      testo della pagina: se cambia il percorso qui sotto, cambia anche qui.
+     Lo studio in worksFor porta tipo, nome e url, non il solo @id: da solo
+     su questa pagina sarebbe un nodo senza nome. Sono gli stessi valori
+     dei nodi #business delle altre sei pagine, e si cambiano insieme a loro.
      L'iscrizione ASPIN è una ProgramMembership: il numero TN-1230-NA-P è di
      Cristian, non dell'associazione, e l'ente è quello che intesta il
      registro pubblico (Centro di Ricerca Erba Sacra APS, aggiornamento del
@@ -128,7 +131,7 @@
           }
         },
         "worksFor": [
-          { "@id": "https://cristianbresadola.com/#business" },
+          { "@type": "HealthAndBeautyBusiness", "@id": "https://cristianbresadola.com/#business", "name": "Cristian Bresadola", "url": "https://cristianbresadola.com/" },
           {
             "@type": "EducationalOrganization",
             "@id": "https://puntoriflesso.com/#organization",

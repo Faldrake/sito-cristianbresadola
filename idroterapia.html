@@ -145,6 +145,17 @@
       radial-gradient(ellipse at 85% 70%, rgba(168, 207, 201, 0.06) 0%, transparent 50%);
   }
 
+  /* Le due classi insieme (l'invito finale): .water-pattern arriva dopo e
+     il suo background-image cancellava il gradiente scuro di .hydro-gradient.
+     La sezione restava sul fondo chiaro della pagina, con il testo avorio
+     illeggibile e visibile solo il link. Qui le onde stanno sopra al fondo. */
+  .hydro-gradient.water-pattern {
+    background-image:
+      radial-gradient(ellipse at 15% 30%, rgba(168, 207, 201, 0.08) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 70%, rgba(168, 207, 201, 0.06) 0%, transparent 50%),
+      linear-gradient(135deg, var(--water-abyss) 0%, var(--water-deep) 55%, var(--water-turquoise) 100%);
+  }
+
   /* Cards pratica - hover lieve */
   .pratica-card {
     transition: all 0.4s ease;
