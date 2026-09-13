@@ -213,6 +213,9 @@
   @media(min-width:1000px){
     .cerchio-articoli__grid{grid-template-columns:repeat(3,1fr)}
   }
+  /* Il contenitore delle schede dal database (13/09/2026) non conta per la
+     griglia: le schede dentro si impaginano come se ne fossero figlie. */
+  .cerchio-dal-database{display:contents}
 
   .cerchio-card{
     background:#fff;
@@ -566,6 +569,15 @@
   <div class="cerchio-articoli__inner">
     <div class="cerchio-articoli__grid">
 
+      <!-- GLI ARTICOLI SCRITTI DA ARKANA (13/09/2026). Il contenitore arriva
+           gia' pieno dalla funzione sul bordo (netlify/edge-functions/
+           cerchio-og.ts): cosi' i link agli articoli stanno nell'HTML, e li
+           trova anche chi non esegue il JavaScript. Lo script in fondo alla
+           pagina lo SOSTITUISCE con quello che legge lui, senza aggiungere,
+           altrimenti le schede uscirebbero due volte. Qui resta vuoto: e' il
+           ripiego se il bordo non ha il database in tempo. -->
+      <div class="cerchio-dal-database" id="cerchio-dal-database"></div>
+
       <!-- ARTICOLO 1 · Riflessologia plantare (Cornerstone Giugno 2026) -->
       <a href="./riflessologia-plantare-prima-seduta.html" class="cerchio-card">
         <div class="cerchio-card__image">
@@ -622,7 +634,10 @@
    pubblicato, per RLS - e antepone le card a quelle statiche. Se il
    database tace, la pagina resta esattamente quella statica di prima:
    niente errori in faccia a chi legge. Card costruite via textContent:
-   il testo resta testo. */
+   il testo resta testo.
+   Dal 13/09/2026 le stesse card le scrive gia' il bordo dentro
+   #cerchio-dal-database: qui quel contenitore si SOSTITUISCE, e se il
+   database tace si lascia com'e'. */
 (function(){
   const SB = 'https://okasxfvoyihovohlaypz.supabase.co';
   const CHIAVE = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
@@ -680,8 +695,11 @@
         articoli = articoli.filter(function(a){ return slugCat(a.occhiello) === catScelta; });
       }
       const griglia = document.querySelector('.cerchio-articoli__grid');
-      if (!griglia) return;
+      const contenitore = document.getElementById('cerchio-dal-database');
+      if (!griglia || !contenitore) return;
       if (articoli.length === 0) {
+        // Il database dice che non ce ne sono: via anche quelle del bordo.
+        contenitore.replaceChildren();
         // Una categoria senza articoli, ne' dal database ne' fra le card
         // statiche: senza questa riga la griglia resterebbe vuota. Niente
         // date promesse, perche' i segnaposto datati erano gia' scaduti.
@@ -750,10 +768,10 @@
         return card;
       });
 
-      // In testa alla griglia, dal piu' recente: le statiche restano dopo.
-      for (let i = schede.length - 1; i >= 0; i--) {
-        griglia.insertBefore(schede[i], griglia.firstChild);
-      }
+      // In testa alla griglia, dal piu' recente: le statiche restano dopo,
+      // perche' il contenitore sta prima di loro. Si SOSTITUISCE quello che
+      // ha scritto il bordo, non ci si aggiunge.
+      contenitore.replaceChildren(...schede);
     })
     .catch(function(){
       // Il database tace: la pagina statica basta a se stessa, e se il

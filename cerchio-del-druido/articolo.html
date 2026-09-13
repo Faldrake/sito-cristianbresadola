@@ -15,8 +15,14 @@
      HTML grezzo e SALTA il rendering, quindi il JS che lo toglieva non
      girava mai e nessun articolo sarebbe stato indicizzato. Il verso giusto
      e' l'opposto: indicizzabile di default, e il noindex lo AGGIUNGE il JS
-     solo sulle pagine vuote (slug assente o articolo non trovato). -->
-
+     solo sulle pagine vuote (slug assente o articolo non trovato).
+     DAL 13/09/2026 l'articolo arriva gia' scritto nell'HTML: lo mette la
+     funzione sul bordo (netlify/edge-functions/cerchio-og.ts), che toglie
+     hidden da #articolo, nasconde «Sto aprendo l'articolo...» e aggiunge
+     canonical e BlogPosting. Qui sotto il modello resta chiuso com'era
+     perche' e' anche il ripiego: se il bordo non ha l'articolo in tempo, la
+     pagina fa tutto da sola, come prima. Lo script lo ridisegna comunque, e
+     per questo SOSTITUISCE il contenuto invece di aggiungerlo. -->
 <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicons/favicon-48x48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
@@ -290,22 +296,32 @@
   const CHIAVE = 'sb_publishable__JK1dgzDVfrFmMETc3z-sA_HjMiueOS';
 
   const attesa = document.getElementById('articolo-attesa');
-  const nonTrovato = (msg) => {
-    // La pagina vuota non va in indice: il noindex nasce QUI, via JS -
-    // Googlebot renderizza le pagine senza noindex statico e lo rispetta.
-    const robots = document.createElement('meta');
-    robots.name = 'robots';
-    robots.content = 'noindex';
-    document.head.appendChild(robots);
-    attesa.innerHTML = '';
+  const articolo = document.getElementById('articolo');
+  // Il messaggio al posto dell'articolo, senza toccare i meta robots.
+  const avviso = (msg) => {
     const p = document.createElement('p');
     p.textContent = msg;
     const a = document.createElement('a');
     a.href = './';
     a.className = 'articolo-ritorno';
     a.textContent = '← Torna al Cerchio del Druido';
-    attesa.appendChild(p);
-    attesa.appendChild(a);
+    attesa.replaceChildren(p, a);
+    attesa.hidden = false;
+    articolo.hidden = true;
+  };
+  const nonTrovato = (msg) => {
+    // La pagina vuota non va in indice: il noindex nasce QUI, via JS -
+    // Googlebot renderizza le pagine senza noindex statico e lo rispetta.
+    // Solo quando l'assenza e' CERTA (13/09/2026): slug assente o
+    // malformato, oppure il database che risponde e l'articolo non ce l'ha.
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement('meta');
+      robots.name = 'robots';
+      document.head.appendChild(robots);
+    }
+    robots.content = 'noindex';
+    avviso(msg);
   };
 
   const slug = new URLSearchParams(window.location.search).get('slug');
@@ -326,16 +342,21 @@
     Object.assign({ headers: { apikey: CHIAVE } }, segnale))
     .then((r) => { if (!r.ok) throw new Error('lettura non riuscita'); return r.json(); })
     .then((righe) => {
-      const a = righe && righe[0];
+      // Una risposta che non e' un elenco e' un guasto, non un'assenza.
+      if (!Array.isArray(righe)) throw new Error('risposta inattesa');
+      const a = righe[0];
       if (!a) { nonTrovato('Articolo non trovato: forse è stato spostato.'); return; }
 
-      document.title = a.titolo + ' · Il Cerchio del Druido · Cristian Bresadola';
+      // Lo stesso titolo che scrive il bordo: prima arrivava a 120 caratteri.
+      document.title = a.titolo + ' · Cristian Bresadola';
       const descr = document.querySelector('meta[name="description"]');
       if (descr && a.estratto) descr.setAttribute('content', a.estratto.slice(0, 300));
-      const canon = document.createElement('link');
+      // Il canonical di solito c'e' gia', scritto dal bordo: si riusa quello,
+      // e lo si crea solo se manca. Mai due.
+      const canon = document.querySelector('link[rel="canonical"]') || document.createElement('link');
       canon.rel = 'canonical';
       canon.href = 'https://cristianbresadola.com/cerchio-del-druido/articolo.html?slug=' + encodeURIComponent(slug);
-      document.head.appendChild(canon);
+      if (!canon.parentNode) document.head.appendChild(canon);
 
       if (a.occhiello) document.getElementById('art-occhiello').textContent = a.occhiello;
       // L'invito alla miscela si accende solo sotto gli articoli sui fiori.
@@ -364,33 +385,40 @@
       }
 
       // Il corpo: paragrafi separati da riga vuota, «## » per i titoli.
-      // Tutto via textContent: il testo resta testo, sempre.
+      // Tutto via textContent: il testo resta testo, sempre. Le stesse
+      // regole le usa il bordo, che il corpo l'ha gia' scritto: qui si
+      // SOSTITUISCE (replaceChildren), altrimenti i paragrafi uscirebbero
+      // due volte.
       const corpo = document.getElementById('art-corpo');
+      const blocchi = [];
       for (const blocco of (a.contenuto || '').split(/\n\s*\n/)) {
         const testo = blocco.trim();
         if (!testo) continue;
         if (testo.startsWith('## ')) {
           const h = document.createElement('h2');
           h.textContent = testo.slice(3).trim();
-          corpo.appendChild(h);
+          blocchi.push(h);
         } else {
           const p = document.createElement('p');
           p.textContent = testo.replace(/\n/g, ' ');
-          corpo.appendChild(p);
+          blocchi.push(p);
         }
       }
+      corpo.replaceChildren(...blocchi);
 
-      // Le altre foto: solo URL del nostro bucket, come la copertina.
+      // Le altre foto: solo URL del nostro bucket, come la copertina. Le
+      // mette solo lo script (il bordo non legge «immagini»), ma si
+      // sostituisce lo stesso: la pagina deve poter ridisegnarsi senza doppi.
       const galleria = document.getElementById('art-galleria');
       const foto = Array.isArray(a.immagini)
         ? a.immagini.filter((u) => typeof u === 'string' && /^https:\/\/okasxfvoyihovohlaypz\.supabase\.co\//.test(u)).slice(0, 4)
         : [];
-      for (const u of foto) {
+      galleria.replaceChildren(...foto.map((u) => {
         const im = document.createElement('img');
         im.src = u; im.alt = a.titolo; im.loading = 'lazy';
-        galleria.appendChild(im);
-      }
-      if (foto.length) galleria.hidden = false;
+        return im;
+      }));
+      galleria.hidden = foto.length === 0;
 
       // I pulsanti di condivisione: link puri verso le pagine ufficiali di
       // condivisione, con l'indirizzo canonico (l'anteprima la fa la edge
@@ -428,9 +456,16 @@
       }
 
       attesa.hidden = true;
-      document.getElementById('articolo').hidden = false;
+      articolo.hidden = false;
     })
-    .catch(() => nonTrovato('Il Cerchio non risponde in questo momento: riprova fra poco.'));
+    .catch(() => {
+      // Supabase non risponde, risponde con un errore o va oltre i 15
+      // secondi: qui NON si mette noindex (13/09/2026). Prima si', e un guasto
+      // di un minuto, se capitava mentre Google rendeva la pagina, toglieva
+      // dall'indice un articolo che esiste. Se l'articolo e' gia' nella
+      // pagina, scritto dal bordo, resta com'e'; se no, si dice di riprovare.
+      if (articolo.hidden) avviso('Il Cerchio non risponde in questo momento: riprova fra poco.');
+    });
 })();
 </script>
 
