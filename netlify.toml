@@ -70,6 +70,16 @@
   status = 301
   force = true
 
+# /favicon.ico alla radice rispondeva 404 (MISURATO il 13/09/2026). L'icona
+# vive in /favicons/ e le pagine la dichiarano da li', ma chi non legge l'HTML
+# la cerca alla radice per consuetudine: qualche servizio di icone, e il
+# browser stesso sulle pagine che non ne dichiarano una (come consenso.html).
+# SENZA force: se un giorno alla radice ci fosse un file vero, deve vincere lui.
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicons/favicon.ico"
+  status = 301
+
 # ============================================================
 # SECURITY HEADERS - applicati a tutte le pagine
 # ============================================================

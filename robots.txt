@@ -2,9 +2,15 @@ User-agent: *
 Allow: /
 
 # Risorse tecniche non da indicizzare
-Disallow: /favicons/
 Disallow: /node_modules/
-Disallow: /fonts/
+
+# Le cartelle delle icone e dei caratteri non si bloccano piu' (13/09/2026).
+# Google scarica l'icona del sito con Googlebot-Image e, se qui glielo si
+# vieta, accanto ai risultati mette un globo generico: e' quello che
+# succedeva dal primo caricamento. Con le icone c'e' anche il logo dichiarato
+# nei dati strutturati. La cartella dei caratteri oggi non esiste: se un
+# giorno li servisse il sito, bloccarla impedirebbe a Google di vedere la
+# pagina com'e'.
 
 # Sitemap
 Sitemap: https://cristianbresadola.com/sitemap.xml
