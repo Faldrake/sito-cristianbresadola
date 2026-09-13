@@ -22,12 +22,31 @@ type Articolo = {
   contenuto: string | null; copertina_url: string | null; pubblicato_at: string | null;
 };
 
+// GLI ARTICOLI CHE HANNO CAMBIATO INDIRIZZO (13/09/2026). «L'acqua d'autunno»
+// e' uscito l'11/09 con uno slug nato da una bozza con un altro titolo («la
+// caverna», «il pipistrello»: parole che nel testo non compaiono mai), e
+// tagliato a 80 caratteri. Cristian ha scelto di rinominarlo (decisione B9 del
+// piano SEO) prima che entrasse nella sitemap. Chi ha il link vecchio - un
+// post, un messaggio, una condivisione - arriva lo stesso: qui si risponde
+// 301 verso il nome nuovo PRIMA di leggere il database, conservando gli altri
+// parametri dell'indirizzo (fbclid e simili). Un rimando per ogni nome
+// abbandonato; i nomi vecchi non vanno riusati per un articolo nuovo.
+const RINOMINATI: Record<string, string> = {
+  "la-caverna-prima-della-parola-il-pipistrello-il-silenzio-fertile-e-i-bus-delle-a":
+    "acqua-d-autunno-idroterapia-ritmi-e-cammino-maya",
+};
+
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 export default async (request: Request, context: Context) => {
-  const slug = new URL(request.url).searchParams.get("slug") || "";
+  const indirizzo = new URL(request.url);
+  const slug = indirizzo.searchParams.get("slug") || "";
+  if (Object.hasOwn(RINOMINATI, slug)) {
+    indirizzo.searchParams.set("slug", RINOMINATI[slug]);
+    return Response.redirect(indirizzo.toString(), 301);
+  }
   const originale = await context.next();
   // La risposta di context.next() ha le intestazioni immutabili: se ne fa
   // una copia scrivibile. E la riscrittura e' su testo, non con HTMLRewriter,
