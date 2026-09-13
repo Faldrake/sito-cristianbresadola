@@ -576,15 +576,6 @@
         </div>
       </a>
 
-      <!-- Placeholder per articoli futuri -->
-      <div class="cerchio-empty">
-        Prossimo cornerstone in arrivo · luglio 2026
-      </div>
-
-      <div class="cerchio-empty">
-        Le prime Note del Druido in arrivo · giugno 2026
-      </div>
-
     </div>
   </div>
 </section>
@@ -663,12 +654,20 @@
       if (catScelta) {
         articoli = articoli.filter(function(a){ return slugCat(a.occhiello) === catScelta; });
       }
-      if (articoli.length === 0) return;
       const griglia = document.querySelector('.cerchio-articoli__grid');
       if (!griglia) return;
-
-      // C'e' vita: i segnaposto «in arrivo» hanno finito il loro compito.
-      griglia.querySelectorAll('.cerchio-empty').forEach(function(v){ v.remove(); });
+      if (articoli.length === 0) {
+        // Una categoria senza articoli, ne' dal database ne' fra le card
+        // statiche: senza questa riga la griglia resterebbe vuota. Niente
+        // date promesse, perche' i segnaposto datati erano gia' scaduti.
+        if (catScelta && !griglia.querySelector('.cerchio-card')) {
+          const vuoto = document.createElement('div');
+          vuoto.className = 'cerchio-empty';
+          vuoto.textContent = 'Ancora nessun articolo in questa categoria';
+          griglia.appendChild(vuoto);
+        }
+        return;
+      }
 
       const schede = articoli.map(function(a){
         const card = document.createElement('a');
