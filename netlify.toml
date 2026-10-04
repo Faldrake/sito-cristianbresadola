@@ -57,6 +57,32 @@
   status = 404
   force = true
 
+# ALTRI FILE DI LAVORO CHE IL SITO SERVIVA (04/10/2026). MISURATO con una HEAD,
+# non dedotto: /README.md, /images/idro/LEGGIMI.txt e i due sorgenti delle edge
+# function in /netlify/edge-functions/ rispondevano 200. Nessun segreto (il
+# repo e' pubblico), ma il README racconta come si pubblica il sito e l'id del
+# sito Netlify: una mappa consegnata a chi non ne ha bisogno. Le edge function
+# continuano a girare sui loro indirizzi dichiarati sotto: qui si chiude solo
+# la lettura del loro sorgente come file. Per i nomi esatti vale la regola di
+# Arkana (niente jolly per estensione); per la cartella il jolly va bene.
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/images/idro/LEGGIMI.txt"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 [[redirects]]
   from = "/riflessologia-plantare-prima-seduta.html"
   to = "/cerchio-del-druido/riflessologia-plantare-prima-seduta.html"
