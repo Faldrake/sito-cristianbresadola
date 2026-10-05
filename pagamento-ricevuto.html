@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento completato · Cristian Bresadola</title>
+<meta name="description" content="Grazie per il pagamento. Mi arriva l'avviso, e per il seguito ti scrivo io.">
+<link rel="canonical" href="https://cristianbresadola.com/pagamento-ricevuto.html">
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="Cristian Bresadola">
+<meta name="theme-color" content="#1B3A3E">
+
+<!--
+  LA PAGINA DOPO IL PAGAMENTO CON CARTA (5/10/2026).
+
+  Ci arriva solo chi ha pagato con il link che Cristian manda da Arkana: la
+  funzione arkana-pagamento crea la sessione di Stripe con questo indirizzo
+  come success_url, e Stripe ci rimanda la persona appena il pagamento e'
+  andato. Nessuno la trova da solo: e' fuori dalla sitemap e porta noindex
+  (qui e in netlify.toml, nelle due forme dei pretty URL).
+
+  LA PAGINA NON CONFERMA NIENTE. L'indirizzo non porta parametri (nessun
+  {CHECKOUT_SESSION_ID}) e la pagina non chiama nessuno: non sa chi e', non sa
+  cosa ha pagato, e chiunque puo' aprirla. La verita' sul pagamento la dice il
+  webhook di Stripe, che lo scrive nella tabella dei pagamenti e accende la
+  campanella di Arkana (docs/STRIPE.md nel repo ildegarda). Per questo il
+  testo dice «hai completato il pagamento», cioe' quello che la persona ha
+  appena fatto sulla pagina di Stripe: non dice «pagamento confermato», che
+  sarebbe una promessa della pagina e non un fatto.
+
+  LA RICEVUTA DI STRIPE NON SI PROMETTE. Stripe la manda solo se nel
+  cruscotto e' acceso «Email ai clienti > Pagamenti riusciti», e in modalita'
+  di prova non la manda mai da sola (arkana-pagamento lo scrive: «se attiva
+  nel cruscotto»). Oggi la chiave e' di prova: una pagina che dice «ti arriva
+  la ricevuta» manderebbe la persona a cercare una email che non esiste. Si
+  nomina al condizionale, solo per dire che non e' una fattura; diventera'
+  una certezza quando Cristian avra' controllato l'interruttore sul conto
+  live di NosLab.
+
+  Non sapendo QUALE servizio e' stato pagato, il testo copre i quattro del
+  listino (Croce Maya, Sinastria, miscela di fiori di Bach, seduta) senza
+  promettere tempi: quelli li dice Cristian nel suo messaggio. Per la seduta
+  non si scrive «ci vediamo all'appuntamento»: il link si manda anche dopo
+  una seduta gia' svolta (e' la campanella «Seduta da incassare»), o per una
+  seduta senza appuntamento, e li' la frase sarebbe falsa.
+
+  LA FATTURA. La ricevuta di Stripe non e' una fattura: quella elettronica la
+  emette NosLab col suo gestionale, e la sessione ha invoice_creation spento
+  apposta. Si dice in una riga, perche' chi ha una partita IVA altrimenti
+  scambia la ricevuta per la fattura; e si manda a rispondere al messaggio di
+  Cristian, senza promettere un invio automatico che oggi non esiste.
+
+  NOSLAB SULL'ESTRATTO CONTO. Incassa NosLab, col suo conto Stripe, e il nome
+  che la persona vede sull'estratto conto e' quello di NosLab: un nome che
+  non riconosce, accanto a una cifra, e' il modo piu' rapido per arrivare a
+  una contestazione con la banca. Una riga lo spiega prima.
+
+  COME LE ALTRE PAGINE DI ESITO. L'impaginazione e' quella della 404
+  (testata e chiusura ridotte, colori e caratteri da styles.css), perche' chi
+  arriva da Stripe ha finito una cosa e non deve ricominciare a navigare.
+  Niente widget di Ildegarda: un assistente che non sa niente del pagamento,
+  su una pagina che parla di soldi, risponderebbe a caso. Niente avviso dei
+  cookie: la pagina non scrive niente nel browser (come iscritto.html e
+  disiscritto.html). Umami si', identico alle altre pagine: l'indirizzo non
+  porta dati della persona, e contare chi arriva qui insieme a chi arriva su
+  pagamento-annullato.html dice quante persone si fermano a meta'.
+  Nessuno script della pagina: per questo il © non ha l'anno, come nella 404.
+-->
+
+<!-- FAVICON -->
+<link rel="icon" type="image/x-icon" href="/favicons/favicon.ico">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/favicons/site.webmanifest">
+
+<!-- TIPOGRAFIA · le stesse due famiglie di tutto il sito -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+
+<!-- DESIGN SYSTEM CONDIVISO · variabili colore, tipografia, bottoni -->
+<link rel="stylesheet" href="/styles.css">
+
+<style>
+  /* Solo impaginazione: colori, caratteri e bottoni vengono da styles.css.
+     Prima il telefono (da li' arriva quasi tutto chi paga con un link
+     ricevuto in un messaggio), poi lo schermo largo. Le classi sono le stesse
+     di pagamento-annullato.html: se si cambia una, si cambia anche l'altra. */
+  /* styles.css non azzera il margine del corpo: sulle pagine complete lo fa
+     tailwind.css, che qui non si carica. Senza questa riga la chiusura scura
+     e il filo della testata si fermavano a 8px dai bordi (visto negli scatti,
+     e succede anche alla 404). */
+  body{margin:0}
+  .esito{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  .esito__testata{
+    padding:1.25rem 1rem;
+    border-bottom:1px solid rgba(27,58,62,0.12);
+  }
+  .esito__marchio{
+    display:flex;
+    align-items:center;
+    gap:0.75rem;
+    text-decoration:none;
+    color:inherit;
+    max-width:72rem;
+    margin:0 auto;
+  }
+  .esito__marchio img{
+    width:2.5rem;
+    height:2.5rem;
+    border-radius:9999px;
+  }
+  .esito__nome{
+    display:block;
+    font-family:var(--display);
+    font-size:17px;
+    color:var(--petrol);
+    line-height:1.2;
+  }
+  .esito__ruolo{
+    display:block;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.2em;
+    color:var(--charcoal-soft);
+  }
+  .esito__corpo{
+    flex:1;
+    width:100%;
+    max-width:40rem;
+    margin:0 auto;
+    padding:3rem 1rem 3rem;
+  }
+  /* Il segno e' forest e non salt-glow: il salt-glow su avorio fa 2,10:1, e
+     anche un'icona ne chiede almeno 3. Il forest supera di molto. */
+  .esito__segno{
+    display:block;
+    width:56px;
+    height:56px;
+    color:var(--forest);
+    margin:0 0 1.5rem;
+  }
+  /* Petrol e non salt-glow, come gli occhielli di tutto il sito su fondo
+     chiaro (la stessa ragione e' scritta per esteso nella 404). */
+  .esito__occhiello{
+    color:var(--petrol);
+    margin:0 0 1rem;
+  }
+  .esito__titolo{
+    font-size:clamp(2.25rem,9vw,3.25rem);
+    color:var(--petrol);
+    margin:0 0 1.25rem;
+  }
+  .esito__testo{
+    font-size:1.1rem;
+    line-height:1.7;
+    color:var(--charcoal-soft);
+    margin:0 0 2rem;
+  }
+  .esito__punti{
+    list-style:none;
+    padding:0;
+    margin:0 0 2rem;
+    border-top:1px solid rgba(27,58,62,0.12);
+  }
+  .esito__punti li{
+    padding:1.1rem 0;
+    border-bottom:1px solid rgba(27,58,62,0.12);
+  }
+  .esito__punto-nome{
+    display:block;
+    font-family:var(--display);
+    font-size:1.2rem;
+    color:var(--petrol);
+    margin-bottom:0.3rem;
+  }
+  .esito__punto-nota{
+    display:block;
+    font-size:1rem;
+    line-height:1.65;
+    color:var(--charcoal-soft);
+  }
+  .esito__coda{
+    font-size:1rem;
+    line-height:1.7;
+    color:var(--charcoal-soft);
+    margin:0 0 1.5rem;
+  }
+  /* Sottolineati sempre, non solo al passaggio del mouse: sul telefono il
+     passaggio non esiste, e un recapito deve sembrare toccabile. */
+  .esito__coda a{
+    color:var(--petrol);
+    font-weight:500;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    /* Il numero non si spezza: a 375px andava a capo fra «638» e «3790»,
+       e un numero diviso su due righe si copia male e si legge peggio. */
+    white-space:nowrap;
+  }
+  .esito__firma{
+    font-family:var(--display);
+    font-size:1.15rem;
+    color:var(--petrol);
+    margin:0 0 2.5rem;
+  }
+  /* styles.css non disegna il fuoco da tastiera: qui si', su ogni link. */
+  .esito a:focus-visible{
+    outline:2px solid var(--petrol);
+    outline-offset:3px;
+  }
+  .esito__chiusura a:focus-visible{
+    outline-color:var(--ivory);
+  }
+  .esito__chiusura{
+    padding:2rem 1rem;
+    font-size:0.8rem;
+  }
+  .esito__chiusura-interno{
+    max-width:72rem;
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem 2rem;
+    justify-content:space-between;
+    align-items:center;
+    opacity:0.7;
+  }
+  .esito__chiusura a{
+    color:inherit;
+    text-decoration:none;
+  }
+  .esito__chiusura a:hover{
+    text-decoration:underline;
+  }
+  @media (min-width:640px){
+    .esito__testata{padding:1.5rem}
+    .esito__corpo{padding:5rem 1.5rem 4rem}
+    .esito__chiusura{padding:2.5rem 1.5rem}
+  }
+</style>
+  <!-- UMAMI ANALYTICS (privacy-friendly, no cookies) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="69393e29-836e-41c0-9526-8824b2312fd8" data-exclude-search="true"></script>
+</head>
+<body class="paper-bg">
+
+<div class="esito">
+
+  <!-- TESTATA RIDOTTA -->
+  <header class="esito__testata">
+    <a href="/" class="esito__marchio">
+      <img src="/images/logo-96.jpg" alt="" width="96" height="96" decoding="async">
+      <span>
+        <span class="esito__nome">Cristian Bresadola</span>
+        <span class="esito__ruolo">Naturopata &middot; Riflessologo</span>
+      </span>
+    </a>
+  </header>
+
+  <main class="esito__corpo">
+
+    <svg class="esito__segno" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+      <circle cx="32" cy="32" r="28"/>
+      <path d="M20 32l8 8 16-16"/>
+    </svg>
+
+    <p class="eyebrow esito__occhiello">Pagamento completato</p>
+
+    <h1 class="display-title esito__titolo"><span class="display-italic">Grazie</span> di cuore.</h1>
+
+    <p class="esito__testo">Hai completato il pagamento, e a me arriva l'avviso.</p>
+
+    <ul class="esito__punti">
+      <li>
+        <span class="esito__punto-nome">E adesso?</span>
+        <span class="esito__punto-nota">Ti scrivo io. Per una Croce Maya, una Sinastria o una miscela di fiori di Bach, mi metto al lavoro e ti avviso quando è pronta. Per una seduta non devi fare altro.</span>
+      </li>
+      <li>
+        <span class="esito__punto-nome">NosLab sull'estratto conto</span>
+        <span class="esito__punto-nota">È la mia società: è lei che incassa i pagamenti con carta.</span>
+      </li>
+      <li>
+        <span class="esito__punto-nome">La fattura</span>
+        <span class="esito__punto-nota">La ricevuta di Stripe, se ti arriva, non è una fattura. Se te ne serve una, rispondi al mio messaggio.</span>
+      </li>
+    </ul>
+
+    <p class="esito__coda">Qualcosa non ti torna? Scrivimi su WhatsApp al <a href="https://wa.me/393396383790">+39 339 638 3790</a> o a <a href="mailto:info@cristianbresadola.com">info@cristianbresadola.com</a>.</p>
+
+    <p class="esito__firma">A presto, Cristian</p>
+
+    <a href="/" class="btn-secondary">Torna al sito</a>
+
+  </main>
+
+  <!-- CHIUSURA RIDOTTA -->
+  <footer class="esito__chiusura bg-petrol-dark text-ivory on-dark">
+    <div class="esito__chiusura-interno">
+      <span>&copy; Cristian Bresadola &middot; NosLab S.a.s. &middot; P.IVA 02839670227</span>
+      <span>
+        <a href="/privacy-policy.html">Privacy</a>
+        &middot;
+        <a href="/cookie-policy.html">Cookie</a>
+      </span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -192,6 +192,32 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
+# Le due pagine di ritorno da Stripe (05/10/2026): ci arriva solo chi ha
+# pagato con il link di Arkana, o chi e' tornato indietro senza pagare. Sono
+# pagine di servizio come grazie: noindex nelle due forme, e fuori dalla
+# sitemap (aggiorna-sitemap.py non aggiunge voci da solo, e la sitemap del
+# bordo conosce solo il Cerchio). Le chiama Stripe col nome .html, quello
+# scritto in arkana-pagamento: se un giorno si rinominano, va cambiato la'.
+[[headers]]
+  for = "/pagamento-ricevuto.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/pagamento-ricevuto"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/pagamento-annullato.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/pagamento-annullato"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # La card per Instagram (2/09/2026): Arkana la disegna su un canvas nel
 # browser e ci mette il cerchio del Druido preso da qui. Un'immagine di
 # un'altra origine «sporca» il canvas e impedisce di esportarlo, a meno che
