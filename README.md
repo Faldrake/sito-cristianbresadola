@@ -9,30 +9,31 @@ che va online.
 
 ---
 
-## ⚠️ Il push NON pubblica
+## ⚠️ Il push su `main` PUBBLICA (misurato il 5/10/2026)
 
-**Misurato il 27 agosto 2026**, dopo che questo file per mesi ha sostenuto il
-contrario. Il deploy pubblicato porta `deploy_source: api` e `commit_ref: null`,
-cioè è un upload da riga di comando; e un `git push` su `main` fatto quel giorno
-**non ha innescato nessun deploy**: l'id del deploy in produzione è rimasto quello
-di prima. Chi si fida della riga vecchia pubblica per sbaglio, o peggio crede di
-aver pubblicato e non l'ha fatto.
+Questa sezione diceva il contrario, ed era vero il 27/08/2026: allora il sito
+non era collegato a GitHub e un push non innescava niente. Dopo, il sito
+Netlify è stato collegato a `Faldrake/sito-cristianbresadola`, ramo `main`,
+con le build attive. Il 5/10 i record dei deploy lo dicono senza dubbi: ogni
+push su `main` ha prodotto un deploy col suo `commit_ref` (`9d23197`,
+`d214354`), online in pochi secondi.
 
-Ne segue la cosa che conta: **la produzione può essere PIÙ AVANTI di `origin/main`**,
-e a un certo punto lo è stata di due commit. Lo stato di ciò che è online non si
-deduce da git: si misura, con `curl` sul dominio o dal record del deploy su Netlify.
+Quindi **si pubblica col push**, e basta:
 
-Si pubblica a mano, sempre. **Prima**, se sono state toccate delle pagine:
+1. si committano le pagine;
+2. se sono state toccate pagine della sitemap, `python strumenti/aggiorna-sitemap.py --scrivi`
+   (legge le date dalla storia di git, quindi DOPO il commit delle pagine) e
+   si committa `sitemap.xml`;
+3. `git push origin main`;
+4. si controlla che sia online: `curl` sul dominio, o il record del deploy.
 
-```bash
-python strumenti/aggiorna-sitemap.py --scrivi
-```
+**Non usare più `netlify deploy --prod --dir=.`** Carica la cartella di lavoro
+così com'è, compresi i file modificati e non committati, e poi il push
+successivo la sovrascrive in silenzio (o viceversa): due canali che si
+contendono la produzione, e vince l'ultimo che finisce. Il 5/10 è successo
+due volte, per fortuna con lo stesso contenuto.
 
-**Poi** il deploy, dalla cartella del repo:
-
-```bash
-netlify deploy --prod --dir=. --no-build
-```
+### Nota storica: il deploy a mano
 
 ⚠️ **Niente `--site=<id>`.** Fino al 28/08/2026 questa riga lo consigliava, e
 con netlify-cli 26.0.1 non funziona: risponde `Project not found. Please rerun
