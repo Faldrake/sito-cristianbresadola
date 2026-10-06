@@ -1682,7 +1682,8 @@
   function escape(str){
     if(!str) return '';
     return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
 
   function renderMarkdown(text){
@@ -1837,7 +1838,7 @@
              aria-label="Apri descrizione di ${escape(g.nome_glifo_yucateco)}"
              style="left:${x}%;top:${y}%;"
              title="${label}">
-          <img src="${g.immagine_glifo_url}" alt="${escape(g.nome_glifo_yucateco)}" loading="lazy">
+          <img src="${escape(g.immagine_glifo_url)}" alt="${escape(g.nome_glifo_yucateco)}" loading="lazy">
         </div>
       `;
     }).join('');
@@ -1847,7 +1848,7 @@
     $('tzolkin-grid').innerHTML = allGlyphs.map(g => `
       <div class="tzolkin__cell" data-glyph-num="${g.numero_glifo}" tabindex="0" role="button" aria-label="Apri descrizione di ${escape(g.nome_glifo_yucateco)}">
         <div class="tzolkin__cell-img">
-          <img src="${g.immagine_glifo_url}" alt="${escape(g.nome_glifo_yucateco)}" loading="lazy">
+          <img src="${escape(g.immagine_glifo_url)}" alt="${escape(g.nome_glifo_yucateco)}" loading="lazy">
         </div>
         <div class="tzolkin__cell-num">Glifo ${g.numero_glifo}</div>
         <div class="tzolkin__cell-name">${escape(g.nome_glifo_yucateco)}</div>

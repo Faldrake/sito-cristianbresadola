@@ -1508,7 +1508,11 @@
 
         const imgWrap = $('bw-glyph-img');
         if(imgWrap && kin.immagine_glifo_url){
-          imgWrap.innerHTML = '<img src="' + kin.immagine_glifo_url + '" alt="' + (kin.nome_glifo_yucateco || '') + '" loading="lazy">';
+          const img = document.createElement('img');
+          img.src = kin.immagine_glifo_url;
+          img.alt = kin.nome_glifo_yucateco || '';
+          img.loading = 'lazy';
+          imgWrap.replaceChildren(img);
         }
       } catch(err){
         console.error('Bussola widget:', err);
@@ -2010,7 +2014,10 @@
         if (titolo) {
           if (art.titolo.indexOf(' · ') > -1) {
             const parts = art.titolo.split(' · ');
-            titolo.innerHTML = parts[0] + ' · <span class="display-italic">' + parts.slice(1).join(' · ') + '</span>';
+            const corsivo = document.createElement('span');
+            corsivo.className = 'display-italic';
+            corsivo.textContent = parts.slice(1).join(' · ');
+            titolo.replaceChildren(parts[0] + ' · ', corsivo);
           } else { titolo.textContent = art.titolo; }
         }
         if (descr) descr.textContent = art.descrizione || 'Leggi l\'articolo completo sul portale.';
