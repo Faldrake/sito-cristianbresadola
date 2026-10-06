@@ -36,7 +36,7 @@ const SLUG_VALIDO = /^[a-z0-9][a-z0-9-]{0,118}$/;
 // pagine di sitemap.xml e con la stessa regola: mai all'indietro. Non va
 // toccata a mano; la riga deve restare in questa forma, perche' lo script la
 // cerca cosi'.
-const VETRINA_FILE = "2026-09-13";
+const VETRINA_FILE = "2026-10-06";
 
 type Voce = { slug: string | null; pubblicato_at: string | null; updated_at: string | null };
 
