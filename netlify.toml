@@ -83,6 +83,20 @@
   status = 404
   force = true
 
+# La cartella supabase/ (06/10/2026). Nel repo c'era supabase/.temp/
+# linked-project.json, il file che la CLI di Supabase scrive quando si
+# collega la cartella a un progetto: riferimento del progetto, nome e id
+# dell'organizzazione. Nessun segreto, ma è un file di lavoro della
+# macchina di chi pubblica, e col deploy da git veniva servito a chiunque.
+# Il file esce dal repo (e .gitignore lo tiene fuori); la regola copre la
+# cartella intera, perché la CLI ci scrive altro, e un domani funzioni o
+# migrazioni non sono pagine del sito.
+[[redirects]]
+  from = "/supabase/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 [[redirects]]
   from = "/riflessologia-plantare-prima-seduta.html"
   to = "/cerchio-del-druido/riflessologia-plantare-prima-seduta.html"

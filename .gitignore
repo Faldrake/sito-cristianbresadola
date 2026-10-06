@@ -3,3 +3,6 @@
 
 # Configurazione locale degli strumenti
 .claude/
+
+# File di lavoro della CLI di Supabase (riferimento del progetto collegato)
+supabase/.temp/
